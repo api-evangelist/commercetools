@@ -1,0 +1,411 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History API
+  description: >-
+    The commercetools Change History API provides a queryable audit log of all
+    changes made to resources within a Composable Commerce project. It records
+    mutations applied to resources such as products, orders, customers,
+    discounts, and carts, along with metadata about who made the change and when.
+    The API is hosted on separate regional endpoints from the main HTTP API and
+    supports filtering by resource type, date range, user, and API client. It is
+    useful for compliance workflows, debugging unexpected state changes, and
+    building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview
+servers:
+  - url: https://history.{region}.commercetools.com
+    description: Production Change History Server
+    variables:
+      region:
+        default: us-central1.gcp
+        enum:
+          - us-central1.gcp
+          - us-east-2.aws
+          - europe-west1.gcp
+          - eu-central-1.aws
+          - australia-southeast1.gcp
+        description: The deployment region.
+tags:
+  - name: ChangeHistory
+    description: Query the audit log of resource changes across the project.
+security:
+  - bearerAuth: []
+paths:
+  /{projectKey}:
+    get:
+      operationId: listChanges
+      summary: Query change history records
+      description: >-
+        Returns a paginated list of change history records for the project.
+        Each record contains a list of individual changes along with metadata
+        about the actor and timestamp. Supports filtering by resource type,
+        date range, resource ID, user, and client.
+      tags:
+        - ChangeHistory
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - name: date.from
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Start of the date range filter. Accepts ISO 8601 datetime strings or
+            relative values like "24" (last 24 hours) or "now".
+        - name: date.to
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            End of the date range filter. Accepts ISO 8601 datetime strings or
+            relative values like "now".
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+            default: 20
+          description: Maximum number of records to return per page.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 10000
+            default: 0
+          description: Number of records to skip for pagination.
+        - name: resourceTypes
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Comma-separated list of resource types to filter by (e.g.,
+            "order,product,customer").
+        - name: changes
+          in: query
+          required: false
+          schema:
+            type: string
+          description: >-
+            Filter by specific change type name (e.g., "setCustomField",
+            "changeOrderState").
+        - name: resourceId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter records to changes affecting a specific resource ID.
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter records to changes made by a specific user ID.
+        - name: clientId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter records to changes made by a specific API client ID.
+      responses:
+        '200':
+          description: A paged list of change history records.
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: Total rate limit tokens available for the current window.
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Rate limit tokens remaining after this request.
+            X-RateLimit-Request-Cost:
+              schema:
+                type: integer
+              description: Number of rate limit tokens consumed by this request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordPagedQueryResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{projectKey}/{resourceType}/{id}:
+    get:
+      operationId: listChangesByResourceId
+      summary: Query change history for a specific resource
+      description: >-
+        Returns a paginated list of change history records filtered to a specific
+        resource type and resource ID. This is the most efficient way to retrieve
+        the full change history of a single resource, such as all changes made
+        to a specific order or product.
+      tags:
+        - ChangeHistory
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - name: resourceType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - associate-roles
+              - business-units
+              - cart-discounts
+              - categories
+              - channels
+              - customer-groups
+              - customers
+              - discount-codes
+              - inventory-entries
+              - key-value-documents
+              - orders
+              - payments
+              - product-discounts
+              - product-selections
+              - product-types
+              - products
+              - quote-requests
+              - quotes
+              - reviews
+              - shipping-methods
+              - shopping-lists
+              - staged-quotes
+              - standalone-prices
+              - states
+              - stores
+              - tax-categories
+              - types
+              - zones
+          description: The resource type category to filter the change history query.
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The system-generated ID of the specific resource.
+        - name: date.from
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Start of the date range filter.
+        - name: date.to
+          in: query
+          required: false
+          schema:
+            type: string
+          description: End of the date range filter.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+            default: 20
+          description: Maximum number of records to return.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          description: Number of records to skip for pagination.
+      responses:
+        '200':
+          description: A paged list of change history records for the resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 Bearer token obtained from the commercetools authentication
+        service using client credentials flow. Requires the view_audit_log scope.
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+  schemas:
+    RecordPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of change history records.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+          description: Maximum number of records returned.
+        offset:
+          type: integer
+          description: Number of records skipped.
+        count:
+          type: integer
+          description: Number of records in this page.
+        total:
+          type: integer
+          description: Total number of matching records.
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Record'
+          description: The change history records on this page.
+    Record:
+      type: object
+      description: >-
+        A change history record capturing a set of changes applied to a resource
+        in a single operation, along with actor and timestamp metadata.
+      required:
+        - id
+        - resource
+        - resourceType
+        - changes
+        - createdAt
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the record.
+        resource:
+          $ref: '#/components/schemas/Reference'
+        resourceVersion:
+          type: integer
+          description: The version of the resource after these changes were applied.
+        resourceType:
+          type: string
+          description: The type of resource that was changed.
+        changes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Change'
+          description: List of individual field-level changes captured in this record.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the changes were made.
+        createdBy:
+          $ref: '#/components/schemas/ModifiedBy'
+        label:
+          type: object
+          description: A label identifying the changed resource (e.g., product name, order number).
+        previousVersion:
+          type: integer
+          description: The version of the resource before these changes were applied.
+        type:
+          type: string
+          description: The type of modification (e.g., 'update', 'create', 'delete').
+    Change:
+      type: object
+      description: A single field-level change within a change history record.
+      required:
+        - change
+        - type
+      properties:
+        change:
+          type: string
+          description: The name of the update action that caused this change (e.g., 'setCustomField', 'changeOrderState').
+        type:
+          type: string
+          description: The type identifier of this change entry.
+        previousValue:
+          description: The field value before the change was applied.
+        nextValue:
+          description: The field value after the change was applied.
+    ModifiedBy:
+      type: object
+      description: Information about the actor who made the change.
+      properties:
+        id:
+          type: string
+          description: System-generated ID of the user or client.
+        type:
+          type: string
+          enum: [user, external-user, customer, key]
+          description: The type of actor that made the change.
+        clientId:
+          type: string
+          description: ID of the API client used to make the change.
+        anonymousId:
+          type: string
+          description: Anonymous session ID if the change was made without a customer login.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        isPlatformClient:
+          type: boolean
+          description: Whether the change was made via the Merchant Center.
+    Reference:
+      type: object
+      description: A reference to another resource by typeId and id.
+      required:
+        - typeId
+        - id
+      properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource.
+        id:
+          type: string
+          description: The system-generated unique identifier of the referenced resource.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string

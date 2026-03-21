@@ -1,0 +1,495 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/schemas/commercetools/order.json",
+  "title": "commercetools Order",
+  "description": "An order created from a cart upon successful checkout in a commercetools Composable Commerce project. Orders capture the immutable state of line items, pricing, addresses, and payment information at the time of purchase.",
+  "type": "object",
+  "required": ["id", "version", "orderState", "lineItems", "customLineItems", "totalPrice"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier for the order."
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Current version of the order resource for optimistic concurrency control."
+    },
+    "key": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 256,
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "description": "User-defined unique key for the order."
+    },
+    "orderNumber": {
+      "type": "string",
+      "description": "Human-readable order number, unique within the project."
+    },
+    "purchaseOrderNumber": {
+      "type": "string",
+      "description": "A purchase order number for business-to-business order references."
+    },
+    "customerId": {
+      "type": "string",
+      "description": "ID of the customer who placed the order."
+    },
+    "customerEmail": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the customer at time of order creation."
+    },
+    "customerGroup": {
+      "$ref": "#/$defs/Reference",
+      "description": "Customer group of the customer at time of order creation."
+    },
+    "anonymousId": {
+      "type": "string",
+      "description": "Anonymous session ID for guest checkout orders."
+    },
+    "businessUnit": {
+      "$ref": "#/$defs/Reference",
+      "description": "Business unit this order belongs to in B2B contexts."
+    },
+    "store": {
+      "$ref": "#/$defs/Reference",
+      "description": "Store this order was placed in."
+    },
+    "lineItems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/LineItem"
+      },
+      "description": "Product line items captured at the time of order creation."
+    },
+    "customLineItems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CustomLineItem"
+      },
+      "description": "Custom line items with user-defined pricing captured at order creation."
+    },
+    "totalPrice": {
+      "$ref": "#/$defs/Money",
+      "description": "Total price of all line items and custom line items."
+    },
+    "taxedPrice": {
+      "$ref": "#/$defs/TaxedPrice",
+      "description": "Total price including tax breakdown, available when tax calculation is complete."
+    },
+    "taxMode": {
+      "type": "string",
+      "enum": ["Platform", "External", "ExternalAmount", "Disabled"],
+      "description": "Tax calculation mode used for this order."
+    },
+    "taxRoundingMode": {
+      "type": "string",
+      "enum": ["HalfEven", "HalfUp", "HalfDown"],
+      "description": "Rounding mode used for tax calculations."
+    },
+    "taxCalculationMode": {
+      "type": "string",
+      "enum": ["LineItemLevel", "UnitPriceLevel"],
+      "description": "Whether tax is calculated at line item or unit price level."
+    },
+    "inventoryMode": {
+      "type": "string",
+      "enum": ["None", "TrackOnly", "ReserveOnOrder"],
+      "description": "Inventory tracking mode applied to this order."
+    },
+    "orderState": {
+      "type": "string",
+      "enum": ["Open", "Confirmed", "Complete", "Cancelled"],
+      "description": "High-level lifecycle state of the order."
+    },
+    "state": {
+      "$ref": "#/$defs/Reference",
+      "description": "Reference to a custom state machine state for the order."
+    },
+    "shipmentState": {
+      "type": "string",
+      "enum": ["Shipped", "Ready", "Pending", "Delayed", "Partial", "Backorder"],
+      "description": "Current fulfillment state of the order."
+    },
+    "paymentState": {
+      "type": "string",
+      "enum": ["Paid", "Pending", "Failed", "CreditOwed", "BalanceDue"],
+      "description": "Current payment state of the order."
+    },
+    "billingAddress": {
+      "$ref": "#/$defs/Address",
+      "description": "Billing address captured at order creation."
+    },
+    "shippingAddress": {
+      "$ref": "#/$defs/Address",
+      "description": "Primary shipping address captured at order creation."
+    },
+    "shippingInfo": {
+      "type": "object",
+      "description": "Shipping method and rate applied to the order."
+    },
+    "paymentInfo": {
+      "type": "object",
+      "description": "References to payment resources associated with the order."
+    },
+    "discountCodes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Discount codes applied to the order."
+    },
+    "lineItemCount": {
+      "type": "integer",
+      "description": "Total number of line items in the order."
+    },
+    "syncInfo": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Synchronization information for external system integrations."
+    },
+    "returnInfo": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ReturnInfo"
+      },
+      "description": "Return information including returned items and refund state."
+    },
+    "deliveries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Delivery"
+      },
+      "description": "Delivery records tracking physical fulfillment of order items."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the order was created."
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the order was last modified."
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the order reached the Complete state."
+    },
+    "custom": {
+      "type": "object",
+      "description": "Custom fields and type reference for extended order attributes."
+    }
+  },
+  "$defs": {
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another commercetools resource by type and ID.",
+      "required": ["typeId", "id"],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'customer')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    },
+    "Money": {
+      "type": "object",
+      "description": "A monetary value with currency code and amount in the smallest currency unit.",
+      "required": ["currencyCode", "centAmount"],
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 three-letter currency code."
+        },
+        "centAmount": {
+          "type": "integer",
+          "description": "Amount in the smallest indivisible unit of the currency (e.g., cents for USD)."
+        },
+        "fractionDigits": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20,
+          "description": "Number of fraction digits for the currency."
+        }
+      }
+    },
+    "TaxedPrice": {
+      "type": "object",
+      "description": "A price with full tax breakdown including total gross, net, and per-rate tax portions.",
+      "required": ["totalNet", "totalGross"],
+      "properties": {
+        "totalNet": {
+          "$ref": "#/$defs/Money",
+          "description": "Total price excluding all taxes."
+        },
+        "totalGross": {
+          "$ref": "#/$defs/Money",
+          "description": "Total price including all taxes."
+        },
+        "taxPortions": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Breakdown of tax portions by rate and name."
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "description": "A postal address with country and optional structured fields.",
+      "required": ["country"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the address within the resource."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined identifier for the address."
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "ISO 3166-1 alpha-2 country code."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the address recipient."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the address recipient."
+        },
+        "company": {
+          "type": "string",
+          "description": "Company name for business addresses."
+        },
+        "streetName": {
+          "type": "string",
+          "description": "Street name component of the address."
+        },
+        "streetNumber": {
+          "type": "string",
+          "description": "Street number component of the address."
+        },
+        "additionalStreetInfo": {
+          "type": "string",
+          "description": "Apartment, suite, floor, or other secondary address information."
+        },
+        "city": {
+          "type": "string",
+          "description": "City of the address."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal or ZIP code."
+        },
+        "region": {
+          "type": "string",
+          "description": "State, province, or region."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address associated with this postal address."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number associated with this postal address."
+        }
+      }
+    },
+    "LineItem": {
+      "type": "object",
+      "description": "A product line item in an order capturing the product, variant, quantity, and pricing at checkout time.",
+      "required": ["id", "productId", "name", "variant", "price", "totalPrice", "quantity", "lineItemMode", "priceMode"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the line item within the order."
+        },
+        "productId": {
+          "type": "string",
+          "description": "ID of the product this line item references."
+        },
+        "productKey": {
+          "type": "string",
+          "description": "Key of the product at time of order creation."
+        },
+        "name": {
+          "type": "object",
+          "description": "Localized name of the product at time of order creation."
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Quantity of this product variant ordered."
+        },
+        "price": {
+          "type": "object",
+          "description": "The unit price applied to this line item."
+        },
+        "totalPrice": {
+          "$ref": "#/$defs/Money",
+          "description": "Total price for this line item (unit price multiplied by quantity)."
+        },
+        "lineItemMode": {
+          "type": "string",
+          "enum": ["Standard", "GiftLineItem"],
+          "description": "Whether this is a standard or complimentary gift line item."
+        },
+        "priceMode": {
+          "type": "string",
+          "enum": ["Platform", "ExternalTotal", "ExternalPrice"],
+          "description": "How the price for this line item was determined."
+        },
+        "discountedPricePerQuantity": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Discounted price information per unit quantity."
+        },
+        "taxRate": {
+          "type": "object",
+          "description": "Tax rate applied to this line item."
+        }
+      }
+    },
+    "CustomLineItem": {
+      "type": "object",
+      "description": "A custom-priced line item not linked to a product catalog entry.",
+      "required": ["id", "name", "money", "totalPrice", "quantity", "slug"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the custom line item."
+        },
+        "name": {
+          "type": "object",
+          "description": "Localized name of the custom line item."
+        },
+        "money": {
+          "$ref": "#/$defs/Money",
+          "description": "Unit price of the custom line item."
+        },
+        "totalPrice": {
+          "$ref": "#/$defs/Money",
+          "description": "Total price (money multiplied by quantity)."
+        },
+        "slug": {
+          "type": "string",
+          "description": "User-defined identifier for the custom line item type."
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Quantity of this custom line item."
+        }
+      }
+    },
+    "Delivery": {
+      "type": "object",
+      "description": "A delivery record tracking physical fulfillment of order line items.",
+      "required": ["id", "items"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the delivery."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined key for the delivery."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the delivery was created."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Line items and quantities included in this delivery."
+        },
+        "parcels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Parcel"
+          },
+          "description": "Physical parcels within this delivery with tracking information."
+        },
+        "address": {
+          "$ref": "#/$defs/Address",
+          "description": "Delivery address for this delivery if different from the order shipping address."
+        }
+      }
+    },
+    "Parcel": {
+      "type": "object",
+      "description": "A physical parcel within a delivery with tracking and measurement details.",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the parcel."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the parcel was created."
+        },
+        "measurements": {
+          "type": "object",
+          "description": "Physical dimensions and weight of the parcel."
+        },
+        "trackingData": {
+          "type": "object",
+          "description": "Carrier tracking information including tracking ID, carrier name, and URL."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Line items and quantities packed in this parcel."
+        }
+      }
+    },
+    "ReturnInfo": {
+      "type": "object",
+      "description": "Return information for items being returned from an order.",
+      "required": ["items"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Items being returned with quantities and return state."
+        },
+        "returnTrackingId": {
+          "type": "string",
+          "description": "Tracking ID for the return shipment."
+        },
+        "returnDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date the return was initiated."
+        }
+      }
+    }
+  }
+}

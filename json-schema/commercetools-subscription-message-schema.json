@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/schemas/commercetools/subscription-message.json",
+  "title": "commercetools Subscription Message",
+  "description": "A message notification payload delivered by the commercetools Subscriptions system to external message queue destinations. Messages are generated when predefined domain events occur (e.g., OrderCreated, CustomerCreated, ProductPublished) and include common metadata plus a type-specific payload.",
+  "type": "object",
+  "required": ["id", "version", "sequenceNumber", "resource", "resourceVersion", "type", "createdAt"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier for the message."
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Version number of the message record."
+    },
+    "sequenceNumber": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Monotonically increasing sequence number scoped to the resource for ordered processing."
+    },
+    "resource": {
+      "$ref": "#/$defs/Reference",
+      "description": "Reference to the resource that generated this message."
+    },
+    "resourceVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Version of the resource at the time the message was generated."
+    },
+    "resourceUserProvidedIdentifiers": {
+      "type": "object",
+      "description": "User-defined identifiers of the resource (e.g., key, orderNumber, sku).",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "The user-defined key of the resource, if set."
+        },
+        "orderNumber": {
+          "type": "string",
+          "description": "The order number of the resource if it is an order."
+        },
+        "sku": {
+          "type": "string",
+          "description": "The SKU of the resource if it is an inventory entry or price."
+        },
+        "slug": {
+          "type": "object",
+          "description": "The localized slug map if the resource is a product or category."
+        }
+      }
+    },
+    "type": {
+      "type": "string",
+      "description": "The message type discriminator identifying the specific event (e.g., OrderCreated, CustomerCreated).",
+      "enum": [
+        "OrderCreated",
+        "OrderStateChanged",
+        "OrderPaymentStateChanged",
+        "OrderShipmentStateChanged",
+        "OrderImported",
+        "DeliveryAdded",
+        "DeliveryAddressSet",
+        "DeliveryItemsUpdated",
+        "ParcelAddedToDelivery",
+        "ParcelTrackingDataUpdated",
+        "ReturnInfoAdded",
+        "OrderLineItemAdded",
+        "OrderLineItemRemoved",
+        "CustomerCreated",
+        "CustomerPasswordChanged",
+        "CustomerPasswordUpdated",
+        "CustomerEmailChanged",
+        "CustomerEmailVerified",
+        "CustomerGroupSet",
+        "CustomerAddressAdded",
+        "CustomerAddressChanged",
+        "CustomerAddressRemoved",
+        "ProductPublished",
+        "ProductUnpublished",
+        "ProductCreated",
+        "ProductDeleted",
+        "ProductVariantAdded",
+        "ProductVariantDeleted",
+        "InventoryEntryCreated",
+        "InventoryEntryDeleted",
+        "InventoryEntryQuantitySet",
+        "PaymentCreated",
+        "PaymentStatusInterfaceCodeSet",
+        "PaymentTransactionAdded",
+        "PaymentTransactionStateChanged",
+        "ApprovalRuleApproved",
+        "ApprovalRuleRejected",
+        "QuoteRequestCreated",
+        "QuoteCreated",
+        "ReviewCreated",
+        "ReviewRatingSet",
+        "StoreCreated",
+        "StoreDeleted"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the message was created."
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the message record was last modified."
+    },
+    "createdBy": {
+      "$ref": "#/$defs/LastModifiedBy",
+      "description": "Actor who triggered the event that generated this message."
+    },
+    "lastModifiedBy": {
+      "$ref": "#/$defs/LastModifiedBy",
+      "description": "Actor who last modified this message record."
+    }
+  },
+  "$defs": {
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another commercetools resource by type and ID.",
+      "required": ["typeId", "id"],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'order', 'product', 'customer').",
+          "enum": [
+            "cart",
+            "cart-discount",
+            "category",
+            "channel",
+            "customer",
+            "customer-group",
+            "discount-code",
+            "inventory-entry",
+            "order",
+            "order-edit",
+            "payment",
+            "product",
+            "product-discount",
+            "product-selection",
+            "product-type",
+            "quote",
+            "quote-request",
+            "review",
+            "shipping-method",
+            "shopping-list",
+            "staged-quote",
+            "standalone-price",
+            "state",
+            "store",
+            "tax-category",
+            "type",
+            "zone"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "System-generated unique identifier of the referenced resource."
+        }
+      }
+    },
+    "LastModifiedBy": {
+      "type": "object",
+      "description": "Information about the actor who triggered or last modified the event.",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "description": "ID of the API client used to trigger the event."
+        },
+        "externalUserId": {
+          "type": "string",
+          "description": "External user identifier set on the API client token."
+        },
+        "customer": {
+          "$ref": "#/$defs/Reference",
+          "description": "Reference to the customer who triggered the event, if any."
+        },
+        "anonymousId": {
+          "type": "string",
+          "description": "Anonymous session ID if the event was triggered without a customer login."
+        },
+        "isPlatformClient": {
+          "type": "boolean",
+          "description": "Whether the event was triggered via the Merchant Center interface."
+        }
+      }
+    },
+    "ChangeNotification": {
+      "type": "object",
+      "description": "A change notification payload for resource create, update, and delete events delivered via changes subscriptions.",
+      "required": ["notificationType", "projectKey", "resource", "resourceUserProvidedIdentifiers", "version", "oldVersion", "modifiedAt"],
+      "properties": {
+        "notificationType": {
+          "type": "string",
+          "enum": ["ResourceCreated", "ResourceUpdated", "ResourceDeleted"],
+          "description": "The type of modification that triggered the change notification."
+        },
+        "projectKey": {
+          "type": "string",
+          "description": "The key of the project in which the change occurred."
+        },
+        "resource": {
+          "$ref": "#/$defs/Reference",
+          "description": "Reference to the resource that was created, updated, or deleted."
+        },
+        "resourceUserProvidedIdentifiers": {
+          "type": "object",
+          "description": "User-defined identifiers of the changed resource."
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "New version of the resource after the change."
+        },
+        "oldVersion": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Version of the resource before the change (0 for newly created resources)."
+        },
+        "modifiedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the change was applied."
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "List of individual field-level changes applied in this operation."
+        }
+      }
+    }
+  }
+}

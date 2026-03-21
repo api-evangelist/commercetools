@@ -1,0 +1,569 @@
+asyncapi: 2.6.0
+info:
+  title: commercetools Subscriptions Events
+  description: >-
+    The commercetools Subscriptions system delivers real-time change notifications
+    and domain messages to external message queue destinations when resources are
+    created, updated, or deleted within a Composable Commerce project. Subscriptions
+    can deliver three payload types: Messages (predefined domain events such as
+    OrderCreated or CustomerPasswordChanged), Changes (granular resource mutation
+    records), and Events (BETA predefined event types). Supported destinations
+    include AWS SQS, AWS SNS, AWS EventBridge, Azure Service Bus, Azure Event Grid,
+    Google Cloud Pub/Sub, and Confluent Cloud. Payloads can be delivered in Platform
+    format or CloudEvents format per subscription configuration.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+externalDocs:
+  description: commercetools Subscriptions Documentation
+  url: https://docs.commercetools.com/api/projects/subscriptions
+servers:
+  awsSqs:
+    url: 'https://sqs.{region}.amazonaws.com/{account}/{queue}'
+    protocol: https
+    description: AWS Simple Queue Service destination for subscription messages.
+    security:
+      - awsIam: []
+  awsSns:
+    url: 'arn:aws:sns:{region}:{account}:{topic}'
+    protocol: https
+    description: AWS Simple Notification Service destination for fan-out delivery.
+    security:
+      - awsIam: []
+  googlePubSub:
+    url: 'https://pubsub.googleapis.com/v1/projects/{projectId}/topics/{topic}'
+    protocol: https
+    description: Google Cloud Pub/Sub destination for subscription messages.
+    security:
+      - serviceAccountKey: []
+  azureServiceBus:
+    url: 'https://{namespace}.servicebus.windows.net/{queue}'
+    protocol: https
+    description: Azure Service Bus destination for subscription messages.
+    security:
+      - azureSharedAccessKey: []
+channels:
+  orderCreated:
+    description: >-
+      Delivered when a new order is created from a cart checkout. Contains the
+      full order resource snapshot at the time of creation.
+    publish:
+      operationId: receiveOrderCreatedMessage
+      summary: Order created notification
+      message:
+        $ref: '#/components/messages/OrderCreatedMessage'
+  orderStateChanged:
+    description: >-
+      Delivered when the order state transitions (e.g., from Open to Confirmed
+      or Cancelled). Contains the new state and previous state values.
+    publish:
+      operationId: receiveOrderStateChangedMessage
+      summary: Order state change notification
+      message:
+        $ref: '#/components/messages/OrderStateChangedMessage'
+  orderShipmentStateChanged:
+    description: >-
+      Delivered when the shipment state of an order changes (e.g., from Pending
+      to Shipped). Contains the new and previous shipment state values.
+    publish:
+      operationId: receiveOrderShipmentStateChangedMessage
+      summary: Order shipment state change notification
+      message:
+        $ref: '#/components/messages/OrderShipmentStateChangedMessage'
+  orderPaymentStateChanged:
+    description: >-
+      Delivered when the payment state of an order changes (e.g., from Pending
+      to Paid). Contains the new and previous payment state values.
+    publish:
+      operationId: receiveOrderPaymentStateChangedMessage
+      summary: Order payment state change notification
+      message:
+        $ref: '#/components/messages/OrderPaymentStateChangedMessage'
+  orderDeliveryAdded:
+    description: >-
+      Delivered when a new delivery is added to an order during fulfillment.
+      Contains details of the delivery including items and parcel tracking.
+    publish:
+      operationId: receiveOrderDeliveryAddedMessage
+      summary: Order delivery added notification
+      message:
+        $ref: '#/components/messages/OrderDeliveryAddedMessage'
+  customerCreated:
+    description: >-
+      Delivered when a new customer account is created in the project. Contains
+      the customer resource snapshot without the password hash.
+    publish:
+      operationId: receiveCustomerCreatedMessage
+      summary: Customer created notification
+      message:
+        $ref: '#/components/messages/CustomerCreatedMessage'
+  customerPasswordChanged:
+    description: >-
+      Delivered when a customer changes their password via the password reset
+      or password change flow.
+    publish:
+      operationId: receiveCustomerPasswordChangedMessage
+      summary: Customer password changed notification
+      message:
+        $ref: '#/components/messages/CustomerPasswordChangedMessage'
+  productPublished:
+    description: >-
+      Delivered when a product is published, making staged changes visible in
+      product projections. Contains the scope of the published data.
+    publish:
+      operationId: receiveProductPublishedMessage
+      summary: Product published notification
+      message:
+        $ref: '#/components/messages/ProductPublishedMessage'
+  productUnpublished:
+    description: >-
+      Delivered when a product is unpublished, removing it from product
+      projections in the storefront.
+    publish:
+      operationId: receiveProductUnpublishedMessage
+      summary: Product unpublished notification
+      message:
+        $ref: '#/components/messages/ProductUnpublishedMessage'
+  inventoryEntryQuantitySet:
+    description: >-
+      Delivered when the quantity of an inventory entry is explicitly set.
+      Contains the old and new quantity values along with the supply channel.
+    publish:
+      operationId: receiveInventoryEntryQuantitySetMessage
+      summary: Inventory quantity set notification
+      message:
+        $ref: '#/components/messages/InventoryEntryQuantitySetMessage'
+  paymentTransactionAdded:
+    description: >-
+      Delivered when a new transaction is added to a payment resource. Contains
+      the transaction details including type, amount, and state.
+    publish:
+      operationId: receivePaymentTransactionAddedMessage
+      summary: Payment transaction added notification
+      message:
+        $ref: '#/components/messages/PaymentTransactionAddedMessage'
+  resourceChange:
+    description: >-
+      Delivered for any resource create, update, or delete operation when a
+      changes subscription is configured. The payload format follows the
+      commercetools Change notification structure with resource type, action,
+      and a list of changes.
+    publish:
+      operationId: receiveResourceChangeNotification
+      summary: Generic resource change notification
+      message:
+        $ref: '#/components/messages/ChangeNotification'
+components:
+  securitySchemes:
+    awsIam:
+      type: httpApiKey
+      in: header
+      name: Authorization
+      description: AWS IAM-based authentication using STS-issued credentials or access keys.
+    serviceAccountKey:
+      type: httpApiKey
+      in: header
+      name: Authorization
+      description: Google Cloud service account key with Pub/Sub Publisher role.
+    azureSharedAccessKey:
+      type: httpApiKey
+      in: header
+      name: Authorization
+      description: Azure Shared Access Signature or connection string authentication.
+  messages:
+    OrderCreatedMessage:
+      name: OrderCreatedMessage
+      title: Order Created
+      summary: Notification that a new order has been created.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/OrderCreatedPayload'
+    OrderStateChangedMessage:
+      name: OrderStateChangedMessage
+      title: Order State Changed
+      summary: Notification that the state of an order has changed.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/OrderStateChangedPayload'
+    OrderShipmentStateChangedMessage:
+      name: OrderShipmentStateChangedMessage
+      title: Order Shipment State Changed
+      summary: Notification that the shipment state of an order has changed.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/OrderShipmentStateChangedPayload'
+    OrderPaymentStateChangedMessage:
+      name: OrderPaymentStateChangedMessage
+      title: Order Payment State Changed
+      summary: Notification that the payment state of an order has changed.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/OrderPaymentStateChangedPayload'
+    OrderDeliveryAddedMessage:
+      name: OrderDeliveryAddedMessage
+      title: Order Delivery Added
+      summary: Notification that a delivery has been added to an order.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/OrderDeliveryAddedPayload'
+    CustomerCreatedMessage:
+      name: CustomerCreatedMessage
+      title: Customer Created
+      summary: Notification that a new customer account was created.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CustomerCreatedPayload'
+    CustomerPasswordChangedMessage:
+      name: CustomerPasswordChangedMessage
+      title: Customer Password Changed
+      summary: Notification that a customer password was changed.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CustomerPasswordChangedPayload'
+    ProductPublishedMessage:
+      name: ProductPublishedMessage
+      title: Product Published
+      summary: Notification that a product has been published.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ProductPublishedPayload'
+    ProductUnpublishedMessage:
+      name: ProductUnpublishedMessage
+      title: Product Unpublished
+      summary: Notification that a product has been unpublished.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ProductUnpublishedPayload'
+    InventoryEntryQuantitySetMessage:
+      name: InventoryEntryQuantitySetMessage
+      title: Inventory Entry Quantity Set
+      summary: Notification that the quantity of an inventory entry was set.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/InventoryEntryQuantitySetPayload'
+    PaymentTransactionAddedMessage:
+      name: PaymentTransactionAddedMessage
+      title: Payment Transaction Added
+      summary: Notification that a transaction was added to a payment.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/PaymentTransactionAddedPayload'
+    ChangeNotification:
+      name: ChangeNotification
+      title: Resource Change Notification
+      summary: Notification that a resource was created, updated, or deleted.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ChangeNotificationPayload'
+  schemas:
+    MessageBase:
+      type: object
+      description: Common fields shared by all commercetools message notification payloads.
+      required:
+        - id
+        - version
+        - sequenceNumber
+        - resource
+        - resourceVersion
+        - type
+        - createdAt
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the message.
+        version:
+          type: integer
+          description: Version number of the message.
+        sequenceNumber:
+          type: integer
+          description: Monotonically increasing sequence number within the resource.
+        resource:
+          $ref: '#/components/schemas/Reference'
+        resourceVersion:
+          type: integer
+          description: Version of the resource when the message was generated.
+        type:
+          type: string
+          description: Message type discriminator string (e.g., "OrderCreated").
+        resourceUserProvidedIdentifiers:
+          type: object
+          description: User-defined identifiers of the resource (key, orderNumber, etc.).
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the message was created.
+        createdBy:
+          $ref: '#/components/schemas/LastModifiedBy'
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the message was last modified.
+        lastModifiedBy:
+          $ref: '#/components/schemas/LastModifiedBy'
+    Reference:
+      type: object
+      description: A reference to a commercetools resource by typeId and id.
+      required:
+        - typeId
+        - id
+      properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource.
+        id:
+          type: string
+          description: The unique identifier of the referenced resource.
+    LastModifiedBy:
+      type: object
+      description: Information about the actor who triggered the event.
+      properties:
+        clientId:
+          type: string
+          description: ID of the API client that triggered the event.
+        externalUserId:
+          type: string
+          description: External user ID if set on the API client.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        anonymousId:
+          type: string
+          description: Anonymous session ID if triggered without customer login.
+    OrderCreatedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the OrderCreated message type.
+          required:
+            - order
+          properties:
+            type:
+              type: string
+              enum: [OrderCreated]
+              description: Message type discriminator.
+            order:
+              type: object
+              description: The full Order resource at the time of creation.
+    OrderStateChangedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the OrderStateChanged message type.
+          required:
+            - orderState
+            - oldOrderState
+          properties:
+            type:
+              type: string
+              enum: [OrderStateChanged]
+              description: Message type discriminator.
+            orderState:
+              type: string
+              enum: [Open, Confirmed, Complete, Cancelled]
+              description: The new order state after the change.
+            oldOrderState:
+              type: string
+              enum: [Open, Confirmed, Complete, Cancelled]
+              description: The order state before the change.
+    OrderShipmentStateChangedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the OrderShipmentStateChanged message type.
+          required:
+            - shipmentState
+          properties:
+            type:
+              type: string
+              enum: [OrderShipmentStateChanged]
+              description: Message type discriminator.
+            shipmentState:
+              type: string
+              enum: [Shipped, Ready, Pending, Delayed, Partial, Backorder]
+              description: The new shipment state.
+            oldShipmentState:
+              type: string
+              enum: [Shipped, Ready, Pending, Delayed, Partial, Backorder]
+              description: The previous shipment state.
+    OrderPaymentStateChangedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the OrderPaymentStateChanged message type.
+          required:
+            - paymentState
+          properties:
+            type:
+              type: string
+              enum: [OrderPaymentStateChanged]
+              description: Message type discriminator.
+            paymentState:
+              type: string
+              enum: [Paid, Pending, Failed, CreditOwed, BalanceDue]
+              description: The new payment state.
+            oldPaymentState:
+              type: string
+              enum: [Paid, Pending, Failed, CreditOwed, BalanceDue]
+              description: The previous payment state.
+    OrderDeliveryAddedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the DeliveryAdded message type.
+          required:
+            - delivery
+          properties:
+            type:
+              type: string
+              enum: [DeliveryAdded]
+              description: Message type discriminator.
+            delivery:
+              type: object
+              description: The delivery object that was added including items, parcels, and address.
+            shippingKey:
+              type: string
+              description: Key of the shipping method in multi-shipping mode orders.
+    CustomerCreatedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the CustomerCreated message type.
+          required:
+            - customer
+          properties:
+            type:
+              type: string
+              enum: [CustomerCreated]
+              description: Message type discriminator.
+            customer:
+              type: object
+              description: The Customer resource at the time of creation (password hash excluded).
+    CustomerPasswordChangedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the CustomerPasswordChanged message type.
+          properties:
+            type:
+              type: string
+              enum: [CustomerPasswordChanged]
+              description: Message type discriminator.
+    ProductPublishedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the ProductPublished message type.
+          required:
+            - scope
+          properties:
+            type:
+              type: string
+              enum: [ProductPublished]
+              description: Message type discriminator.
+            scope:
+              type: string
+              enum: [All, Prices]
+              description: The scope of product data that was published.
+            removedImageUrls:
+              type: array
+              items:
+                type: string
+              description: URLs of images removed during the publish operation.
+    ProductUnpublishedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the ProductUnpublished message type.
+          properties:
+            type:
+              type: string
+              enum: [ProductUnpublished]
+              description: Message type discriminator.
+    InventoryEntryQuantitySetPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the InventoryEntryQuantitySet message type.
+          required:
+            - oldQuantityOnStock
+            - newQuantityOnStock
+            - oldAvailableQuantity
+            - newAvailableQuantity
+          properties:
+            type:
+              type: string
+              enum: [InventoryEntryQuantitySet]
+              description: Message type discriminator.
+            oldQuantityOnStock:
+              type: integer
+              description: The previous quantity on stock value.
+            newQuantityOnStock:
+              type: integer
+              description: The new quantity on stock value.
+            oldAvailableQuantity:
+              type: integer
+              description: The previous available quantity value.
+            newAvailableQuantity:
+              type: integer
+              description: The new available quantity value.
+            supplyChannel:
+              $ref: '#/components/schemas/Reference'
+    PaymentTransactionAddedPayload:
+      allOf:
+        - $ref: '#/components/schemas/MessageBase'
+        - type: object
+          description: Payload for the PaymentTransactionAdded message type.
+          required:
+            - transaction
+          properties:
+            type:
+              type: string
+              enum: [PaymentTransactionAdded]
+              description: Message type discriminator.
+            transaction:
+              type: object
+              description: >-
+                The transaction that was added, including type (Authorization,
+                Charge, Refund, etc.), amount, and state.
+    ChangeNotificationPayload:
+      type: object
+      description: >-
+        A change notification payload delivered when a resource is created,
+        updated, or deleted. Contains the resource reference, change type,
+        and a list of changes that occurred.
+      required:
+        - notificationType
+        - projectKey
+        - resource
+        - resourceUserProvidedIdentifiers
+        - version
+        - oldVersion
+        - modifiedAt
+      properties:
+        notificationType:
+          type: string
+          enum: [ResourceCreated, ResourceUpdated, ResourceDeleted]
+          description: The type of modification that triggered the notification.
+        projectKey:
+          type: string
+          description: Key of the project where the change occurred.
+        resource:
+          $ref: '#/components/schemas/Reference'
+        resourceUserProvidedIdentifiers:
+          type: object
+          description: User-defined identifiers of the changed resource.
+        version:
+          type: integer
+          description: New version of the resource after the change.
+        oldVersion:
+          type: integer
+          description: Previous version of the resource before the change.
+        modifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the change was made.
+        changes:
+          type: array
+          items:
+            type: object
+          description: List of field-level changes that occurred in this operation.

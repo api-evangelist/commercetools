@@ -1,0 +1,2414 @@
+openapi: 3.1.0
+info:
+  title: commercetools HTTP API
+  description: >-
+    The commercetools HTTP API is the core REST interface for programmatic access
+    to all data and functionality within a Composable Commerce project. It covers
+    a broad range of commerce resources including products, product types, categories,
+    carts, orders, customers, payments, discounts, inventory, shipping methods,
+    stores, and business units. All resources follow RESTful conventions using
+    standard HTTP verbs and return JSON responses. Authentication is handled via
+    OAuth 2.0 client credentials, and requests are scoped per project and resource
+    type.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+externalDocs:
+  description: commercetools HTTP API Documentation
+  url: https://docs.commercetools.com/api
+servers:
+  - url: https://api.{region}.commercetools.com
+    description: Production Server
+    variables:
+      region:
+        default: us-central1.gcp
+        enum:
+          - us-central1.gcp
+          - us-east-2.aws
+          - europe-west1.gcp
+          - eu-central-1.aws
+          - australia-southeast1.gcp
+        description: The deployment region for the commercetools API.
+tags:
+  - name: Products
+    description: Manage product catalog entries including variants, images, prices, and attributes.
+  - name: ProductTypes
+    description: Define schemas for product attributes shared across products.
+  - name: Categories
+    description: Organize products into hierarchical category structures.
+  - name: Carts
+    description: Manage shopping carts with line items, discounts, shipping, and tax calculations.
+  - name: Orders
+    description: Create and manage orders resulting from cart checkouts or quotes.
+  - name: Customers
+    description: Manage customer accounts, addresses, authentication, and group assignments.
+  - name: Payments
+    description: Track payment transactions and PSP interactions associated with orders.
+  - name: Inventory
+    description: Manage inventory entries tracking stock levels per channel and SKU.
+  - name: Discounts
+    description: Configure cart discounts, product discounts, and discount codes.
+  - name: ShippingMethods
+    description: Define shipping rates and delivery methods by zone and tax category.
+  - name: Stores
+    description: Configure store-specific product selections, channels, and shipping methods.
+  - name: Channels
+    description: Represent inventory locations, distribution channels, and supply channels.
+  - name: Project
+    description: Read and configure project-level settings including currencies, languages, and messages.
+security:
+  - bearerAuth: []
+paths:
+  /{projectKey}/products:
+    get:
+      operationId: listProducts
+      summary: List products
+      description: >-
+        Returns a paginated list of all products in the project. Supports
+        filtering, sorting, and field expansion via query parameters. Use the
+        Product Projections endpoint for storefront display queries.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/where'
+        - $ref: '#/components/parameters/sortQuery'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of products.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPagedQueryResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createProduct
+      summary: Create a product
+      description: >-
+        Creates a new product with the given draft. The product type reference
+        in the draft determines which attributes are valid. The product is
+        created with a staged version and requires publication to become visible
+        in product projections.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDraft'
+      responses:
+        '201':
+          description: The created product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{projectKey}/products/{id}:
+    get:
+      operationId: getProductById
+      summary: Get a product by ID
+      description: >-
+        Retrieves a single product by its system-generated ID. The response
+        includes both the current (published) and staged versions of the product
+        data.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateProductById
+      summary: Update a product by ID
+      description: >-
+        Applies one or more update actions to the product identified by the
+        given ID. The request must include the current version to enable
+        optimistic concurrency control. Supported actions include changing names,
+        setting attributes, adding variants, and publishing.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdate'
+      responses:
+        '200':
+          description: The updated product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+    delete:
+      operationId: deleteProductById
+      summary: Delete a product by ID
+      description: >-
+        Permanently deletes the product with the given ID. The current version
+        must be provided as a query parameter for concurrency control. Deletion
+        cannot be undone.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/version'
+      responses:
+        '200':
+          description: The deleted product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /{projectKey}/categories:
+    get:
+      operationId: listCategories
+      summary: List categories
+      description: >-
+        Returns a paginated list of all categories in the project. Categories
+        can be filtered and sorted using standard query predicates. Use parent
+        references to reconstruct the category hierarchy.
+      tags:
+        - Categories
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/where'
+        - $ref: '#/components/parameters/sortQuery'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of categories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCategory
+      summary: Create a category
+      description: >-
+        Creates a new category. Categories support localized names, slugs, and
+        metadata, and can optionally reference a parent category to build a
+        hierarchy.
+      tags:
+        - Categories
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryDraft'
+      responses:
+        '201':
+          description: The created category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/categories/{id}:
+    get:
+      operationId: getCategoryById
+      summary: Get a category by ID
+      description: >-
+        Retrieves a single category by its system-generated unique identifier,
+        including its ancestors array representing the full path to the root
+        category.
+      tags:
+        - Categories
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateCategoryById
+      summary: Update a category by ID
+      description: >-
+        Applies update actions to the category with the given ID. Supported
+        actions include changing the name, slug, parent, order hint, and custom
+        fields.
+      tags:
+        - Categories
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryUpdate'
+      responses:
+        '200':
+          description: The updated category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+    delete:
+      operationId: deleteCategoryById
+      summary: Delete a category by ID
+      description: >-
+        Permanently deletes the category with the given ID. The current version
+        must be provided. Categories with children or product assignments cannot
+        be deleted until those references are removed.
+      tags:
+        - Categories
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/version'
+      responses:
+        '200':
+          description: The deleted category.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+  /{projectKey}/carts:
+    get:
+      operationId: listCarts
+      summary: List carts
+      description: >-
+        Returns a paginated list of carts in the project. Supports filtering by
+        customer ID, cart state, store key, and other predicates. Active carts
+        are retained based on project-configured retention policies.
+      tags:
+        - Carts
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/where'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of carts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCart
+      summary: Create a cart
+      description: >-
+        Creates a new shopping cart. The cart can be associated with a customer
+        or anonymous session, assigned to a specific store, and configured with
+        tax mode, inventory mode, and shipping mode settings.
+      tags:
+        - Carts
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartDraft'
+      responses:
+        '201':
+          description: The created cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/carts/{id}:
+    get:
+      operationId: getCartById
+      summary: Get a cart by ID
+      description: >-
+        Retrieves a single cart by its system-generated ID, including all line
+        items, applied discounts, shipping methods, and tax calculations.
+      tags:
+        - Carts
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateCartById
+      summary: Update a cart by ID
+      description: >-
+        Applies update actions to the cart with the given ID. Common actions
+        include adding or removing line items, setting shipping addresses,
+        applying discount codes, and setting customer details.
+      tags:
+        - Carts
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartUpdate'
+      responses:
+        '200':
+          description: The updated cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+    delete:
+      operationId: deleteCartById
+      summary: Delete a cart by ID
+      description: >-
+        Permanently deletes the cart with the given ID. The current version must
+        be provided. Carts in the Ordered state cannot be deleted.
+      tags:
+        - Carts
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/version'
+      responses:
+        '200':
+          description: The deleted cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+  /{projectKey}/orders:
+    get:
+      operationId: listOrders
+      summary: List orders
+      description: >-
+        Returns a paginated list of orders in the project. Supports filtering
+        by customer ID, order state, payment state, shipment state, and other
+        predicates. Orders are created from carts upon successful checkout.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/where'
+        - $ref: '#/components/parameters/sortQuery'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of orders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createOrderFromCart
+      summary: Create an order from a cart
+      description: >-
+        Creates an order from an existing active cart. The cart is transitioned
+        to the Ordered state. The request body requires the cart ID, version,
+        and optionally an order number and payment state.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderFromCartDraft'
+      responses:
+        '201':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/orders/{id}:
+    get:
+      operationId: getOrderById
+      summary: Get an order by ID
+      description: >-
+        Retrieves a single order by its system-generated ID, including all line
+        items, deliveries, return items, payment information, and state history.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateOrderById
+      summary: Update an order by ID
+      description: >-
+        Applies update actions to the order with the given ID. Common actions
+        include changing order state, adding deliveries, adding return info,
+        setting tracking data, and updating payment state.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderUpdate'
+      responses:
+        '200':
+          description: The updated order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    delete:
+      operationId: deleteOrderById
+      summary: Delete an order by ID
+      description: >-
+        Permanently deletes the order with the given ID. This operation cannot
+        be undone. Only orders that have not been shipped or paid should be
+        deleted.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/version'
+      responses:
+        '200':
+          description: The deleted order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /{projectKey}/customers:
+    get:
+      operationId: listCustomers
+      summary: List customers
+      description: >-
+        Returns a paginated list of all customers in the project. Supports
+        filtering by email, customer group, and other predicates. For large
+        customer bases use the Customer Search endpoint for improved performance.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/where'
+        - $ref: '#/components/parameters/sortQuery'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of customers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCustomer
+      summary: Create a customer
+      description: >-
+        Creates a new customer account. The email address must be unique within
+        the project (or store if store-scoped). Optionally assigns the customer
+        to a customer group and pre-verifies the email address.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerDraft'
+      responses:
+        '201':
+          description: The created customer sign-in result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSignInResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/customers/{id}:
+    get:
+      operationId: getCustomerById
+      summary: Get a customer by ID
+      description: >-
+        Retrieves a single customer by their system-generated ID, including
+        addresses, customer group assignments, store assignments, and custom
+        fields.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested customer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateCustomerById
+      summary: Update a customer by ID
+      description: >-
+        Applies update actions to the customer with the given ID. Supported
+        actions include adding addresses, changing email, setting customer group,
+        adding store assignments, and setting custom fields.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerUpdate'
+      responses:
+        '200':
+          description: The updated customer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    delete:
+      operationId: deleteCustomerById
+      summary: Delete a customer by ID
+      description: >-
+        Permanently deletes the customer with the given ID. The current version
+        must be provided. Associated carts, orders, and payment records are not
+        deleted.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/version'
+      responses:
+        '200':
+          description: The deleted customer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+  /{projectKey}/payments:
+    get:
+      operationId: listPayments
+      summary: List payments
+      description: >-
+        Returns a paginated list of payments in the project. Supports filtering
+        by customer, interface ID, and other predicates. Payments track financial
+        transactions and PSP interactions associated with orders.
+      tags:
+        - Payments
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/where'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPayment
+      summary: Create a payment
+      description: >-
+        Creates a new payment resource representing intent to pay a specific
+        amount. The payment records PSP details, method information, and
+        transaction history. Payments are linked to orders via the cart or order
+        update actions.
+      tags:
+        - Payments
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentDraft'
+      responses:
+        '201':
+          description: The created payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/payments/{id}:
+    get:
+      operationId: getPaymentById
+      summary: Get a payment by ID
+      description: >-
+        Retrieves a single payment by its system-generated ID, including all
+        transactions, interface interactions, payment method info, and current
+        status.
+      tags:
+        - Payments
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updatePaymentById
+      summary: Update a payment by ID
+      description: >-
+        Applies update actions to the payment with the given ID. Supported
+        actions include adding transactions, setting the payment status, adding
+        interface interactions, and setting custom fields.
+      tags:
+        - Payments
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentUpdate'
+      responses:
+        '200':
+          description: The updated payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+  /{projectKey}/inventory:
+    get:
+      operationId: listInventoryEntries
+      summary: List inventory entries
+      description: >-
+        Returns a paginated list of inventory entries. Each entry tracks the
+        available quantity and restockable quantity for a specific SKU, optionally
+        scoped to a supply channel. Supports filtering and sorting.
+      tags:
+        - Inventory
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/where'
+        - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of inventory entries.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createInventoryEntry
+      summary: Create an inventory entry
+      description: >-
+        Creates a new inventory entry for a given SKU. The entry can be scoped
+        to a supply channel for multi-warehouse tracking. Optionally set expected
+        delivery dates and restockable quantities.
+      tags:
+        - Inventory
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryEntryDraft'
+      responses:
+        '201':
+          description: The created inventory entry.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryEntry'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: List subscriptions
+      description: >-
+        Returns a paginated list of all subscriptions configured in the project.
+        Subscriptions define destinations for change notifications and message
+        delivery to external services such as SQS, SNS, Google Pub/Sub, or
+        Azure Service Bus.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/where'
+      responses:
+        '200':
+          description: A paged list of subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSubscription
+      summary: Create a subscription
+      description: >-
+        Creates a new subscription that routes messages and change notifications
+        to an external destination. Supported destinations include AWS SQS, SNS,
+        EventBridge, Azure Service Bus, Event Grid, Google Pub/Sub, and Confluent
+        Cloud. A maximum of 50 subscriptions per project is allowed.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionDraft'
+      responses:
+        '201':
+          description: The created subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/subscriptions/{id}:
+    get:
+      operationId: getSubscriptionById
+      summary: Get a subscription by ID
+      description: >-
+        Retrieves a single subscription by its system-generated ID, including
+        its destination configuration, message type filters, change filters, and
+        delivery format settings.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateSubscriptionById
+      summary: Update a subscription by ID
+      description: >-
+        Applies update actions to the subscription with the given ID. Supported
+        actions include changing the destination, setting message types, setting
+        changes, and changing the format.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionUpdate'
+      responses:
+        '200':
+          description: The updated subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+    delete:
+      operationId: deleteSubscriptionById
+      summary: Delete a subscription by ID
+      description: >-
+        Permanently deletes the subscription with the given ID. The current
+        version must be provided. After deletion, no further messages are routed
+        to the associated destination.
+      tags:
+        - Subscriptions
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/version'
+      responses:
+        '200':
+          description: The deleted subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+  /{projectKey}:
+    get:
+      operationId: getProject
+      summary: Get project settings
+      description: >-
+        Retrieves the project settings including languages, currencies, countries,
+        messaging configuration, and search indexing settings. The project key
+        in the path must match the authenticated API client's project.
+      tags:
+        - Project
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: The project settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 Bearer token obtained from the commercetools authentication
+        service at https://auth.{region}.commercetools.com/oauth/token using
+        client credentials flow.
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return. Defaults to 20, maximum 500.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 10000
+        default: 0
+      description: Number of results to skip for pagination. Maximum 10000.
+    where:
+      name: where
+      in: query
+      required: false
+      schema:
+        type: string
+      description: >-
+        Query predicate string for filtering results. Uses commercetools
+        predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    sortQuery:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+      description: >-
+        Sort expression string (e.g., 'createdAt desc'). Multiple sort
+        expressions can be provided as separate parameters.
+    expand:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: >-
+        Reference expansion path to inline referenced resources in the response
+        (e.g., 'productType', 'categories[*]').
+    version:
+      name: version
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Current version of the resource for optimistic concurrency control.
+  schemas:
+    LocalizedString:
+      type: object
+      description: >-
+        A map of locale keys to string values used for multilingual content.
+        Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
+      additionalProperties:
+        type: string
+    Money:
+      type: object
+      description: A monetary value with currency code and amount in the smallest currency unit.
+      required:
+        - currencyCode
+        - centAmount
+      properties:
+        currencyCode:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
+    Reference:
+      type: object
+      description: A reference to another resource by its typeId and id.
+      required:
+        - typeId
+        - id
+      properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource (e.g., 'product', 'category').
+        id:
+          type: string
+          description: The system-generated unique identifier of the referenced resource.
+    Address:
+      type: object
+      description: A postal address with country and optional structured fields.
+      required:
+        - country
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the address within the resource.
+        key:
+          type: string
+          description: User-defined identifier for the address.
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        firstName:
+          type: string
+          description: First name of the address recipient.
+        lastName:
+          type: string
+          description: Last name of the address recipient.
+        streetName:
+          type: string
+          description: Street name component of the address.
+        streetNumber:
+          type: string
+          description: Street number component of the address.
+        city:
+          type: string
+          description: City of the address.
+        postalCode:
+          type: string
+          description: Postal or ZIP code of the address.
+        region:
+          type: string
+          description: Region, state, or province of the address.
+        email:
+          type: string
+          format: email
+          description: Email address associated with this postal address.
+        phone:
+          type: string
+          description: Phone number associated with this postal address.
+    Product:
+      type: object
+      description: >-
+        A commercetools product resource containing both the current (published)
+        and staged versions of product data including variants, attributes, and
+        metadata.
+      required:
+        - id
+        - version
+        - productType
+        - masterData
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        productType:
+          $ref: '#/components/schemas/Reference'
+        masterData:
+          $ref: '#/components/schemas/ProductCatalogData'
+        taxCategory:
+          $ref: '#/components/schemas/Reference'
+        state:
+          $ref: '#/components/schemas/Reference'
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the product was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the product was last modified.
+    ProductCatalogData:
+      type: object
+      description: Container for current (published) and staged product data.
+      required:
+        - published
+        - hasStagedChanges
+      properties:
+        published:
+          type: boolean
+          description: Whether the product has a published (current) version.
+        current:
+          $ref: '#/components/schemas/ProductData'
+        staged:
+          $ref: '#/components/schemas/ProductData'
+        hasStagedChanges:
+          type: boolean
+          description: Whether there are unpublished staged changes.
+    ProductData:
+      type: object
+      description: A version of product data including names, slugs, descriptions, variants, and category assignments.
+      required:
+        - name
+        - slug
+        - masterVariant
+        - variants
+        - categories
+      properties:
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/LocalizedString'
+        slug:
+          $ref: '#/components/schemas/LocalizedString'
+        masterVariant:
+          $ref: '#/components/schemas/ProductVariant'
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
+          description: Additional product variants beyond the master variant.
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+          description: References to categories this product belongs to.
+        metaTitle:
+          $ref: '#/components/schemas/LocalizedString'
+        metaDescription:
+          $ref: '#/components/schemas/LocalizedString'
+    ProductVariant:
+      type: object
+      description: A product variant with SKU, attributes, prices, and images.
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          description: Variant ID unique within the product (starting at 1 for master).
+        sku:
+          type: string
+          description: Stock keeping unit identifier for this variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+          description: List of prices for different currencies, channels, and customer groups.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes as defined by the product type.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: List of images for this variant.
+    Price:
+      type: object
+      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
+      required:
+        - id
+        - value
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the price.
+        value:
+          $ref: '#/components/schemas/Money'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        channel:
+          $ref: '#/components/schemas/Reference'
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+    Attribute:
+      type: object
+      description: A name-value pair representing a product attribute as defined by the product type.
+      required:
+        - name
+        - value
+      properties:
+        name:
+          type: string
+          description: Attribute name as defined in the product type.
+        value:
+          description: Attribute value. Type depends on the attribute type definition.
+    Image:
+      type: object
+      description: A product image with URL, dimensions, and optional label.
+      required:
+        - url
+        - dimensions
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the image.
+        dimensions:
+          type: object
+          description: Pixel dimensions of the image.
+          required:
+            - w
+            - h
+          properties:
+            w:
+              type: integer
+              description: Image width in pixels.
+            h:
+              type: integer
+              description: Image height in pixels.
+        label:
+          type: string
+          description: Optional label for the image.
+    ProductDraft:
+      type: object
+      description: Request body for creating a new product.
+      required:
+        - productType
+        - name
+        - slug
+      properties:
+        productType:
+          $ref: '#/components/schemas/Reference'
+        key:
+          type: string
+          description: User-defined unique key for the product.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        slug:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/LocalizedString'
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+          description: Categories to assign the product to on creation.
+        masterVariant:
+          $ref: '#/components/schemas/ProductVariantDraft'
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariantDraft'
+          description: Additional variants to create with the product.
+        taxCategory:
+          $ref: '#/components/schemas/Reference'
+        publish:
+          type: boolean
+          description: If true, immediately publishes the product after creation.
+    ProductVariantDraft:
+      type: object
+      description: Draft for creating a product variant.
+      properties:
+        sku:
+          type: string
+          description: SKU identifier for the variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceDraft'
+          description: Prices to assign to the variant on creation.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes for this variant.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: Images for the variant.
+    PriceDraft:
+      type: object
+      description: Draft for creating a price on a product variant.
+      required:
+        - value
+      properties:
+        value:
+          $ref: '#/components/schemas/Money'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        channel:
+          $ref: '#/components/schemas/Reference'
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the validity period for this price.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the validity period for this price.
+    ProductUpdate:
+      type: object
+      description: Request body for updating a product using versioned update actions.
+      required:
+        - version
+        - actions
+      properties:
+        version:
+          type: integer
+          description: Current version of the product for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+            description: An update action object with an 'action' discriminator field.
+          description: List of update actions to apply to the product.
+    ProductPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of products.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+          description: Maximum number of results returned.
+        offset:
+          type: integer
+          description: Number of results skipped.
+        count:
+          type: integer
+          description: Number of results in this page.
+        total:
+          type: integer
+          description: Total number of matching results.
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+          description: The products on this page.
+    Category:
+      type: object
+      description: A category resource for organizing products in a hierarchical structure.
+      required:
+        - id
+        - version
+        - name
+        - slug
+        - ancestors
+        - orderHint
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        slug:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/LocalizedString'
+        parent:
+          $ref: '#/components/schemas/Reference'
+        ancestors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+          description: Ordered list of ancestor category references from root to immediate parent.
+        orderHint:
+          type: string
+          description: Decimal string between 0 and 1 for ordering within siblings.
+        metaTitle:
+          $ref: '#/components/schemas/LocalizedString'
+        metaDescription:
+          $ref: '#/components/schemas/LocalizedString'
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the category was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the category was last modified.
+    CategoryDraft:
+      type: object
+      description: Request body for creating a new category.
+      required:
+        - name
+        - slug
+      properties:
+        key:
+          type: string
+          description: User-defined unique identifier.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        slug:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/LocalizedString'
+        parent:
+          $ref: '#/components/schemas/Reference'
+        orderHint:
+          type: string
+          description: Decimal string between 0 and 1 for ordering within siblings.
+        metaTitle:
+          $ref: '#/components/schemas/LocalizedString'
+        metaDescription:
+          $ref: '#/components/schemas/LocalizedString'
+    CategoryUpdate:
+      type: object
+      description: Request body for updating a category.
+      required:
+        - version
+        - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply.
+    CategoryPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of categories.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+    Cart:
+      type: object
+      description: A shopping cart resource containing line items, discounts, shipping configuration, and pricing.
+      required:
+        - id
+        - version
+        - cartState
+        - lineItems
+        - customLineItems
+        - totalPrice
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        customerId:
+          type: string
+          description: ID of the customer who owns this cart.
+        customerEmail:
+          type: string
+          format: email
+          description: Email of the customer associated with this cart.
+        cartState:
+          type: string
+          enum: [Active, Merged, Ordered, Frozen]
+          description: Current state of the cart lifecycle.
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: Product line items in the cart.
+        customLineItems:
+          type: array
+          items:
+            type: object
+          description: Custom line items with user-defined pricing.
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        taxedPrice:
+          type: object
+          description: The total price with tax breakdown if tax calculation is complete.
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        taxMode:
+          type: string
+          enum: [Platform, External, ExternalAmount, Disabled]
+          description: Tax calculation mode for this cart.
+        inventoryMode:
+          type: string
+          enum: [None, TrackOnly, ReserveOnOrder]
+          description: Inventory tracking mode for line items.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the cart was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the cart was last modified.
+    LineItem:
+      type: object
+      description: A product line item in a cart or order with quantity, pricing, and discount information.
+      required:
+        - id
+        - productId
+        - name
+        - variant
+        - price
+        - totalPrice
+        - quantity
+        - lineItemMode
+        - priceMode
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item within the cart.
+        productId:
+          type: string
+          description: ID of the product this line item references.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        variant:
+          $ref: '#/components/schemas/ProductVariant'
+        price:
+          $ref: '#/components/schemas/Price'
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        quantity:
+          type: integer
+          minimum: 1
+          description: Quantity of this product variant in the cart.
+        lineItemMode:
+          type: string
+          enum: [Standard, GiftLineItem]
+          description: Whether this is a standard or gift line item.
+        priceMode:
+          type: string
+          enum: [Platform, ExternalTotal, ExternalPrice]
+          description: How the price for this line item is determined.
+    CartDraft:
+      type: object
+      description: Request body for creating a new cart.
+      required:
+        - currency
+      properties:
+        currency:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          description: ISO 4217 currency code for the cart.
+        customerId:
+          type: string
+          description: ID of the customer to associate with the cart.
+        customerEmail:
+          type: string
+          format: email
+          description: Email address for anonymous or identified carts.
+        key:
+          type: string
+          description: User-defined unique key for the cart.
+        lineItems:
+          type: array
+          items:
+            type: object
+          description: Initial line items to add to the cart.
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        taxMode:
+          type: string
+          enum: [Platform, External, ExternalAmount, Disabled]
+          description: Tax calculation mode.
+        inventoryMode:
+          type: string
+          enum: [None, TrackOnly, ReserveOnOrder]
+          description: Inventory tracking mode.
+        store:
+          $ref: '#/components/schemas/Reference'
+    CartUpdate:
+      type: object
+      description: Request body for updating a cart.
+      required:
+        - version
+        - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the cart.
+    CartPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of carts.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
+    Order:
+      type: object
+      description: An order created from a cart after checkout, containing immutable line items, pricing, and fulfillment data.
+      required:
+        - id
+        - version
+        - orderState
+        - lineItems
+        - customLineItems
+        - totalPrice
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        orderNumber:
+          type: string
+          description: User-defined order number for human-readable identification.
+        customerId:
+          type: string
+          description: ID of the customer who placed the order.
+        customerEmail:
+          type: string
+          format: email
+          description: Email of the customer at time of order.
+        orderState:
+          type: string
+          enum: [Open, Confirmed, Complete, Cancelled]
+          description: Current high-level state of the order.
+        shipmentState:
+          type: string
+          enum: [Shipped, Ready, Pending, Delayed, Partial, Backorder]
+          description: Current fulfillment state of the order.
+        paymentState:
+          type: string
+          enum: [Paid, Pending, Failed, CreditOwed, BalanceDue]
+          description: Current payment state of the order.
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: Line items captured at time of order creation.
+        customLineItems:
+          type: array
+          items:
+            type: object
+          description: Custom line items captured at time of order creation.
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the order was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the order was last modified.
+    OrderFromCartDraft:
+      type: object
+      description: Request body for creating an order from an existing cart.
+      required:
+        - cart
+        - version
+      properties:
+        cart:
+          $ref: '#/components/schemas/Reference'
+        version:
+          type: integer
+          description: Current version of the cart being converted to an order.
+        orderNumber:
+          type: string
+          description: User-defined order number for the created order.
+        paymentState:
+          type: string
+          enum: [Paid, Pending, Failed, CreditOwed, BalanceDue]
+          description: Initial payment state of the order.
+        orderState:
+          type: string
+          enum: [Open, Confirmed, Complete, Cancelled]
+          description: Initial order state of the created order.
+    OrderUpdate:
+      type: object
+      description: Request body for updating an order.
+      required:
+        - version
+        - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the order.
+    OrderPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of orders.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    Customer:
+      type: object
+      description: A customer account with authentication credentials, addresses, and commerce profile data.
+      required:
+        - id
+        - version
+        - email
+        - isEmailVerified
+        - addresses
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        email:
+          type: string
+          format: email
+          description: Customer email address, unique within the project or store.
+        firstName:
+          type: string
+          description: Customer first name.
+        lastName:
+          type: string
+          description: Customer last name.
+        isEmailVerified:
+          type: boolean
+          description: Whether the customer email has been verified.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+          description: Saved addresses for the customer.
+        stores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+          description: Stores the customer is assigned to.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the customer was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the customer was last modified.
+    CustomerDraft:
+      type: object
+      description: Request body for creating a new customer.
+      required:
+        - email
+        - password
+      properties:
+        key:
+          type: string
+          description: User-defined unique identifier.
+        email:
+          type: string
+          format: email
+          description: Email address for the new customer.
+        password:
+          type: string
+          description: Password for the new customer account.
+        firstName:
+          type: string
+          description: Customer first name.
+        lastName:
+          type: string
+          description: Customer last name.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+          description: Initial addresses for the customer.
+        isEmailVerified:
+          type: boolean
+          description: Whether to pre-verify the email address.
+    CustomerUpdate:
+      type: object
+      description: Request body for updating a customer.
+      required:
+        - version
+        - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the customer.
+    CustomerSignInResult:
+      type: object
+      description: The result of a customer creation or sign-in operation, including the customer and any merged cart.
+      required:
+        - customer
+      properties:
+        customer:
+          $ref: '#/components/schemas/Customer'
+        cart:
+          $ref: '#/components/schemas/Cart'
+    CustomerPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of customers.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+    Payment:
+      type: object
+      description: A payment resource tracking financial transactions and PSP interactions for an order.
+      required:
+        - id
+        - version
+        - amountPlanned
+        - paymentMethodInfo
+        - transactions
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        interfaceId:
+          type: string
+          description: Payment identifier as reported by the PSP.
+        amountPlanned:
+          $ref: '#/components/schemas/Money'
+        paymentMethodInfo:
+          $ref: '#/components/schemas/PaymentMethodInfo'
+        paymentStatus:
+          $ref: '#/components/schemas/PaymentStatus'
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          description: List of financial transactions associated with this payment.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the payment was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the payment was last modified.
+    PaymentMethodInfo:
+      type: object
+      description: Information about the payment method and PSP used for a payment.
+      properties:
+        paymentInterface:
+          type: string
+          description: Identifier of the PSP or payment interface.
+        method:
+          type: string
+          description: Payment method identifier (e.g., 'creditcard', 'paypal').
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+    PaymentStatus:
+      type: object
+      description: The current status of a payment including PSP-specific state information.
+      properties:
+        interfaceCode:
+          type: string
+          description: PSP-specific status code.
+        interfaceText:
+          type: string
+          description: PSP-specific status message.
+        state:
+          $ref: '#/components/schemas/Reference'
+    Transaction:
+      type: object
+      description: A single financial transaction within a payment (authorization, charge, refund, etc.).
+      required:
+        - id
+        - type
+        - amount
+        - state
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the transaction.
+        timestamp:
+          type: string
+          format: date-time
+          description: When the transaction was processed.
+        type:
+          type: string
+          enum: [Authorization, CancelAuthorization, Charge, Refund, Chargeback]
+          description: The type of financial transaction.
+        amount:
+          $ref: '#/components/schemas/Money'
+        interactionId:
+          type: string
+          description: PSP-provided identifier for this transaction.
+        state:
+          type: string
+          enum: [Initial, Pending, Success, Failure]
+          description: Current processing state of the transaction.
+    PaymentDraft:
+      type: object
+      description: Request body for creating a new payment.
+      required:
+        - amountPlanned
+      properties:
+        key:
+          type: string
+          description: User-defined unique key for the payment.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        interfaceId:
+          type: string
+          description: PSP payment identifier.
+        amountPlanned:
+          $ref: '#/components/schemas/Money'
+        paymentMethodInfo:
+          $ref: '#/components/schemas/PaymentMethodInfo'
+        transactions:
+          type: array
+          items:
+            type: object
+          description: Initial transactions to create with the payment.
+    PaymentUpdate:
+      type: object
+      description: Request body for updating a payment.
+      required:
+        - version
+        - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the payment.
+    PaymentPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of payments.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+    InventoryEntry:
+      type: object
+      description: An inventory entry tracking available quantity for a specific SKU, optionally scoped to a supply channel.
+      required:
+        - id
+        - version
+        - sku
+        - quantityOnStock
+        - availableQuantity
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        sku:
+          type: string
+          description: SKU of the product variant this inventory entry tracks.
+        supplyChannel:
+          $ref: '#/components/schemas/Reference'
+        quantityOnStock:
+          type: integer
+          description: Total quantity physically in stock.
+        availableQuantity:
+          type: integer
+          description: Quantity available for ordering (stock minus reservations).
+        restockableInDays:
+          type: integer
+          description: Expected days until out-of-stock items are restocked.
+        expectedDelivery:
+          type: string
+          format: date-time
+          description: Expected delivery date for restocking.
+    InventoryEntryDraft:
+      type: object
+      description: Request body for creating a new inventory entry.
+      required:
+        - sku
+        - quantityOnStock
+      properties:
+        key:
+          type: string
+          description: User-defined unique identifier.
+        sku:
+          type: string
+          description: SKU of the product variant to track.
+        supplyChannel:
+          $ref: '#/components/schemas/Reference'
+        quantityOnStock:
+          type: integer
+          description: Initial quantity on stock.
+        restockableInDays:
+          type: integer
+          description: Expected restocking time in days.
+        expectedDelivery:
+          type: string
+          format: date-time
+          description: Expected delivery date for restocking.
+    InventoryPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of inventory entries.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/InventoryEntry'
+    Subscription:
+      type: object
+      description: A subscription routing change notifications and messages to an external message queue destination.
+      required:
+        - id
+        - version
+        - destination
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier (2-256 characters).
+        destination:
+          type: object
+          description: The external message queue destination configuration.
+        messages:
+          type: array
+          items:
+            type: object
+          description: Message type subscriptions filtering which message types to deliver.
+        changes:
+          type: array
+          items:
+            type: object
+          description: Change subscriptions filtering which resource change events to deliver.
+        format:
+          type: object
+          description: Delivery format configuration (Platform or CloudEvents).
+        status:
+          type: string
+          enum: [Healthy, ConfigurationError, ConfigurationErrorDeliveryStopped, TemporaryError]
+          description: Current health status of the subscription.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the subscription was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the subscription was last modified.
+    SubscriptionDraft:
+      type: object
+      description: Request body for creating a new subscription.
+      required:
+        - destination
+      properties:
+        key:
+          type: string
+          description: User-defined unique key (2-256 characters).
+        destination:
+          type: object
+          description: The message queue destination configuration.
+        messages:
+          type: array
+          items:
+            type: object
+          description: Message type filters for this subscription.
+        changes:
+          type: array
+          items:
+            type: object
+          description: Change type filters for this subscription.
+        format:
+          type: object
+          description: Delivery format configuration.
+    SubscriptionUpdate:
+      type: object
+      description: Request body for updating a subscription.
+      required:
+        - version
+        - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the subscription.
+    SubscriptionPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of subscriptions.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+    Project:
+      type: object
+      description: The project resource containing global configuration for languages, currencies, countries, and features.
+      required:
+        - key
+        - name
+        - currencies
+        - languages
+        - countries
+      properties:
+        key:
+          type: string
+          description: The unique project key.
+        name:
+          type: string
+          description: Human-readable name of the project.
+        currencies:
+          type: array
+          items:
+            type: string
+            pattern: '^[A-Z]{3}$'
+          description: ISO 4217 currency codes enabled for the project.
+        languages:
+          type: array
+          items:
+            type: string
+          description: IETF language tags enabled for the project.
+        countries:
+          type: array
+          items:
+            type: string
+          description: ISO 3166-1 alpha-2 country codes enabled for the project.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the project was created.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    Conflict:
+      description: >-
+        A version conflict occurred. The provided version does not match the
+        current version of the resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string

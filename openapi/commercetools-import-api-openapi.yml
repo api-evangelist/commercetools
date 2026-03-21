@@ -1,0 +1,1080 @@
+openapi: 3.1.0
+info:
+  title: commercetools Import API
+  description: >-
+    The commercetools Import API enables bulk importing of commerce data into a
+    Composable Commerce project. It supports importing categories, product types,
+    products, product variants, prices, inventory entries, orders, customers,
+    business units, discount codes, product selections, standalone prices, and
+    type definitions. Imports are processed asynchronously through import
+    containers, and the API provides endpoints for monitoring import operation
+    status and handling validation errors. The Import API is hosted on separate
+    regional endpoints from the main HTTP API and uses the same OAuth 2.0
+    authorization model.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+externalDocs:
+  description: commercetools Import API Documentation
+  url: https://docs.commercetools.com/api/import-export/overview
+servers:
+  - url: https://import.{region}.commercetools.com
+    description: Production Import Server
+    variables:
+      region:
+        default: us-central1.gcp
+        enum:
+          - us-central1.gcp
+          - us-east-2.aws
+          - europe-west1.gcp
+          - eu-central-1.aws
+          - australia-southeast1.gcp
+        description: The deployment region.
+tags:
+  - name: ImportContainers
+    description: Manage import containers that hold import requests before processing.
+  - name: Products
+    description: Import product resources into the project.
+  - name: ProductVariants
+    description: Import product variant resources into the project.
+  - name: Categories
+    description: Import category resources into the project.
+  - name: ProductTypes
+    description: Import product type definitions into the project.
+  - name: Customers
+    description: Import customer resources into the project.
+  - name: Orders
+    description: Import order resources into the project.
+  - name: Inventory
+    description: Import inventory entry resources into the project.
+  - name: Prices
+    description: Import embedded price resources into the project.
+  - name: StandalonePrices
+    description: Import standalone price resources into the project.
+  - name: ImportOperations
+    description: Monitor the status of individual import operations.
+security:
+  - bearerAuth: []
+paths:
+  /{projectKey}/import-containers:
+    get:
+      operationId: listImportContainers
+      summary: List import containers
+      description: >-
+        Returns a paginated list of all import containers in the project. Import
+        containers are the primary organizational unit for grouping related
+        import requests. Each project can have up to 1,000 containers.
+      tags:
+        - ImportContainers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A paged list of import containers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainerPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createImportContainer
+      summary: Create an import container
+      description: >-
+        Creates a new import container. The container acts as a namespace for
+        related import operations. A maximum of 1,000 containers can be created
+        per project. Optimal performance is maintained under 200,000 import
+        operations per container.
+      tags:
+        - ImportContainers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportContainerDraft'
+      responses:
+        '201':
+          description: The created import container.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/import-containers/{importContainerKey}:
+    get:
+      operationId: getImportContainerByKey
+      summary: Get an import container by key
+      description: >-
+        Retrieves an import container by its user-defined key, including its
+        resource type scope and version information.
+      tags:
+        - ImportContainers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      responses:
+        '200':
+          description: The requested import container.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainer'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateImportContainerByKey
+      summary: Update an import container by key
+      description: >-
+        Replaces the import container identified by the given key with the
+        provided draft. The key itself cannot be changed.
+      tags:
+        - ImportContainers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportContainerDraft'
+      responses:
+        '200':
+          description: The updated import container.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainer'
+    delete:
+      operationId: deleteImportContainerByKey
+      summary: Delete an import container by key
+      description: >-
+        Permanently deletes the import container with the given key. All
+        associated import operations and their status records are also removed.
+      tags:
+        - ImportContainers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      responses:
+        '200':
+          description: The deleted import container.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainer'
+  /{projectKey}/import-containers/{importContainerKey}/import-summary:
+    get:
+      operationId: getImportContainerSummary
+      summary: Get import summary for a container
+      description: >-
+        Returns aggregated statistics for all import operations in the given
+        container, grouped by processing state (Accepted, ValidationFailed,
+        Unresolved, WaitForMasterVariant, Imported, Rejected, Cancelled).
+      tags:
+        - ImportContainers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      responses:
+        '200':
+          description: The import summary with operation counts by state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportSummary'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /{projectKey}/products/import-containers/{importContainerKey}:
+    post:
+      operationId: importProducts
+      summary: Import products
+      description: >-
+        Submits a batch of product import requests to the specified container
+        for asynchronous processing. Each request can contain up to 20 product
+        resources. Products are matched by their user-defined key for upsert
+        behavior.
+      tags:
+        - Products
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/product-variants/import-containers/{importContainerKey}:
+    post:
+      operationId: importProductVariants
+      summary: Import product variants
+      description: >-
+        Submits a batch of product variant import requests for asynchronous
+        processing. Variants are matched to products by the product key
+        reference. Each request accepts up to 20 variant resources.
+      tags:
+        - ProductVariants
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariantImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/categories/import-containers/{importContainerKey}:
+    post:
+      operationId: importCategories
+      summary: Import categories
+      description: >-
+        Submits a batch of category import requests for asynchronous processing.
+        Categories are matched by key for upsert behavior. Parent category
+        references are resolved after all categories in the batch are processed.
+      tags:
+        - Categories
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/customers/import-containers/{importContainerKey}:
+    post:
+      operationId: importCustomers
+      summary: Import customers
+      description: >-
+        Submits a batch of customer import requests for asynchronous processing.
+        Customers are matched by key for upsert behavior. Each request accepts
+        up to 20 customer resources.
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/orders/import-containers/{importContainerKey}:
+    post:
+      operationId: importOrders
+      summary: Import orders
+      description: >-
+        Submits a batch of order import requests for asynchronous processing.
+        Order imports bypass the normal checkout flow and directly create orders
+        in the system. Each request accepts up to 20 order resources.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/inventories/import-containers/{importContainerKey}:
+    post:
+      operationId: importInventoryEntries
+      summary: Import inventory entries
+      description: >-
+        Submits a batch of inventory entry import requests for asynchronous
+        processing. Inventory entries are matched by SKU and supply channel for
+        upsert behavior.
+      tags:
+        - Inventory
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/standalone-prices/import-containers/{importContainerKey}:
+    post:
+      operationId: importStandalonePrices
+      summary: Import standalone prices
+      description: >-
+        Submits a batch of standalone price import requests for asynchronous
+        processing. Standalone prices are matched by key for upsert behavior and
+        are associated with SKUs independently from embedded product variant
+        prices.
+      tags:
+        - StandalonePrices
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StandalonePriceImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/import-containers/{importContainerKey}/import-operations:
+    get:
+      operationId: listImportOperations
+      summary: List import operations in a container
+      description: >-
+        Returns a paginated list of import operations for the given container.
+        Import operations track the processing status of individual resources
+        within an import request. Supports filtering by state.
+      tags:
+        - ImportOperations
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Accepted
+              - ValidationFailed
+              - Unresolved
+              - WaitForMasterVariant
+              - Imported
+              - Rejected
+              - Cancelled
+          description: Filter operations by their current processing state.
+      responses:
+        '200':
+          description: A paged list of import operations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportOperationPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{projectKey}/import-containers/{importContainerKey}/import-operations/{id}:
+    get:
+      operationId: getImportOperationById
+      summary: Get an import operation by ID
+      description: >-
+        Retrieves a single import operation by its ID. The operation record
+        includes the processing state, any validation errors, and a reference to
+        the resource that was imported or failed validation.
+      tags:
+        - ImportOperations
+      parameters:
+        - $ref: '#/components/parameters/projectKey'
+        - $ref: '#/components/parameters/importContainerKey'
+        - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested import operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportOperation'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        OAuth 2.0 Bearer token obtained from the commercetools authentication
+        service using client credentials flow.
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique identifier of the resource.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of results to skip for pagination.
+  schemas:
+    ImportContainer:
+      type: object
+      description: A container that groups related import requests for a specific resource type.
+      required:
+        - key
+        - version
+        - resourceType
+      properties:
+        key:
+          type: string
+          description: User-defined unique key for the container (2-256 characters).
+        version:
+          type: integer
+          description: Current version of the import container.
+        resourceType:
+          type: string
+          description: The resource type this container is scoped to (e.g., 'product', 'category').
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the container was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the container was last modified.
+    ImportContainerDraft:
+      type: object
+      description: Request body for creating or replacing an import container.
+      required:
+        - key
+      properties:
+        key:
+          type: string
+          description: User-defined unique key (2-256 characters, alphanumeric with hyphens/underscores).
+        resourceType:
+          type: string
+          description: Optional resource type scope for the container.
+    ImportContainerPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of import containers.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportContainer'
+    ImportSummary:
+      type: object
+      description: Aggregated counts of import operations grouped by processing state.
+      required:
+        - states
+        - total
+      properties:
+        states:
+          type: object
+          description: Map of import operation state names to their counts.
+          properties:
+            Accepted:
+              type: integer
+              description: Number of operations accepted and queued for processing.
+            ValidationFailed:
+              type: integer
+              description: Number of operations that failed schema or data validation.
+            Unresolved:
+              type: integer
+              description: Number of operations waiting for referenced resources to be created.
+            WaitForMasterVariant:
+              type: integer
+              description: Number of variant operations waiting for the master variant.
+            Imported:
+              type: integer
+              description: Number of operations successfully imported.
+            Rejected:
+              type: integer
+              description: Number of operations permanently rejected after retry exhaustion.
+            Cancelled:
+              type: integer
+              description: Number of operations cancelled before processing.
+        total:
+          type: integer
+          description: Total number of import operations in the container.
+    ImportOperation:
+      type: object
+      description: A record tracking the processing status of a single resource within an import request.
+      required:
+        - version
+        - importContainerKey
+        - resourceKey
+        - state
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the operation.
+        version:
+          type: integer
+          description: Current version of the import operation record.
+        importContainerKey:
+          type: string
+          description: Key of the container this operation belongs to.
+        resourceKey:
+          type: string
+          description: User-defined key of the resource being imported.
+        state:
+          type: string
+          enum:
+            - Accepted
+            - ValidationFailed
+            - Unresolved
+            - WaitForMasterVariant
+            - Imported
+            - Rejected
+            - Cancelled
+          description: Current processing state of the import operation.
+        resourceType:
+          type: string
+          description: The type of resource being imported.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Validation or processing errors if the operation failed.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the operation was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the operation was last modified.
+    ImportOperationPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of import operations.
+      required:
+        - limit
+        - offset
+        - count
+        - total
+        - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperation'
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+        - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ImportOperationStatus:
+      type: object
+      description: The initial status of a single resource submission in an import batch.
+      required:
+        - resourceKey
+        - state
+      properties:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum: [Accepted, ValidationFailed]
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    ProductImportRequest:
+      type: object
+      description: A batch of product resources to import into the project.
+      required:
+        - type
+        - resources
+      properties:
+        type:
+          type: string
+          enum: [product]
+          description: The resource type identifier for this import request.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/ProductImport'
+          description: Up to 20 product resources to import.
+    ProductImport:
+      type: object
+      description: A single product resource for import, matched by key for upsert behavior.
+      required:
+        - key
+        - productType
+        - name
+        - slug
+      properties:
+        key:
+          type: string
+          description: User-defined key for matching against existing products.
+        productType:
+          type: object
+          description: Reference to the product type by key.
+        name:
+          type: object
+          description: Localized name of the product.
+        slug:
+          type: object
+          description: Localized URL-friendly slug for the product.
+        description:
+          type: object
+          description: Localized description of the product.
+        categories:
+          type: array
+          items:
+            type: object
+          description: Category references by key.
+        publish:
+          type: boolean
+          description: Whether to publish the product after import.
+    ProductVariantImportRequest:
+      type: object
+      description: A batch of product variant resources to import.
+      required:
+        - type
+        - resources
+      properties:
+        type:
+          type: string
+          enum: [product-variant]
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/ProductVariantImport'
+          description: Up to 20 product variant resources.
+    ProductVariantImport:
+      type: object
+      description: A single product variant resource for import.
+      required:
+        - key
+        - product
+      properties:
+        key:
+          type: string
+          description: User-defined key for matching against existing variants.
+        sku:
+          type: string
+          description: SKU identifier for the variant.
+        product:
+          type: object
+          description: Reference to the parent product by key.
+        isMasterVariant:
+          type: boolean
+          description: Whether this variant is the master (first) variant.
+        attributes:
+          type: array
+          items:
+            type: object
+          description: Attribute values for the variant.
+        images:
+          type: array
+          items:
+            type: object
+          description: Images for the variant.
+        prices:
+          type: array
+          items:
+            type: object
+          description: Prices for the variant.
+    CategoryImportRequest:
+      type: object
+      description: A batch of category resources to import.
+      required:
+        - type
+        - resources
+      properties:
+        type:
+          type: string
+          enum: [category]
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/CategoryImport'
+          description: Up to 20 category resources.
+    CategoryImport:
+      type: object
+      description: A single category resource for import.
+      required:
+        - key
+        - name
+        - slug
+      properties:
+        key:
+          type: string
+          description: User-defined key for matching against existing categories.
+        name:
+          type: object
+          description: Localized name of the category.
+        slug:
+          type: object
+          description: Localized URL-friendly slug.
+        description:
+          type: object
+          description: Localized description of the category.
+        parent:
+          type: object
+          description: Reference to parent category by key.
+        orderHint:
+          type: string
+          description: Decimal ordering hint between 0 and 1.
+    CustomerImportRequest:
+      type: object
+      description: A batch of customer resources to import.
+      required:
+        - type
+        - resources
+      properties:
+        type:
+          type: string
+          enum: [customer]
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/CustomerImport'
+          description: Up to 20 customer resources.
+    CustomerImport:
+      type: object
+      description: A single customer resource for import.
+      required:
+        - key
+        - email
+      properties:
+        key:
+          type: string
+          description: User-defined key for matching against existing customers.
+        email:
+          type: string
+          format: email
+          description: Email address of the customer.
+        firstName:
+          type: string
+          description: First name of the customer.
+        lastName:
+          type: string
+          description: Last name of the customer.
+        customerGroup:
+          type: object
+          description: Reference to customer group by key.
+        addresses:
+          type: array
+          items:
+            type: object
+          description: Addresses for the customer.
+        isEmailVerified:
+          type: boolean
+          description: Whether the email address is verified.
+    OrderImportRequest:
+      type: object
+      description: A batch of order resources to import.
+      required:
+        - type
+        - resources
+      properties:
+        type:
+          type: string
+          enum: [order]
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/OrderImport'
+          description: Up to 20 order resources.
+    OrderImport:
+      type: object
+      description: A single order resource for import, bypassing normal checkout flow.
+      required:
+        - orderNumber
+        - totalPrice
+        - lineItems
+      properties:
+        orderNumber:
+          type: string
+          description: User-defined order number used as the key for matching.
+        customerId:
+          type: string
+          description: ID of the customer who placed the order.
+        customerEmail:
+          type: string
+          format: email
+          description: Email of the customer.
+        lineItems:
+          type: array
+          items:
+            type: object
+          description: Line items in the order.
+        totalPrice:
+          type: object
+          description: Total price of the order.
+        orderState:
+          type: string
+          enum: [Open, Confirmed, Complete, Cancelled]
+          description: Initial state of the imported order.
+        shipmentState:
+          type: string
+          description: Initial shipment state of the order.
+        paymentState:
+          type: string
+          description: Initial payment state of the order.
+    InventoryImportRequest:
+      type: object
+      description: A batch of inventory entry resources to import.
+      required:
+        - type
+        - resources
+      properties:
+        type:
+          type: string
+          enum: [inventory]
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/InventoryImport'
+          description: Up to 20 inventory entry resources.
+    InventoryImport:
+      type: object
+      description: A single inventory entry resource for import.
+      required:
+        - key
+        - sku
+        - quantityOnStock
+      properties:
+        key:
+          type: string
+          description: User-defined key for matching against existing inventory entries.
+        sku:
+          type: string
+          description: SKU of the product variant.
+        quantityOnStock:
+          type: integer
+          description: Quantity on stock to set.
+        supplyChannel:
+          type: object
+          description: Reference to the supply channel by key.
+        restockableInDays:
+          type: integer
+          description: Expected restocking time in days.
+    StandalonePriceImportRequest:
+      type: object
+      description: A batch of standalone price resources to import.
+      required:
+        - type
+        - resources
+      properties:
+        type:
+          type: string
+          enum: [standalone-price]
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/StandalonePriceImport'
+          description: Up to 20 standalone price resources.
+    StandalonePriceImport:
+      type: object
+      description: A single standalone price resource for import.
+      required:
+        - key
+        - sku
+        - value
+      properties:
+        key:
+          type: string
+          description: User-defined key for matching against existing prices.
+        sku:
+          type: string
+          description: SKU of the product variant this price applies to.
+        value:
+          type: object
+          description: The monetary value of the price.
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code scope.
+        customerGroup:
+          type: object
+          description: Reference to the customer group scope.
+        channel:
+          type: object
+          description: Reference to the channel scope.
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string

@@ -1,0 +1,396 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/schemas/commercetools/product.json",
+  "title": "commercetools Product",
+  "description": "A product resource in the commercetools Composable Commerce platform. Products contain both a current (published) and a staged version of their data, enabling a preview workflow before publishing changes to the storefront. Product attributes are defined by the associated product type.",
+  "type": "object",
+  "required": ["id", "version", "productType", "masterData"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier for the product."
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Current version for optimistic concurrency control."
+    },
+    "key": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 256,
+      "pattern": "^[a-zA-Z0-9_-]+$",
+      "description": "User-defined unique key for the product within the project."
+    },
+    "productType": {
+      "$ref": "#/$defs/Reference",
+      "description": "Reference to the product type defining valid attributes for this product."
+    },
+    "masterData": {
+      "$ref": "#/$defs/ProductCatalogData",
+      "description": "Container for both current (published) and staged versions of product data."
+    },
+    "taxCategory": {
+      "$ref": "#/$defs/Reference",
+      "description": "Reference to the tax category used for tax rate determination."
+    },
+    "state": {
+      "$ref": "#/$defs/Reference",
+      "description": "Reference to a custom state for workflow management."
+    },
+    "reviewRatingStatistics": {
+      "type": "object",
+      "description": "Aggregated review rating statistics including average rating and count.",
+      "properties": {
+        "averageRating": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "Average rating across all reviews."
+        },
+        "highestRating": {
+          "type": "number",
+          "description": "Highest individual rating received."
+        },
+        "lowestRating": {
+          "type": "number",
+          "description": "Lowest individual rating received."
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of reviews."
+        },
+        "ratingsDistribution": {
+          "type": "object",
+          "description": "Distribution of ratings by score value."
+        }
+      }
+    },
+    "priceMode": {
+      "type": "string",
+      "enum": ["Embedded", "Standalone"],
+      "description": "Whether prices are managed as embedded prices on variants or as standalone price resources."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the product was created."
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the product was last modified."
+    }
+  },
+  "$defs": {
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another commercetools resource by type and ID.",
+      "required": ["typeId", "id"],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    },
+    "KeyReference": {
+      "type": "object",
+      "description": "A reference to another resource using its user-defined key.",
+      "required": ["typeId", "key"],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource."
+        },
+        "key": {
+          "type": "string",
+          "description": "The user-defined key of the referenced resource."
+        }
+      }
+    },
+    "LocalizedString": {
+      "type": "object",
+      "description": "A map of IETF language tags to localized string values.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "ProductCatalogData": {
+      "type": "object",
+      "description": "Container holding both the published (current) and staged versions of product content.",
+      "required": ["published", "hasStagedChanges"],
+      "properties": {
+        "published": {
+          "type": "boolean",
+          "description": "Whether a current (published) version of the product data exists."
+        },
+        "current": {
+          "$ref": "#/$defs/ProductData",
+          "description": "The currently published version of the product data, visible in storefronts."
+        },
+        "staged": {
+          "$ref": "#/$defs/ProductData",
+          "description": "The staged version containing unpublished edits awaiting publication."
+        },
+        "hasStagedChanges": {
+          "type": "boolean",
+          "description": "Whether the staged version differs from the published version."
+        }
+      }
+    },
+    "ProductData": {
+      "type": "object",
+      "description": "A complete version of product content including name, slug, variants, and category assignments.",
+      "required": ["name", "slug", "masterVariant", "variants", "categories"],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/LocalizedString",
+          "description": "Localized display name of the product."
+        },
+        "description": {
+          "$ref": "#/$defs/LocalizedString",
+          "description": "Localized description of the product for display on product detail pages."
+        },
+        "slug": {
+          "$ref": "#/$defs/LocalizedString",
+          "description": "Localized URL-friendly identifier, unique per project and locale."
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "description": "References to categories this product is assigned to."
+        },
+        "categoryOrderHints": {
+          "type": "object",
+          "description": "Map of category ID to decimal ordering hint for custom ordering within categories.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "masterVariant": {
+          "$ref": "#/$defs/ProductVariant",
+          "description": "The master (first) variant of the product."
+        },
+        "variants": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/ProductVariant"
+          },
+          "description": "Additional variants beyond the master variant. A product supports up to 100 variants."
+        },
+        "metaTitle": {
+          "$ref": "#/$defs/LocalizedString",
+          "description": "Localized SEO title for the product page."
+        },
+        "metaDescription": {
+          "$ref": "#/$defs/LocalizedString",
+          "description": "Localized SEO description for the product page."
+        },
+        "metaKeywords": {
+          "$ref": "#/$defs/LocalizedString",
+          "description": "Localized SEO keywords for the product page."
+        },
+        "searchKeywords": {
+          "type": "object",
+          "description": "Map of locale to search keyword arrays for the product search index.",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "ProductVariant": {
+      "type": "object",
+      "description": "A product variant representing a specific purchasable version of a product with its own SKU, prices, attributes, and images.",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Variant ID, unique within the product. The master variant always has ID 1."
+        },
+        "key": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 256,
+          "description": "User-defined unique key for the variant."
+        },
+        "sku": {
+          "type": "string",
+          "description": "Stock keeping unit identifier for this variant."
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Price"
+          },
+          "description": "Embedded prices for this variant, scoped by currency, country, channel, and customer group."
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Attribute"
+          },
+          "description": "Product attribute values as defined by the product type schema."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Image"
+          },
+          "description": "Images for this variant."
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Digital assets (PDFs, videos, etc.) associated with this variant."
+        },
+        "availability": {
+          "type": "object",
+          "description": "Inventory availability information for the variant across channels."
+        },
+        "isMatchingVariant": {
+          "type": "boolean",
+          "description": "Whether this variant matches the current search or filter context (set by product projections)."
+        }
+      }
+    },
+    "Price": {
+      "type": "object",
+      "description": "An embedded price for a product variant with optional scoping by currency, country, channel, and customer group.",
+      "required": ["id", "value"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "System-generated unique identifier for the price."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined unique key for the price."
+        },
+        "value": {
+          "$ref": "#/$defs/Money",
+          "description": "The monetary value of the price."
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "ISO 3166-1 alpha-2 country code for geographic scoping."
+        },
+        "customerGroup": {
+          "$ref": "#/$defs/Reference",
+          "description": "Customer group reference for customer-group-specific pricing."
+        },
+        "channel": {
+          "$ref": "#/$defs/Reference",
+          "description": "Channel reference for channel-specific pricing."
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start of the price validity period."
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End of the price validity period."
+        },
+        "discounted": {
+          "type": "object",
+          "description": "Discounted price information if a product discount applies."
+        },
+        "tiers": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Volume-based pricing tiers for this price."
+        }
+      }
+    },
+    "Money": {
+      "type": "object",
+      "description": "A monetary value with ISO 4217 currency code and amount in the smallest currency unit.",
+      "required": ["currencyCode", "centAmount"],
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 three-letter currency code (e.g., USD, EUR, GBP)."
+        },
+        "centAmount": {
+          "type": "integer",
+          "description": "Amount in the smallest indivisible unit of the currency (e.g., cents for USD)."
+        },
+        "fractionDigits": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20,
+          "description": "Number of fraction digits for the currency. Defaults to 2 for most currencies."
+        }
+      }
+    },
+    "Attribute": {
+      "type": "object",
+      "description": "A name-value pair representing a product attribute as defined by the product type schema.",
+      "required": ["name", "value"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The attribute name as defined in the product type."
+        },
+        "value": {
+          "description": "The attribute value. Type depends on the attribute type (string, number, boolean, LocalizedString, enum, reference, etc.)."
+        }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "description": "A product image with URL, pixel dimensions, and optional label.",
+      "required": ["url", "dimensions"],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the product image."
+        },
+        "dimensions": {
+          "type": "object",
+          "description": "Pixel dimensions of the image.",
+          "required": ["w", "h"],
+          "properties": {
+            "w": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Image width in pixels."
+            },
+            "h": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Image height in pixels."
+            }
+          }
+        },
+        "label": {
+          "type": "string",
+          "description": "Optional descriptive label for the image."
+        }
+      }
+    }
+  }
+}
