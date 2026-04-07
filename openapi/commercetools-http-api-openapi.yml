@@ -32,32 +32,23 @@ servers:
           - australia-southeast1.gcp
         description: The deployment region for the commercetools API.
 tags:
-  - name: Products
-    description: Manage product catalog entries including variants, images, prices, and attributes.
-  - name: ProductTypes
-    description: Define schemas for product attributes shared across products.
-  - name: Categories
-    description: Organize products into hierarchical category structures.
   - name: Carts
     description: Manage shopping carts with line items, discounts, shipping, and tax calculations.
-  - name: Orders
-    description: Create and manage orders resulting from cart checkouts or quotes.
+  - name: Categories
+    description: Organize products into hierarchical category structures.
   - name: Customers
     description: Manage customer accounts, addresses, authentication, and group assignments.
-  - name: Payments
-    description: Track payment transactions and PSP interactions associated with orders.
   - name: Inventory
     description: Manage inventory entries tracking stock levels per channel and SKU.
-  - name: Discounts
-    description: Configure cart discounts, product discounts, and discount codes.
-  - name: ShippingMethods
-    description: Define shipping rates and delivery methods by zone and tax category.
-  - name: Stores
-    description: Configure store-specific product selections, channels, and shipping methods.
-  - name: Channels
-    description: Represent inventory locations, distribution channels, and supply channels.
+  - name: Orders
+    description: Create and manage orders resulting from cart checkouts or quotes.
+  - name: Payments
+    description: Track payment transactions and PSP interactions associated with orders.
+  - name: Products
+    description: Manage product catalog entries including variants, images, prices, and attributes.
   - name: Project
     description: Read and configure project-level settings including currencies, languages, and messages.
+  - name: Subscriptions
 security:
   - bearerAuth: []
 paths:

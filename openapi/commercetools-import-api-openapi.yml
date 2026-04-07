@@ -33,28 +33,24 @@ servers:
           - australia-southeast1.gcp
         description: The deployment region.
 tags:
+  - name: Categories
+    description: Import category resources into the project.
+  - name: Customers
+    description: Import customer resources into the project.
   - name: ImportContainers
     description: Manage import containers that hold import requests before processing.
+  - name: ImportOperations
+    description: Monitor the status of individual import operations.
+  - name: Inventory
+    description: Import inventory entry resources into the project.
+  - name: Orders
+    description: Import order resources into the project.
   - name: Products
     description: Import product resources into the project.
   - name: ProductVariants
     description: Import product variant resources into the project.
-  - name: Categories
-    description: Import category resources into the project.
-  - name: ProductTypes
-    description: Import product type definitions into the project.
-  - name: Customers
-    description: Import customer resources into the project.
-  - name: Orders
-    description: Import order resources into the project.
-  - name: Inventory
-    description: Import inventory entry resources into the project.
-  - name: Prices
-    description: Import embedded price resources into the project.
   - name: StandalonePrices
     description: Import standalone price resources into the project.
-  - name: ImportOperations
-    description: Monitor the status of individual import operations.
 security:
   - bearerAuth: []
 paths:

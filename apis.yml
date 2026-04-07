@@ -1,17 +1,15 @@
 aid: commercetools
-url: 
-  https://raw.githubusercontent.com/api-evangelist/commercetools/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/commercetools/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis:
   - aid: commercetools:http-api
     name: Commercetools HTTP API
     tags:
       - Commerce
-      - E-Commerce
       - Composable Commerce
+      - E-Commerce
       - REST
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.{region}.commercetools.com
     humanURL: https://docs.commercetools.com/api
     properties:
@@ -32,12 +30,11 @@ apis:
   - aid: commercetools:graphql-api
     name: Commercetools GraphQL API
     tags:
-      - GraphQL
       - Commerce
-      - E-Commerce
       - Composable Commerce
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - E-Commerce
+      - GraphQL
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.{region}.commercetools.com
     humanURL: https://docs.commercetools.com/api/graphql
     properties:
@@ -54,12 +51,11 @@ apis:
   - aid: commercetools:import-api
     name: Commercetools Import API
     tags:
-      - Import
       - Bulk Operations
       - Commerce
       - Data Migration
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Import
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://import.{region}.commercetools.com
     humanURL: https://docs.commercetools.com/api/import-export/overview
     properties:
@@ -80,10 +76,9 @@ apis:
     tags:
       - Audit Log
       - Change History
-      - Compliance
       - Commerce
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Compliance
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://history.{region}.commercetools.com
     humanURL: https://docs.commercetools.com/api/history/overview
     properties:
@@ -102,12 +97,11 @@ apis:
   - aid: commercetools:typescript-sdk
     name: Commercetools TypeScript SDK
     tags:
-      - TypeScript
+      - Commerce
       - JavaScript
       - SDK
-      - Commerce
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - TypeScript
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://docs.commercetools.com/sdk/typescript-sdk
     properties:
@@ -123,12 +117,11 @@ apis:
   - aid: commercetools:java-sdk
     name: Commercetools Java SDK
     tags:
-      - Java
-      - SDK
       - Commerce
+      - Java
       - JVM
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - SDK
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://docs.commercetools.com/sdk/java-sdk
     properties:
@@ -148,11 +141,10 @@ apis:
     name: Commercetools Checkout API
     tags:
       - Checkout
-      - Payments
       - Commerce
       - Embedded Components
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Payments
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
     humanURL: https://docs.commercetools.com/checkout
     properties:
@@ -169,18 +161,15 @@ apis:
   - aid: commercetools:merchant-center-customizations-api
     name: Commercetools Merchant Center Customizations API
     tags:
-      - Merchant Center
-      - Customizations
       - Commerce
+      - Customizations
       - Extensions
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Merchant Center
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.example.com
-    humanURL: 
-      https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
+    humanURL: https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
     properties:
-      - url: 
-          https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
+      - url: https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
         type: Documentation
     description: >-
       The commercetools Merchant Center Customizations API provides the programmatic
