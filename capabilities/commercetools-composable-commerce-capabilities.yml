@@ -1,0 +1,179 @@
+# Naftiko capabilities profile for commercetools Composable Commerce.
+# Capabilities cover the highest-leverage operations on the HTTP API
+# (catalog, cart, order, customer, checkout) and the supporting Import
+# and Change History APIs.
+provider: commercetools
+name: commercetools
+description: >-
+  Composable, API-first commerce platform. APIs cover catalog, cart and
+  order, checkout, customers, payments, inventory, and audit history.
+capabilities:
+  - id: commercetools.products.list
+    name: List products
+    description: Query a project's catalog of products and product projections.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - where
+      - limit
+      - offset
+    outputs:
+      - results
+      - total
+
+  - id: commercetools.products.create
+    name: Create product
+    description: Create a new product with variants and prices.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - productType
+      - name
+      - slug
+      - masterVariant
+    outputs:
+      - id
+      - version
+
+  - id: commercetools.carts.create
+    name: Create cart
+    description: Create a cart for a customer or anonymous shopper.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - currency
+      - customerId
+      - lineItems
+    outputs:
+      - id
+      - totalPrice
+
+  - id: commercetools.carts.update
+    name: Update cart
+    description: Apply update actions (add/remove line items, set discounts, etc.) to a cart.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - id
+      - version
+      - actions
+    outputs:
+      - cart
+
+  - id: commercetools.orders.create-from-cart
+    name: Create order from cart
+    description: Convert a cart into an order at checkout completion.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - cart.id
+      - cart.version
+    outputs:
+      - id
+      - orderState
+
+  - id: commercetools.orders.list
+    name: List orders
+    description: Query orders for fulfillment, finance, or analytics.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - where
+      - limit
+    outputs:
+      - results
+
+  - id: commercetools.customers.create
+    name: Create customer
+    description: Register a new customer account.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - email
+      - password
+      - firstName
+      - lastName
+    outputs:
+      - customer
+      - cart
+
+  - id: commercetools.payments.create
+    name: Create payment
+    description: Record a payment associated with a cart or order.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - amountPlanned
+      - paymentMethodInfo
+    outputs:
+      - id
+
+  - id: commercetools.discounts.create
+    name: Create cart discount
+    description: Create a cart discount (promotion) for the project.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - name
+      - target
+      - value
+      - cartPredicate
+    outputs:
+      - id
+
+  - id: commercetools.subscriptions.create
+    name: Create subscription
+    description: Subscribe a destination (SQS, PubSub, Event Grid, etc.) to commercetools messages.
+    api: commercetools:http-api
+    inputs:
+      - projectKey
+      - destination
+      - messages
+    outputs:
+      - id
+
+  - id: commercetools.import.products
+    name: Import products
+    description: Bulk import products via the Import API.
+    api: commercetools:import-api
+    inputs:
+      - projectKey
+      - importContainerKey
+      - resources
+    outputs:
+      - operationStatus
+
+  - id: commercetools.history.records
+    name: Read change history
+    description: Query the Change History API for resource mutations.
+    api: commercetools:change-history-api
+    inputs:
+      - projectKey
+      - resourceType
+      - date.from
+      - date.to
+    outputs:
+      - records
+
+  - id: commercetools.graphql.query
+    name: GraphQL query
+    description: Issue a GraphQL query or mutation via the GraphQL API.
+    api: commercetools:graphql-api
+    inputs:
+      - projectKey
+      - query
+      - variables
+    outputs:
+      - data
+      - errors
+
+  - id: commercetools.checkout.application.create
+    name: Create checkout application
+    description: Provision a Checkout application configuration via the Checkout API.
+    api: commercetools:checkout-api
+    inputs:
+      - projectKey
+      - name
+      - paymentConnectors
+    outputs:
+      - id

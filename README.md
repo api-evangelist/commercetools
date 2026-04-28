@@ -145,9 +145,16 @@ The commercetools Merchant Center Customizations API provides the programmatic i
 - [Support](https://support.commercetools.com/)
 - [Blog](https://commercetools.com/blog)
 - [Login](https://mc.us-central1.gcp.commercetools.com/login)
+- [GitHub](https://github.com/commercetools)
+- [JSON-LD Context](json-ld/commercetools-context.jsonld)
+- [Order JSON Schema](json-schema/commercetools-order-schema.json)
+- [Product JSON Schema](json-schema/commercetools-product-schema.json)
+- [Subscription Message JSON Schema](json-schema/commercetools-subscription-message-schema.json)
+- [Spectral Ruleset](rules/commercetools-rules.yml)
+- [Naftiko Capabilities](capabilities/commercetools-composable-commerce-capabilities.yml)
 
 ## Maintainers
 
-**FN:** API Evangelist
+**FN:** Kin Lane
 
-**Email:** info@apievangelist.com
+**Email:** kin@apievangelist.com

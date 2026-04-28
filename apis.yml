@@ -1,6 +1,20 @@
 aid: commercetools
 url: https://raw.githubusercontent.com/api-evangelist/commercetools/refs/heads/main/apis.yml
-modified: '2026-03-21'
+name: commercetools
+tags:
+  - Commerce
+  - Composable Commerce
+  - E-Commerce
+  - GraphQL
+  - REST
+  - SDK
+type: Index
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+position: Consumer
+x-type: company
+created: '2025-09-15'
+modified: '2026-04-26'
 apis:
   - aid: commercetools:http-api
     name: Commercetools HTTP API
@@ -180,6 +194,16 @@ apis:
       the Merchant Center with business-specific tooling.
 
 common:
+  - type: Website
+    url: https://commercetools.com/
+  - type: Documentation
+    url: https://docs.commercetools.com/
+  - type: Pricing
+    url: https://commercetools.com/pricing
+  - type: Status
+    url: https://status.commercetools.com/
+  - type: GitHub
+    url: https://github.com/commercetools
   - url: json-ld/commercetools-context.jsonld
     type: JSON-LD
   - url: json-schema/commercetools-order-schema.json
@@ -188,5 +212,21 @@ common:
     type: JSONSchema
   - url: json-schema/commercetools-subscription-message-schema.json
     type: JSONSchema
+  - url: rules/commercetools-rules.yml
+    type: Spectral
+  - url: capabilities/commercetools-composable-commerce-capabilities.yml
+    type: NaftikoCapabilities
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+specificationVersion: '0.19'
 description: >-
-  Documentation for Composable Commerce APIs.
+  commercetools is the leading composable, headless, API-first Commerce
+  platform powering large-scale B2C, B2B, and marketplace digital commerce
+  for enterprise brands. The platform exposes a broad API surface organized
+  into the HTTP API (core REST interface), GraphQL API (flexible query and
+  mutation alternative), Import API (bulk data ingestion), Change History
+  API (audit log), Checkout API (managed checkout configuration), and
+  Merchant Center Customizations API (custom UI extensions). It is
+  complemented by official SDKs (TypeScript, Java, PHP, .NET, Python) and
+  AsyncAPI-based subscriptions for event-driven integrations.
