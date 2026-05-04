@@ -1,0 +1,77 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: commercetools
+providerId: commercetools
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Composable Commerce
+  - Headless Commerce
+description: 'commercetools editions: Core Commerce / Foundry / Premium. Pricing not public.'
+sources:
+  - https://commercetools.com/pricing
+plans:
+  - id: commercetools-core-commerce
+    name: Core Commerce Edition
+    type: enterprise
+    description: Optimized for digitally mature companies. Custom pricing.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: Composable Commerce APIs
+      - name: Cart, Order, Catalog, Customer
+      - name: Multi-tenant SaaS
+  - id: commercetools-foundry
+    name: Foundry Edition
+    type: enterprise
+    description: Faster time to value for retailers/manufacturers. Custom pricing.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: All Core Commerce features
+      - name: Pre-built Frontend
+      - name: Checkout + PSP integration
+      - name: Blueprints
+      - name: Expert Services
+  - id: commercetools-premium
+    name: Premium Edition
+    type: enterprise
+    description: Enterprise scale with advanced features. Custom pricing.
+    entries:
+      - label: Annual (custom)
+        name: annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: custom
+        userMultiplied: false
+    elements:
+      - name: All Foundry features
+      - name: Unlimited SKUs
+      - name: Advanced B2B APIs
+      - name: Audit Log Premium
+      - name: Premium Support
+      - name: Third-party connectors
