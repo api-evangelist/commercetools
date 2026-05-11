@@ -211,6 +211,10 @@ common:
     sources:
       - https://commercetools.com/pricing
     updated: '2026-05-04'
+  - type: Integrations
+    url: https://commercetools.com/partners
+integrations:
+  - name: Solution Integrators & Agencies
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
