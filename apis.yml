@@ -12,7 +12,7 @@ type: Index
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 position: Consumer
-x-type: company
+kind: company
 created: '2025-09-15'
 modified: '2026-05-04'
 apis:
@@ -174,12 +174,12 @@ common:
     url: https://docs.commercetools.com/
   - type: Pricing
     url: https://commercetools.com/pricing
-  - type: Status
+  - type: StatusPage
     url: https://status.commercetools.com/
   - type: GitHub
     url: https://github.com/commercetools
   - url: json-ld/commercetools-context.jsonld
-    type: JSON-LD
+    type: JSONLD
   - url: json-schema/commercetools-order-schema.json
     type: JSONSchema
   - url: json-schema/commercetools-product-schema.json
