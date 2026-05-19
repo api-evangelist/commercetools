@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: commercetools HTTP API — Products
+  description: 'commercetools HTTP API — Products. 5 operations. Lead operation: List products. Self-contained Naftiko capability
+    covering one Commercetools business surface.'
+  tags:
+  - Commercetools
+  - Products
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    COMMERCETOOLS_API_KEY: COMMERCETOOLS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: http-products
+    baseUri: https://api.{region}.commercetools.com
+    description: commercetools HTTP API — Products business capability. Self-contained, no shared references.
+    resources:
+    - name: projectKey-products
+      path: /{projectKey}/products
+      operations:
+      - name: listproducts
+        method: GET
+        description: List products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproduct
+        method: POST
+        description: Create a product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projectKey-products-id
+      path: /{projectKey}/products/{id}
+      operations:
+      - name: getproductbyid
+        method: GET
+        description: Get a product by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateproductbyid
+        method: POST
+        description: Update a product by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteproductbyid
+        method: DELETE
+        description: Delete a product by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.COMMERCETOOLS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: http-products-rest
+    port: 8080
+    description: REST adapter for commercetools HTTP API — Products. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{projectkey}/products
+      name: projectkey-products
+      description: REST surface for projectKey-products.
+      operations:
+      - method: GET
+        name: listproducts
+        description: List products
+        call: http-products.listproducts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproduct
+        description: Create a product
+        call: http-products.createproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{projectkey}/products/{id}
+      name: projectkey-products-id
+      description: REST surface for projectKey-products-id.
+      operations:
+      - method: GET
+        name: getproductbyid
+        description: Get a product by ID
+        call: http-products.getproductbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateproductbyid
+        description: Update a product by ID
+        call: http-products.updateproductbyid
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteproductbyid
+        description: Delete a product by ID
+        call: http-products.deleteproductbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: http-products-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for commercetools HTTP API — Products. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-products
+      description: List products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: http-products.listproducts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-product
+      description: Create a product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: http-products.createproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-product-id
+      description: Get a product by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: http-products.getproductbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-product-id
+      description: Update a product by ID
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: http-products.updateproductbyid
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-product-id
+      description: Delete a product by ID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: http-products.deleteproductbyid
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: commercetools HTTP API — Subscriptions
+  description: 'commercetools HTTP API — Subscriptions. 5 operations. Lead operation: List subscriptions. Self-contained Naftiko
+    capability covering one Commercetools business surface.'
+  tags:
+  - Commercetools
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    COMMERCETOOLS_API_KEY: COMMERCETOOLS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: http-subscriptions
+    baseUri: https://api.{region}.commercetools.com
+    description: commercetools HTTP API — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: projectKey-subscriptions
+      path: /{projectKey}/subscriptions
+      operations:
+      - name: listsubscriptions
+        method: GET
+        description: List subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsubscription
+        method: POST
+        description: Create a subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projectKey-subscriptions-id
+      path: /{projectKey}/subscriptions/{id}
+      operations:
+      - name: getsubscriptionbyid
+        method: GET
+        description: Get a subscription by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatesubscriptionbyid
+        method: POST
+        description: Update a subscription by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletesubscriptionbyid
+        method: DELETE
+        description: Delete a subscription by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.COMMERCETOOLS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: http-subscriptions-rest
+    port: 8080
+    description: REST adapter for commercetools HTTP API — Subscriptions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{projectkey}/subscriptions
+      name: projectkey-subscriptions
+      description: REST surface for projectKey-subscriptions.
+      operations:
+      - method: GET
+        name: listsubscriptions
+        description: List subscriptions
+        call: http-subscriptions.listsubscriptions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsubscription
+        description: Create a subscription
+        call: http-subscriptions.createsubscription
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{projectkey}/subscriptions/{id}
+      name: projectkey-subscriptions-id
+      description: REST surface for projectKey-subscriptions-id.
+      operations:
+      - method: GET
+        name: getsubscriptionbyid
+        description: Get a subscription by ID
+        call: http-subscriptions.getsubscriptionbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatesubscriptionbyid
+        description: Update a subscription by ID
+        call: http-subscriptions.updatesubscriptionbyid
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesubscriptionbyid
+        description: Delete a subscription by ID
+        call: http-subscriptions.deletesubscriptionbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: http-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for commercetools HTTP API — Subscriptions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-subscriptions
+      description: List subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: http-subscriptions.listsubscriptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-subscription
+      description: Create a subscription
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: http-subscriptions.createsubscription
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-subscription-id
+      description: Get a subscription by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: http-subscriptions.getsubscriptionbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-subscription-id
+      description: Update a subscription by ID
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: http-subscriptions.updatesubscriptionbyid
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-subscription-id
+      description: Delete a subscription by ID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: http-subscriptions.deletesubscriptionbyid
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: commercetools HTTP API — Orders
+  description: 'commercetools HTTP API — Orders. 5 operations. Lead operation: List orders. Self-contained Naftiko capability
+    covering one Commercetools business surface.'
+  tags:
+  - Commercetools
+  - Orders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    COMMERCETOOLS_API_KEY: COMMERCETOOLS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: http-orders
+    baseUri: https://api.{region}.commercetools.com
+    description: commercetools HTTP API — Orders business capability. Self-contained, no shared references.
+    resources:
+    - name: projectKey-orders
+      path: /{projectKey}/orders
+      operations:
+      - name: listorders
+        method: GET
+        description: List orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createorderfromcart
+        method: POST
+        description: Create an order from a cart
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projectKey-orders-id
+      path: /{projectKey}/orders/{id}
+      operations:
+      - name: getorderbyid
+        method: GET
+        description: Get an order by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateorderbyid
+        method: POST
+        description: Update an order by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteorderbyid
+        method: DELETE
+        description: Delete an order by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.COMMERCETOOLS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: http-orders-rest
+    port: 8080
+    description: REST adapter for commercetools HTTP API — Orders. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{projectkey}/orders
+      name: projectkey-orders
+      description: REST surface for projectKey-orders.
+      operations:
+      - method: GET
+        name: listorders
+        description: List orders
+        call: http-orders.listorders
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createorderfromcart
+        description: Create an order from a cart
+        call: http-orders.createorderfromcart
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{projectkey}/orders/{id}
+      name: projectkey-orders-id
+      description: REST surface for projectKey-orders-id.
+      operations:
+      - method: GET
+        name: getorderbyid
+        description: Get an order by ID
+        call: http-orders.getorderbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateorderbyid
+        description: Update an order by ID
+        call: http-orders.updateorderbyid
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteorderbyid
+        description: Delete an order by ID
+        call: http-orders.deleteorderbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: http-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for commercetools HTTP API — Orders. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-orders
+      description: List orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: http-orders.listorders
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-order-cart
+      description: Create an order from a cart
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: http-orders.createorderfromcart
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-order-id
+      description: Get an order by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: http-orders.getorderbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-order-id
+      description: Update an order by ID
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: http-orders.updateorderbyid
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-order-id
+      description: Delete an order by ID
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: http-orders.deleteorderbyid
+      outputParameters:
+      - type: object
+        mapping: $.

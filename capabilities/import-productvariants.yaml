@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: commercetools Import API — ProductVariants
+  description: 'commercetools Import API — ProductVariants. 1 operations. Lead operation: Import product variants. Self-contained
+    Naftiko capability covering one Commercetools business surface.'
+  tags:
+  - Commercetools
+  - ProductVariants
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    COMMERCETOOLS_API_KEY: COMMERCETOOLS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: import-productvariants
+    baseUri: https://import.{region}.commercetools.com
+    description: commercetools Import API — ProductVariants business capability. Self-contained, no shared references.
+    resources:
+    - name: projectKey-product-variants-import-containers-importContainerKey
+      path: /{projectKey}/product-variants/import-containers/{importContainerKey}
+      operations:
+      - name: importproductvariants
+        method: POST
+        description: Import product variants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.COMMERCETOOLS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: import-productvariants-rest
+    port: 8080
+    description: REST adapter for commercetools Import API — ProductVariants. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/{projectkey}/product-variants/import-containers/{importcontainerkey}
+      name: projectkey-product-variants-import-containers-importcontainerkey
+      description: REST surface for projectKey-product-variants-import-containers-importContainerKey.
+      operations:
+      - method: POST
+        name: importproductvariants
+        description: Import product variants
+        call: import-productvariants.importproductvariants
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: import-productvariants-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for commercetools Import API — ProductVariants. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: import-product-variants
+      description: Import product variants
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: import-productvariants.importproductvariants
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

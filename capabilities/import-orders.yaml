@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: commercetools Import API — Orders
+  description: 'commercetools Import API — Orders. 1 operations. Lead operation: Import orders. Self-contained Naftiko capability
+    covering one Commercetools business surface.'
+  tags:
+  - Commercetools
+  - Orders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    COMMERCETOOLS_API_KEY: COMMERCETOOLS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: import-orders
+    baseUri: https://import.{region}.commercetools.com
+    description: commercetools Import API — Orders business capability. Self-contained, no shared references.
+    resources:
+    - name: projectKey-orders-import-containers-importContainerKey
+      path: /{projectKey}/orders/import-containers/{importContainerKey}
+      operations:
+      - name: importorders
+        method: POST
+        description: Import orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.COMMERCETOOLS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: import-orders-rest
+    port: 8080
+    description: REST adapter for commercetools Import API — Orders. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{projectkey}/orders/import-containers/{importcontainerkey}
+      name: projectkey-orders-import-containers-importcontainerkey
+      description: REST surface for projectKey-orders-import-containers-importContainerKey.
+      operations:
+      - method: POST
+        name: importorders
+        description: Import orders
+        call: import-orders.importorders
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: import-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for commercetools Import API — Orders. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: import-orders
+      description: Import orders
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: import-orders.importorders
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

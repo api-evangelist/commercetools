@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: commercetools HTTP API — Inventory
+  description: 'commercetools HTTP API — Inventory. 2 operations. Lead operation: List inventory entries. Self-contained Naftiko
+    capability covering one Commercetools business surface.'
+  tags:
+  - Commercetools
+  - Inventory
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    COMMERCETOOLS_API_KEY: COMMERCETOOLS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: http-inventory
+    baseUri: https://api.{region}.commercetools.com
+    description: commercetools HTTP API — Inventory business capability. Self-contained, no shared references.
+    resources:
+    - name: projectKey-inventory
+      path: /{projectKey}/inventory
+      operations:
+      - name: listinventoryentries
+        method: GET
+        description: List inventory entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createinventoryentry
+        method: POST
+        description: Create an inventory entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.COMMERCETOOLS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: http-inventory-rest
+    port: 8080
+    description: REST adapter for commercetools HTTP API — Inventory. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/{projectkey}/inventory
+      name: projectkey-inventory
+      description: REST surface for projectKey-inventory.
+      operations:
+      - method: GET
+        name: listinventoryentries
+        description: List inventory entries
+        call: http-inventory.listinventoryentries
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createinventoryentry
+        description: Create an inventory entry
+        call: http-inventory.createinventoryentry
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: http-inventory-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for commercetools HTTP API — Inventory. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-inventory-entries
+      description: List inventory entries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: http-inventory.listinventoryentries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-inventory-entry
+      description: Create an inventory entry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: http-inventory.createinventoryentry
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
