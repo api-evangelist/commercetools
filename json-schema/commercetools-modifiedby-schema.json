@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModifiedBy",
+  "title": "ModifiedBy",
+  "type": "object",
+  "description": "Information about the actor who made the change.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated ID of the user or client."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "user",
+        "external-user",
+        "customer",
+        "key"
+      ],
+      "description": "The type of actor that made the change."
+    },
+    "clientId": {
+      "type": "string",
+      "description": "ID of the API client used to make the change."
+    },
+    "anonymousId": {
+      "type": "string",
+      "description": "Anonymous session ID if the change was made without a customer login."
+    },
+    "customer": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "isPlatformClient": {
+      "type": "boolean",
+      "description": "Whether the change was made via the Merchant Center."
+    }
+  }
+}

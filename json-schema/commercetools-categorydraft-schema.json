@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CategoryDraft",
+  "title": "CategoryDraft",
+  "type": "object",
+  "description": "Request body for creating a new category.",
+  "required": [
+    "name",
+    "slug"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined unique identifier."
+    },
+    "name": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "slug": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "description": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "parent": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "orderHint": {
+      "type": "string",
+      "description": "Decimal string between 0 and 1 for ordering within siblings."
+    },
+    "metaTitle": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "metaDescription": {
+      "$ref": "#/components/schemas/LocalizedString"
+    }
+  }
+}

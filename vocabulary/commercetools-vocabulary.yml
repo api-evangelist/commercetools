@@ -1,0 +1,22 @@
+name: commercetools Domain Vocabulary
+provider: commercetools
+providerId: commercetools
+description: Tag-derived vocabulary for the commercetools API surface; sourced from openapi/ tags.
+terms:
+- term: Carts
+  description: Manage shopping carts with line items, discounts, shipping, and tax calculations.
+- term: Categories
+  description: Organize products into hierarchical category structures.
+- term: Customers
+  description: Manage customer accounts, addresses, authentication, and group assignments.
+- term: Inventory
+  description: Manage inventory entries tracking stock levels per channel and SKU.
+- term: Orders
+  description: Create and manage orders resulting from cart checkouts or quotes.
+- term: Payments
+  description: Track payment transactions and PSP interactions associated with orders.
+- term: Products
+  description: Manage product catalog entries including variants, images, prices, and attributes.
+- term: Project
+  description: Read and configure project-level settings including currencies, languages, and messages.
+- term: Subscriptions

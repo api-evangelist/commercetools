@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductVariant",
+  "title": "ProductVariant",
+  "type": "object",
+  "description": "A product variant with SKU, attributes, prices, and images.",
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Variant ID unique within the product (starting at 1 for master)."
+    },
+    "sku": {
+      "type": "string",
+      "description": "Stock keeping unit identifier for this variant."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the variant."
+    },
+    "prices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Price"
+      },
+      "description": "List of prices for different currencies, channels, and customer groups."
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Attribute"
+      },
+      "description": "Product attributes as defined by the product type."
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Image"
+      },
+      "description": "List of images for this variant."
+    }
+  }
+}

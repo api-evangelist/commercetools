@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductUpdate",
+  "title": "ProductUpdate",
+  "type": "object",
+  "description": "Request body for updating a product using versioned update actions.",
+  "required": [
+    "version",
+    "actions"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Current version of the product for optimistic concurrency control."
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "An update action object with an 'action' discriminator field."
+      },
+      "description": "List of update actions to apply to the product."
+    }
+  }
+}

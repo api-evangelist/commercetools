@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Attribute",
+  "title": "Attribute",
+  "type": "object",
+  "description": "A name-value pair representing a product attribute as defined by the product type.",
+  "required": [
+    "name",
+    "value"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Attribute name as defined in the product type."
+    },
+    "value": {
+      "description": "Attribute value. Type depends on the attribute type definition."
+    }
+  }
+}

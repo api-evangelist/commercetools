@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Price",
+  "title": "Price",
+  "type": "object",
+  "description": "A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.",
+  "required": [
+    "id",
+    "value"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier for the price."
+    },
+    "value": {
+      "$ref": "#/components/schemas/Money"
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code to scope the price geographically."
+    },
+    "customerGroup": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "channel": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the price validity period."
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the price validity period."
+    }
+  }
+}

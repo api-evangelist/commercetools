@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Category",
+  "title": "Category",
+  "type": "object",
+  "description": "A category resource for organizing products in a hierarchical structure.",
+  "required": [
+    "id",
+    "version",
+    "name",
+    "slug",
+    "ancestors",
+    "orderHint"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier."
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version for optimistic concurrency control."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique identifier."
+    },
+    "name": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "slug": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "description": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "parent": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "ancestors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Reference"
+      },
+      "description": "Ordered list of ancestor category references from root to immediate parent."
+    },
+    "orderHint": {
+      "type": "string",
+      "description": "Decimal string between 0 and 1 for ordering within siblings."
+    },
+    "metaTitle": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "metaDescription": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the category was created."
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the category was last modified."
+    }
+  }
+}

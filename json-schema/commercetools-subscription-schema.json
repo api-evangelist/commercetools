@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Subscription",
+  "title": "Subscription",
+  "type": "object",
+  "description": "A subscription routing change notifications and messages to an external message queue destination.",
+  "required": [
+    "id",
+    "version",
+    "destination"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier."
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version for optimistic concurrency control."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique identifier (2-256 characters)."
+    },
+    "destination": {
+      "type": "object",
+      "description": "The external message queue destination configuration."
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Message type subscriptions filtering which message types to deliver."
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Change subscriptions filtering which resource change events to deliver."
+    },
+    "format": {
+      "type": "object",
+      "description": "Delivery format configuration (Platform or CloudEvents)."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Healthy",
+        "ConfigurationError",
+        "ConfigurationErrorDeliveryStopped",
+        "TemporaryError"
+      ],
+      "description": "Current health status of the subscription."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the subscription was created."
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the subscription was last modified."
+    }
+  }
+}

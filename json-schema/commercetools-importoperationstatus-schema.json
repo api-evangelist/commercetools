@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImportOperationStatus",
+  "title": "ImportOperationStatus",
+  "type": "object",
+  "description": "The initial status of a single resource submission in an import batch.",
+  "required": [
+    "resourceKey",
+    "state"
+  ],
+  "properties": {
+    "resourceKey": {
+      "type": "string",
+      "description": "User-defined key of the resource submitted."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "Accepted",
+        "ValidationFailed"
+      ],
+      "description": "Initial state of the operation after submission."
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ErrorObject"
+      },
+      "description": "Immediate validation errors if the resource failed submission."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrderImportRequest",
+  "title": "OrderImportRequest",
+  "type": "object",
+  "description": "A batch of order resources to import.",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "order"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/components/schemas/OrderImport"
+      },
+      "description": "Up to 20 order resources."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InventoryImportRequest",
+  "title": "InventoryImportRequest",
+  "type": "object",
+  "description": "A batch of inventory entry resources to import.",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "inventory"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/components/schemas/InventoryImport"
+      },
+      "description": "Up to 20 inventory entry resources."
+    }
+  }
+}

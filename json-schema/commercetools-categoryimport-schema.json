@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CategoryImport",
+  "title": "CategoryImport",
+  "type": "object",
+  "description": "A single category resource for import.",
+  "required": [
+    "key",
+    "name",
+    "slug"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined key for matching against existing categories."
+    },
+    "name": {
+      "type": "object",
+      "description": "Localized name of the category."
+    },
+    "slug": {
+      "type": "object",
+      "description": "Localized URL-friendly slug."
+    },
+    "description": {
+      "type": "object",
+      "description": "Localized description of the category."
+    },
+    "parent": {
+      "type": "object",
+      "description": "Reference to parent category by key."
+    },
+    "orderHint": {
+      "type": "string",
+      "description": "Decimal ordering hint between 0 and 1."
+    }
+  }
+}

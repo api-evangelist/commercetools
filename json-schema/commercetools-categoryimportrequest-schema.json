@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CategoryImportRequest",
+  "title": "CategoryImportRequest",
+  "type": "object",
+  "description": "A batch of category resources to import.",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "category"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/components/schemas/CategoryImport"
+      },
+      "description": "Up to 20 category resources."
+    }
+  }
+}

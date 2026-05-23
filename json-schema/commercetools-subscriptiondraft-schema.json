@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscriptionDraft",
+  "title": "SubscriptionDraft",
+  "type": "object",
+  "description": "Request body for creating a new subscription.",
+  "required": [
+    "destination"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key (2-256 characters)."
+    },
+    "destination": {
+      "type": "object",
+      "description": "The message queue destination configuration."
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Message type filters for this subscription."
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Change type filters for this subscription."
+    },
+    "format": {
+      "type": "object",
+      "description": "Delivery format configuration."
+    }
+  }
+}

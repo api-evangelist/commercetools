@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductData",
+  "title": "ProductData",
+  "type": "object",
+  "description": "A version of product data including names, slugs, descriptions, variants, and category assignments.",
+  "required": [
+    "name",
+    "slug",
+    "masterVariant",
+    "variants",
+    "categories"
+  ],
+  "properties": {
+    "name": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "description": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "slug": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "masterVariant": {
+      "$ref": "#/components/schemas/ProductVariant"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ProductVariant"
+      },
+      "description": "Additional product variants beyond the master variant."
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Reference"
+      },
+      "description": "References to categories this product belongs to."
+    },
+    "metaTitle": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "metaDescription": {
+      "$ref": "#/components/schemas/LocalizedString"
+    }
+  }
+}

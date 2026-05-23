@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImportContainer",
+  "title": "ImportContainer",
+  "type": "object",
+  "description": "A container that groups related import requests for a specific resource type.",
+  "required": [
+    "key",
+    "version",
+    "resourceType"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the container (2-256 characters)."
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version of the import container."
+    },
+    "resourceType": {
+      "type": "string",
+      "description": "The resource type this container is scoped to (e.g., 'product', 'category')."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the container was created."
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the container was last modified."
+    }
+  }
+}

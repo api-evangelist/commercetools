@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductVariantImport",
+  "title": "ProductVariantImport",
+  "type": "object",
+  "description": "A single product variant resource for import.",
+  "required": [
+    "key",
+    "product"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined key for matching against existing variants."
+    },
+    "sku": {
+      "type": "string",
+      "description": "SKU identifier for the variant."
+    },
+    "product": {
+      "type": "object",
+      "description": "Reference to the parent product by key."
+    },
+    "isMasterVariant": {
+      "type": "boolean",
+      "description": "Whether this variant is the master (first) variant."
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Attribute values for the variant."
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Images for the variant."
+    },
+    "prices": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Prices for the variant."
+    }
+  }
+}

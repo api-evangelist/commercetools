@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Image",
+  "title": "Image",
+  "type": "object",
+  "description": "A product image with URL, dimensions, and optional label.",
+  "required": [
+    "url",
+    "dimensions"
+  ],
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the image."
+    },
+    "dimensions": {
+      "type": "object",
+      "description": "Pixel dimensions of the image.",
+      "required": [
+        "w",
+        "h"
+      ],
+      "properties": {
+        "w": {
+          "type": "integer",
+          "description": "Image width in pixels."
+        },
+        "h": {
+          "type": "integer",
+          "description": "Image height in pixels."
+        }
+      }
+    },
+    "label": {
+      "type": "string",
+      "description": "Optional label for the image."
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Transaction",
+  "title": "Transaction",
+  "type": "object",
+  "description": "A single financial transaction within a payment (authorization, charge, refund, etc.).",
+  "required": [
+    "id",
+    "type",
+    "amount",
+    "state"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier for the transaction."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the transaction was processed."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Authorization",
+        "CancelAuthorization",
+        "Charge",
+        "Refund",
+        "Chargeback"
+      ],
+      "description": "The type of financial transaction."
+    },
+    "amount": {
+      "$ref": "#/components/schemas/Money"
+    },
+    "interactionId": {
+      "type": "string",
+      "description": "PSP-provided identifier for this transaction."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "Initial",
+        "Pending",
+        "Success",
+        "Failure"
+      ],
+      "description": "Current processing state of the transaction."
+    }
+  }
+}

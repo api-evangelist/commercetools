@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductVariantImportRequest",
+  "title": "ProductVariantImportRequest",
+  "type": "object",
+  "description": "A batch of product variant resources to import.",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "product-variant"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/components/schemas/ProductVariantImport"
+      },
+      "description": "Up to 20 product variant resources."
+    }
+  }
+}

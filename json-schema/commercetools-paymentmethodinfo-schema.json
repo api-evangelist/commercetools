@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentMethodInfo",
+  "title": "PaymentMethodInfo",
+  "type": "object",
+  "description": "Information about the payment method and PSP used for a payment.",
+  "properties": {
+    "paymentInterface": {
+      "type": "string",
+      "description": "Identifier of the PSP or payment interface."
+    },
+    "method": {
+      "type": "string",
+      "description": "Payment method identifier (e.g., 'creditcard', 'paypal')."
+    },
+    "name": {
+      "$ref": "#/components/schemas/LocalizedString"
+    }
+  }
+}

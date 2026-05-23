@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LineItem",
+  "title": "LineItem",
+  "type": "object",
+  "description": "A product line item in a cart or order with quantity, pricing, and discount information.",
+  "required": [
+    "id",
+    "productId",
+    "name",
+    "variant",
+    "price",
+    "totalPrice",
+    "quantity",
+    "lineItemMode",
+    "priceMode"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the line item within the cart."
+    },
+    "productId": {
+      "type": "string",
+      "description": "ID of the product this line item references."
+    },
+    "name": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "variant": {
+      "$ref": "#/components/schemas/ProductVariant"
+    },
+    "price": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "totalPrice": {
+      "$ref": "#/components/schemas/Money"
+    },
+    "quantity": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Quantity of this product variant in the cart."
+    },
+    "lineItemMode": {
+      "type": "string",
+      "enum": [
+        "Standard",
+        "GiftLineItem"
+      ],
+      "description": "Whether this is a standard or gift line item."
+    },
+    "priceMode": {
+      "type": "string",
+      "enum": [
+        "Platform",
+        "ExternalTotal",
+        "ExternalPrice"
+      ],
+      "description": "How the price for this line item is determined."
+    }
+  }
+}

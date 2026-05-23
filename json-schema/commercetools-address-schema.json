@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Address",
+  "title": "Address",
+  "type": "object",
+  "description": "A postal address with country and optional structured fields.",
+  "required": [
+    "country"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the address within the resource."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined identifier for the address."
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "First name of the address recipient."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Last name of the address recipient."
+    },
+    "streetName": {
+      "type": "string",
+      "description": "Street name component of the address."
+    },
+    "streetNumber": {
+      "type": "string",
+      "description": "Street number component of the address."
+    },
+    "city": {
+      "type": "string",
+      "description": "City of the address."
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "Postal or ZIP code of the address."
+    },
+    "region": {
+      "type": "string",
+      "description": "Region, state, or province of the address."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address associated with this postal address."
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number associated with this postal address."
+    }
+  }
+}

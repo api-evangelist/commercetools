@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentDraft",
+  "title": "PaymentDraft",
+  "type": "object",
+  "description": "Request body for creating a new payment.",
+  "required": [
+    "amountPlanned"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the payment."
+    },
+    "customer": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "interfaceId": {
+      "type": "string",
+      "description": "PSP payment identifier."
+    },
+    "amountPlanned": {
+      "$ref": "#/components/schemas/Money"
+    },
+    "paymentMethodInfo": {
+      "$ref": "#/components/schemas/PaymentMethodInfo"
+    },
+    "transactions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Initial transactions to create with the payment."
+    }
+  }
+}

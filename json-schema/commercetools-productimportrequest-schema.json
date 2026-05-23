@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductImportRequest",
+  "title": "ProductImportRequest",
+  "type": "object",
+  "description": "A batch of product resources to import into the project.",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "product"
+      ],
+      "description": "The resource type identifier for this import request."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/components/schemas/ProductImport"
+      },
+      "description": "Up to 20 product resources to import."
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductVariantDraft",
+  "title": "ProductVariantDraft",
+  "type": "object",
+  "description": "Draft for creating a product variant.",
+  "properties": {
+    "sku": {
+      "type": "string",
+      "description": "SKU identifier for the variant."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the variant."
+    },
+    "prices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PriceDraft"
+      },
+      "description": "Prices to assign to the variant on creation."
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Attribute"
+      },
+      "description": "Product attributes for this variant."
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Image"
+      },
+      "description": "Images for the variant."
+    }
+  }
+}

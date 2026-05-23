@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductDraft",
+  "title": "ProductDraft",
+  "type": "object",
+  "description": "Request body for creating a new product.",
+  "required": [
+    "productType",
+    "name",
+    "slug"
+  ],
+  "properties": {
+    "productType": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the product."
+    },
+    "name": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "slug": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "description": {
+      "$ref": "#/components/schemas/LocalizedString"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Reference"
+      },
+      "description": "Categories to assign the product to on creation."
+    },
+    "masterVariant": {
+      "$ref": "#/components/schemas/ProductVariantDraft"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ProductVariantDraft"
+      },
+      "description": "Additional variants to create with the product."
+    },
+    "taxCategory": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "publish": {
+      "type": "boolean",
+      "description": "If true, immediately publishes the product after creation."
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductCatalogData",
+  "title": "ProductCatalogData",
+  "type": "object",
+  "description": "Container for current (published) and staged product data.",
+  "required": [
+    "published",
+    "hasStagedChanges"
+  ],
+  "properties": {
+    "published": {
+      "type": "boolean",
+      "description": "Whether the product has a published (current) version."
+    },
+    "current": {
+      "$ref": "#/components/schemas/ProductData"
+    },
+    "staged": {
+      "$ref": "#/components/schemas/ProductData"
+    },
+    "hasStagedChanges": {
+      "type": "boolean",
+      "description": "Whether there are unpublished staged changes."
+    }
+  }
+}

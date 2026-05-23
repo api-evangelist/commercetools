@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Project",
+  "title": "Project",
+  "type": "object",
+  "description": "The project resource containing global configuration for languages, currencies, countries, and features.",
+  "required": [
+    "key",
+    "name",
+    "currencies",
+    "languages",
+    "countries"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "The unique project key."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the project."
+    },
+    "currencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{3}$"
+      },
+      "description": "ISO 4217 currency codes enabled for the project."
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IETF language tags enabled for the project."
+    },
+    "countries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "ISO 3166-1 alpha-2 country codes enabled for the project."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the project was created."
+    }
+  }
+}

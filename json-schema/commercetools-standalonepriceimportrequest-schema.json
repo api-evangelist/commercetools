@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StandalonePriceImportRequest",
+  "title": "StandalonePriceImportRequest",
+  "type": "object",
+  "description": "A batch of standalone price resources to import.",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "standalone-price"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/components/schemas/StandalonePriceImport"
+      },
+      "description": "Up to 20 standalone price resources."
+    }
+  }
+}

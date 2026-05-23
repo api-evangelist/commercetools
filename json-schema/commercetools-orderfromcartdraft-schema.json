@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrderFromCartDraft",
+  "title": "OrderFromCartDraft",
+  "type": "object",
+  "description": "Request body for creating an order from an existing cart.",
+  "required": [
+    "cart",
+    "version"
+  ],
+  "properties": {
+    "cart": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version of the cart being converted to an order."
+    },
+    "orderNumber": {
+      "type": "string",
+      "description": "User-defined order number for the created order."
+    },
+    "paymentState": {
+      "type": "string",
+      "enum": [
+        "Paid",
+        "Pending",
+        "Failed",
+        "CreditOwed",
+        "BalanceDue"
+      ],
+      "description": "Initial payment state of the order."
+    },
+    "orderState": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Confirmed",
+        "Complete",
+        "Cancelled"
+      ],
+      "description": "Initial order state of the created order."
+    }
+  }
+}

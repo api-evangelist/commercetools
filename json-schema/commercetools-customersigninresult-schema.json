@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomerSignInResult",
+  "title": "CustomerSignInResult",
+  "type": "object",
+  "description": "The result of a customer creation or sign-in operation, including the customer and any merged cart.",
+  "required": [
+    "customer"
+  ],
+  "properties": {
+    "customer": {
+      "$ref": "#/components/schemas/Customer"
+    },
+    "cart": {
+      "$ref": "#/components/schemas/Cart"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrderImport",
+  "title": "OrderImport",
+  "type": "object",
+  "description": "A single order resource for import, bypassing normal checkout flow.",
+  "required": [
+    "orderNumber",
+    "totalPrice",
+    "lineItems"
+  ],
+  "properties": {
+    "orderNumber": {
+      "type": "string",
+      "description": "User-defined order number used as the key for matching."
+    },
+    "customerId": {
+      "type": "string",
+      "description": "ID of the customer who placed the order."
+    },
+    "customerEmail": {
+      "type": "string",
+      "format": "email",
+      "description": "Email of the customer."
+    },
+    "lineItems": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Line items in the order."
+    },
+    "totalPrice": {
+      "type": "object",
+      "description": "Total price of the order."
+    },
+    "orderState": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Confirmed",
+        "Complete",
+        "Cancelled"
+      ],
+      "description": "Initial state of the imported order."
+    },
+    "shipmentState": {
+      "type": "string",
+      "description": "Initial shipment state of the order."
+    },
+    "paymentState": {
+      "type": "string",
+      "description": "Initial payment state of the order."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductPagedQueryResponse",
+  "title": "ProductPagedQueryResponse",
+  "type": "object",
+  "description": "Paginated response containing a list of products.",
+  "required": [
+    "limit",
+    "offset",
+    "count",
+    "total",
+    "results"
+  ],
+  "properties": {
+    "limit": {
+      "type": "integer",
+      "description": "Maximum number of results returned."
+    },
+    "offset": {
+      "type": "integer",
+      "description": "Number of results skipped."
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of results in this page."
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of matching results."
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Product"
+      },
+      "description": "The products on this page."
+    }
+  }
+}

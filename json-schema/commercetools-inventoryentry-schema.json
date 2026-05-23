@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InventoryEntry",
+  "title": "InventoryEntry",
+  "type": "object",
+  "description": "An inventory entry tracking available quantity for a specific SKU, optionally scoped to a supply channel.",
+  "required": [
+    "id",
+    "version",
+    "sku",
+    "quantityOnStock",
+    "availableQuantity"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier."
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version for optimistic concurrency control."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique identifier."
+    },
+    "sku": {
+      "type": "string",
+      "description": "SKU of the product variant this inventory entry tracks."
+    },
+    "supplyChannel": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "quantityOnStock": {
+      "type": "integer",
+      "description": "Total quantity physically in stock."
+    },
+    "availableQuantity": {
+      "type": "integer",
+      "description": "Quantity available for ordering (stock minus reservations)."
+    },
+    "restockableInDays": {
+      "type": "integer",
+      "description": "Expected days until out-of-stock items are restocked."
+    },
+    "expectedDelivery": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Expected delivery date for restocking."
+    }
+  }
+}

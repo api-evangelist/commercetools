@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RecordPagedQueryResponse",
+  "title": "RecordPagedQueryResponse",
+  "type": "object",
+  "description": "Paginated response containing a list of change history records.",
+  "required": [
+    "limit",
+    "offset",
+    "count",
+    "total",
+    "results"
+  ],
+  "properties": {
+    "limit": {
+      "type": "integer",
+      "description": "Maximum number of records returned."
+    },
+    "offset": {
+      "type": "integer",
+      "description": "Number of records skipped."
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of records in this page."
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of matching records."
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Record"
+      },
+      "description": "The change history records on this page."
+    }
+  }
+}

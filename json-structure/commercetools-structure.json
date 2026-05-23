@@ -1,0 +1,831 @@
+{
+  "provider": "commercetools",
+  "providerId": "commercetools",
+  "kind": "json-structure",
+  "description": "Structural overview of the commercetools API surface; extracted from openapi/.",
+  "schemaCount": 49,
+  "operationCount": 37,
+  "schemas": [
+    {
+      "name": "LocalizedString",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Money",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "currencyCode",
+        "centAmount"
+      ]
+    },
+    {
+      "name": "Reference",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "typeId",
+        "id"
+      ]
+    },
+    {
+      "name": "Address",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "country"
+      ]
+    },
+    {
+      "name": "Product",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "id",
+        "version",
+        "productType",
+        "masterData"
+      ]
+    },
+    {
+      "name": "ProductCatalogData",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "published",
+        "hasStagedChanges"
+      ]
+    },
+    {
+      "name": "ProductData",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "slug",
+        "masterVariant",
+        "variants",
+        "categories"
+      ]
+    },
+    {
+      "name": "ProductVariant",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "Price",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "value"
+      ]
+    },
+    {
+      "name": "Attribute",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "Image",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "url",
+        "dimensions"
+      ]
+    },
+    {
+      "name": "ProductDraft",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "productType",
+        "name",
+        "slug"
+      ]
+    },
+    {
+      "name": "ProductVariantDraft",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "PriceDraft",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "value"
+      ]
+    },
+    {
+      "name": "ProductUpdate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "version",
+        "actions"
+      ]
+    },
+    {
+      "name": "ProductPagedQueryResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "limit",
+        "offset",
+        "count",
+        "total",
+        "results"
+      ]
+    },
+    {
+      "name": "Category",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "id",
+        "version",
+        "name",
+        "slug",
+        "ancestors",
+        "orderHint"
+      ]
+    },
+    {
+      "name": "CategoryDraft",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "slug"
+      ]
+    },
+    {
+      "name": "CategoryUpdate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "version",
+        "actions"
+      ]
+    },
+    {
+      "name": "CategoryPagedQueryResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "limit",
+        "offset",
+        "count",
+        "total",
+        "results"
+      ]
+    },
+    {
+      "name": "Cart",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "id",
+        "version",
+        "cartState",
+        "lineItems",
+        "customLineItems",
+        "totalPrice"
+      ]
+    },
+    {
+      "name": "LineItem",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "id",
+        "productId",
+        "name",
+        "variant",
+        "price",
+        "totalPrice",
+        "quantity",
+        "lineItemMode",
+        "priceMode"
+      ]
+    },
+    {
+      "name": "CartDraft",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "currency"
+      ]
+    },
+    {
+      "name": "CartUpdate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "version",
+        "actions"
+      ]
+    },
+    {
+      "name": "CartPagedQueryResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "limit",
+        "offset",
+        "count",
+        "total",
+        "results"
+      ]
+    },
+    {
+      "name": "Order",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "id",
+        "version",
+        "orderState",
+        "lineItems",
+        "customLineItems",
+        "totalPrice"
+      ]
+    },
+    {
+      "name": "OrderFromCartDraft",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "cart",
+        "version"
+      ]
+    },
+    {
+      "name": "OrderUpdate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "version",
+        "actions"
+      ]
+    },
+    {
+      "name": "OrderPagedQueryResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "limit",
+        "offset",
+        "count",
+        "total",
+        "results"
+      ]
+    },
+    {
+      "name": "Customer",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "id",
+        "version",
+        "email",
+        "isEmailVerified",
+        "addresses"
+      ]
+    },
+    {
+      "name": "CustomerDraft",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "email",
+        "password"
+      ]
+    },
+    {
+      "name": "CustomerUpdate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "version",
+        "actions"
+      ]
+    },
+    {
+      "name": "CustomerSignInResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "customer"
+      ]
+    },
+    {
+      "name": "CustomerPagedQueryResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "limit",
+        "offset",
+        "count",
+        "total",
+        "results"
+      ]
+    },
+    {
+      "name": "Payment",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "id",
+        "version",
+        "amountPlanned",
+        "paymentMethodInfo",
+        "transactions"
+      ]
+    },
+    {
+      "name": "PaymentMethodInfo",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "PaymentStatus",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Transaction",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "type",
+        "amount",
+        "state"
+      ]
+    },
+    {
+      "name": "PaymentDraft",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "amountPlanned"
+      ]
+    },
+    {
+      "name": "PaymentUpdate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "version",
+        "actions"
+      ]
+    },
+    {
+      "name": "PaymentPagedQueryResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "limit",
+        "offset",
+        "count",
+        "total",
+        "results"
+      ]
+    },
+    {
+      "name": "InventoryEntry",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "id",
+        "version",
+        "sku",
+        "quantityOnStock",
+        "availableQuantity"
+      ]
+    },
+    {
+      "name": "InventoryEntryDraft",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "sku",
+        "quantityOnStock"
+      ]
+    },
+    {
+      "name": "InventoryPagedQueryResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "limit",
+        "offset",
+        "count",
+        "total",
+        "results"
+      ]
+    },
+    {
+      "name": "Subscription",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "id",
+        "version",
+        "destination"
+      ]
+    },
+    {
+      "name": "SubscriptionDraft",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "destination"
+      ]
+    },
+    {
+      "name": "SubscriptionUpdate",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "version",
+        "actions"
+      ]
+    },
+    {
+      "name": "SubscriptionPagedQueryResponse",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "limit",
+        "offset",
+        "count",
+        "total",
+        "results"
+      ]
+    },
+    {
+      "name": "Project",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "key",
+        "name",
+        "currencies",
+        "languages",
+        "countries"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/{projectKey}/products",
+      "operationId": "listProducts",
+      "summary": "List products",
+      "tags": [
+        "Products"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/products",
+      "operationId": "createProduct",
+      "summary": "Create a product",
+      "tags": [
+        "Products"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/products/{id}",
+      "operationId": "getProductById",
+      "summary": "Get a product by ID",
+      "tags": [
+        "Products"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/products/{id}",
+      "operationId": "updateProductById",
+      "summary": "Update a product by ID",
+      "tags": [
+        "Products"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{projectKey}/products/{id}",
+      "operationId": "deleteProductById",
+      "summary": "Delete a product by ID",
+      "tags": [
+        "Products"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/categories",
+      "operationId": "listCategories",
+      "summary": "List categories",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/categories",
+      "operationId": "createCategory",
+      "summary": "Create a category",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/categories/{id}",
+      "operationId": "getCategoryById",
+      "summary": "Get a category by ID",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/categories/{id}",
+      "operationId": "updateCategoryById",
+      "summary": "Update a category by ID",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{projectKey}/categories/{id}",
+      "operationId": "deleteCategoryById",
+      "summary": "Delete a category by ID",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/carts",
+      "operationId": "listCarts",
+      "summary": "List carts",
+      "tags": [
+        "Carts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/carts",
+      "operationId": "createCart",
+      "summary": "Create a cart",
+      "tags": [
+        "Carts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/carts/{id}",
+      "operationId": "getCartById",
+      "summary": "Get a cart by ID",
+      "tags": [
+        "Carts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/carts/{id}",
+      "operationId": "updateCartById",
+      "summary": "Update a cart by ID",
+      "tags": [
+        "Carts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{projectKey}/carts/{id}",
+      "operationId": "deleteCartById",
+      "summary": "Delete a cart by ID",
+      "tags": [
+        "Carts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/orders",
+      "operationId": "listOrders",
+      "summary": "List orders",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/orders",
+      "operationId": "createOrderFromCart",
+      "summary": "Create an order from a cart",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/orders/{id}",
+      "operationId": "getOrderById",
+      "summary": "Get an order by ID",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/orders/{id}",
+      "operationId": "updateOrderById",
+      "summary": "Update an order by ID",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{projectKey}/orders/{id}",
+      "operationId": "deleteOrderById",
+      "summary": "Delete an order by ID",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/customers",
+      "operationId": "listCustomers",
+      "summary": "List customers",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/customers",
+      "operationId": "createCustomer",
+      "summary": "Create a customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/customers/{id}",
+      "operationId": "getCustomerById",
+      "summary": "Get a customer by ID",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/customers/{id}",
+      "operationId": "updateCustomerById",
+      "summary": "Update a customer by ID",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{projectKey}/customers/{id}",
+      "operationId": "deleteCustomerById",
+      "summary": "Delete a customer by ID",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/payments",
+      "operationId": "listPayments",
+      "summary": "List payments",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/payments",
+      "operationId": "createPayment",
+      "summary": "Create a payment",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/payments/{id}",
+      "operationId": "getPaymentById",
+      "summary": "Get a payment by ID",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/payments/{id}",
+      "operationId": "updatePaymentById",
+      "summary": "Update a payment by ID",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/inventory",
+      "operationId": "listInventoryEntries",
+      "summary": "List inventory entries",
+      "tags": [
+        "Inventory"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/inventory",
+      "operationId": "createInventoryEntry",
+      "summary": "Create an inventory entry",
+      "tags": [
+        "Inventory"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/subscriptions",
+      "operationId": "listSubscriptions",
+      "summary": "List subscriptions",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/subscriptions",
+      "operationId": "createSubscription",
+      "summary": "Create a subscription",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}/subscriptions/{id}",
+      "operationId": "getSubscriptionById",
+      "summary": "Get a subscription by ID",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/{projectKey}/subscriptions/{id}",
+      "operationId": "updateSubscriptionById",
+      "summary": "Update a subscription by ID",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{projectKey}/subscriptions/{id}",
+      "operationId": "deleteSubscriptionById",
+      "summary": "Delete a subscription by ID",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{projectKey}",
+      "operationId": "getProject",
+      "summary": "Get project settings",
+      "tags": [
+        "Project"
+      ]
+    }
+  ]
+}

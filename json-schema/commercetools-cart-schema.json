@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Cart",
+  "title": "Cart",
+  "type": "object",
+  "description": "A shopping cart resource containing line items, discounts, shipping configuration, and pricing.",
+  "required": [
+    "id",
+    "version",
+    "cartState",
+    "lineItems",
+    "customLineItems",
+    "totalPrice"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier."
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version for optimistic concurrency control."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique identifier."
+    },
+    "customerId": {
+      "type": "string",
+      "description": "ID of the customer who owns this cart."
+    },
+    "customerEmail": {
+      "type": "string",
+      "format": "email",
+      "description": "Email of the customer associated with this cart."
+    },
+    "cartState": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Merged",
+        "Ordered",
+        "Frozen"
+      ],
+      "description": "Current state of the cart lifecycle."
+    },
+    "lineItems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LineItem"
+      },
+      "description": "Product line items in the cart."
+    },
+    "customLineItems": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Custom line items with user-defined pricing."
+    },
+    "totalPrice": {
+      "$ref": "#/components/schemas/Money"
+    },
+    "taxedPrice": {
+      "type": "object",
+      "description": "The total price with tax breakdown if tax calculation is complete."
+    },
+    "billingAddress": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "shippingAddress": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "taxMode": {
+      "type": "string",
+      "enum": [
+        "Platform",
+        "External",
+        "ExternalAmount",
+        "Disabled"
+      ],
+      "description": "Tax calculation mode for this cart."
+    },
+    "inventoryMode": {
+      "type": "string",
+      "enum": [
+        "None",
+        "TrackOnly",
+        "ReserveOnOrder"
+      ],
+      "description": "Inventory tracking mode for line items."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the cart was created."
+    },
+    "lastModifiedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the cart was last modified."
+    }
+  }
+}

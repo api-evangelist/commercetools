@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Reference",
+  "title": "Reference",
+  "type": "object",
+  "description": "A reference to another resource by typeId and id.",
+  "required": [
+    "typeId",
+    "id"
+  ],
+  "properties": {
+    "typeId": {
+      "type": "string",
+      "description": "The type identifier of the referenced resource."
+    },
+    "id": {
+      "type": "string",
+      "description": "The system-generated unique identifier of the referenced resource."
+    }
+  }
+}

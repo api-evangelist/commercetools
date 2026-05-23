@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CartUpdate",
+  "title": "CartUpdate",
+  "type": "object",
+  "description": "Request body for updating a cart.",
+  "required": [
+    "version",
+    "actions"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Current version for optimistic concurrency control."
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "List of update actions to apply to the cart."
+    }
+  }
+}

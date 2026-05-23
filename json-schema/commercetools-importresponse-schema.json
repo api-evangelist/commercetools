@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImportResponse",
+  "title": "ImportResponse",
+  "type": "object",
+  "description": "The response returned after submitting an import request batch.",
+  "required": [
+    "operationStatus"
+  ],
+  "properties": {
+    "operationStatus": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ImportOperationStatus"
+      },
+      "description": "Status records for each resource in the submitted batch."
+    }
+  }
+}

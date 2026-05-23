@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorObject",
+  "title": "ErrorObject",
+  "type": "object",
+  "description": "An error object describing a validation or processing failure.",
+  "required": [
+    "code",
+    "message"
+  ],
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Machine-readable error code."
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable description of the error."
+    }
+  }
+}

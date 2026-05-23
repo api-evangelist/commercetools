@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CartDraft",
+  "title": "CartDraft",
+  "type": "object",
+  "description": "Request body for creating a new cart.",
+  "required": [
+    "currency"
+  ],
+  "properties": {
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 currency code for the cart."
+    },
+    "customerId": {
+      "type": "string",
+      "description": "ID of the customer to associate with the cart."
+    },
+    "customerEmail": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for anonymous or identified carts."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the cart."
+    },
+    "lineItems": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Initial line items to add to the cart."
+    },
+    "billingAddress": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "shippingAddress": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "taxMode": {
+      "type": "string",
+      "enum": [
+        "Platform",
+        "External",
+        "ExternalAmount",
+        "Disabled"
+      ],
+      "description": "Tax calculation mode."
+    },
+    "inventoryMode": {
+      "type": "string",
+      "enum": [
+        "None",
+        "TrackOnly",
+        "ReserveOnOrder"
+      ],
+      "description": "Inventory tracking mode."
+    },
+    "store": {
+      "$ref": "#/components/schemas/Reference"
+    }
+  }
+}

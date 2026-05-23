@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Money",
+  "title": "Money",
+  "type": "object",
+  "description": "A monetary value with currency code and amount in the smallest currency unit.",
+  "required": [
+    "currencyCode",
+    "centAmount"
+  ],
+  "properties": {
+    "currencyCode": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 three-letter currency code (e.g., USD, EUR)."
+    },
+    "centAmount": {
+      "type": "integer",
+      "description": "The amount in the smallest indivisible unit of the currency."
+    },
+    "fractionDigits": {
+      "type": "integer",
+      "description": "Number of fraction digits for the currency. Defaults to 2."
+    }
+  }
+}

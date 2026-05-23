@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Record",
+  "title": "Record",
+  "type": "object",
+  "description": "A change history record capturing a set of changes applied to a resource in a single operation, along with actor and timestamp metadata.",
+  "required": [
+    "id",
+    "resource",
+    "resourceType",
+    "changes",
+    "createdAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier for the record."
+    },
+    "resource": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "resourceVersion": {
+      "type": "integer",
+      "description": "The version of the resource after these changes were applied."
+    },
+    "resourceType": {
+      "type": "string",
+      "description": "The type of resource that was changed."
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Change"
+      },
+      "description": "List of individual field-level changes captured in this record."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the changes were made."
+    },
+    "createdBy": {
+      "$ref": "#/components/schemas/ModifiedBy"
+    },
+    "label": {
+      "type": "object",
+      "description": "A label identifying the changed resource (e.g., product name, order number)."
+    },
+    "previousVersion": {
+      "type": "integer",
+      "description": "The version of the resource before these changes were applied."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of modification (e.g., 'update', 'create', 'delete')."
+    }
+  }
+}

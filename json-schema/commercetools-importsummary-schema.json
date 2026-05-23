@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ImportSummary",
+  "title": "ImportSummary",
+  "type": "object",
+  "description": "Aggregated counts of import operations grouped by processing state.",
+  "required": [
+    "states",
+    "total"
+  ],
+  "properties": {
+    "states": {
+      "type": "object",
+      "description": "Map of import operation state names to their counts.",
+      "properties": {
+        "Accepted": {
+          "type": "integer",
+          "description": "Number of operations accepted and queued for processing."
+        },
+        "ValidationFailed": {
+          "type": "integer",
+          "description": "Number of operations that failed schema or data validation."
+        },
+        "Unresolved": {
+          "type": "integer",
+          "description": "Number of operations waiting for referenced resources to be created."
+        },
+        "WaitForMasterVariant": {
+          "type": "integer",
+          "description": "Number of variant operations waiting for the master variant."
+        },
+        "Imported": {
+          "type": "integer",
+          "description": "Number of operations successfully imported."
+        },
+        "Rejected": {
+          "type": "integer",
+          "description": "Number of operations permanently rejected after retry exhaustion."
+        },
+        "Cancelled": {
+          "type": "integer",
+          "description": "Number of operations cancelled before processing."
+        }
+      }
+    },
+    "total": {
+      "type": "integer",
+      "description": "Total number of import operations in the container."
+    }
+  }
+}

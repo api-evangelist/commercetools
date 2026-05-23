@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrderUpdate",
+  "title": "OrderUpdate",
+  "type": "object",
+  "description": "Request body for updating an order.",
+  "required": [
+    "version",
+    "actions"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Current version for optimistic concurrency control."
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "List of update actions to apply to the order."
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomerImport",
+  "title": "CustomerImport",
+  "type": "object",
+  "description": "A single customer resource for import.",
+  "required": [
+    "key",
+    "email"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined key for matching against existing customers."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the customer."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "First name of the customer."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Last name of the customer."
+    },
+    "customerGroup": {
+      "type": "object",
+      "description": "Reference to customer group by key."
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Addresses for the customer."
+    },
+    "isEmailVerified": {
+      "type": "boolean",
+      "description": "Whether the email address is verified."
+    }
+  }
+}

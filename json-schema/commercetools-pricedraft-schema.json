@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PriceDraft",
+  "title": "PriceDraft",
+  "type": "object",
+  "description": "Draft for creating a price on a product variant.",
+  "required": [
+    "value"
+  ],
+  "properties": {
+    "value": {
+      "$ref": "#/components/schemas/Money"
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    "customerGroup": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "channel": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the validity period for this price."
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the validity period for this price."
+    }
+  }
+}

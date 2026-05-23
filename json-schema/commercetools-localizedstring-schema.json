@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LocalizedString",
+  "title": "LocalizedString",
+  "type": "object",
+  "description": "A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').",
+  "additionalProperties": {
+    "type": "string"
+  }
+}

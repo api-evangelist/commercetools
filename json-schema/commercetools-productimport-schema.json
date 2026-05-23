@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProductImport",
+  "title": "ProductImport",
+  "type": "object",
+  "description": "A single product resource for import, matched by key for upsert behavior.",
+  "required": [
+    "key",
+    "productType",
+    "name",
+    "slug"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined key for matching against existing products."
+    },
+    "productType": {
+      "type": "object",
+      "description": "Reference to the product type by key."
+    },
+    "name": {
+      "type": "object",
+      "description": "Localized name of the product."
+    },
+    "slug": {
+      "type": "object",
+      "description": "Localized URL-friendly slug for the product."
+    },
+    "description": {
+      "type": "object",
+      "description": "Localized description of the product."
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Category references by key."
+    },
+    "publish": {
+      "type": "boolean",
+      "description": "Whether to publish the product after import."
+    }
+  }
+}

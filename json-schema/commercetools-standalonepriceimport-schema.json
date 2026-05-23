@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StandalonePriceImport",
+  "title": "StandalonePriceImport",
+  "type": "object",
+  "description": "A single standalone price resource for import.",
+  "required": [
+    "key",
+    "sku",
+    "value"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined key for matching against existing prices."
+    },
+    "sku": {
+      "type": "string",
+      "description": "SKU of the product variant this price applies to."
+    },
+    "value": {
+      "type": "object",
+      "description": "The monetary value of the price."
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code scope."
+    },
+    "customerGroup": {
+      "type": "object",
+      "description": "Reference to the customer group scope."
+    },
+    "channel": {
+      "type": "object",
+      "description": "Reference to the channel scope."
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the price validity period."
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the price validity period."
+    }
+  }
+}
