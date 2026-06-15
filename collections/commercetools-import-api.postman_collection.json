@@ -1,0 +1,3191 @@
+{
+  "item": [
+    {
+      "id": "f6f6c66b-5d1b-44b1-9b3a-43b1231774a5",
+      "name": "Categories",
+      "description": {
+        "content": "Import category resources into the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07225ba1-88c3-4e9a-8e40-f3a029f70d1e",
+          "name": "Import categories",
+          "request": {
+            "name": "Import categories",
+            "description": {
+              "content": "Submits a batch of category import requests for asynchronous processing. Categories are matched by key for upsert behavior. Parent category references are resolved after all categories in the batch are processed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "categories",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<object>\",\n      \"slug\": \"<object>\",\n      \"description\": \"<object>\",\n      \"parent\": \"<object>\",\n      \"orderHint\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<object>\",\n      \"slug\": \"<object>\",\n      \"description\": \"<object>\",\n      \"parent\": \"<object>\",\n      \"orderHint\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c1257b5-a6e5-477f-90fe-940ea171050a",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "categories",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb50d22d-fde7-4f9a-9fb4-e95545542c13",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "categories",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "446273b5-ce4a-4981-b895-f3a23670f65a",
+      "name": "Customers",
+      "description": {
+        "content": "Import customer resources into the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f9e13e3-af6d-4996-b990-f42b1117bb4a",
+          "name": "Import customers",
+          "request": {
+            "name": "Import customers",
+            "description": {
+              "content": "Submits a batch of customer import requests for asynchronous processing. Customers are matched by key for upsert behavior. Each request accepts up to 20 customer resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "customers",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": \"<object>\",\n      \"addresses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"isEmailVerified\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": \"<object>\",\n      \"addresses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"isEmailVerified\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d82e9a7d-4bb3-4971-b01f-49e97162b722",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "customers",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"email\": \"yHGg@ykHlmKgkNAAxC.lj\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": true\n    },\n    {\n      \"key\": \"string\",\n      \"email\": \"oh6Y2RC@XPoBJOC.qp\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc43d2ee-5feb-45d1-99e4-9526e70667bd",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "customers",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"email\": \"yHGg@ykHlmKgkNAAxC.lj\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": true\n    },\n    {\n      \"key\": \"string\",\n      \"email\": \"oh6Y2RC@XPoBJOC.qp\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c4aacae9-8525-4c5f-8828-c97ca58c6ee8",
+      "name": "ImportContainers",
+      "description": {
+        "content": "Manage import containers that hold import requests before processing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2104fb3f-4fa3-485e-8f46-e27b70ecfdc2",
+          "name": "List import containers",
+          "request": {
+            "name": "List import containers",
+            "description": {
+              "content": "Returns a paginated list of all import containers in the project. Import containers are the primary organizational unit for grouping related import requests. Each project can have up to 1,000 containers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "import-containers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0291b44c-e71b-43d7-b50b-586942a94118",
+              "name": "A paged list of import containers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 265,\n  \"offset\": 6836,\n  \"count\": 4794,\n  \"total\": 5247,\n  \"results\": [\n    {\n      \"key\": \"string\",\n      \"version\": 1844,\n      \"resourceType\": \"string\",\n      \"createdAt\": \"1986-12-30T22:39:13.612Z\",\n      \"lastModifiedAt\": \"1948-12-13T03:54:19.121Z\"\n    },\n    {\n      \"key\": \"string\",\n      \"version\": 8156,\n      \"resourceType\": \"string\",\n      \"createdAt\": \"2001-03-05T13:53:56.962Z\",\n      \"lastModifiedAt\": \"1974-06-16T09:04:29.448Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f24d1eba-0f36-4f42-9e87-7c226a1afbc2",
+              "name": "The request lacked valid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2f9939e-4e97-4d6b-be16-f724b538ec58",
+          "name": "Create an import container",
+          "request": {
+            "name": "Create an import container",
+            "description": {
+              "content": "Creates a new import container. The container acts as a namespace for related import operations. A maximum of 1,000 containers can be created per project. Optimal performance is maintained under 200,000 import operations per container.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "import-containers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"resourceType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00357036-def2-4486-833a-be22d1da4756",
+              "name": "The created import container.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"resourceType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"version\": 7345,\n  \"resourceType\": \"string\",\n  \"createdAt\": \"1986-11-24T23:13:44.260Z\",\n  \"lastModifiedAt\": \"2006-08-27T13:54:54.789Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7107e36-1bdd-48b9-94d9-efb63e8ac8d8",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"resourceType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "288e28bb-560d-4d5b-a2a6-83eff79b4e57",
+          "name": "Get an import container by key",
+          "request": {
+            "name": "Get an import container by key",
+            "description": {
+              "content": "Retrieves an import container by its user-defined key, including its resource type scope and version information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fa97c23-90ce-4b8f-99c2-843862921fc8",
+              "name": "The requested import container.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"version\": 7345,\n  \"resourceType\": \"string\",\n  \"createdAt\": \"1986-11-24T23:13:44.260Z\",\n  \"lastModifiedAt\": \"2006-08-27T13:54:54.789Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9781d5ad-7837-474d-9e88-90aa07d7bdaa",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5931245-fa65-4f21-bca6-5dc975dcb995",
+          "name": "Update an import container by key",
+          "request": {
+            "name": "Update an import container by key",
+            "description": {
+              "content": "Replaces the import container identified by the given key with the provided draft. The key itself cannot be changed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"resourceType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "983ce53a-d4dd-451b-aa05-b3a651984b4f",
+              "name": "The updated import container.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"resourceType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"version\": 7345,\n  \"resourceType\": \"string\",\n  \"createdAt\": \"1986-11-24T23:13:44.260Z\",\n  \"lastModifiedAt\": \"2006-08-27T13:54:54.789Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccfb7662-3087-4d6f-9172-0c17855a6cfa",
+          "name": "Delete an import container by key",
+          "request": {
+            "name": "Delete an import container by key",
+            "description": {
+              "content": "Permanently deletes the import container with the given key. All associated import operations and their status records are also removed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f708eca3-0a5e-4fae-8b35-6432f75041b2",
+              "name": "The deleted import container.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"version\": 7345,\n  \"resourceType\": \"string\",\n  \"createdAt\": \"1986-11-24T23:13:44.260Z\",\n  \"lastModifiedAt\": \"2006-08-27T13:54:54.789Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "911a5510-7be1-407c-b036-1166929830c0",
+          "name": "Get import summary for a container",
+          "request": {
+            "name": "Get import summary for a container",
+            "description": {
+              "content": "Returns aggregated statistics for all import operations in the given container, grouped by processing state (Accepted, ValidationFailed, Unresolved, WaitForMasterVariant, Imported, Rejected, Cancelled).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "import-containers",
+                ":importContainerKey",
+                "import-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "723e138d-7eb6-41b5-83b4-45b111ed84b8",
+              "name": "The import summary with operation counts by state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey",
+                    "import-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"states\": {\n    \"Accepted\": 980,\n    \"ValidationFailed\": 2768,\n    \"Unresolved\": 7924,\n    \"WaitForMasterVariant\": 5647,\n    \"Imported\": 2670,\n    \"Rejected\": 7283,\n    \"Cancelled\": 592\n  },\n  \"total\": 3304\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bd77daf-b8e1-42c0-86d4-cedf862a0ee9",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey",
+                    "import-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "17be0e9c-0700-476c-88ef-1232e33c14e6",
+      "name": "ImportOperations",
+      "description": {
+        "content": "Monitor the status of individual import operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c844059-ca2d-484a-8662-ba1cd550d27e",
+          "name": "List import operations in a container",
+          "request": {
+            "name": "List import operations in a container",
+            "description": {
+              "content": "Returns a paginated list of import operations for the given container. Import operations track the processing status of individual resources within an import request. Supports filtering by state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "import-containers",
+                ":importContainerKey",
+                "import-operations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Filter operations by their current processing state."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "350f75d2-b778-42ec-ae5c-6ef048ac8d13",
+              "name": "A paged list of import operations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey",
+                    "import-operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 6584,\n  \"offset\": 9872,\n  \"count\": 4279,\n  \"total\": 5075,\n  \"results\": [\n    {\n      \"version\": 5884,\n      \"importContainerKey\": \"string\",\n      \"resourceKey\": \"string\",\n      \"state\": \"Cancelled\",\n      \"id\": \"string\",\n      \"resourceType\": \"string\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1984-02-27T12:37:02.540Z\",\n      \"lastModifiedAt\": \"1997-06-20T07:05:45.145Z\"\n    },\n    {\n      \"version\": 7155,\n      \"importContainerKey\": \"string\",\n      \"resourceKey\": \"string\",\n      \"state\": \"Rejected\",\n      \"id\": \"string\",\n      \"resourceType\": \"string\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ],\n      \"createdAt\": \"2017-07-09T08:27:25.552Z\",\n      \"lastModifiedAt\": \"1982-09-04T20:37:18.009Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b256b9f0-dc6f-4df8-bb13-a445a4029815",
+              "name": "The request lacked valid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey",
+                    "import-operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bb8ac32-0a9b-40c8-afc9-34a3b9195363",
+          "name": "Get an import operation by ID",
+          "request": {
+            "name": "Get an import operation by ID",
+            "description": {
+              "content": "Retrieves a single import operation by its ID. The operation record includes the processing state, any validation errors, and a reference to the resource that was imported or failed validation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "import-containers",
+                ":importContainerKey",
+                "import-operations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78c3252c-7d0c-43ee-b384-9445a6c49af4",
+              "name": "The requested import operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey",
+                    "import-operations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": 8604,\n  \"importContainerKey\": \"string\",\n  \"resourceKey\": \"string\",\n  \"state\": \"Unresolved\",\n  \"id\": \"string\",\n  \"resourceType\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"createdAt\": \"1968-08-24T20:29:38.407Z\",\n  \"lastModifiedAt\": \"1951-08-03T03:36:29.648Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee72d26f-17d7-427c-893f-bad449d8caef",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "import-containers",
+                    ":importContainerKey",
+                    "import-operations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "aafbf492-7d74-4785-9190-68de9ec211d7",
+      "name": "Inventory",
+      "description": {
+        "content": "Import inventory entry resources into the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "84434097-cd5f-4d31-ac21-a8951ddd19a2",
+          "name": "Import inventory entries",
+          "request": {
+            "name": "Import inventory entries",
+            "description": {
+              "content": "Submits a batch of inventory entry import requests for asynchronous processing. Inventory entries are matched by SKU and supply channel for upsert behavior.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "inventories",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"quantityOnStock\": \"<integer>\",\n      \"supplyChannel\": \"<object>\",\n      \"restockableInDays\": \"<integer>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"quantityOnStock\": \"<integer>\",\n      \"supplyChannel\": \"<object>\",\n      \"restockableInDays\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0f119b7-30f7-4587-889c-37c84800d3f7",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "inventories",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"quantityOnStock\": 2523,\n      \"supplyChannel\": {},\n      \"restockableInDays\": 5065\n    },\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"quantityOnStock\": 1469,\n      \"supplyChannel\": {},\n      \"restockableInDays\": 1011\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47837151-981e-4896-9238-bef6105f129d",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "inventories",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"quantityOnStock\": 2523,\n      \"supplyChannel\": {},\n      \"restockableInDays\": 5065\n    },\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"quantityOnStock\": 1469,\n      \"supplyChannel\": {},\n      \"restockableInDays\": 1011\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7bd793cc-cb3b-4672-85bd-f8d05f565e4f",
+      "name": "Orders",
+      "description": {
+        "content": "Import order resources into the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3766cc7-7deb-472c-b7a9-d158aebb5c0c",
+          "name": "Import orders",
+          "request": {
+            "name": "Import orders",
+            "description": {
+              "content": "Submits a batch of order import requests for asynchronous processing. Order imports bypass the normal checkout flow and directly create orders in the system. Each request accepts up to 20 order resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "orders",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"orderNumber\": \"<string>\",\n      \"totalPrice\": \"<object>\",\n      \"lineItems\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"customerId\": \"<string>\",\n      \"customerEmail\": \"<email>\",\n      \"orderState\": \"<string>\",\n      \"shipmentState\": \"<string>\",\n      \"paymentState\": \"<string>\"\n    },\n    {\n      \"orderNumber\": \"<string>\",\n      \"totalPrice\": \"<object>\",\n      \"lineItems\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"customerId\": \"<string>\",\n      \"customerEmail\": \"<email>\",\n      \"orderState\": \"<string>\",\n      \"shipmentState\": \"<string>\",\n      \"paymentState\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "970607d3-dc12-4d6d-b5aa-ff50845ab3bf",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"orderNumber\": \"string\",\n      \"totalPrice\": {},\n      \"customerId\": \"string\",\n      \"customerEmail\": \"v9U2jBmGx0@AWqHLSG.moa\",\n      \"orderState\": \"Confirmed\",\n      \"shipmentState\": \"string\",\n      \"paymentState\": \"string\"\n    },\n    {\n      \"orderNumber\": \"string\",\n      \"totalPrice\": {},\n      \"customerId\": \"string\",\n      \"customerEmail\": \"WFO16Y@UnBITuSvw.iv\",\n      \"orderState\": \"Cancelled\",\n      \"shipmentState\": \"string\",\n      \"paymentState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd42a6bc-ed16-4ab8-8dd7-38edbb43cb0f",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"orderNumber\": \"string\",\n      \"totalPrice\": {},\n      \"customerId\": \"string\",\n      \"customerEmail\": \"v9U2jBmGx0@AWqHLSG.moa\",\n      \"orderState\": \"Confirmed\",\n      \"shipmentState\": \"string\",\n      \"paymentState\": \"string\"\n    },\n    {\n      \"orderNumber\": \"string\",\n      \"totalPrice\": {},\n      \"customerId\": \"string\",\n      \"customerEmail\": \"WFO16Y@UnBITuSvw.iv\",\n      \"orderState\": \"Cancelled\",\n      \"shipmentState\": \"string\",\n      \"paymentState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b4532cb4-bdbb-49a6-91e2-edba058b7513",
+      "name": "Products",
+      "description": {
+        "content": "Import product resources into the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "67cc6155-5a39-40eb-93ab-8deb0ea35345",
+          "name": "Import products",
+          "request": {
+            "name": "Import products",
+            "description": {
+              "content": "Submits a batch of product import requests to the specified container for asynchronous processing. Each request can contain up to 20 product resources. Products are matched by their user-defined key for upsert behavior.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "products",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"productType\": \"<object>\",\n      \"name\": \"<object>\",\n      \"slug\": \"<object>\",\n      \"description\": \"<object>\",\n      \"categories\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"publish\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"productType\": \"<object>\",\n      \"name\": \"<object>\",\n      \"slug\": \"<object>\",\n      \"description\": \"<object>\",\n      \"categories\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"publish\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c5fb257-0a28-4914-a6d1-60142e29bbd7",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "products",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"productType\": {},\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"publish\": true\n    },\n    {\n      \"key\": \"string\",\n      \"productType\": {},\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"publish\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc894e10-4c11-41c6-843f-47a9c080ce0e",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "products",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"productType\": {},\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"publish\": true\n    },\n    {\n      \"key\": \"string\",\n      \"productType\": {},\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"publish\": true\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "78998f14-c97b-4597-80d9-59127c6f1daf",
+      "name": "ProductVariants",
+      "description": {
+        "content": "Import product variant resources into the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "710074ad-4a07-43c2-967a-3dcdbecf9755",
+          "name": "Import product variants",
+          "request": {
+            "name": "Import product variants",
+            "description": {
+              "content": "Submits a batch of product variant import requests for asynchronous processing. Variants are matched to products by the product key reference. Each request accepts up to 20 variant resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "product-variants",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"product\": \"<object>\",\n      \"sku\": \"<string>\",\n      \"isMasterVariant\": \"<boolean>\",\n      \"attributes\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"images\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"prices\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"product\": \"<object>\",\n      \"sku\": \"<string>\",\n      \"isMasterVariant\": \"<boolean>\",\n      \"attributes\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"images\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"prices\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f34697d-ab46-4f27-8c1d-a4cc52182541",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "product-variants",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"product\": {},\n      \"sku\": \"string\",\n      \"isMasterVariant\": false\n    },\n    {\n      \"key\": \"string\",\n      \"product\": {},\n      \"sku\": \"string\",\n      \"isMasterVariant\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2cb5edd-cc08-4a76-a62e-ababeb7c3b95",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "product-variants",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"product\": {},\n      \"sku\": \"string\",\n      \"isMasterVariant\": false\n    },\n    {\n      \"key\": \"string\",\n      \"product\": {},\n      \"sku\": \"string\",\n      \"isMasterVariant\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d3da4d14-c321-48fd-bf37-61d0d3c016e1",
+      "name": "StandalonePrices",
+      "description": {
+        "content": "Import standalone price resources into the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "936c5a25-2796-4f77-83ef-3a1a217ff3bc",
+          "name": "Import standalone prices",
+          "request": {
+            "name": "Import standalone prices",
+            "description": {
+              "content": "Submits a batch of standalone price import requests for asynchronous processing. Standalone prices are matched by key for upsert behavior and are associated with SKUs independently from embedded product variant prices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "standalone-prices",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": \"<object>\",\n      \"country\": \"<string>\",\n      \"customerGroup\": \"<object>\",\n      \"channel\": \"<object>\",\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": \"<object>\",\n      \"country\": \"<string>\",\n      \"customerGroup\": \"<object>\",\n      \"channel\": \"<object>\",\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea89e6e3-9220-4165-8397-de4fe7ab5aff",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "standalone-prices",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"value\": {},\n      \"country\": \"string\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"1958-07-25T00:35:05.197Z\",\n      \"validUntil\": \"2021-08-19T17:35:32.365Z\"\n    },\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"value\": {},\n      \"country\": \"string\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"2023-02-06T13:31:04.875Z\",\n      \"validUntil\": \"1951-05-27T06:30:19.221Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1a6779e-98d9-473b-b5b1-6190c55324c9",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "standalone-prices",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"value\": {},\n      \"country\": \"string\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"1958-07-25T00:35:05.197Z\",\n      \"validUntil\": \"2021-08-19T17:35:32.365Z\"\n    },\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"value\": {},\n      \"country\": \"string\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"2023-02-06T13:31:04.875Z\",\n      \"validUntil\": \"1951-05-27T06:30:19.221Z\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9546,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-central1.gcp",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://import.{{region}}.commercetools.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0541a1a0-0c9d-4efc-b875-4b46472ac35f",
+    "name": "commercetools Import API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project. It supports importing categories, product types, products, product variants, prices, inventory entries, orders, customers, business units, discount codes, product selections, standalone prices, and type definitions. Imports are processed asynchronously through import containers, and the API provides endpoints for monitoring import operation status and handling validation errors. The Import API is hosted on separate regional endpoints from the main HTTP API and uses the same OAuth 2.0 authorization model.\n\nContact Support:\n Name: commercetools Support",
+      "type": "text/plain"
+    }
+  }
+}

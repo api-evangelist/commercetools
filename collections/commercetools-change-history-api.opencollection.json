@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools Change History API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ChangeHistory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query change history records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "date.from",
+                "value": "",
+                "type": "query",
+                "description": "Start of the date range filter. Accepts ISO 8601 datetime strings or relative values like \"24\" (last 24 hours) or \"now\"."
+              },
+              {
+                "name": "date.to",
+                "value": "",
+                "type": "query",
+                "description": "End of the date range filter. Accepts ISO 8601 datetime strings or relative values like \"now\"."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "resourceTypes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of resource types to filter by (e.g., \"order,product,customer\")."
+              },
+              {
+                "name": "changes",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific change type name (e.g., \"setCustomField\", \"changeOrderState\")."
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter records to changes affecting a specific resource ID."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "Filter records to changes made by a specific user ID."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "Filter records to changes made by a specific API client ID."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of change history records for the project. Each record contains a list of individual changes along with metadata about the actor and timestamp. Supports filtering by resource type, date range, resource ID, user, and client."
+        },
+        {
+          "info": {
+            "name": "Query change history for a specific resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/:resourceType/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "path",
+                "description": "The resource type category to filter the change history query."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated ID of the specific resource."
+              },
+              {
+                "name": "date.from",
+                "value": "",
+                "type": "query",
+                "description": "Start of the date range filter."
+              },
+              {
+                "name": "date.to",
+                "value": "",
+                "type": "query",
+                "description": "End of the date range filter."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of change history records filtered to a specific resource type and resource ID. This is the most efficient way to retrieve the full change history of a single resource, such as all changes made to a specific order or product."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

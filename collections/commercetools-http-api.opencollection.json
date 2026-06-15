@@ -1,0 +1,1253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools HTTP API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/products",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all products in the project. Supports filtering, sorting, and field expansion via query parameters. Use the Product Projections endpoint for storefront display queries."
+        },
+        {
+          "info": {
+            "name": "Create a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/products",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new product with the given draft. The product type reference in the draft determines which attributes are valid. The product is created with a staged version and requires publication to become visible in product projections."
+        },
+        {
+          "info": {
+            "name": "Get a product by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/products/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Retrieves a single product by its system-generated ID. The response includes both the current (published) and staged versions of the product data."
+        },
+        {
+          "info": {
+            "name": "Update a product by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/products/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies one or more update actions to the product identified by the given ID. The request must include the current version to enable optimistic concurrency control. Supported actions include changing names, setting attributes, adding variants, and publishing."
+        },
+        {
+          "info": {
+            "name": "Delete a product by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.commercetools.com/:projectKey/products/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Current version of the resource for optimistic concurrency control."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the product with the given ID. The current version must be provided as a query parameter for concurrency control. Deletion cannot be undone."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/categories",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all categories in the project. Categories can be filtered and sorted using standard query predicates. Use parent references to reconstruct the category hierarchy."
+        },
+        {
+          "info": {
+            "name": "Create a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/categories",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new category. Categories support localized names, slugs, and metadata, and can optionally reference a parent category to build a hierarchy."
+        },
+        {
+          "info": {
+            "name": "Get a category by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/categories/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Retrieves a single category by its system-generated unique identifier, including its ancestors array representing the full path to the root category."
+        },
+        {
+          "info": {
+            "name": "Update a category by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/categories/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies update actions to the category with the given ID. Supported actions include changing the name, slug, parent, order hint, and custom fields."
+        },
+        {
+          "info": {
+            "name": "Delete a category by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.commercetools.com/:projectKey/categories/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Current version of the resource for optimistic concurrency control."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the category with the given ID. The current version must be provided. Categories with children or product assignments cannot be deleted until those references are removed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Carts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List carts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/carts",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of carts in the project. Supports filtering by customer ID, cart state, store key, and other predicates. Active carts are retained based on project-configured retention policies."
+        },
+        {
+          "info": {
+            "name": "Create a cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/carts",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new shopping cart. The cart can be associated with a customer or anonymous session, assigned to a specific store, and configured with tax mode, inventory mode, and shipping mode settings."
+        },
+        {
+          "info": {
+            "name": "Get a cart by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/carts/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Retrieves a single cart by its system-generated ID, including all line items, applied discounts, shipping methods, and tax calculations."
+        },
+        {
+          "info": {
+            "name": "Update a cart by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/carts/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies update actions to the cart with the given ID. Common actions include adding or removing line items, setting shipping addresses, applying discount codes, and setting customer details."
+        },
+        {
+          "info": {
+            "name": "Delete a cart by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.commercetools.com/:projectKey/carts/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Current version of the resource for optimistic concurrency control."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the cart with the given ID. The current version must be provided. Carts in the Ordered state cannot be deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/orders",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of orders in the project. Supports filtering by customer ID, order state, payment state, shipment state, and other predicates. Orders are created from carts upon successful checkout."
+        },
+        {
+          "info": {
+            "name": "Create an order from a cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/orders",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an order from an existing active cart. The cart is transitioned to the Ordered state. The request body requires the cart ID, version, and optionally an order number and payment state."
+        },
+        {
+          "info": {
+            "name": "Get an order by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/orders/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Retrieves a single order by its system-generated ID, including all line items, deliveries, return items, payment information, and state history."
+        },
+        {
+          "info": {
+            "name": "Update an order by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/orders/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies update actions to the order with the given ID. Common actions include changing order state, adding deliveries, adding return info, setting tracking data, and updating payment state."
+        },
+        {
+          "info": {
+            "name": "Delete an order by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.commercetools.com/:projectKey/orders/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Current version of the resource for optimistic concurrency control."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the order with the given ID. This operation cannot be undone. Only orders that have not been shipped or paid should be deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/customers",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all customers in the project. Supports filtering by email, customer group, and other predicates. For large customer bases use the Customer Search endpoint for improved performance."
+        },
+        {
+          "info": {
+            "name": "Create a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/customers",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new customer account. The email address must be unique within the project (or store if store-scoped). Optionally assigns the customer to a customer group and pre-verifies the email address."
+        },
+        {
+          "info": {
+            "name": "Get a customer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/customers/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Retrieves a single customer by their system-generated ID, including addresses, customer group assignments, store assignments, and custom fields."
+        },
+        {
+          "info": {
+            "name": "Update a customer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/customers/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies update actions to the customer with the given ID. Supported actions include adding addresses, changing email, setting customer group, adding store assignments, and setting custom fields."
+        },
+        {
+          "info": {
+            "name": "Delete a customer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.commercetools.com/:projectKey/customers/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Current version of the resource for optimistic concurrency control."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the customer with the given ID. The current version must be provided. Associated carts, orders, and payment records are not deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/payments",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of payments in the project. Supports filtering by customer, interface ID, and other predicates. Payments track financial transactions and PSP interactions associated with orders."
+        },
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/payments",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new payment resource representing intent to pay a specific amount. The payment records PSP details, method information, and transaction history. Payments are linked to orders via the cart or order update actions."
+        },
+        {
+          "info": {
+            "name": "Get a payment by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/payments/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Retrieves a single payment by its system-generated ID, including all transactions, interface interactions, payment method info, and current status."
+        },
+        {
+          "info": {
+            "name": "Update a payment by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/payments/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies update actions to the payment with the given ID. Supported actions include adding transactions, setting the payment status, adding interface interactions, and setting custom fields."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List inventory entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/inventory",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of inventory entries. Each entry tracks the available quantity and restockable quantity for a specific SKU, optionally scoped to a supply channel. Supports filtering and sorting."
+        },
+        {
+          "info": {
+            "name": "Create an inventory entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/inventory",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new inventory entry for a given SKU. The entry can be scoped to a supply channel for multi-warehouse tracking. Optionally set expected delivery dates and restockable quantities."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/subscriptions",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all subscriptions configured in the project. Subscriptions define destinations for change notifications and message delivery to external services such as SQS, SNS, Google Pub/Sub, or Azure Service Bus."
+        },
+        {
+          "info": {
+            "name": "Create a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/subscriptions",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new subscription that routes messages and change notifications to an external destination. Supported destinations include AWS SQS, SNS, EventBridge, Azure Service Bus, Event Grid, Google Pub/Sub, and Confluent Cloud. A maximum of 50 subscriptions per project is allowed."
+        },
+        {
+          "info": {
+            "name": "Get a subscription by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey/subscriptions/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves a single subscription by its system-generated ID, including its destination configuration, message type filters, change filters, and delivery format settings."
+        },
+        {
+          "info": {
+            "name": "Update a subscription by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.{region}.commercetools.com/:projectKey/subscriptions/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies update actions to the subscription with the given ID. Supported actions include changing the destination, setting message types, setting changes, and changing the format."
+        },
+        {
+          "info": {
+            "name": "Delete a subscription by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.{region}.commercetools.com/:projectKey/subscriptions/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Current version of the resource for optimistic concurrency control."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the subscription with the given ID. The current version must be provided. After deletion, no further messages are routed to the associated destination."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Project",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get project settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.{region}.commercetools.com/:projectKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ]
+          },
+          "docs": "Retrieves the project settings including languages, currencies, countries, messaging configuration, and search indexing settings. The project key in the path must match the authenticated API client's project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

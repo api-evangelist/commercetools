@@ -1,0 +1,523 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools Import API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ImportContainers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List import containers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://import.{region}.commercetools.com/:projectKey/import-containers",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all import containers in the project. Import containers are the primary organizational unit for grouping related import requests. Each project can have up to 1,000 containers."
+        },
+        {
+          "info": {
+            "name": "Create an import container",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://import.{region}.commercetools.com/:projectKey/import-containers",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new import container. The container acts as a namespace for related import operations. A maximum of 1,000 containers can be created per project. Optimal performance is maintained under 200,000 import operations per container."
+        },
+        {
+          "info": {
+            "name": "Get an import container by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://import.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ]
+          },
+          "docs": "Retrieves an import container by its user-defined key, including its resource type scope and version information."
+        },
+        {
+          "info": {
+            "name": "Update an import container by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://import.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the import container identified by the given key with the provided draft. The key itself cannot be changed."
+        },
+        {
+          "info": {
+            "name": "Delete an import container by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://import.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the import container with the given key. All associated import operations and their status records are also removed."
+        },
+        {
+          "info": {
+            "name": "Get import summary for a container",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://import.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey/import-summary",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ]
+          },
+          "docs": "Returns aggregated statistics for all import operations in the given container, grouped by processing state (Accepted, ValidationFailed, Unresolved, WaitForMasterVariant, Imported, Rejected, Cancelled)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import products",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://import.{region}.commercetools.com/:projectKey/products/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of product import requests to the specified container for asynchronous processing. Each request can contain up to 20 product resources. Products are matched by their user-defined key for upsert behavior."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ProductVariants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import product variants",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://import.{region}.commercetools.com/:projectKey/product-variants/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of product variant import requests for asynchronous processing. Variants are matched to products by the product key reference. Each request accepts up to 20 variant resources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://import.{region}.commercetools.com/:projectKey/categories/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of category import requests for asynchronous processing. Categories are matched by key for upsert behavior. Parent category references are resolved after all categories in the batch are processed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://import.{region}.commercetools.com/:projectKey/customers/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of customer import requests for asynchronous processing. Customers are matched by key for upsert behavior. Each request accepts up to 20 customer resources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://import.{region}.commercetools.com/:projectKey/orders/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of order import requests for asynchronous processing. Order imports bypass the normal checkout flow and directly create orders in the system. Each request accepts up to 20 order resources."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Inventory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import inventory entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://import.{region}.commercetools.com/:projectKey/inventories/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of inventory entry import requests for asynchronous processing. Inventory entries are matched by SKU and supply channel for upsert behavior."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "StandalonePrices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import standalone prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://import.{region}.commercetools.com/:projectKey/standalone-prices/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of standalone price import requests for asynchronous processing. Standalone prices are matched by key for upsert behavior and are associated with SKUs independently from embedded product variant prices."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ImportOperations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List import operations in a container",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://import.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey/import-operations",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter operations by their current processing state."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of import operations for the given container. Import operations track the processing status of individual resources within an import request. Supports filtering by state."
+        },
+        {
+          "info": {
+            "name": "Get an import operation by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://import.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey/import-operations/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves a single import operation by its ID. The operation record includes the processing state, any validation errors, and a reference to the resource that was imported or failed validation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
