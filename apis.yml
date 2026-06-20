@@ -9,7 +9,7 @@ tags:
 - REST
 - SDK
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 position: Consumer
 kind: company
@@ -23,7 +23,7 @@ apis:
   - Composable Commerce
   - E-Commerce
   - REST
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.{region}.commercetools.com
   humanURL: https://docs.commercetools.com/api
   properties:
@@ -45,7 +45,7 @@ apis:
   - Composable Commerce
   - E-Commerce
   - GraphQL
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.{region}.commercetools.com
   humanURL: https://docs.commercetools.com/api/graphql
   properties:
@@ -65,7 +65,7 @@ apis:
   - Commerce
   - Data Migration
   - Import
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://import.{region}.commercetools.com
   humanURL: https://docs.commercetools.com/api/import-export/overview
   properties:
@@ -85,7 +85,7 @@ apis:
   - Change History
   - Commerce
   - Compliance
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://history.{region}.commercetools.com
   humanURL: https://docs.commercetools.com/api/history/overview
   properties:
@@ -105,7 +105,7 @@ apis:
   - JavaScript
   - SDK
   - TypeScript
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://docs.commercetools.com/sdk/typescript-sdk
   properties:
@@ -123,7 +123,7 @@ apis:
   - Java
   - JVM
   - SDK
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://docs.commercetools.com/sdk/java-sdk
   properties:
@@ -142,7 +142,7 @@ apis:
   - Commerce
   - Embedded Components
   - Payments
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://docs.commercetools.com/checkout
   properties:
@@ -161,7 +161,7 @@ apis:
   - Customizations
   - Extensions
   - Merchant Center
-  image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
   humanURL: https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
   properties:
