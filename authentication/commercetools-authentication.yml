@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/commercetools-change-history-api-openapi.yml, openapi/commercetools-http-api-openapi.yml,
+  openapi/commercetools-import-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 Bearer token obtained from the commercetools authentication service
+    using client credentials flow. Requires the view_audit_log scope.
+  sources:
+  - openapi/commercetools-change-history-api-openapi.yml
+  - openapi/commercetools-http-api-openapi.yml
+  - openapi/commercetools-import-api-openapi.yml
