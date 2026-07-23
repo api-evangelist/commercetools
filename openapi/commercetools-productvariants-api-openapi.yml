@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History Carts ProductVariants API
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+servers:
+- url: https://history.{region}.commercetools.com
+  description: Production Change History Server
+  variables:
+    region:
+      default: us-central1.gcp
+      enum:
+      - us-central1.gcp
+      - us-east-2.aws
+      - europe-west1.gcp
+      - eu-central-1.aws
+      - australia-southeast1.gcp
+      description: The deployment region.
+security:
+- bearerAuth: []
+tags:
+- name: ProductVariants
+  description: Import product variant resources into the project.
+paths:
+  /{projectKey}/product-variants/import-containers/{importContainerKey}:
+    post:
+      operationId: importProductVariants
+      summary: Import product variants
+      description: Submits a batch of product variant import requests for asynchronous processing. Variants are matched to products by the product key reference. Each request accepts up to 20 variant resources.
+      tags:
+      - ProductVariants
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariantImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    ProductVariantImportRequest:
+      type: object
+      description: A batch of product variant resources to import.
+      required:
+      - type
+      - resources
+      properties:
+        type:
+          type: string
+          enum:
+          - product-variant
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/ProductVariantImport'
+          description: Up to 20 product variant resources.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    ImportOperationStatus:
+      type: object
+      description: The initial status of a single resource submission in an import batch.
+      required:
+      - resourceKey
+      - state
+      properties:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
+    ProductVariantImport:
+      type: object
+      description: A single product variant resource for import.
+      required:
+      - key
+      - product
+      properties:
+        key:
+          type: string
+          description: User-defined key for matching against existing variants.
+        sku:
+          type: string
+          description: SKU identifier for the variant.
+        product:
+          type: object
+          description: Reference to the parent product by key.
+        isMasterVariant:
+          type: boolean
+          description: Whether this variant is the master (first) variant.
+        attributes:
+          type: array
+          items:
+            type: object
+          description: Attribute values for the variant.
+        images:
+          type: array
+          items:
+            type: object
+          description: Images for the variant.
+        prices:
+          type: array
+          items:
+            type: object
+          description: Prices for the variant.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview

@@ -1,0 +1,616 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History Carts API
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+servers:
+- url: https://history.{region}.commercetools.com
+  description: Production Change History Server
+  variables:
+    region:
+      default: us-central1.gcp
+      enum:
+      - us-central1.gcp
+      - us-east-2.aws
+      - europe-west1.gcp
+      - eu-central-1.aws
+      - australia-southeast1.gcp
+      description: The deployment region.
+security:
+- bearerAuth: []
+tags:
+- name: Carts
+  description: Manage shopping carts with line items, discounts, shipping, and tax calculations.
+paths:
+  /{projectKey}/carts:
+    get:
+      operationId: listCarts
+      summary: List carts
+      description: Returns a paginated list of carts in the project. Supports filtering by customer ID, cart state, store key, and other predicates. Active carts are retained based on project-configured retention policies.
+      tags:
+      - Carts
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/where'
+      - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of carts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCart
+      summary: Create a cart
+      description: Creates a new shopping cart. The cart can be associated with a customer or anonymous session, assigned to a specific store, and configured with tax mode, inventory mode, and shipping mode settings.
+      tags:
+      - Carts
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartDraft'
+      responses:
+        '201':
+          description: The created cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/carts/{id}:
+    get:
+      operationId: getCartById
+      summary: Get a cart by ID
+      description: Retrieves a single cart by its system-generated ID, including all line items, applied discounts, shipping methods, and tax calculations.
+      tags:
+      - Carts
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateCartById
+      summary: Update a cart by ID
+      description: Applies update actions to the cart with the given ID. Common actions include adding or removing line items, setting shipping addresses, applying discount codes, and setting customer details.
+      tags:
+      - Carts
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartUpdate'
+      responses:
+        '200':
+          description: The updated cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+    delete:
+      operationId: deleteCartById
+      summary: Delete a cart by ID
+      description: Permanently deletes the cart with the given ID. The current version must be provided. Carts in the Ordered state cannot be deleted.
+      tags:
+      - Carts
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/version'
+      responses:
+        '200':
+          description: The deleted cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+components:
+  schemas:
+    Address:
+      type: object
+      description: A postal address with country and optional structured fields.
+      required:
+      - country
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the address within the resource.
+        key:
+          type: string
+          description: User-defined identifier for the address.
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        firstName:
+          type: string
+          description: First name of the address recipient.
+        lastName:
+          type: string
+          description: Last name of the address recipient.
+        streetName:
+          type: string
+          description: Street name component of the address.
+        streetNumber:
+          type: string
+          description: Street number component of the address.
+        city:
+          type: string
+          description: City of the address.
+        postalCode:
+          type: string
+          description: Postal or ZIP code of the address.
+        region:
+          type: string
+          description: Region, state, or province of the address.
+        email:
+          type: string
+          format: email
+          description: Email address associated with this postal address.
+        phone:
+          type: string
+          description: Phone number associated with this postal address.
+    Price:
+      type: object
+      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
+      required:
+      - id
+      - value
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the price.
+        value:
+          $ref: '#/components/schemas/Money'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        channel:
+          $ref: '#/components/schemas/Reference'
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+    Money:
+      type: object
+      description: A monetary value with currency code and amount in the smallest currency unit.
+      required:
+      - currencyCode
+      - centAmount
+      properties:
+        currencyCode:
+          type: string
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
+    Reference:
+      type: object
+      description: A reference to another resource by its typeId and id.
+      required:
+      - typeId
+      - id
+      properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource (e.g., 'product', 'category').
+        id:
+          type: string
+          description: The system-generated unique identifier of the referenced resource.
+    ProductVariant:
+      type: object
+      description: A product variant with SKU, attributes, prices, and images.
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: Variant ID unique within the product (starting at 1 for master).
+        sku:
+          type: string
+          description: Stock keeping unit identifier for this variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+          description: List of prices for different currencies, channels, and customer groups.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes as defined by the product type.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: List of images for this variant.
+    Image:
+      type: object
+      description: A product image with URL, dimensions, and optional label.
+      required:
+      - url
+      - dimensions
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the image.
+        dimensions:
+          type: object
+          description: Pixel dimensions of the image.
+          required:
+          - w
+          - h
+          properties:
+            w:
+              type: integer
+              description: Image width in pixels.
+            h:
+              type: integer
+              description: Image height in pixels.
+        label:
+          type: string
+          description: Optional label for the image.
+    CartUpdate:
+      type: object
+      description: Request body for updating a cart.
+      required:
+      - version
+      - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the cart.
+    Attribute:
+      type: object
+      description: A name-value pair representing a product attribute as defined by the product type.
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Attribute name as defined in the product type.
+        value:
+          description: Attribute value. Type depends on the attribute type definition.
+    CartPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of carts.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
+    CartDraft:
+      type: object
+      description: Request body for creating a new cart.
+      required:
+      - currency
+      properties:
+        currency:
+          type: string
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 currency code for the cart.
+        customerId:
+          type: string
+          description: ID of the customer to associate with the cart.
+        customerEmail:
+          type: string
+          format: email
+          description: Email address for anonymous or identified carts.
+        key:
+          type: string
+          description: User-defined unique key for the cart.
+        lineItems:
+          type: array
+          items:
+            type: object
+          description: Initial line items to add to the cart.
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        taxMode:
+          type: string
+          enum:
+          - Platform
+          - External
+          - ExternalAmount
+          - Disabled
+          description: Tax calculation mode.
+        inventoryMode:
+          type: string
+          enum:
+          - None
+          - TrackOnly
+          - ReserveOnOrder
+          description: Inventory tracking mode.
+        store:
+          $ref: '#/components/schemas/Reference'
+    LineItem:
+      type: object
+      description: A product line item in a cart or order with quantity, pricing, and discount information.
+      required:
+      - id
+      - productId
+      - name
+      - variant
+      - price
+      - totalPrice
+      - quantity
+      - lineItemMode
+      - priceMode
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item within the cart.
+        productId:
+          type: string
+          description: ID of the product this line item references.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        variant:
+          $ref: '#/components/schemas/ProductVariant'
+        price:
+          $ref: '#/components/schemas/Price'
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        quantity:
+          type: integer
+          minimum: 1
+          description: Quantity of this product variant in the cart.
+        lineItemMode:
+          type: string
+          enum:
+          - Standard
+          - GiftLineItem
+          description: Whether this is a standard or gift line item.
+        priceMode:
+          type: string
+          enum:
+          - Platform
+          - ExternalTotal
+          - ExternalPrice
+          description: How the price for this line item is determined.
+    LocalizedString:
+      type: object
+      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
+      additionalProperties:
+        type: string
+    Cart:
+      type: object
+      description: A shopping cart resource containing line items, discounts, shipping configuration, and pricing.
+      required:
+      - id
+      - version
+      - cartState
+      - lineItems
+      - customLineItems
+      - totalPrice
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        customerId:
+          type: string
+          description: ID of the customer who owns this cart.
+        customerEmail:
+          type: string
+          format: email
+          description: Email of the customer associated with this cart.
+        cartState:
+          type: string
+          enum:
+          - Active
+          - Merged
+          - Ordered
+          - Frozen
+          description: Current state of the cart lifecycle.
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: Product line items in the cart.
+        customLineItems:
+          type: array
+          items:
+            type: object
+          description: Custom line items with user-defined pricing.
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        taxedPrice:
+          type: object
+          description: The total price with tax breakdown if tax calculation is complete.
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        taxMode:
+          type: string
+          enum:
+          - Platform
+          - External
+          - ExternalAmount
+          - Disabled
+          description: Tax calculation mode for this cart.
+        inventoryMode:
+          type: string
+          enum:
+          - None
+          - TrackOnly
+          - ReserveOnOrder
+          description: Inventory tracking mode for line items.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the cart was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the cart was last modified.
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
+    where:
+      name: where
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    expand:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
+    version:
+      name: version
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Current version of the resource for optimistic concurrency control.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 10000
+        default: 0
+      description: Number of results to skip for pagination. Maximum 10000.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return. Defaults to 20, maximum 500.
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview

@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History Carts StandalonePrices API
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+servers:
+- url: https://history.{region}.commercetools.com
+  description: Production Change History Server
+  variables:
+    region:
+      default: us-central1.gcp
+      enum:
+      - us-central1.gcp
+      - us-east-2.aws
+      - europe-west1.gcp
+      - eu-central-1.aws
+      - australia-southeast1.gcp
+      description: The deployment region.
+security:
+- bearerAuth: []
+tags:
+- name: StandalonePrices
+  description: Import standalone price resources into the project.
+paths:
+  /{projectKey}/standalone-prices/import-containers/{importContainerKey}:
+    post:
+      operationId: importStandalonePrices
+      summary: Import standalone prices
+      description: Submits a batch of standalone price import requests for asynchronous processing. Standalone prices are matched by key for upsert behavior and are associated with SKUs independently from embedded product variant prices.
+      tags:
+      - StandalonePrices
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StandalonePriceImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    StandalonePriceImport:
+      type: object
+      description: A single standalone price resource for import.
+      required:
+      - key
+      - sku
+      - value
+      properties:
+        key:
+          type: string
+          description: User-defined key for matching against existing prices.
+        sku:
+          type: string
+          description: SKU of the product variant this price applies to.
+        value:
+          type: object
+          description: The monetary value of the price.
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code scope.
+        customerGroup:
+          type: object
+          description: Reference to the customer group scope.
+        channel:
+          type: object
+          description: Reference to the channel scope.
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+    ImportOperationStatus:
+      type: object
+      description: The initial status of a single resource submission in an import batch.
+      required:
+      - resourceKey
+      - state
+      properties:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
+    StandalonePriceImportRequest:
+      type: object
+      description: A batch of standalone price resources to import.
+      required:
+      - type
+      - resources
+      properties:
+        type:
+          type: string
+          enum:
+          - standalone-price
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/StandalonePriceImport'
+          description: Up to 20 standalone price resources.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview

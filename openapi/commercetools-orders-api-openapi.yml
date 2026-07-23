@@ -1,0 +1,764 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History Carts Orders API
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+servers:
+- url: https://history.{region}.commercetools.com
+  description: Production Change History Server
+  variables:
+    region:
+      default: us-central1.gcp
+      enum:
+      - us-central1.gcp
+      - us-east-2.aws
+      - europe-west1.gcp
+      - eu-central-1.aws
+      - australia-southeast1.gcp
+      description: The deployment region.
+security:
+- bearerAuth: []
+tags:
+- name: Orders
+  description: Create and manage orders resulting from cart checkouts or quotes.
+paths:
+  /{projectKey}/orders:
+    get:
+      operationId: listOrders
+      summary: List orders
+      description: Returns a paginated list of orders in the project. Supports filtering by customer ID, order state, payment state, shipment state, and other predicates. Orders are created from carts upon successful checkout.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/where'
+      - $ref: '#/components/parameters/sortQuery'
+      - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of orders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createOrderFromCart
+      summary: Create an order from a cart
+      description: Creates an order from an existing active cart. The cart is transitioned to the Ordered state. The request body requires the cart ID, version, and optionally an order number and payment state.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderFromCartDraft'
+      responses:
+        '201':
+          description: The created order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/orders/{id}:
+    get:
+      operationId: getOrderById
+      summary: Get an order by ID
+      description: Retrieves a single order by its system-generated ID, including all line items, deliveries, return items, payment information, and state history.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateOrderById
+      summary: Update an order by ID
+      description: Applies update actions to the order with the given ID. Common actions include changing order state, adding deliveries, adding return info, setting tracking data, and updating payment state.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderUpdate'
+      responses:
+        '200':
+          description: The updated order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    delete:
+      operationId: deleteOrderById
+      summary: Delete an order by ID
+      description: Permanently deletes the order with the given ID. This operation cannot be undone. Only orders that have not been shipped or paid should be deleted.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/version'
+      responses:
+        '200':
+          description: The deleted order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /{projectKey}/orders/import-containers/{importContainerKey}:
+    post:
+      operationId: importOrders
+      summary: Import orders
+      description: Submits a batch of order import requests for asynchronous processing. Order imports bypass the normal checkout flow and directly create orders in the system. Each request accepts up to 20 order resources.
+      tags:
+      - Orders
+      parameters:
+      - $ref: '#/components/parameters/projectKey_2'
+      - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderImportRequest'
+      responses:
+        '201':
+          description: The import request was accepted for processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest_2'
+components:
+  schemas:
+    Address:
+      type: object
+      description: A postal address with country and optional structured fields.
+      required:
+      - country
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the address within the resource.
+        key:
+          type: string
+          description: User-defined identifier for the address.
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        firstName:
+          type: string
+          description: First name of the address recipient.
+        lastName:
+          type: string
+          description: Last name of the address recipient.
+        streetName:
+          type: string
+          description: Street name component of the address.
+        streetNumber:
+          type: string
+          description: Street number component of the address.
+        city:
+          type: string
+          description: City of the address.
+        postalCode:
+          type: string
+          description: Postal or ZIP code of the address.
+        region:
+          type: string
+          description: Region, state, or province of the address.
+        email:
+          type: string
+          format: email
+          description: Email address associated with this postal address.
+        phone:
+          type: string
+          description: Phone number associated with this postal address.
+    OrderPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of orders.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    Price:
+      type: object
+      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
+      required:
+      - id
+      - value
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the price.
+        value:
+          $ref: '#/components/schemas/Money'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        channel:
+          $ref: '#/components/schemas/Reference'
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+    Money:
+      type: object
+      description: A monetary value with currency code and amount in the smallest currency unit.
+      required:
+      - currencyCode
+      - centAmount
+      properties:
+        currencyCode:
+          type: string
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    Reference:
+      type: object
+      description: A reference to another resource by its typeId and id.
+      required:
+      - typeId
+      - id
+      properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource (e.g., 'product', 'category').
+        id:
+          type: string
+          description: The system-generated unique identifier of the referenced resource.
+    ProductVariant:
+      type: object
+      description: A product variant with SKU, attributes, prices, and images.
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: Variant ID unique within the product (starting at 1 for master).
+        sku:
+          type: string
+          description: Stock keeping unit identifier for this variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+          description: List of prices for different currencies, channels, and customer groups.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes as defined by the product type.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: List of images for this variant.
+    Image:
+      type: object
+      description: A product image with URL, dimensions, and optional label.
+      required:
+      - url
+      - dimensions
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the image.
+        dimensions:
+          type: object
+          description: Pixel dimensions of the image.
+          required:
+          - w
+          - h
+          properties:
+            w:
+              type: integer
+              description: Image width in pixels.
+            h:
+              type: integer
+              description: Image height in pixels.
+        label:
+          type: string
+          description: Optional label for the image.
+    OrderImport:
+      type: object
+      description: A single order resource for import, bypassing normal checkout flow.
+      required:
+      - orderNumber
+      - totalPrice
+      - lineItems
+      properties:
+        orderNumber:
+          type: string
+          description: User-defined order number used as the key for matching.
+        customerId:
+          type: string
+          description: ID of the customer who placed the order.
+        customerEmail:
+          type: string
+          format: email
+          description: Email of the customer.
+        lineItems:
+          type: array
+          items:
+            type: object
+          description: Line items in the order.
+        totalPrice:
+          type: object
+          description: Total price of the order.
+        orderState:
+          type: string
+          enum:
+          - Open
+          - Confirmed
+          - Complete
+          - Cancelled
+          description: Initial state of the imported order.
+        shipmentState:
+          type: string
+          description: Initial shipment state of the order.
+        paymentState:
+          type: string
+          description: Initial payment state of the order.
+    Attribute:
+      type: object
+      description: A name-value pair representing a product attribute as defined by the product type.
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Attribute name as defined in the product type.
+        value:
+          description: Attribute value. Type depends on the attribute type definition.
+    OrderUpdate:
+      type: object
+      description: Request body for updating an order.
+      required:
+      - version
+      - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the order.
+    LineItem:
+      type: object
+      description: A product line item in a cart or order with quantity, pricing, and discount information.
+      required:
+      - id
+      - productId
+      - name
+      - variant
+      - price
+      - totalPrice
+      - quantity
+      - lineItemMode
+      - priceMode
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item within the cart.
+        productId:
+          type: string
+          description: ID of the product this line item references.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        variant:
+          $ref: '#/components/schemas/ProductVariant'
+        price:
+          $ref: '#/components/schemas/Price'
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        quantity:
+          type: integer
+          minimum: 1
+          description: Quantity of this product variant in the cart.
+        lineItemMode:
+          type: string
+          enum:
+          - Standard
+          - GiftLineItem
+          description: Whether this is a standard or gift line item.
+        priceMode:
+          type: string
+          enum:
+          - Platform
+          - ExternalTotal
+          - ExternalPrice
+          description: How the price for this line item is determined.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ImportOperationStatus:
+      type: object
+      description: The initial status of a single resource submission in an import batch.
+      required:
+      - resourceKey
+      - state
+      properties:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
+    OrderFromCartDraft:
+      type: object
+      description: Request body for creating an order from an existing cart.
+      required:
+      - cart
+      - version
+      properties:
+        cart:
+          $ref: '#/components/schemas/Reference'
+        version:
+          type: integer
+          description: Current version of the cart being converted to an order.
+        orderNumber:
+          type: string
+          description: User-defined order number for the created order.
+        paymentState:
+          type: string
+          enum:
+          - Paid
+          - Pending
+          - Failed
+          - CreditOwed
+          - BalanceDue
+          description: Initial payment state of the order.
+        orderState:
+          type: string
+          enum:
+          - Open
+          - Confirmed
+          - Complete
+          - Cancelled
+          description: Initial order state of the created order.
+    Order:
+      type: object
+      description: An order created from a cart after checkout, containing immutable line items, pricing, and fulfillment data.
+      required:
+      - id
+      - version
+      - orderState
+      - lineItems
+      - customLineItems
+      - totalPrice
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        orderNumber:
+          type: string
+          description: User-defined order number for human-readable identification.
+        customerId:
+          type: string
+          description: ID of the customer who placed the order.
+        customerEmail:
+          type: string
+          format: email
+          description: Email of the customer at time of order.
+        orderState:
+          type: string
+          enum:
+          - Open
+          - Confirmed
+          - Complete
+          - Cancelled
+          description: Current high-level state of the order.
+        shipmentState:
+          type: string
+          enum:
+          - Shipped
+          - Ready
+          - Pending
+          - Delayed
+          - Partial
+          - Backorder
+          description: Current fulfillment state of the order.
+        paymentState:
+          type: string
+          enum:
+          - Paid
+          - Pending
+          - Failed
+          - CreditOwed
+          - BalanceDue
+          description: Current payment state of the order.
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: Line items captured at time of order creation.
+        customLineItems:
+          type: array
+          items:
+            type: object
+          description: Custom line items captured at time of order creation.
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the order was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the order was last modified.
+    OrderImportRequest:
+      type: object
+      description: A batch of order resources to import.
+      required:
+      - type
+      - resources
+      properties:
+        type:
+          type: string
+          enum:
+          - order
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/OrderImport'
+          description: Up to 20 order resources.
+    LocalizedString:
+      type: object
+      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
+      additionalProperties:
+        type: string
+  parameters:
+    sortQuery:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
+    where:
+      name: where
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    projectKey_2:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+    expand:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
+    version:
+      name: version
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Current version of the resource for optimistic concurrency control.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 10000
+        default: 0
+      description: Number of results to skip for pagination. Maximum 10000.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return. Defaults to 20, maximum 500.
+  responses:
+    BadRequest_2:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview

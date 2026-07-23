@@ -1,0 +1,319 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History Carts ImportContainers API
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+servers:
+- url: https://history.{region}.commercetools.com
+  description: Production Change History Server
+  variables:
+    region:
+      default: us-central1.gcp
+      enum:
+      - us-central1.gcp
+      - us-east-2.aws
+      - europe-west1.gcp
+      - eu-central-1.aws
+      - australia-southeast1.gcp
+      description: The deployment region.
+security:
+- bearerAuth: []
+tags:
+- name: ImportContainers
+  description: Manage import containers that hold import requests before processing.
+paths:
+  /{projectKey}/import-containers:
+    get:
+      operationId: listImportContainers
+      summary: List import containers
+      description: Returns a paginated list of all import containers in the project. Import containers are the primary organizational unit for grouping related import requests. Each project can have up to 1,000 containers.
+      tags:
+      - ImportContainers
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: A paged list of import containers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainerPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createImportContainer
+      summary: Create an import container
+      description: Creates a new import container. The container acts as a namespace for related import operations. A maximum of 1,000 containers can be created per project. Optimal performance is maintained under 200,000 import operations per container.
+      tags:
+      - ImportContainers
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportContainerDraft'
+      responses:
+        '201':
+          description: The created import container.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/import-containers/{importContainerKey}:
+    get:
+      operationId: getImportContainerByKey
+      summary: Get an import container by key
+      description: Retrieves an import container by its user-defined key, including its resource type scope and version information.
+      tags:
+      - ImportContainers
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/importContainerKey'
+      responses:
+        '200':
+          description: The requested import container.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainer'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateImportContainerByKey
+      summary: Update an import container by key
+      description: Replaces the import container identified by the given key with the provided draft. The key itself cannot be changed.
+      tags:
+      - ImportContainers
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/importContainerKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportContainerDraft'
+      responses:
+        '200':
+          description: The updated import container.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainer'
+    delete:
+      operationId: deleteImportContainerByKey
+      summary: Delete an import container by key
+      description: Permanently deletes the import container with the given key. All associated import operations and their status records are also removed.
+      tags:
+      - ImportContainers
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/importContainerKey'
+      responses:
+        '200':
+          description: The deleted import container.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportContainer'
+  /{projectKey}/import-containers/{importContainerKey}/import-summary:
+    get:
+      operationId: getImportContainerSummary
+      summary: Get import summary for a container
+      description: Returns aggregated statistics for all import operations in the given container, grouped by processing state (Accepted, ValidationFailed, Unresolved, WaitForMasterVariant, Imported, Rejected, Cancelled).
+      tags:
+      - ImportContainers
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/importContainerKey'
+      responses:
+        '200':
+          description: The import summary with operation counts by state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportSummary'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ImportSummary:
+      type: object
+      description: Aggregated counts of import operations grouped by processing state.
+      required:
+      - states
+      - total
+      properties:
+        states:
+          type: object
+          description: Map of import operation state names to their counts.
+          properties:
+            Accepted:
+              type: integer
+              description: Number of operations accepted and queued for processing.
+            ValidationFailed:
+              type: integer
+              description: Number of operations that failed schema or data validation.
+            Unresolved:
+              type: integer
+              description: Number of operations waiting for referenced resources to be created.
+            WaitForMasterVariant:
+              type: integer
+              description: Number of variant operations waiting for the master variant.
+            Imported:
+              type: integer
+              description: Number of operations successfully imported.
+            Rejected:
+              type: integer
+              description: Number of operations permanently rejected after retry exhaustion.
+            Cancelled:
+              type: integer
+              description: Number of operations cancelled before processing.
+        total:
+          type: integer
+          description: Total number of import operations in the container.
+    ImportContainerPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of import containers.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportContainer'
+    ImportContainerDraft:
+      type: object
+      description: Request body for creating or replacing an import container.
+      required:
+      - key
+      properties:
+        key:
+          type: string
+          description: User-defined unique key (2-256 characters, alphanumeric with hyphens/underscores).
+        resourceType:
+          type: string
+          description: Optional resource type scope for the container.
+    ImportContainer:
+      type: object
+      description: A container that groups related import requests for a specific resource type.
+      required:
+      - key
+      - version
+      - resourceType
+      properties:
+        key:
+          type: string
+          description: User-defined unique key for the container (2-256 characters).
+        version:
+          type: integer
+          description: Current version of the import container.
+        resourceType:
+          type: string
+          description: The resource type this container is scoped to (e.g., 'product', 'category').
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the container was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the container was last modified.
+  responses:
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of results to skip for pagination.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview

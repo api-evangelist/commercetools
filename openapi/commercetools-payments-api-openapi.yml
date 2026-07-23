@@ -1,0 +1,412 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History Carts Payments API
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+servers:
+- url: https://history.{region}.commercetools.com
+  description: Production Change History Server
+  variables:
+    region:
+      default: us-central1.gcp
+      enum:
+      - us-central1.gcp
+      - us-east-2.aws
+      - europe-west1.gcp
+      - eu-central-1.aws
+      - australia-southeast1.gcp
+      description: The deployment region.
+security:
+- bearerAuth: []
+tags:
+- name: Payments
+  description: Track payment transactions and PSP interactions associated with orders.
+paths:
+  /{projectKey}/payments:
+    get:
+      operationId: listPayments
+      summary: List payments
+      description: Returns a paginated list of payments in the project. Supports filtering by customer, interface ID, and other predicates. Payments track financial transactions and PSP interactions associated with orders.
+      tags:
+      - Payments
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - $ref: '#/components/parameters/where'
+      - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A paged list of payments.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPayment
+      summary: Create a payment
+      description: Creates a new payment resource representing intent to pay a specific amount. The payment records PSP details, method information, and transaction history. Payments are linked to orders via the cart or order update actions.
+      tags:
+      - Payments
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentDraft'
+      responses:
+        '201':
+          description: The created payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /{projectKey}/payments/{id}:
+    get:
+      operationId: getPaymentById
+      summary: Get a payment by ID
+      description: Retrieves a single payment by its system-generated ID, including all transactions, interface interactions, payment method info, and current status.
+      tags:
+      - Payments
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: The requested payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updatePaymentById
+      summary: Update a payment by ID
+      description: Applies update actions to the payment with the given ID. Supported actions include adding transactions, setting the payment status, adding interface interactions, and setting custom fields.
+      tags:
+      - Payments
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentUpdate'
+      responses:
+        '200':
+          description: The updated payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+components:
+  schemas:
+    PaymentStatus:
+      type: object
+      description: The current status of a payment including PSP-specific state information.
+      properties:
+        interfaceCode:
+          type: string
+          description: PSP-specific status code.
+        interfaceText:
+          type: string
+          description: PSP-specific status message.
+        state:
+          $ref: '#/components/schemas/Reference'
+    Transaction:
+      type: object
+      description: A single financial transaction within a payment (authorization, charge, refund, etc.).
+      required:
+      - id
+      - type
+      - amount
+      - state
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the transaction.
+        timestamp:
+          type: string
+          format: date-time
+          description: When the transaction was processed.
+        type:
+          type: string
+          enum:
+          - Authorization
+          - CancelAuthorization
+          - Charge
+          - Refund
+          - Chargeback
+          description: The type of financial transaction.
+        amount:
+          $ref: '#/components/schemas/Money'
+        interactionId:
+          type: string
+          description: PSP-provided identifier for this transaction.
+        state:
+          type: string
+          enum:
+          - Initial
+          - Pending
+          - Success
+          - Failure
+          description: Current processing state of the transaction.
+    Payment:
+      type: object
+      description: A payment resource tracking financial transactions and PSP interactions for an order.
+      required:
+      - id
+      - version
+      - amountPlanned
+      - paymentMethodInfo
+      - transactions
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        interfaceId:
+          type: string
+          description: Payment identifier as reported by the PSP.
+        amountPlanned:
+          $ref: '#/components/schemas/Money'
+        paymentMethodInfo:
+          $ref: '#/components/schemas/PaymentMethodInfo'
+        paymentStatus:
+          $ref: '#/components/schemas/PaymentStatus'
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          description: List of financial transactions associated with this payment.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the payment was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the payment was last modified.
+    Money:
+      type: object
+      description: A monetary value with currency code and amount in the smallest currency unit.
+      required:
+      - currencyCode
+      - centAmount
+      properties:
+        currencyCode:
+          type: string
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
+    Reference:
+      type: object
+      description: A reference to another resource by its typeId and id.
+      required:
+      - typeId
+      - id
+      properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource (e.g., 'product', 'category').
+        id:
+          type: string
+          description: The system-generated unique identifier of the referenced resource.
+    PaymentUpdate:
+      type: object
+      description: Request body for updating a payment.
+      required:
+      - version
+      - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the payment.
+    PaymentDraft:
+      type: object
+      description: Request body for creating a new payment.
+      required:
+      - amountPlanned
+      properties:
+        key:
+          type: string
+          description: User-defined unique key for the payment.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        interfaceId:
+          type: string
+          description: PSP payment identifier.
+        amountPlanned:
+          $ref: '#/components/schemas/Money'
+        paymentMethodInfo:
+          $ref: '#/components/schemas/PaymentMethodInfo'
+        transactions:
+          type: array
+          items:
+            type: object
+          description: Initial transactions to create with the payment.
+    PaymentPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of payments.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+    LocalizedString:
+      type: object
+      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
+      additionalProperties:
+        type: string
+    PaymentMethodInfo:
+      type: object
+      description: Information about the payment method and PSP used for a payment.
+      properties:
+        paymentInterface:
+          type: string
+          description: Identifier of the PSP or payment interface.
+        method:
+          type: string
+          description: Payment method identifier (e.g., 'creditcard', 'paypal').
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return. Defaults to 20, maximum 500.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
+    where:
+      name: where
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    expand:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 10000
+        default: 0
+      description: Number of results to skip for pagination. Maximum 10000.
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview

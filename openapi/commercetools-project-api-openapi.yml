@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History Carts Project API
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+servers:
+- url: https://history.{region}.commercetools.com
+  description: Production Change History Server
+  variables:
+    region:
+      default: us-central1.gcp
+      enum:
+      - us-central1.gcp
+      - us-east-2.aws
+      - europe-west1.gcp
+      - eu-central-1.aws
+      - australia-southeast1.gcp
+      description: The deployment region.
+security:
+- bearerAuth: []
+tags:
+- name: Project
+  description: Read and configure project-level settings including currencies, languages, and messages.
+paths:
+  /{projectKey}:
+    get:
+      operationId: getProject
+      summary: Get project settings
+      description: Retrieves the project settings including languages, currencies, countries, messaging configuration, and search indexing settings. The project key in the path must match the authenticated API client's project.
+      tags:
+      - Project
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      responses:
+        '200':
+          description: The project settings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Project:
+      type: object
+      description: The project resource containing global configuration for languages, currencies, countries, and features.
+      required:
+      - key
+      - name
+      - currencies
+      - languages
+      - countries
+      properties:
+        key:
+          type: string
+          description: The unique project key.
+        name:
+          type: string
+          description: Human-readable name of the project.
+        currencies:
+          type: array
+          items:
+            type: string
+            pattern: ^[A-Z]{3}$
+          description: ISO 4217 currency codes enabled for the project.
+        languages:
+          type: array
+          items:
+            type: string
+          description: IETF language tags enabled for the project.
+        countries:
+          type: array
+          items:
+            type: string
+          description: ISO 3166-1 alpha-2 country codes enabled for the project.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the project was created.
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
+  responses:
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview

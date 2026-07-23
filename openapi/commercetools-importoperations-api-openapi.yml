@@ -1,0 +1,240 @@
+openapi: 3.1.0
+info:
+  title: commercetools Change History Carts ImportOperations API
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  version: '1.0'
+  contact:
+    name: commercetools Support
+    url: https://support.commercetools.com
+  termsOfService: https://commercetools.com/terms-conditions
+servers:
+- url: https://history.{region}.commercetools.com
+  description: Production Change History Server
+  variables:
+    region:
+      default: us-central1.gcp
+      enum:
+      - us-central1.gcp
+      - us-east-2.aws
+      - europe-west1.gcp
+      - eu-central-1.aws
+      - australia-southeast1.gcp
+      description: The deployment region.
+security:
+- bearerAuth: []
+tags:
+- name: ImportOperations
+  description: Monitor the status of individual import operations.
+paths:
+  /{projectKey}/import-containers/{importContainerKey}/import-operations:
+    get:
+      operationId: listImportOperations
+      summary: List import operations in a container
+      description: Returns a paginated list of import operations for the given container. Import operations track the processing status of individual resources within an import request. Supports filtering by state.
+      tags:
+      - ImportOperations
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/importContainerKey'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          - Unresolved
+          - WaitForMasterVariant
+          - Imported
+          - Rejected
+          - Cancelled
+        description: Filter operations by their current processing state.
+      responses:
+        '200':
+          description: A paged list of import operations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportOperationPagedQueryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{projectKey}/import-containers/{importContainerKey}/import-operations/{id}:
+    get:
+      operationId: getImportOperationById
+      summary: Get an import operation by ID
+      description: Retrieves a single import operation by its ID. The operation record includes the processing state, any validation errors, and a reference to the resource that was imported or failed validation.
+      tags:
+      - ImportOperations
+      parameters:
+      - $ref: '#/components/parameters/projectKey'
+      - $ref: '#/components/parameters/importContainerKey'
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: The requested import operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportOperation'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    ImportOperationPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of import operations.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperation'
+    ImportOperation:
+      type: object
+      description: A record tracking the processing status of a single resource within an import request.
+      required:
+      - version
+      - importContainerKey
+      - resourceKey
+      - state
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier for the operation.
+        version:
+          type: integer
+          description: Current version of the import operation record.
+        importContainerKey:
+          type: string
+          description: Key of the container this operation belongs to.
+        resourceKey:
+          type: string
+          description: User-defined key of the resource being imported.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          - Unresolved
+          - WaitForMasterVariant
+          - Imported
+          - Rejected
+          - Cancelled
+          description: Current processing state of the import operation.
+        resourceType:
+          type: string
+          description: The type of resource being imported.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Validation or processing errors if the operation failed.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the operation was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the operation was last modified.
+  responses:
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of results to skip for pagination.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique identifier of the resource.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+externalDocs:
+  description: commercetools Change History API Documentation
+  url: https://docs.commercetools.com/api/history/overview
