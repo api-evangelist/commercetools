@@ -9,35 +9,26 @@ tags:
 - REST
 - SDK
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/commercetools.png
 access: 3rd-Party
 position: Consumer
 kind: company
 created: '2025-09-15'
 modified: '2026-05-19'
 apis:
-- aid: commercetools:http-api
-  name: Commercetools HTTP API
-  tags:
-  - Commerce
-  - Composable Commerce
-  - E-Commerce
-  - REST
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.{region}.commercetools.com
-  humanURL: https://docs.commercetools.com/api
-  properties:
-  - url: https://docs.commercetools.com/api
-    type: Documentation
-  - url: openapi/commercetools-http-api-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/commercetools-subscriptions-asyncapi.yml
-    type: AsyncAPI
-  description: >-
-    The commercetools HTTP API is the core REST interface for programmatic access to all data and functionality within
-    a Composable Commerce project. It covers a broad range of commerce resources including products, product types,
-    categories, carts, orders, customers, payments, discounts, inventory, shipping methods, stores, and business
-    units. All resources follow RESTful conventions using standard HTTP verbs and return JSON responses.
 - aid: commercetools:graphql-api
   name: Commercetools GraphQL API
   tags:
@@ -54,50 +45,10 @@ apis:
   - url: graphql/commercetools-graphql.md
     type: GraphQL
   description: >-
-    The commercetools GraphQL API provides a flexible, network-efficient alternative to the HTTP API for querying and
-    mutating Composable Commerce resources. It exposes a single endpoint and allows clients to request exactly the
-    data they need, reducing over-fetching and minimizing round trips. The GraphQL API uses the same API clients,
-    authentication tokens, and project scopes as the HTTP API.
-- aid: commercetools:import-api
-  name: Commercetools Import API
-  tags:
-  - Bulk Operations
-  - Commerce
-  - Data Migration
-  - Import
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://import.{region}.commercetools.com
-  humanURL: https://docs.commercetools.com/api/import-export/overview
-  properties:
-  - url: https://docs.commercetools.com/api/import-export/overview
-    type: Documentation
-  - url: openapi/commercetools-import-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project. It
-    supports importing categories, product types, products, product variants, prices, inventory entries, orders, and
-    customers. Imports are processed asynchronously through import containers, and the API provides endpoints for
-    monitoring import operation status and handling validation errors.
-- aid: commercetools:change-history-api
-  name: Commercetools Change History API
-  tags:
-  - Audit Log
-  - Change History
-  - Commerce
-  - Compliance
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://history.{region}.commercetools.com
-  humanURL: https://docs.commercetools.com/api/history/overview
-  properties:
-  - url: https://docs.commercetools.com/api/history/overview
-    type: Documentation
-  - url: openapi/commercetools-change-history-api-openapi.yml
-    type: OpenAPI
-  description: >-
-    The commercetools Change History API provides a queryable audit log of all changes made to resources within a
-    Composable Commerce project. It records mutations applied to resources such as products, orders, customers,
-    discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate
-    regional endpoints and supports filtering by resource type, date range, user, and client.
+    The commercetools GraphQL API provides a flexible, network-efficient alternative to the HTTP API for
+    querying and mutating Composable Commerce resources. It exposes a single endpoint and allows clients
+    to request exactly the data they need, reducing over-fetching and minimizing round trips. The GraphQL
+    API uses the same API clients, authentication tokens, and project scopes as the HTTP API.
 - aid: commercetools:typescript-sdk
   name: Commercetools TypeScript SDK
   tags:
@@ -112,10 +63,10 @@ apis:
   - url: https://docs.commercetools.com/sdk/typescript-sdk
     type: Documentation
   description: >-
-    The commercetools TypeScript SDK is the official client library for interacting with the Composable Commerce HTTP
-    API, Import API, and GraphQL API from JavaScript and TypeScript applications. It provides full type safety, IDE
-    autocompletion, and a fluent domain-specific language for constructing valid API requests. The SDK handles OAuth
-    2.0 token management, request building, and response deserialization.
+    The commercetools TypeScript SDK is the official client library for interacting with the Composable
+    Commerce HTTP API, Import API, and GraphQL API from JavaScript and TypeScript applications. It provides
+    full type safety, IDE autocompletion, and a fluent domain-specific language for constructing valid
+    API requests. The SDK handles OAuth 2.0 token management, request building, and response deserialization.
 - aid: commercetools:java-sdk
   name: Commercetools Java SDK
   tags:
@@ -130,11 +81,11 @@ apis:
   - url: https://docs.commercetools.com/sdk/java-sdk
     type: Documentation
   description: >-
-    The commercetools Java SDK is the official client library for accessing the Composable Commerce APIs from Java
-    applications. It provides strongly typed request builders, automatic OAuth 2.0 token management, and support for
-    all HTTP API and Import API endpoints. The SDK is compatible with standard Java development toolchains and is
-    distributed via Maven Central. It is commonly used in enterprise backend systems and microservices that require
-    JVM-based integration with the commercetools platform.
+    The commercetools Java SDK is the official client library for accessing the Composable Commerce APIs
+    from Java applications. It provides strongly typed request builders, automatic OAuth 2.0 token management,
+    and support for all HTTP API and Import API endpoints. The SDK is compatible with standard Java development
+    toolchains and is distributed via Maven Central. It is commonly used in enterprise backend systems
+    and microservices that require JVM-based integration with the commercetools platform.
 - aid: commercetools:checkout-api
   name: Commercetools Checkout API
   tags:
@@ -149,11 +100,11 @@ apis:
   - url: https://docs.commercetools.com/checkout
     type: Documentation
   description: >-
-    The commercetools Checkout API provides programmatic control over Checkout application configurations within
-    Composable Commerce. The Checkout Applications API allows developers to create, update, and manage Checkout
-    applications without manual setup in the Merchant Center, enabling automated deployment and configuration across
-    multiple stores, regions, and business units. Checkout integrates with payment connectors available through the
-    Connect marketplace.
+    The commercetools Checkout API provides programmatic control over Checkout application configurations
+    within Composable Commerce. The Checkout Applications API allows developers to create, update, and
+    manage Checkout applications without manual setup in the Merchant Center, enabling automated deployment
+    and configuration across multiple stores, regions, and business units. Checkout integrates with payment
+    connectors available through the Connect marketplace.
 - aid: commercetools:merchant-center-customizations-api
   name: Commercetools Merchant Center Customizations API
   tags:
@@ -163,16 +114,270 @@ apis:
   - Merchant Center
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
-  humanURL: https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
+  humanURL: >-
+    https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
   properties:
-  - url: https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
+  - url: >-
+      https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
     type: Documentation
   description: >-
-    The commercetools Merchant Center Customizations API provides the programmatic interface for building custom
-    applications and UI extensions within the Merchant Center. It exposes proxy endpoints to underlying REST and
-    GraphQL APIs, allowing custom UIs to interact with Composable Commerce resources in a secure, scoped manner.
-    Developers use this API when creating Custom Applications that extend the Merchant Center with business-specific
-    tooling.
+    The commercetools Merchant Center Customizations API provides the programmatic interface for building
+    custom applications and UI extensions within the Merchant Center. It exposes proxy endpoints to underlying
+    REST and GraphQL APIs, allowing custom UIs to interact with Composable Commerce resources in a secure,
+    scoped manner. Developers use this API when creating Custom Applications that extend the Merchant
+    Center with business-specific tooling.
+- aid: commercetools:commercetools-carts-api
+  name: commercetools Carts API
+  description: Manage shopping carts with line items, discounts, shipping, and tax calculations.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Carts
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-carts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-categories-api
+  name: commercetools Categories API
+  description: Organize products into hierarchical category structures.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-categories-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-changehistory-api
+  name: commercetools ChangeHistory API
+  description: Query the audit log of resource changes across the project.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - ChangeHistory
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-changehistory-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-customers-api
+  name: commercetools Customers API
+  description: Manage customer accounts, addresses, authentication, and group assignments.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-importcontainers-api
+  name: commercetools ImportContainers API
+  description: Manage import containers that hold import requests before processing.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - ImportContainers
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-importcontainers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-importoperations-api
+  name: commercetools ImportOperations API
+  description: Monitor the status of individual import operations.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - ImportOperations
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-importoperations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-inventory-api
+  name: commercetools Inventory API
+  description: Manage inventory entries tracking stock levels per channel and SKU.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-inventory-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-orders-api
+  name: commercetools Orders API
+  description: Create and manage orders resulting from cart checkouts or quotes.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-payments-api
+  name: commercetools Payments API
+  description: Track payment transactions and PSP interactions associated with orders.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-products-api
+  name: commercetools Products API
+  description: Manage product catalog entries including variants, images, prices, and attributes.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-products-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-productvariants-api
+  name: commercetools ProductVariants API
+  description: Import product variant resources into the project.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - ProductVariants
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-productvariants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-project-api
+  name: commercetools Project API
+  description: Read and configure project-level settings including currencies, languages, and messages.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Project
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-project-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-standaloneprices-api
+  name: commercetools StandalonePrices API
+  description: Import standalone price resources into the project.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - StandalonePrices
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-standaloneprices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-subscriptions-api
+  name: commercetools Subscriptions API
+  description: The Subscriptions API from commercetools — 2 operation(s) for subscriptions.
+  humanURL: https://docs.commercetools.com/api
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
 common:
 - type: AgenticAccess
   url: agentic-access/commercetools-agentic-access.yml
