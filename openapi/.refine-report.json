@@ -1,0 +1,40 @@
+{
+  "provider": "commercetools",
+  "sources": [
+    "commercetools-carts-api-openapi.yml",
+    "commercetools-categories-api-openapi.yml",
+    "commercetools-changehistory-api-openapi.yml",
+    "commercetools-customers-api-openapi.yml",
+    "commercetools-importcontainers-api-openapi.yml",
+    "commercetools-importoperations-api-openapi.yml",
+    "commercetools-inventory-api-openapi.yml",
+    "commercetools-orders-api-openapi.yml",
+    "commercetools-payments-api-openapi.yml",
+    "commercetools-products-api-openapi.yml",
+    "commercetools-productvariants-api-openapi.yml",
+    "commercetools-project-api-openapi.yml",
+    "commercetools-standaloneprices-api-openapi.yml",
+    "commercetools-subscriptions-api-openapi.yml"
+  ],
+  "outputs": [
+    "commercetools-carts-api-openapi.yml",
+    "commercetools-categories-api-openapi.yml",
+    "commercetools-changehistory-api-openapi.yml",
+    "commercetools-customers-api-openapi.yml",
+    "commercetools-importcontainers-api-openapi.yml",
+    "commercetools-importoperations-api-openapi.yml",
+    "commercetools-inventory-api-openapi.yml",
+    "commercetools-orders-api-openapi.yml",
+    "commercetools-payments-api-openapi.yml",
+    "commercetools-products-api-openapi.yml",
+    "commercetools-productvariants-api-openapi.yml",
+    "commercetools-project-api-openapi.yml",
+    "commercetools-standaloneprices-api-openapi.yml",
+    "commercetools-subscriptions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
