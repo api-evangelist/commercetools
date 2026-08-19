@@ -439,7 +439,7 @@ integrations:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 description: >-
   commercetools is the leading composable, headless, API-first Commerce platform powering large-scale B2C, B2B, and
   marketplace digital commerce for enterprise brands. The platform exposes a broad API surface organized into the HTTP
