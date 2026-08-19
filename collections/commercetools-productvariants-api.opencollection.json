@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools Change History Carts ProductVariants API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ProductVariants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import product variants",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://history.{region}.commercetools.com/:projectKey/product-variants/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of product variant import requests for asynchronous processing. Variants are matched to products by the product key reference. Each request accepts up to 20 variant resources."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

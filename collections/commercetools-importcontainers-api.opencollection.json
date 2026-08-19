@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools Change History Carts ImportContainers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ImportContainers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List import containers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/import-containers",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all import containers in the project. Import containers are the primary organizational unit for grouping related import requests. Each project can have up to 1,000 containers."
+        },
+        {
+          "info": {
+            "name": "Create an import container",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://history.{region}.commercetools.com/:projectKey/import-containers",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new import container. The container acts as a namespace for related import operations. A maximum of 1,000 containers can be created per project. Optimal performance is maintained under 200,000 import operations per container."
+        },
+        {
+          "info": {
+            "name": "Get an import container by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ]
+          },
+          "docs": "Retrieves an import container by its user-defined key, including its resource type scope and version information."
+        },
+        {
+          "info": {
+            "name": "Update an import container by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://history.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the import container identified by the given key with the provided draft. The key itself cannot be changed."
+        },
+        {
+          "info": {
+            "name": "Delete an import container by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://history.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the import container with the given key. All associated import operations and their status records are also removed."
+        },
+        {
+          "info": {
+            "name": "Get import summary for a container",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey/import-summary",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ]
+          },
+          "docs": "Returns aggregated statistics for all import operations in the given container, grouped by processing state (Accepted, ValidationFailed, Unresolved, WaitForMasterVariant, Imported, Rejected, Cancelled)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

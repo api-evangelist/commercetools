@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools Change History Carts API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Carts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List carts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/carts",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of carts in the project. Supports filtering by customer ID, cart state, store key, and other predicates. Active carts are retained based on project-configured retention policies."
+        },
+        {
+          "info": {
+            "name": "Create a cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://history.{region}.commercetools.com/:projectKey/carts",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new shopping cart. The cart can be associated with a customer or anonymous session, assigned to a specific store, and configured with tax mode, inventory mode, and shipping mode settings."
+        },
+        {
+          "info": {
+            "name": "Get a cart by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/carts/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Retrieves a single cart by its system-generated ID, including all line items, applied discounts, shipping methods, and tax calculations."
+        },
+        {
+          "info": {
+            "name": "Update a cart by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://history.{region}.commercetools.com/:projectKey/carts/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies update actions to the cart with the given ID. Common actions include adding or removing line items, setting shipping addresses, applying discount codes, and setting customer details."
+        },
+        {
+          "info": {
+            "name": "Delete a cart by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://history.{region}.commercetools.com/:projectKey/carts/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Current version of the resource for optimistic concurrency control."
+              }
+            ]
+          },
+          "docs": "Permanently deletes the cart with the given ID. The current version must be provided. Carts in the Ordered state cannot be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

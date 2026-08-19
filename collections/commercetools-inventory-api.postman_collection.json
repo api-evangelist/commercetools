@@ -1,0 +1,692 @@
+{
+  "item": [
+    {
+      "id": "54b20927-9a1d-42ed-badc-8868ac89358e",
+      "name": "Inventory",
+      "description": {
+        "content": "Manage inventory entries tracking stock levels per channel and SKU.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d4825936-c83b-4be2-bd26-39ec2292b37f",
+          "name": "List inventory entries",
+          "request": {
+            "name": "List inventory entries",
+            "description": {
+              "content": "Returns a paginated list of inventory entries. Each entry tracks the available quantity and restockable quantity for a specific SKU, optionally scoped to a supply channel. Supports filtering and sorting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination. Maximum 10000."
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+                },
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90b90247-5673-4835-92b3-47f7db464c52",
+              "name": "A paged list of inventory entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 9476,\n  \"offset\": 9238,\n  \"count\": 2887,\n  \"total\": 4778,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"version\": 4821,\n      \"sku\": \"string\",\n      \"quantityOnStock\": 4423,\n      \"availableQuantity\": 829,\n      \"key\": \"string\",\n      \"supplyChannel\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"restockableInDays\": 3022,\n      \"expectedDelivery\": \"2017-07-09T17:13:14.947Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"version\": 7867,\n      \"sku\": \"string\",\n      \"quantityOnStock\": 4174,\n      \"availableQuantity\": 7219,\n      \"key\": \"string\",\n      \"supplyChannel\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"restockableInDays\": 7893,\n      \"expectedDelivery\": \"2017-07-28T07:21:24.337Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d4068ce-7fd2-41b1-bc4d-6e8a0318a409",
+              "name": "The request lacked valid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 4484,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "900695f4-2417-44d8-b672-5544c3f3797c",
+          "name": "Create an inventory entry",
+          "request": {
+            "name": "Create an inventory entry",
+            "description": {
+              "content": "Creates a new inventory entry for a given SKU. The entry can be scoped to a supply channel for multi-warehouse tracking. Optionally set expected delivery dates and restockable quantities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"<string>\",\n  \"quantityOnStock\": \"<integer>\",\n  \"key\": \"<string>\",\n  \"supplyChannel\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"restockableInDays\": \"<integer>\",\n  \"expectedDelivery\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b028129-2003-4b87-8354-b99cb1c0fe52",
+              "name": "The created inventory entry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"<string>\",\n  \"quantityOnStock\": \"<integer>\",\n  \"key\": \"<string>\",\n  \"supplyChannel\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"restockableInDays\": \"<integer>\",\n  \"expectedDelivery\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"version\": 2209,\n  \"sku\": \"string\",\n  \"quantityOnStock\": 9568,\n  \"availableQuantity\": 1047,\n  \"key\": \"string\",\n  \"supplyChannel\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"restockableInDays\": 885,\n  \"expectedDelivery\": \"1989-06-16T08:25:37.944Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e7726ab-963a-47a2-abb5-b88b64e119af",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sku\": \"<string>\",\n  \"quantityOnStock\": \"<integer>\",\n  \"key\": \"<string>\",\n  \"supplyChannel\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"restockableInDays\": \"<integer>\",\n  \"expectedDelivery\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2964,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18e15547-b910-4c74-ba18-fdc91c763870",
+          "name": "Import inventory entries",
+          "request": {
+            "name": "Import inventory entries",
+            "description": {
+              "content": "Submits a batch of inventory entry import requests for asynchronous processing. Inventory entries are matched by SKU and supply channel for upsert behavior.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "inventories",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"quantityOnStock\": \"<integer>\",\n      \"supplyChannel\": \"<object>\",\n      \"restockableInDays\": \"<integer>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"quantityOnStock\": \"<integer>\",\n      \"supplyChannel\": \"<object>\",\n      \"restockableInDays\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46d1ec3d-87d9-47b4-ac98-aa7d96867631",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "inventories",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"quantityOnStock\": 4148,\n      \"supplyChannel\": {},\n      \"restockableInDays\": 5685\n    },\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"quantityOnStock\": 8661,\n      \"supplyChannel\": {},\n      \"restockableInDays\": 8026\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"Accepted\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"Accepted\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "463b7804-43bb-4c8e-83d9-40745a5b4aed",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "inventories",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"quantityOnStock\": 4148,\n      \"supplyChannel\": {},\n      \"restockableInDays\": 5685\n    },\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"quantityOnStock\": 8661,\n      \"supplyChannel\": {},\n      \"restockableInDays\": 8026\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 4484,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-central1.gcp",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://history.{{region}}.commercetools.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "683151b7-c624-4052-9506-727f593ee2be",
+    "name": "commercetools Change History Carts Inventory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.\n\nContact Support:\n Name: commercetools Support",
+      "type": "text/plain"
+    }
+  }
+}

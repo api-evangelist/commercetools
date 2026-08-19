@@ -1,0 +1,1194 @@
+{
+  "item": [
+    {
+      "id": "0d2a0af2-3ead-4aed-9f73-24412e2e1c4f",
+      "name": "Orders",
+      "description": {
+        "content": "Create and manage orders resulting from cart checkouts or quotes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38ec6d45-8b9e-44fe-b946-822aaf3b2579",
+          "name": "List orders",
+          "request": {
+            "name": "List orders",
+            "description": {
+              "content": "Returns a paginated list of orders in the project. Supports filtering by customer ID, order state, payment state, shipment state, and other predicates. Orders are created from carts upon successful checkout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination. Maximum 10000."
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3af84afb-5200-429e-a3cb-45675349c94c",
+              "name": "A paged list of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 8628,\n  \"offset\": 2872,\n  \"count\": 9533,\n  \"total\": 7276,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"version\": 5180,\n      \"orderState\": \"Cancelled\",\n      \"lineItems\": [\n        {\n          \"id\": \"string\",\n          \"productId\": \"string\",\n          \"name\": {\n            \"key_0\": \"string\"\n          },\n          \"variant\": {\n            \"id\": 4919,\n            \"sku\": \"string\",\n            \"key\": \"string\",\n            \"prices\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"attributes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"price\": {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1994-08-20T05:57:52.214Z\",\n            \"validUntil\": \"1982-03-07T19:00:57.690Z\"\n          },\n          \"totalPrice\": {\n            \"currencyCode\": \"REG\",\n            \"centAmount\": 4006,\n            \"fractionDigits\": 4124\n          },\n          \"quantity\": 9971,\n          \"lineItemMode\": \"Standard\",\n          \"priceMode\": \"ExternalTotal\"\n        },\n        {\n          \"id\": \"string\",\n          \"productId\": \"string\",\n          \"name\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"variant\": {\n            \"id\": 7544,\n            \"sku\": \"string\",\n            \"key\": \"string\",\n            \"prices\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"attributes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"price\": {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"2007-04-24T18:28:50.460Z\",\n            \"validUntil\": \"1953-08-09T11:31:13.513Z\"\n          },\n          \"totalPrice\": {\n            \"currencyCode\": \"SKH\",\n            \"centAmount\": 1902,\n            \"fractionDigits\": 9412\n          },\n          \"quantity\": 6489,\n          \"lineItemMode\": \"GiftLineItem\",\n          \"priceMode\": \"Platform\"\n        }\n      ],\n      \"totalPrice\": {\n        \"currencyCode\": \"IHZ\",\n        \"centAmount\": 3239,\n        \"fractionDigits\": 3825\n      },\n      \"orderNumber\": \"string\",\n      \"customerId\": \"string\",\n      \"customerEmail\": \"SxGBjagJUyIfo@XYCbsgJLyeRdmALbaCSS.klr\",\n      \"shipmentState\": \"Backorder\",\n      \"paymentState\": \"CreditOwed\",\n      \"billingAddress\": {\n        \"country\": \"string\",\n        \"id\": \"string\",\n        \"key\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"streetName\": \"string\",\n        \"streetNumber\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"region\": \"string\",\n        \"email\": \"Eoj7jRYf@cBysoorzbkGTJlQujmbxssqPDS.kygw\",\n        \"phone\": \"string\"\n      },\n      \"shippingAddress\": {\n        \"country\": \"string\",\n        \"id\": \"string\",\n        \"key\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"streetName\": \"string\",\n        \"streetNumber\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"region\": \"string\",\n        \"email\": \"zfdCZiScb5Ws@oLmVU.bw\",\n        \"phone\": \"string\"\n      },\n      \"createdAt\": \"1958-09-11T06:53:47.095Z\",\n      \"lastModifiedAt\": \"1950-05-13T06:55:48.193Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"version\": 5436,\n      \"orderState\": \"Confirmed\",\n      \"lineItems\": [\n        {\n          \"id\": \"string\",\n          \"productId\": \"string\",\n          \"name\": {\n            \"key_0\": \"string\"\n          },\n          \"variant\": {\n            \"id\": 4422,\n            \"sku\": \"string\",\n            \"key\": \"string\",\n            \"prices\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"attributes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"price\": {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"2014-10-11T03:31:10.473Z\",\n            \"validUntil\": \"2021-11-11T21:42:29.167Z\"\n          },\n          \"totalPrice\": {\n            \"currencyCode\": \"RUP\",\n            \"centAmount\": 1519,\n            \"fractionDigits\": 3116\n          },\n          \"quantity\": 8322,\n          \"lineItemMode\": \"Standard\",\n          \"priceMode\": \"ExternalTotal\"\n        },\n        {\n          \"id\": \"string\",\n          \"productId\": \"string\",\n          \"name\": {\n            \"key_0\": \"string\"\n          },\n          \"variant\": {\n            \"id\": 4439,\n            \"sku\": \"string\",\n            \"key\": \"string\",\n            \"prices\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"attributes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"images\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"price\": {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"2005-12-25T04:34:25.461Z\",\n            \"validUntil\": \"1950-08-09T02:36:30.639Z\"\n          },\n          \"totalPrice\": {\n            \"currencyCode\": \"USJ\",\n            \"centAmount\": 9691,\n            \"fractionDigits\": 1144\n          },\n          \"quantity\": 3631,\n          \"lineItemMode\": \"Standard\",\n          \"priceMode\": \"ExternalTotal\"\n        }\n      ],\n      \"totalPrice\": {\n        \"currencyCode\": \"PLH\",\n        \"centAmount\": 5669,\n        \"fractionDigits\": 1203\n      },\n      \"orderNumber\": \"string\",\n      \"customerId\": \"string\",\n      \"customerEmail\": \"XxGKcNSpwr@GHXepppZACUjjoPmUvZp.yeb\",\n      \"shipmentState\": \"Backorder\",\n      \"paymentState\": \"Failed\",\n      \"billingAddress\": {\n        \"country\": \"string\",\n        \"id\": \"string\",\n        \"key\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"streetName\": \"string\",\n        \"streetNumber\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"region\": \"string\",\n        \"email\": \"arqcLHWt@mFiYphzucxCCagCoRbvNGHWGXLsanL.spsq\",\n        \"phone\": \"string\"\n      },\n      \"shippingAddress\": {\n        \"country\": \"string\",\n        \"id\": \"string\",\n        \"key\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"streetName\": \"string\",\n        \"streetNumber\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"region\": \"string\",\n        \"email\": \"Y0hNxMEPhqRS@EApsLXmOV.sbzu\",\n        \"phone\": \"string\"\n      },\n      \"createdAt\": \"2014-06-22T08:01:52.297Z\",\n      \"lastModifiedAt\": \"1971-07-08T10:17:49.248Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35e45117-a20b-4e97-9dc6-c23441a19ad1",
+              "name": "The request lacked valid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2351,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d54af60e-9dca-4c63-b11f-277fcc7affe1",
+          "name": "Create an order from a cart",
+          "request": {
+            "name": "Create an order from a cart",
+            "description": {
+              "content": "Creates an order from an existing active cart. The cart is transitioned to the Ordered state. The request body requires the cart ID, version, and optionally an order number and payment state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cart\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"version\": \"<integer>\",\n  \"orderNumber\": \"<string>\",\n  \"paymentState\": \"<string>\",\n  \"orderState\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4538418-8415-4858-a7df-9cdbce6ef6e5",
+              "name": "The created order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cart\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"version\": \"<integer>\",\n  \"orderNumber\": \"<string>\",\n  \"paymentState\": \"<string>\",\n  \"orderState\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"version\": 6296,\n  \"orderState\": \"Open\",\n  \"lineItems\": [\n    {\n      \"id\": \"string\",\n      \"productId\": \"string\",\n      \"name\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"variant\": {\n        \"id\": 5428,\n        \"sku\": \"string\",\n        \"key\": \"string\",\n        \"prices\": [\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1997-02-07T01:02:37.054Z\",\n            \"validUntil\": \"1984-04-25T21:57:05.398Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"2001-11-25T00:35:07.210Z\",\n            \"validUntil\": \"1964-09-30T01:22:26.485Z\"\n          }\n        ],\n        \"attributes\": [\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"images\": [\n          {\n            \"url\": \"http://DgUptSXTWqQceXnUxRSJHDToNEhGfcZMn.qhuskAInv,pvZcDRof6USIlUT7,bHD-oMVyUWKmF0sQQpflPKjD\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          },\n          {\n            \"url\": \"http://ZkfcsKqFbuAeFsMQxOkhzOwqzVgBW.iolfeTL3Zgo-mkEejSJWT-9zbsJDt3okBqPt6,iQb+HQQblabjHN.\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"price\": {\n        \"id\": \"string\",\n        \"value\": {\n          \"currencyCode\": \"FBF\",\n          \"centAmount\": 7196,\n          \"fractionDigits\": 9369\n        },\n        \"country\": \"string\",\n        \"customerGroup\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"channel\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"validFrom\": \"1980-05-19T04:42:33.374Z\",\n        \"validUntil\": \"1994-02-06T00:53:52.345Z\"\n      },\n      \"totalPrice\": {\n        \"currencyCode\": \"IAV\",\n        \"centAmount\": 8179,\n        \"fractionDigits\": 376\n      },\n      \"quantity\": 1844,\n      \"lineItemMode\": \"Standard\",\n      \"priceMode\": \"ExternalPrice\"\n    },\n    {\n      \"id\": \"string\",\n      \"productId\": \"string\",\n      \"name\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"variant\": {\n        \"id\": 455,\n        \"sku\": \"string\",\n        \"key\": \"string\",\n        \"prices\": [\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1953-10-03T11:56:41.719Z\",\n            \"validUntil\": \"2000-07-16T23:45:14.798Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1976-04-18T04:05:11.357Z\",\n            \"validUntil\": \"1994-10-12T06:18:44.248Z\"\n          }\n        ],\n        \"attributes\": [\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"images\": [\n          {\n            \"url\": \"http://xUbdNsWJDMCghqjYVfjAaEwqTcdA.luJ2x+f5ZXaVOIk9,F5hVa+31BBZqXRhS0W+NXydueENuOrvfEOW+zm2a2cVg3ONWwz4J0UCBusb.bs+FSBM4\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          },\n          {\n            \"url\": \"https://UWkbusHDCpzwBLmAWUmCLWl.goqPsv35X+.T\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"price\": {\n        \"id\": \"string\",\n        \"value\": {\n          \"currencyCode\": \"TGK\",\n          \"centAmount\": 7835,\n          \"fractionDigits\": 518\n        },\n        \"country\": \"string\",\n        \"customerGroup\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"channel\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"validFrom\": \"2007-01-17T01:45:40.896Z\",\n        \"validUntil\": \"1950-05-08T20:20:53.916Z\"\n      },\n      \"totalPrice\": {\n        \"currencyCode\": \"BZL\",\n        \"centAmount\": 6887,\n        \"fractionDigits\": 6025\n      },\n      \"quantity\": 2343,\n      \"lineItemMode\": \"Standard\",\n      \"priceMode\": \"Platform\"\n    }\n  ],\n  \"customLineItems\": [],\n  \"totalPrice\": {\n    \"currencyCode\": \"MED\",\n    \"centAmount\": 4893,\n    \"fractionDigits\": 5379\n  },\n  \"orderNumber\": \"string\",\n  \"customerId\": \"string\",\n  \"customerEmail\": \"6byGEhI4lWQ2HY@EhJYFyAqdOYhgz.itnn\",\n  \"shipmentState\": \"Pending\",\n  \"paymentState\": \"CreditOwed\",\n  \"billingAddress\": {\n    \"country\": \"string\",\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"streetName\": \"string\",\n    \"streetNumber\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"region\": \"string\",\n    \"email\": \"8sKvYs@LiUpyemFCNNaeeimSQ.wb\",\n    \"phone\": \"string\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"string\",\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"streetName\": \"string\",\n    \"streetNumber\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"region\": \"string\",\n    \"email\": \"LXhndxwmRx@dzmBoljzUXemGahdMJJTELEpSksG.xvjn\",\n    \"phone\": \"string\"\n  },\n  \"createdAt\": \"2017-07-28T05:34:50.465Z\",\n  \"lastModifiedAt\": \"1970-04-25T04:48:11.343Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99da30fc-5680-4fe4-82fb-ef5f9ba8d210",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cart\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"version\": \"<integer>\",\n  \"orderNumber\": \"<string>\",\n  \"paymentState\": \"<string>\",\n  \"orderState\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 5223,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "891847e2-ae71-47bd-8a82-98268feb727c",
+          "name": "Get an order by ID",
+          "request": {
+            "name": "Get an order by ID",
+            "description": {
+              "content": "Retrieves a single order by its system-generated ID, including all line items, deliveries, return items, payment information, and state history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The system-generated unique identifier of the resource."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "226811db-1bfa-4ee8-a9e3-03e41c4b029f",
+              "name": "The requested order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"version\": 6296,\n  \"orderState\": \"Open\",\n  \"lineItems\": [\n    {\n      \"id\": \"string\",\n      \"productId\": \"string\",\n      \"name\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"variant\": {\n        \"id\": 5428,\n        \"sku\": \"string\",\n        \"key\": \"string\",\n        \"prices\": [\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1997-02-07T01:02:37.054Z\",\n            \"validUntil\": \"1984-04-25T21:57:05.398Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"2001-11-25T00:35:07.210Z\",\n            \"validUntil\": \"1964-09-30T01:22:26.485Z\"\n          }\n        ],\n        \"attributes\": [\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"images\": [\n          {\n            \"url\": \"http://DgUptSXTWqQceXnUxRSJHDToNEhGfcZMn.qhuskAInv,pvZcDRof6USIlUT7,bHD-oMVyUWKmF0sQQpflPKjD\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          },\n          {\n            \"url\": \"http://ZkfcsKqFbuAeFsMQxOkhzOwqzVgBW.iolfeTL3Zgo-mkEejSJWT-9zbsJDt3okBqPt6,iQb+HQQblabjHN.\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"price\": {\n        \"id\": \"string\",\n        \"value\": {\n          \"currencyCode\": \"FBF\",\n          \"centAmount\": 7196,\n          \"fractionDigits\": 9369\n        },\n        \"country\": \"string\",\n        \"customerGroup\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"channel\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"validFrom\": \"1980-05-19T04:42:33.374Z\",\n        \"validUntil\": \"1994-02-06T00:53:52.345Z\"\n      },\n      \"totalPrice\": {\n        \"currencyCode\": \"IAV\",\n        \"centAmount\": 8179,\n        \"fractionDigits\": 376\n      },\n      \"quantity\": 1844,\n      \"lineItemMode\": \"Standard\",\n      \"priceMode\": \"ExternalPrice\"\n    },\n    {\n      \"id\": \"string\",\n      \"productId\": \"string\",\n      \"name\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"variant\": {\n        \"id\": 455,\n        \"sku\": \"string\",\n        \"key\": \"string\",\n        \"prices\": [\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1953-10-03T11:56:41.719Z\",\n            \"validUntil\": \"2000-07-16T23:45:14.798Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1976-04-18T04:05:11.357Z\",\n            \"validUntil\": \"1994-10-12T06:18:44.248Z\"\n          }\n        ],\n        \"attributes\": [\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"images\": [\n          {\n            \"url\": \"http://xUbdNsWJDMCghqjYVfjAaEwqTcdA.luJ2x+f5ZXaVOIk9,F5hVa+31BBZqXRhS0W+NXydueENuOrvfEOW+zm2a2cVg3ONWwz4J0UCBusb.bs+FSBM4\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          },\n          {\n            \"url\": \"https://UWkbusHDCpzwBLmAWUmCLWl.goqPsv35X+.T\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"price\": {\n        \"id\": \"string\",\n        \"value\": {\n          \"currencyCode\": \"TGK\",\n          \"centAmount\": 7835,\n          \"fractionDigits\": 518\n        },\n        \"country\": \"string\",\n        \"customerGroup\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"channel\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"validFrom\": \"2007-01-17T01:45:40.896Z\",\n        \"validUntil\": \"1950-05-08T20:20:53.916Z\"\n      },\n      \"totalPrice\": {\n        \"currencyCode\": \"BZL\",\n        \"centAmount\": 6887,\n        \"fractionDigits\": 6025\n      },\n      \"quantity\": 2343,\n      \"lineItemMode\": \"Standard\",\n      \"priceMode\": \"Platform\"\n    }\n  ],\n  \"customLineItems\": [],\n  \"totalPrice\": {\n    \"currencyCode\": \"MED\",\n    \"centAmount\": 4893,\n    \"fractionDigits\": 5379\n  },\n  \"orderNumber\": \"string\",\n  \"customerId\": \"string\",\n  \"customerEmail\": \"6byGEhI4lWQ2HY@EhJYFyAqdOYhgz.itnn\",\n  \"shipmentState\": \"Pending\",\n  \"paymentState\": \"CreditOwed\",\n  \"billingAddress\": {\n    \"country\": \"string\",\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"streetName\": \"string\",\n    \"streetNumber\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"region\": \"string\",\n    \"email\": \"8sKvYs@LiUpyemFCNNaeeimSQ.wb\",\n    \"phone\": \"string\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"string\",\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"streetName\": \"string\",\n    \"streetNumber\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"region\": \"string\",\n    \"email\": \"LXhndxwmRx@dzmBoljzUXemGahdMJJTELEpSksG.xvjn\",\n    \"phone\": \"string\"\n  },\n  \"createdAt\": \"2017-07-28T05:34:50.465Z\",\n  \"lastModifiedAt\": \"1970-04-25T04:48:11.343Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "913c1af3-20c6-4bee-b56f-89658d7b09fe",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2351,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62008220-c97a-4221-8dcc-0202fbda89fa",
+          "name": "Update an order by ID",
+          "request": {
+            "name": "Update an order by ID",
+            "description": {
+              "content": "Applies update actions to the order with the given ID. Common actions include changing order state, adding deliveries, adding return info, setting tracking data, and updating payment state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The system-generated unique identifier of the resource."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc351b10-5438-4ac5-8f53-35f5dded6353",
+              "name": "The updated order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"version\": 6296,\n  \"orderState\": \"Open\",\n  \"lineItems\": [\n    {\n      \"id\": \"string\",\n      \"productId\": \"string\",\n      \"name\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"variant\": {\n        \"id\": 5428,\n        \"sku\": \"string\",\n        \"key\": \"string\",\n        \"prices\": [\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1997-02-07T01:02:37.054Z\",\n            \"validUntil\": \"1984-04-25T21:57:05.398Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"2001-11-25T00:35:07.210Z\",\n            \"validUntil\": \"1964-09-30T01:22:26.485Z\"\n          }\n        ],\n        \"attributes\": [\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"images\": [\n          {\n            \"url\": \"http://DgUptSXTWqQceXnUxRSJHDToNEhGfcZMn.qhuskAInv,pvZcDRof6USIlUT7,bHD-oMVyUWKmF0sQQpflPKjD\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          },\n          {\n            \"url\": \"http://ZkfcsKqFbuAeFsMQxOkhzOwqzVgBW.iolfeTL3Zgo-mkEejSJWT-9zbsJDt3okBqPt6,iQb+HQQblabjHN.\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"price\": {\n        \"id\": \"string\",\n        \"value\": {\n          \"currencyCode\": \"FBF\",\n          \"centAmount\": 7196,\n          \"fractionDigits\": 9369\n        },\n        \"country\": \"string\",\n        \"customerGroup\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"channel\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"validFrom\": \"1980-05-19T04:42:33.374Z\",\n        \"validUntil\": \"1994-02-06T00:53:52.345Z\"\n      },\n      \"totalPrice\": {\n        \"currencyCode\": \"IAV\",\n        \"centAmount\": 8179,\n        \"fractionDigits\": 376\n      },\n      \"quantity\": 1844,\n      \"lineItemMode\": \"Standard\",\n      \"priceMode\": \"ExternalPrice\"\n    },\n    {\n      \"id\": \"string\",\n      \"productId\": \"string\",\n      \"name\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"variant\": {\n        \"id\": 455,\n        \"sku\": \"string\",\n        \"key\": \"string\",\n        \"prices\": [\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1953-10-03T11:56:41.719Z\",\n            \"validUntil\": \"2000-07-16T23:45:14.798Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1976-04-18T04:05:11.357Z\",\n            \"validUntil\": \"1994-10-12T06:18:44.248Z\"\n          }\n        ],\n        \"attributes\": [\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"images\": [\n          {\n            \"url\": \"http://xUbdNsWJDMCghqjYVfjAaEwqTcdA.luJ2x+f5ZXaVOIk9,F5hVa+31BBZqXRhS0W+NXydueENuOrvfEOW+zm2a2cVg3ONWwz4J0UCBusb.bs+FSBM4\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          },\n          {\n            \"url\": \"https://UWkbusHDCpzwBLmAWUmCLWl.goqPsv35X+.T\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"price\": {\n        \"id\": \"string\",\n        \"value\": {\n          \"currencyCode\": \"TGK\",\n          \"centAmount\": 7835,\n          \"fractionDigits\": 518\n        },\n        \"country\": \"string\",\n        \"customerGroup\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"channel\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"validFrom\": \"2007-01-17T01:45:40.896Z\",\n        \"validUntil\": \"1950-05-08T20:20:53.916Z\"\n      },\n      \"totalPrice\": {\n        \"currencyCode\": \"BZL\",\n        \"centAmount\": 6887,\n        \"fractionDigits\": 6025\n      },\n      \"quantity\": 2343,\n      \"lineItemMode\": \"Standard\",\n      \"priceMode\": \"Platform\"\n    }\n  ],\n  \"customLineItems\": [],\n  \"totalPrice\": {\n    \"currencyCode\": \"MED\",\n    \"centAmount\": 4893,\n    \"fractionDigits\": 5379\n  },\n  \"orderNumber\": \"string\",\n  \"customerId\": \"string\",\n  \"customerEmail\": \"6byGEhI4lWQ2HY@EhJYFyAqdOYhgz.itnn\",\n  \"shipmentState\": \"Pending\",\n  \"paymentState\": \"CreditOwed\",\n  \"billingAddress\": {\n    \"country\": \"string\",\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"streetName\": \"string\",\n    \"streetNumber\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"region\": \"string\",\n    \"email\": \"8sKvYs@LiUpyemFCNNaeeimSQ.wb\",\n    \"phone\": \"string\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"string\",\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"streetName\": \"string\",\n    \"streetNumber\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"region\": \"string\",\n    \"email\": \"LXhndxwmRx@dzmBoljzUXemGahdMJJTELEpSksG.xvjn\",\n    \"phone\": \"string\"\n  },\n  \"createdAt\": \"2017-07-28T05:34:50.465Z\",\n  \"lastModifiedAt\": \"1970-04-25T04:48:11.343Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4318126-820a-4a0b-a6bb-d8d9c5713832",
+          "name": "Delete an order by ID",
+          "request": {
+            "name": "Delete an order by ID",
+            "description": {
+              "content": "Permanently deletes the order with the given ID. This operation cannot be undone. Only orders that have not been shipped or paid should be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<integer>",
+                  "description": "(Required) Current version of the resource for optimistic concurrency control."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The system-generated unique identifier of the resource."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb98106a-2768-4b73-864f-ce758aee659f",
+              "name": "The deleted order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"version\": 6296,\n  \"orderState\": \"Open\",\n  \"lineItems\": [\n    {\n      \"id\": \"string\",\n      \"productId\": \"string\",\n      \"name\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"variant\": {\n        \"id\": 5428,\n        \"sku\": \"string\",\n        \"key\": \"string\",\n        \"prices\": [\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1997-02-07T01:02:37.054Z\",\n            \"validUntil\": \"1984-04-25T21:57:05.398Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"2001-11-25T00:35:07.210Z\",\n            \"validUntil\": \"1964-09-30T01:22:26.485Z\"\n          }\n        ],\n        \"attributes\": [\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"images\": [\n          {\n            \"url\": \"http://DgUptSXTWqQceXnUxRSJHDToNEhGfcZMn.qhuskAInv,pvZcDRof6USIlUT7,bHD-oMVyUWKmF0sQQpflPKjD\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          },\n          {\n            \"url\": \"http://ZkfcsKqFbuAeFsMQxOkhzOwqzVgBW.iolfeTL3Zgo-mkEejSJWT-9zbsJDt3okBqPt6,iQb+HQQblabjHN.\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"price\": {\n        \"id\": \"string\",\n        \"value\": {\n          \"currencyCode\": \"FBF\",\n          \"centAmount\": 7196,\n          \"fractionDigits\": 9369\n        },\n        \"country\": \"string\",\n        \"customerGroup\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"channel\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"validFrom\": \"1980-05-19T04:42:33.374Z\",\n        \"validUntil\": \"1994-02-06T00:53:52.345Z\"\n      },\n      \"totalPrice\": {\n        \"currencyCode\": \"IAV\",\n        \"centAmount\": 8179,\n        \"fractionDigits\": 376\n      },\n      \"quantity\": 1844,\n      \"lineItemMode\": \"Standard\",\n      \"priceMode\": \"ExternalPrice\"\n    },\n    {\n      \"id\": \"string\",\n      \"productId\": \"string\",\n      \"name\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"variant\": {\n        \"id\": 455,\n        \"sku\": \"string\",\n        \"key\": \"string\",\n        \"prices\": [\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1953-10-03T11:56:41.719Z\",\n            \"validUntil\": \"2000-07-16T23:45:14.798Z\"\n          },\n          {\n            \"id\": \"string\",\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": \"string\",\n            \"customerGroup\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"channel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validFrom\": \"1976-04-18T04:05:11.357Z\",\n            \"validUntil\": \"1994-10-12T06:18:44.248Z\"\n          }\n        ],\n        \"attributes\": [\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          },\n          {\n            \"name\": \"string\",\n            \"value\": {}\n          }\n        ],\n        \"images\": [\n          {\n            \"url\": \"http://xUbdNsWJDMCghqjYVfjAaEwqTcdA.luJ2x+f5ZXaVOIk9,F5hVa+31BBZqXRhS0W+NXydueENuOrvfEOW+zm2a2cVg3ONWwz4J0UCBusb.bs+FSBM4\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          },\n          {\n            \"url\": \"https://UWkbusHDCpzwBLmAWUmCLWl.goqPsv35X+.T\",\n            \"dimensions\": {\n              \"w\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"h\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"label\": \"string\"\n          }\n        ]\n      },\n      \"price\": {\n        \"id\": \"string\",\n        \"value\": {\n          \"currencyCode\": \"TGK\",\n          \"centAmount\": 7835,\n          \"fractionDigits\": 518\n        },\n        \"country\": \"string\",\n        \"customerGroup\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"channel\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"validFrom\": \"2007-01-17T01:45:40.896Z\",\n        \"validUntil\": \"1950-05-08T20:20:53.916Z\"\n      },\n      \"totalPrice\": {\n        \"currencyCode\": \"BZL\",\n        \"centAmount\": 6887,\n        \"fractionDigits\": 6025\n      },\n      \"quantity\": 2343,\n      \"lineItemMode\": \"Standard\",\n      \"priceMode\": \"Platform\"\n    }\n  ],\n  \"customLineItems\": [],\n  \"totalPrice\": {\n    \"currencyCode\": \"MED\",\n    \"centAmount\": 4893,\n    \"fractionDigits\": 5379\n  },\n  \"orderNumber\": \"string\",\n  \"customerId\": \"string\",\n  \"customerEmail\": \"6byGEhI4lWQ2HY@EhJYFyAqdOYhgz.itnn\",\n  \"shipmentState\": \"Pending\",\n  \"paymentState\": \"CreditOwed\",\n  \"billingAddress\": {\n    \"country\": \"string\",\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"streetName\": \"string\",\n    \"streetNumber\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"region\": \"string\",\n    \"email\": \"8sKvYs@LiUpyemFCNNaeeimSQ.wb\",\n    \"phone\": \"string\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"string\",\n    \"id\": \"string\",\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"streetName\": \"string\",\n    \"streetNumber\": \"string\",\n    \"city\": \"string\",\n    \"postalCode\": \"string\",\n    \"region\": \"string\",\n    \"email\": \"LXhndxwmRx@dzmBoljzUXemGahdMJJTELEpSksG.xvjn\",\n    \"phone\": \"string\"\n  },\n  \"createdAt\": \"2017-07-28T05:34:50.465Z\",\n  \"lastModifiedAt\": \"1970-04-25T04:48:11.343Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c2f74be-7b95-4d1a-8659-365d37c96ab6",
+          "name": "Import orders",
+          "request": {
+            "name": "Import orders",
+            "description": {
+              "content": "Submits a batch of order import requests for asynchronous processing. Order imports bypass the normal checkout flow and directly create orders in the system. Each request accepts up to 20 order resources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "orders",
+                "import-containers",
+                ":importContainerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "importContainerKey",
+                  "description": "(Required) The user-defined key of the import container."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"orderNumber\": \"<string>\",\n      \"totalPrice\": \"<object>\",\n      \"lineItems\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"customerId\": \"<string>\",\n      \"customerEmail\": \"<email>\",\n      \"orderState\": \"<string>\",\n      \"shipmentState\": \"<string>\",\n      \"paymentState\": \"<string>\"\n    },\n    {\n      \"orderNumber\": \"<string>\",\n      \"totalPrice\": \"<object>\",\n      \"lineItems\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"customerId\": \"<string>\",\n      \"customerEmail\": \"<email>\",\n      \"orderState\": \"<string>\",\n      \"shipmentState\": \"<string>\",\n      \"paymentState\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3277cd00-4301-433d-a305-abd3bd82f286",
+              "name": "The import request was accepted for processing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"orderNumber\": \"string\",\n      \"totalPrice\": {},\n      \"customerId\": \"string\",\n      \"customerEmail\": \"qA1p@WoFq.zt\",\n      \"orderState\": \"Confirmed\",\n      \"shipmentState\": \"string\",\n      \"paymentState\": \"string\"\n    },\n    {\n      \"orderNumber\": \"string\",\n      \"totalPrice\": {},\n      \"customerId\": \"string\",\n      \"customerEmail\": \"t7MYGD5@BGwCqvGjxeBbDpvtuVRPJBURTFdA.udnl\",\n      \"orderState\": \"Open\",\n      \"shipmentState\": \"string\",\n      \"paymentState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"Accepted\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35659fc6-eb9c-41e7-abb8-b8a5d65f2e14",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "orders",
+                    "import-containers",
+                    ":importContainerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "importContainerKey",
+                      "description": "(Required) The user-defined key of the import container."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"orderNumber\": \"string\",\n      \"totalPrice\": {},\n      \"customerId\": \"string\",\n      \"customerEmail\": \"qA1p@WoFq.zt\",\n      \"orderState\": \"Confirmed\",\n      \"shipmentState\": \"string\",\n      \"paymentState\": \"string\"\n    },\n    {\n      \"orderNumber\": \"string\",\n      \"totalPrice\": {},\n      \"customerId\": \"string\",\n      \"customerEmail\": \"t7MYGD5@BGwCqvGjxeBbDpvtuVRPJBURTFdA.udnl\",\n      \"orderState\": \"Open\",\n      \"shipmentState\": \"string\",\n      \"paymentState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 2351,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-central1.gcp",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://history.{{region}}.commercetools.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7337b08f-98bd-4159-beca-5bc99b8623b8",
+    "name": "commercetools Change History Carts Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.\n\nContact Support:\n Name: commercetools Support",
+      "type": "text/plain"
+    }
+  }
+}

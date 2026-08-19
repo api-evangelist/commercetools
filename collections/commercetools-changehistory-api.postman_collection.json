@@ -1,0 +1,814 @@
+{
+  "item": [
+    {
+      "id": "8a117a8b-9666-4d77-ad09-19583ff6d59a",
+      "name": "ChangeHistory",
+      "description": {
+        "content": "Query the audit log of resource changes across the project.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e30e28e7-d8a5-4410-8f8a-772403380bcd",
+          "name": "Query change history records",
+          "request": {
+            "name": "Query change history records",
+            "description": {
+              "content": "Returns a paginated list of change history records for the project. Each record contains a list of individual changes along with metadata about the actor and timestamp. Supports filtering by resource type, date range, resource ID, user, and client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date.from",
+                  "value": "<string>",
+                  "description": "Start of the date range filter. Accepts ISO 8601 datetime strings or relative values like \"24\" (last 24 hours) or \"now\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "date.to",
+                  "value": "<string>",
+                  "description": "End of the date range filter. Accepts ISO 8601 datetime strings or relative values like \"now\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "resourceTypes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of resource types to filter by (e.g., \"order,product,customer\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "changes",
+                  "value": "<string>",
+                  "description": "Filter by specific change type name (e.g., \"setCustomField\", \"changeOrderState\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "resourceId",
+                  "value": "<string>",
+                  "description": "Filter records to changes affecting a specific resource ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<string>",
+                  "description": "Filter records to changes made by a specific user ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "clientId",
+                  "value": "<string>",
+                  "description": "Filter records to changes made by a specific API client ID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "931238d2-265f-4f23-866e-0fcc2042f34d",
+              "name": "A paged list of change history records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date.to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "resourceTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "changes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total rate limit tokens available for the current window.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "8675"
+                },
+                {
+                  "disabled": false,
+                  "description": "Rate limit tokens remaining after this request.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8675"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of rate limit tokens consumed by this request.",
+                  "key": "X-RateLimit-Request-Cost",
+                  "value": "8675"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 9260,\n  \"offset\": 8467,\n  \"count\": 2293,\n  \"total\": 2557,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"resource\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"resourceType\": \"string\",\n      \"changes\": [\n        {\n          \"change\": \"string\",\n          \"type\": \"string\",\n          \"previousValue\": {},\n          \"nextValue\": {}\n        },\n        {\n          \"change\": \"string\",\n          \"type\": \"string\",\n          \"previousValue\": {},\n          \"nextValue\": {}\n        }\n      ],\n      \"createdAt\": \"2001-02-22T16:05:06.043Z\",\n      \"resourceVersion\": 8481,\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"type\": \"external-user\",\n        \"clientId\": \"string\",\n        \"anonymousId\": \"string\",\n        \"customer\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"isPlatformClient\": true\n      },\n      \"label\": {},\n      \"previousVersion\": 859,\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"resource\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"resourceType\": \"string\",\n      \"changes\": [\n        {\n          \"change\": \"string\",\n          \"type\": \"string\",\n          \"previousValue\": {},\n          \"nextValue\": {}\n        },\n        {\n          \"change\": \"string\",\n          \"type\": \"string\",\n          \"previousValue\": {},\n          \"nextValue\": {}\n        }\n      ],\n      \"createdAt\": \"1966-08-09T21:03:45.037Z\",\n      \"resourceVersion\": 4406,\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"type\": \"user\",\n        \"clientId\": \"string\",\n        \"anonymousId\": \"string\",\n        \"customer\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"isPlatformClient\": true\n      },\n      \"label\": {},\n      \"previousVersion\": 6240,\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7fb772b-732b-47d8-b4c1-af762b830556",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date.to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "resourceTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "changes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7271,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6b190f9-df1c-4171-9bbb-f9119c0fb29b",
+              "name": "The request lacked valid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date.to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "resourceTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "changes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7271,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80ff276a-ce9d-47aa-93dd-e01fec1343f1",
+          "name": "Query change history for a specific resource",
+          "request": {
+            "name": "Query change history for a specific resource",
+            "description": {
+              "content": "Returns a paginated list of change history records filtered to a specific resource type and resource ID. This is the most efficient way to retrieve the full change history of a single resource, such as all changes made to a specific order or product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                ":resourceType",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date.from",
+                  "value": "<string>",
+                  "description": "Start of the date range filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "date.to",
+                  "value": "<string>",
+                  "description": "End of the date range filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key of the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resourceType",
+                  "description": "(Required) The resource type category to filter the change history query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The system-generated ID of the specific resource."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c4c505d-94d2-40e3-b179-e980c8293412",
+              "name": "A paged list of change history records for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    ":resourceType",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date.to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceType",
+                      "description": "(Required) The resource type category to filter the change history query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated ID of the specific resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 9260,\n  \"offset\": 8467,\n  \"count\": 2293,\n  \"total\": 2557,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"resource\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"resourceType\": \"string\",\n      \"changes\": [\n        {\n          \"change\": \"string\",\n          \"type\": \"string\",\n          \"previousValue\": {},\n          \"nextValue\": {}\n        },\n        {\n          \"change\": \"string\",\n          \"type\": \"string\",\n          \"previousValue\": {},\n          \"nextValue\": {}\n        }\n      ],\n      \"createdAt\": \"2001-02-22T16:05:06.043Z\",\n      \"resourceVersion\": 8481,\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"type\": \"external-user\",\n        \"clientId\": \"string\",\n        \"anonymousId\": \"string\",\n        \"customer\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"isPlatformClient\": true\n      },\n      \"label\": {},\n      \"previousVersion\": 859,\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"resource\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"resourceType\": \"string\",\n      \"changes\": [\n        {\n          \"change\": \"string\",\n          \"type\": \"string\",\n          \"previousValue\": {},\n          \"nextValue\": {}\n        },\n        {\n          \"change\": \"string\",\n          \"type\": \"string\",\n          \"previousValue\": {},\n          \"nextValue\": {}\n        }\n      ],\n      \"createdAt\": \"1966-08-09T21:03:45.037Z\",\n      \"resourceVersion\": 4406,\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"type\": \"user\",\n        \"clientId\": \"string\",\n        \"anonymousId\": \"string\",\n        \"customer\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        \"isPlatformClient\": true\n      },\n      \"label\": {},\n      \"previousVersion\": 6240,\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29d3bf4f-1add-41c0-b0ef-3c86a6b57dcf",
+              "name": "The request lacked valid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    ":resourceType",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date.to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceType",
+                      "description": "(Required) The resource type category to filter the change history query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated ID of the specific resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7271,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e56cc397-acb8-488a-9a15-71097da2bbe0",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    ":resourceType",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date.from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date.to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key of the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resourceType",
+                      "description": "(Required) The resource type category to filter the change history query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated ID of the specific resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 7271,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-central1.gcp",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://history.{{region}}.commercetools.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9f42bc9d-4791-4d95-8b4b-937465ab6077",
+    "name": "commercetools Change History Carts ChangeHistory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.\n\nContact Support:\n Name: commercetools Support",
+      "type": "text/plain"
+    }
+  }
+}

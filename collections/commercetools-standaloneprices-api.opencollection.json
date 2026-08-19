@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools Change History Carts StandalonePrices API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StandalonePrices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import standalone prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://history.{region}.commercetools.com/:projectKey/standalone-prices/import-containers/:importContainerKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of standalone price import requests for asynchronous processing. Standalone prices are matched by key for upsert behavior and are associated with SKUs independently from embedded product variant prices."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

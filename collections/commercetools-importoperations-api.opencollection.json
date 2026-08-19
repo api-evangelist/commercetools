@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools Change History Carts ImportOperations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ImportOperations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List import operations in a container",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey/import-operations",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter operations by their current processing state."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of import operations for the given container. Import operations track the processing status of individual resources within an import request. Supports filtering by state."
+        },
+        {
+          "info": {
+            "name": "Get an import operation by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/import-containers/:importContainerKey/import-operations/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the commercetools project."
+              },
+              {
+                "name": "importContainerKey",
+                "value": "",
+                "type": "path",
+                "description": "The user-defined key of the import container."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves a single import operation by its ID. The operation record includes the processing state, any validation errors, and a reference to the resource that was imported or failed validation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

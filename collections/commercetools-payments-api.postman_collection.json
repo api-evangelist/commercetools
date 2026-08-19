@@ -1,0 +1,822 @@
+{
+  "item": [
+    {
+      "id": "f6427b6a-413b-438d-bd9f-412db156f083",
+      "name": "Payments",
+      "description": {
+        "content": "Track payment transactions and PSP interactions associated with orders.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "026f1093-737e-46c9-9352-dfe657e4b6da",
+          "name": "List payments",
+          "request": {
+            "name": "List payments",
+            "description": {
+              "content": "Returns a paginated list of payments in the project. Supports filtering by customer, interface ID, and other predicates. Payments track financial transactions and PSP interactions associated with orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination. Maximum 10000."
+                },
+                {
+                  "disabled": false,
+                  "key": "where",
+                  "value": "<string>",
+                  "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+                },
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50247195-d0f9-48ed-9019-fbb622bf6d75",
+              "name": "A paged list of payments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 3608,\n  \"offset\": 7625,\n  \"count\": 2444,\n  \"total\": 8090,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"version\": 5371,\n      \"amountPlanned\": {\n        \"currencyCode\": \"NYL\",\n        \"centAmount\": 3399,\n        \"fractionDigits\": 548\n      },\n      \"paymentMethodInfo\": {\n        \"paymentInterface\": \"string\",\n        \"method\": \"string\",\n        \"name\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        }\n      },\n      \"transactions\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"Authorization\",\n          \"amount\": {\n            \"currencyCode\": \"DSJ\",\n            \"centAmount\": 3126,\n            \"fractionDigits\": 5994\n          },\n          \"state\": \"Pending\",\n          \"timestamp\": \"2024-12-09T04:01:18.517Z\",\n          \"interactionId\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"Charge\",\n          \"amount\": {\n            \"currencyCode\": \"SNX\",\n            \"centAmount\": 6617,\n            \"fractionDigits\": 8401\n          },\n          \"state\": \"Initial\",\n          \"timestamp\": \"1967-08-12T06:39:14.204Z\",\n          \"interactionId\": \"string\"\n        }\n      ],\n      \"key\": \"string\",\n      \"customer\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"interfaceId\": \"string\",\n      \"paymentStatus\": {\n        \"interfaceCode\": \"string\",\n        \"interfaceText\": \"string\",\n        \"state\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        }\n      },\n      \"createdAt\": \"2019-06-10T08:18:00.081Z\",\n      \"lastModifiedAt\": \"2020-05-22T18:44:05.391Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"version\": 3946,\n      \"amountPlanned\": {\n        \"currencyCode\": \"ADP\",\n        \"centAmount\": 9135,\n        \"fractionDigits\": 6073\n      },\n      \"paymentMethodInfo\": {\n        \"paymentInterface\": \"string\",\n        \"method\": \"string\",\n        \"name\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"transactions\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"Chargeback\",\n          \"amount\": {\n            \"currencyCode\": \"PZF\",\n            \"centAmount\": 8592,\n            \"fractionDigits\": 3729\n          },\n          \"state\": \"Pending\",\n          \"timestamp\": \"2005-02-02T00:40:58.729Z\",\n          \"interactionId\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"CancelAuthorization\",\n          \"amount\": {\n            \"currencyCode\": \"NDE\",\n            \"centAmount\": 5703,\n            \"fractionDigits\": 3342\n          },\n          \"state\": \"Pending\",\n          \"timestamp\": \"1950-02-11T03:37:34.365Z\",\n          \"interactionId\": \"string\"\n        }\n      ],\n      \"key\": \"string\",\n      \"customer\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"interfaceId\": \"string\",\n      \"paymentStatus\": {\n        \"interfaceCode\": \"string\",\n        \"interfaceText\": \"string\",\n        \"state\": {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        }\n      },\n      \"createdAt\": \"1996-03-24T14:14:51.729Z\",\n      \"lastModifiedAt\": \"1964-08-25T23:36:31.815Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7c21dd6-60be-4342-bf4e-d24713e7c436",
+              "name": "The request lacked valid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "where",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9091,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d986fad-5dff-43e8-8dac-938cf1b863e2",
+          "name": "Create a payment",
+          "request": {
+            "name": "Create a payment",
+            "description": {
+              "content": "Creates a new payment resource representing intent to pay a specific amount. The payment records PSP details, method information, and transaction history. Payments are linked to orders via the cart or order update actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amountPlanned\": {\n    \"currencyCode\": \"<string>\",\n    \"centAmount\": \"<integer>\",\n    \"fractionDigits\": \"<integer>\"\n  },\n  \"key\": \"<string>\",\n  \"customer\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"interfaceId\": \"<string>\",\n  \"paymentMethodInfo\": {\n    \"paymentInterface\": \"<string>\",\n    \"method\": \"<string>\",\n    \"name\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  },\n  \"transactions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3107f69e-cff4-4f7f-92a1-c389feda8fbd",
+              "name": "The created payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amountPlanned\": {\n    \"currencyCode\": \"DEK\",\n    \"centAmount\": 6032,\n    \"fractionDigits\": 2308\n  },\n  \"key\": \"<string>\",\n  \"customer\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"interfaceId\": \"<string>\",\n  \"paymentMethodInfo\": {\n    \"paymentInterface\": \"string\",\n    \"method\": \"string\",\n    \"name\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"transactions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"version\": 5008,\n  \"amountPlanned\": {\n    \"currencyCode\": \"AJF\",\n    \"centAmount\": 4473,\n    \"fractionDigits\": 5701\n  },\n  \"paymentMethodInfo\": {\n    \"paymentInterface\": \"string\",\n    \"method\": \"string\",\n    \"name\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"transactions\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"Charge\",\n      \"amount\": {\n        \"currencyCode\": \"AOL\",\n        \"centAmount\": 1344,\n        \"fractionDigits\": 7013\n      },\n      \"state\": \"Initial\",\n      \"timestamp\": \"2009-12-08T08:04:57.620Z\",\n      \"interactionId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"CancelAuthorization\",\n      \"amount\": {\n        \"currencyCode\": \"NEM\",\n        \"centAmount\": 3748,\n        \"fractionDigits\": 4750\n      },\n      \"state\": \"Failure\",\n      \"timestamp\": \"1995-05-07T01:49:48.721Z\",\n      \"interactionId\": \"string\"\n    }\n  ],\n  \"key\": \"string\",\n  \"customer\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"interfaceId\": \"string\",\n  \"paymentStatus\": {\n    \"interfaceCode\": \"string\",\n    \"interfaceText\": \"string\",\n    \"state\": {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  },\n  \"createdAt\": \"2000-02-03T15:25:26.063Z\",\n  \"lastModifiedAt\": \"1967-03-10T01:03:04.471Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "255900f2-56f0-422b-9b42-7602bfc85aca",
+              "name": "The request was malformed or contained invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amountPlanned\": {\n    \"currencyCode\": \"DEK\",\n    \"centAmount\": 6032,\n    \"fractionDigits\": 2308\n  },\n  \"key\": \"<string>\",\n  \"customer\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"interfaceId\": \"<string>\",\n  \"paymentMethodInfo\": {\n    \"paymentInterface\": \"string\",\n    \"method\": \"string\",\n    \"name\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"transactions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 6340,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8709831-77ee-46fc-90d2-2330ea40567f",
+          "name": "Get a payment by ID",
+          "request": {
+            "name": "Get a payment by ID",
+            "description": {
+              "content": "Retrieves a single payment by its system-generated ID, including all transactions, interface interactions, payment method info, and current status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The system-generated unique identifier of the resource."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1fb0b4f-8375-4a48-9d85-73b7a95d8827",
+              "name": "The requested payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"version\": 5008,\n  \"amountPlanned\": {\n    \"currencyCode\": \"AJF\",\n    \"centAmount\": 4473,\n    \"fractionDigits\": 5701\n  },\n  \"paymentMethodInfo\": {\n    \"paymentInterface\": \"string\",\n    \"method\": \"string\",\n    \"name\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"transactions\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"Charge\",\n      \"amount\": {\n        \"currencyCode\": \"AOL\",\n        \"centAmount\": 1344,\n        \"fractionDigits\": 7013\n      },\n      \"state\": \"Initial\",\n      \"timestamp\": \"2009-12-08T08:04:57.620Z\",\n      \"interactionId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"CancelAuthorization\",\n      \"amount\": {\n        \"currencyCode\": \"NEM\",\n        \"centAmount\": 3748,\n        \"fractionDigits\": 4750\n      },\n      \"state\": \"Failure\",\n      \"timestamp\": \"1995-05-07T01:49:48.721Z\",\n      \"interactionId\": \"string\"\n    }\n  ],\n  \"key\": \"string\",\n  \"customer\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"interfaceId\": \"string\",\n  \"paymentStatus\": {\n    \"interfaceCode\": \"string\",\n    \"interfaceText\": \"string\",\n    \"state\": {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  },\n  \"createdAt\": \"2000-02-03T15:25:26.063Z\",\n  \"lastModifiedAt\": \"1967-03-10T01:03:04.471Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "460eeb69-d837-46dd-8559-3657b08f1da8",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 9091,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16381ca9-6753-48df-ac97-4e54089780c5",
+          "name": "Update a payment by ID",
+          "request": {
+            "name": "Update a payment by ID",
+            "description": {
+              "content": "Applies update actions to the payment with the given ID. Supported actions include adding transactions, setting the payment status, adding interface interactions, and setting custom fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":projectKey",
+                "payments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) The unique key identifying the commercetools project."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The system-generated unique identifier of the resource."
+                },
+                {
+                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc123344-7873-443c-b243-b065605ad737",
+              "name": "The updated payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":projectKey",
+                    "payments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) The unique key identifying the commercetools project."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The system-generated unique identifier of the resource."
+                    },
+                    {
+                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"version\": 5008,\n  \"amountPlanned\": {\n    \"currencyCode\": \"AJF\",\n    \"centAmount\": 4473,\n    \"fractionDigits\": 5701\n  },\n  \"paymentMethodInfo\": {\n    \"paymentInterface\": \"string\",\n    \"method\": \"string\",\n    \"name\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"transactions\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"Charge\",\n      \"amount\": {\n        \"currencyCode\": \"AOL\",\n        \"centAmount\": 1344,\n        \"fractionDigits\": 7013\n      },\n      \"state\": \"Initial\",\n      \"timestamp\": \"2009-12-08T08:04:57.620Z\",\n      \"interactionId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"CancelAuthorization\",\n      \"amount\": {\n        \"currencyCode\": \"NEM\",\n        \"centAmount\": 3748,\n        \"fractionDigits\": 4750\n      },\n      \"state\": \"Failure\",\n      \"timestamp\": \"1995-05-07T01:49:48.721Z\",\n      \"interactionId\": \"string\"\n    }\n  ],\n  \"key\": \"string\",\n  \"customer\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"interfaceId\": \"string\",\n  \"paymentStatus\": {\n    \"interfaceCode\": \"string\",\n    \"interfaceText\": \"string\",\n    \"state\": {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  },\n  \"createdAt\": \"2000-02-03T15:25:26.063Z\",\n  \"lastModifiedAt\": \"1967-03-10T01:03:04.471Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-central1.gcp",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://history.{{region}}.commercetools.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c176194a-d4dc-41ed-a86d-c6d5f1b8464b",
+    "name": "commercetools Change History Carts Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.\n\nContact Support:\n Name: commercetools Support",
+      "type": "text/plain"
+    }
+  }
+}

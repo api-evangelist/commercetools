@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "commercetools Change History Carts Payments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/payments",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Defaults to 20, maximum 500."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination. Maximum 10000."
+              },
+              {
+                "name": "where",
+                "value": "",
+                "type": "query",
+                "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of payments in the project. Supports filtering by customer, interface ID, and other predicates. Payments track financial transactions and PSP interactions associated with orders."
+        },
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://history.{region}.commercetools.com/:projectKey/payments",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new payment resource representing intent to pay a specific amount. The payment records PSP details, method information, and transaction history. Payments are linked to orders via the cart or order update actions."
+        },
+        {
+          "info": {
+            "name": "Get a payment by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://history.{region}.commercetools.com/:projectKey/payments/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
+              }
+            ]
+          },
+          "docs": "Retrieves a single payment by its system-generated ID, including all transactions, interface interactions, payment method info, and current status."
+        },
+        {
+          "info": {
+            "name": "Update a payment by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://history.{region}.commercetools.com/:projectKey/payments/:id",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "The unique key identifying the commercetools project."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated unique identifier of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies update actions to the payment with the given ID. Supported actions include adding transactions, setting the payment status, adding interface interactions, and setting custom fields."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
