@@ -132,6 +132,8 @@ apis:
   humanURL: https://docs.commercetools.com/api
   baseURL: https://api.{region}.commercetools.com
   tags:
+  - Cart
+  tags_raw:
   - Carts
   properties:
   - type: OpenAPI
@@ -168,6 +170,8 @@ apis:
   humanURL: https://docs.commercetools.com/api
   baseURL: https://api.{region}.commercetools.com
   tags:
+  - Change History
+  tags_raw:
   - ChangeHistory
   properties:
   - type: OpenAPI
@@ -258,6 +262,8 @@ apis:
   humanURL: https://docs.commercetools.com/api
   baseURL: https://api.{region}.commercetools.com
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -294,6 +300,8 @@ apis:
   humanURL: https://docs.commercetools.com/api
   baseURL: https://api.{region}.commercetools.com
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -312,6 +320,8 @@ apis:
   humanURL: https://docs.commercetools.com/api
   baseURL: https://api.{region}.commercetools.com
   tags:
+  - Product Variants
+  tags_raw:
   - ProductVariants
   properties:
   - type: OpenAPI
@@ -366,6 +376,8 @@ apis:
   humanURL: https://docs.commercetools.com/api
   baseURL: https://api.{region}.commercetools.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
