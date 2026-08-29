@@ -1,40 +1,54 @@
 {
   "provider": "commercetools",
   "sources": [
-    "commercetools-carts-api-openapi.yml",
-    "commercetools-categories-api-openapi.yml",
-    "commercetools-changehistory-api-openapi.yml",
-    "commercetools-customers-api-openapi.yml",
-    "commercetools-importcontainers-api-openapi.yml",
-    "commercetools-importoperations-api-openapi.yml",
-    "commercetools-inventory-api-openapi.yml",
-    "commercetools-orders-api-openapi.yml",
-    "commercetools-payments-api-openapi.yml",
-    "commercetools-products-api-openapi.yml",
-    "commercetools-productvariants-api-openapi.yml",
-    "commercetools-project-api-openapi.yml",
-    "commercetools-standaloneprices-api-openapi.yml",
-    "commercetools-subscriptions-api-openapi.yml"
+    "_original/commercetools-change-history-api-openapi.yml",
+    "_original/commercetools-http-api-openapi.yml",
+    "_original/commercetools-import-api-openapi.yml"
   ],
   "outputs": [
+    "commercetools-changehistory-api-openapi.yml",
     "commercetools-carts-api-openapi.yml",
     "commercetools-categories-api-openapi.yml",
-    "commercetools-changehistory-api-openapi.yml",
     "commercetools-customers-api-openapi.yml",
-    "commercetools-importcontainers-api-openapi.yml",
-    "commercetools-importoperations-api-openapi.yml",
     "commercetools-inventory-api-openapi.yml",
     "commercetools-orders-api-openapi.yml",
     "commercetools-payments-api-openapi.yml",
     "commercetools-products-api-openapi.yml",
-    "commercetools-productvariants-api-openapi.yml",
     "commercetools-project-api-openapi.yml",
-    "commercetools-standaloneprices-api-openapi.yml",
-    "commercetools-subscriptions-api-openapi.yml"
+    "commercetools-subscriptions-api-openapi.yml",
+    "commercetools-importcontainers-api-openapi.yml",
+    "commercetools-importoperations-api-openapi.yml",
+    "commercetools-productvariants-api-openapi.yml",
+    "commercetools-standaloneprices-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "commercetools-change-history-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "commercetools-http-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "commercetools-import-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Categories' spans 2 source specs (commercetools-http-api-openapi.yml, commercetools-import-api-openapi.yml): per-path servers applied",
+    "tag 'Customers' spans 2 source specs (commercetools-http-api-openapi.yml, commercetools-import-api-openapi.yml): per-path servers applied",
+    "tag 'Inventory' spans 2 source specs (commercetools-http-api-openapi.yml, commercetools-import-api-openapi.yml): per-path servers applied",
+    "tag 'Orders' spans 2 source specs (commercetools-http-api-openapi.yml, commercetools-import-api-openapi.yml): per-path servers applied",
+    "tag 'Products' spans 2 source specs (commercetools-http-api-openapi.yml, commercetools-import-api-openapi.yml): per-path servers applied"
+  ],
+  "skipped": [
+    "commercetools-carts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-changehistory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-importcontainers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-importoperations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-inventory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-productvariants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-project-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-standaloneprices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "commercetools-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

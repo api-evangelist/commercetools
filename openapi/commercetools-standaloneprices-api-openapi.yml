@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: commercetools Change History Carts StandalonePrices API
-  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  title: commercetools Import Standalone Prices API
+  description: The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project. It supports importing categories, product types, products, product variants, prices, inventory entries, orders, customers, business units, discount codes, product selections, standalone prices, and type definitions. Imports are processed asynchronously through import containers, and the API provides endpoints for monitoring import operation status and handling validation errors. The Import API is hosted on separate regional endpoints from the main HTTP API and uses the same OAuth 2.0 authorization model.
   version: '1.0'
   contact:
     name: commercetools Support
     url: https://support.commercetools.com
   termsOfService: https://commercetools.com/terms-conditions
 servers:
-- url: https://history.{region}.commercetools.com
-  description: Production Change History Server
+- url: https://import.{region}.commercetools.com
+  description: Production Import Server
   variables:
     region:
       default: us-central1.gcp
@@ -52,31 +52,19 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
   schemas:
-    ImportResponse:
-      type: object
-      description: The response returned after submitting an import request batch.
-      required:
-      - operationStatus
-      properties:
-        operationStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
-    ErrorObject:
-      type: object
-      description: An error object describing a validation or processing failure.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
     StandalonePriceImport:
       type: object
       description: A single standalone price resource for import.
@@ -111,6 +99,30 @@ components:
           type: string
           format: date-time
           description: End of the price validity period.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
     ImportOperationStatus:
       type: object
       description: The initial status of a single resource submission in an import batch.
@@ -150,26 +162,7 @@ components:
           items:
             $ref: '#/components/schemas/StandalonePriceImport'
           description: Up to 20 standalone price resources.
-  responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
   parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
     importContainerKey:
       name: importContainerKey
       in: path
@@ -177,11 +170,18 @@ components:
       schema:
         type: string
       description: The user-defined key of the import container.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow. Requires the view_audit_log scope.
+      description: OAuth 2.0 Bearer token obtained from the commercetools authentication service using client credentials flow.
 externalDocs:
-  description: commercetools Change History API Documentation
-  url: https://docs.commercetools.com/api/history/overview
+  description: commercetools Import API Documentation
+  url: https://docs.commercetools.com/api/import-export/overview
