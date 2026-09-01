@@ -332,7 +332,7 @@ apis:
   humanURL: https://docs.commercetools.com/api
   baseURL: https://api.{region}.commercetools.com
   tags:
-  - ProductVariants
+  - Product Variants
   tags_raw:
   - ProductVariants
   properties:
