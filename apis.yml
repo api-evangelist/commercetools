@@ -177,26 +177,6 @@ apis:
     url: https://docs.commercetools.com/api/import-export/overview
   - type: Documentation
     url: https://docs.commercetools.com/api/history/overview
-- aid: commercetools:commercetools-changehistory-api
-  name: commercetools ChangeHistory API
-  description: Query the audit log of resource changes across the project.
-  humanURL: https://docs.commercetools.com/api
-  baseURL: https://api.{region}.commercetools.com
-  tags:
-  - Change History
-  tags_raw:
-  - ChangeHistory
-  properties:
-  - type: OpenAPI
-    url: openapi/commercetools-changehistory-api-openapi.yml
-  - type: Documentation
-    url: https://docs.commercetools.com/api
-  - type: AsyncAPI
-    url: asyncapi/commercetools-subscriptions-asyncapi.yml
-  - type: Documentation
-    url: https://docs.commercetools.com/api/import-export/overview
-  - type: Documentation
-    url: https://docs.commercetools.com/api/history/overview
 - aid: commercetools:commercetools-customers-api
   name: commercetools Customers API
   description: Manage customer accounts, addresses, authentication, and group assignments.
@@ -327,26 +307,6 @@ apis:
     url: https://docs.commercetools.com/api/import-export/overview
   - type: Documentation
     url: https://docs.commercetools.com/api/history/overview
-- aid: commercetools:commercetools-productvariants-api
-  name: commercetools ProductVariants API
-  description: Import product variant resources into the project.
-  humanURL: https://docs.commercetools.com/api
-  baseURL: https://api.{region}.commercetools.com
-  tags:
-  - Product Variants
-  tags_raw:
-  - ProductVariants
-  properties:
-  - type: OpenAPI
-    url: openapi/commercetools-productvariants-api-openapi.yml
-  - type: Documentation
-    url: https://docs.commercetools.com/api
-  - type: AsyncAPI
-    url: asyncapi/commercetools-subscriptions-asyncapi.yml
-  - type: Documentation
-    url: https://docs.commercetools.com/api/import-export/overview
-  - type: Documentation
-    url: https://docs.commercetools.com/api/history/overview
 - aid: commercetools:commercetools-project-api
   name: commercetools Project API
   description: Read and configure project-level settings including currencies, languages, and messages.
@@ -395,6 +355,42 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/commercetools-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-change-history-api
+  name: commercetools Change History API
+  description: Query the audit log of resource changes across the project.
+  humanURL: https://docs.commercetools.com/api/graphql
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Change History
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-change-history-api-openapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api
+  - type: AsyncAPI
+    url: asyncapi/commercetools-subscriptions-asyncapi.yml
+  - type: Documentation
+    url: https://docs.commercetools.com/api/import-export/overview
+  - type: Documentation
+    url: https://docs.commercetools.com/api/history/overview
+- aid: commercetools:commercetools-product-variants-api
+  name: commercetools Product Variants API
+  description: Import product variant resources into the project.
+  humanURL: https://docs.commercetools.com/api/graphql
+  baseURL: https://api.{region}.commercetools.com
+  tags:
+  - Product Variants
+  properties:
+  - type: OpenAPI
+    url: openapi/commercetools-product-variants-api-openapi.yml
   - type: Documentation
     url: https://docs.commercetools.com/api
   - type: AsyncAPI
