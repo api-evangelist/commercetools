@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: commercetools Import Standalone Prices API
-  description: The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project. It supports importing categories, product types, products, product variants, prices, inventory entries, orders, customers, business units, discount codes, product selections, standalone prices, and type definitions. Imports are processed asynchronously through import containers, and the API provides endpoints for monitoring import operation status and handling validation errors. The Import API is hosted on separate regional endpoints from the main HTTP API and uses the same OAuth 2.0 authorization model.
+  description: The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project.
   version: '1.0'
   contact:
     name: commercetools Support
@@ -65,6 +65,27 @@ components:
               message:
                 type: string
   schemas:
+    ImportOperationStatus:
+      type: object
+      description: The initial status of a single resource submission in an import batch.
+      required:
+      - resourceKey
+      - state
+      properties:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
     StandalonePriceImport:
       type: object
       description: A single standalone price resource for import.
@@ -99,17 +120,6 @@ components:
           type: string
           format: date-time
           description: End of the price validity period.
-    ImportResponse:
-      type: object
-      description: The response returned after submitting an import request batch.
-      required:
-      - operationStatus
-      properties:
-        operationStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
     ErrorObject:
       type: object
       description: An error object describing a validation or processing failure.
@@ -123,27 +133,6 @@ components:
         message:
           type: string
           description: Human-readable description of the error.
-    ImportOperationStatus:
-      type: object
-      description: The initial status of a single resource submission in an import batch.
-      required:
-      - resourceKey
-      - state
-      properties:
-        resourceKey:
-          type: string
-          description: User-defined key of the resource submitted.
-        state:
-          type: string
-          enum:
-          - Accepted
-          - ValidationFailed
-          description: Initial state of the operation after submission.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
-          description: Immediate validation errors if the resource failed submission.
     StandalonePriceImportRequest:
       type: object
       description: A batch of standalone price resources to import.
@@ -162,14 +151,18 @@ components:
           items:
             $ref: '#/components/schemas/StandalonePriceImport'
           description: Up to 20 standalone price resources.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
   parameters:
-    importContainerKey:
-      name: importContainerKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The user-defined key of the import container.
     projectKey:
       name: projectKey
       in: path
@@ -177,6 +170,13 @@ components:
       schema:
         type: string
       description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
   securitySchemes:
     bearerAuth:
       type: http

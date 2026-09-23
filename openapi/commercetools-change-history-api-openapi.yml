@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: commercetools Change History API
-  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.
+  description: The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project.
   version: '1.0'
   contact:
     name: commercetools Support
@@ -23,7 +23,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: ChangeHistory
+- name: Change History
   description: Query the audit log of resource changes across the project.
 paths:
   /{projectKey}:
@@ -32,7 +32,7 @@ paths:
       summary: Query change history records
       description: Returns a paginated list of change history records for the project. Each record contains a list of individual changes along with metadata about the actor and timestamp. Supports filtering by resource type, date range, resource ID, user, and client.
       tags:
-      - ChangeHistory
+      - Change History
       parameters:
       - $ref: '#/components/parameters/projectKey'
       - name: date.from
@@ -125,7 +125,7 @@ paths:
       summary: Query change history for a specific resource
       description: Returns a paginated list of change history records filtered to a specific resource type and resource ID. This is the most efficient way to retrieve the full change history of a single resource, such as all changes made to a specific order or product.
       tags:
-      - ChangeHistory
+      - Change History
       parameters:
       - $ref: '#/components/parameters/projectKey'
       - name: resourceType
@@ -272,6 +272,36 @@ components:
           items:
             $ref: '#/components/schemas/Record'
           description: The change history records on this page.
+    Change:
+      type: object
+      description: A single field-level change within a change history record.
+      required:
+      - change
+      - type
+      properties:
+        change:
+          type: string
+          description: The name of the update action that caused this change (e.g., 'setCustomField', 'changeOrderState').
+        type:
+          type: string
+          description: The type identifier of this change entry.
+        previousValue:
+          description: The field value before the change was applied.
+        nextValue:
+          description: The field value after the change was applied.
+    Reference:
+      type: object
+      description: A reference to another resource by typeId and id.
+      required:
+      - typeId
+      - id
+      properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource.
+        id:
+          type: string
+          description: The system-generated unique identifier of the referenced resource.
     ModifiedBy:
       type: object
       description: Information about the actor who made the change.
@@ -298,36 +328,6 @@ components:
         isPlatformClient:
           type: boolean
           description: Whether the change was made via the Merchant Center.
-    Reference:
-      type: object
-      description: A reference to another resource by typeId and id.
-      required:
-      - typeId
-      - id
-      properties:
-        typeId:
-          type: string
-          description: The type identifier of the referenced resource.
-        id:
-          type: string
-          description: The system-generated unique identifier of the referenced resource.
-    Change:
-      type: object
-      description: A single field-level change within a change history record.
-      required:
-      - change
-      - type
-      properties:
-        change:
-          type: string
-          description: The name of the update action that caused this change (e.g., 'setCustomField', 'changeOrderState').
-        type:
-          type: string
-          description: The type identifier of this change entry.
-        previousValue:
-          description: The field value before the change was applied.
-        nextValue:
-          description: The field value after the change was applied.
     Record:
       type: object
       description: A change history record capturing a set of changes applied to a resource in a single operation, along with actor and timestamp metadata.

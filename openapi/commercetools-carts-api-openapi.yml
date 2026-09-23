@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: commercetools HTTP Carts API
-  description: The commercetools HTTP API is the core REST interface for programmatic access to all data and functionality within a Composable Commerce project. It covers a broad range of commerce resources including products, product types, categories, carts, orders, customers, payments, discounts, inventory, shipping methods, stores, and business units. All resources follow RESTful conventions using standard HTTP verbs and return JSON responses. Authentication is handled via OAuth 2.0 client credentials, and requests are scoped per project and resource type.
+  description: The commercetools HTTP API is the core REST interface for programmatic access to all data and functionality within a Composable Commerce project.
   version: '1.0'
   contact:
     name: commercetools Support
@@ -132,6 +132,23 @@ paths:
                 $ref: '#/components/schemas/Cart'
 components:
   schemas:
+    Money:
+      type: object
+      description: A monetary value with currency code and amount in the smallest currency unit.
+      required:
+      - currencyCode
+      - centAmount
+      properties:
+        currencyCode:
+          type: string
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
     Address:
       type: object
       description: A postal address with country and optional structured fields.
@@ -175,41 +192,123 @@ components:
         phone:
           type: string
           description: Phone number associated with this postal address.
-    CartPagedQueryResponse:
+    Price:
       type: object
-      description: Paginated response containing a list of carts.
+      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
       required:
-      - limit
-      - offset
-      - count
-      - total
-      - results
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cart'
-    Reference:
-      type: object
-      description: A reference to another resource by its typeId and id.
-      required:
-      - typeId
       - id
+      - value
       properties:
-        typeId:
-          type: string
-          description: The type identifier of the referenced resource (e.g., 'product', 'category').
         id:
           type: string
-          description: The system-generated unique identifier of the referenced resource.
+          description: System-generated unique identifier for the price.
+        value:
+          $ref: '#/components/schemas/Money'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        channel:
+          $ref: '#/components/schemas/Reference'
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+    ProductVariant:
+      type: object
+      description: A product variant with SKU, attributes, prices, and images.
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: Variant ID unique within the product (starting at 1 for master).
+        sku:
+          type: string
+          description: Stock keeping unit identifier for this variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+          description: List of prices for different currencies, channels, and customer groups.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes as defined by the product type.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: List of images for this variant.
+    LineItem:
+      type: object
+      description: A product line item in a cart or order with quantity, pricing, and discount information.
+      required:
+      - id
+      - productId
+      - name
+      - variant
+      - price
+      - totalPrice
+      - quantity
+      - lineItemMode
+      - priceMode
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item within the cart.
+        productId:
+          type: string
+          description: ID of the product this line item references.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        variant:
+          $ref: '#/components/schemas/ProductVariant'
+        price:
+          $ref: '#/components/schemas/Price'
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        quantity:
+          type: integer
+          minimum: 1
+          description: Quantity of this product variant in the cart.
+        lineItemMode:
+          type: string
+          enum:
+          - Standard
+          - GiftLineItem
+          description: Whether this is a standard or gift line item.
+        priceMode:
+          type: string
+          enum:
+          - Platform
+          - ExternalTotal
+          - ExternalPrice
+          description: How the price for this line item is determined.
+    CartUpdate:
+      type: object
+      description: Request body for updating a cart.
+      required:
+      - version
+      - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the cart.
     Cart:
       type: object
       description: A shopping cart resource containing line items, discounts, shipping configuration, and pricing.
@@ -287,139 +386,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the cart was last modified.
-    Attribute:
-      type: object
-      description: A name-value pair representing a product attribute as defined by the product type.
-      required:
-      - name
-      - value
-      properties:
-        name:
-          type: string
-          description: Attribute name as defined in the product type.
-        value:
-          description: Attribute value. Type depends on the attribute type definition.
-    Price:
-      type: object
-      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
-      required:
-      - id
-      - value
-      properties:
-        id:
-          type: string
-          description: System-generated unique identifier for the price.
-        value:
-          $ref: '#/components/schemas/Money'
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
-        customerGroup:
-          $ref: '#/components/schemas/Reference'
-        channel:
-          $ref: '#/components/schemas/Reference'
-        validFrom:
-          type: string
-          format: date-time
-          description: Start of the price validity period.
-        validUntil:
-          type: string
-          format: date-time
-          description: End of the price validity period.
-    LocalizedString:
-      type: object
-      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
-      additionalProperties:
-        type: string
-    LineItem:
-      type: object
-      description: A product line item in a cart or order with quantity, pricing, and discount information.
-      required:
-      - id
-      - productId
-      - name
-      - variant
-      - price
-      - totalPrice
-      - quantity
-      - lineItemMode
-      - priceMode
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the line item within the cart.
-        productId:
-          type: string
-          description: ID of the product this line item references.
-        name:
-          $ref: '#/components/schemas/LocalizedString'
-        variant:
-          $ref: '#/components/schemas/ProductVariant'
-        price:
-          $ref: '#/components/schemas/Price'
-        totalPrice:
-          $ref: '#/components/schemas/Money'
-        quantity:
-          type: integer
-          minimum: 1
-          description: Quantity of this product variant in the cart.
-        lineItemMode:
-          type: string
-          enum:
-          - Standard
-          - GiftLineItem
-          description: Whether this is a standard or gift line item.
-        priceMode:
-          type: string
-          enum:
-          - Platform
-          - ExternalTotal
-          - ExternalPrice
-          description: How the price for this line item is determined.
-    Money:
-      type: object
-      description: A monetary value with currency code and amount in the smallest currency unit.
-      required:
-      - currencyCode
-      - centAmount
-      properties:
-        currencyCode:
-          type: string
-          pattern: ^[A-Z]{3}$
-          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
-        centAmount:
-          type: integer
-          description: The amount in the smallest indivisible unit of the currency.
-        fractionDigits:
-          type: integer
-          description: Number of fraction digits for the currency. Defaults to 2.
-    Image:
-      type: object
-      description: A product image with URL, dimensions, and optional label.
-      required:
-      - url
-      - dimensions
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the image.
-        dimensions:
-          type: object
-          description: Pixel dimensions of the image.
-          required:
-          - w
-          - h
-          properties:
-            w:
-              type: integer
-              description: Image width in pixels.
-            h:
-              type: integer
-              description: Image height in pixels.
-        label:
-          type: string
-          description: Optional label for the image.
     CartDraft:
       type: object
       description: Request body for creating a new cart.
@@ -466,51 +432,85 @@ components:
           description: Inventory tracking mode.
         store:
           $ref: '#/components/schemas/Reference'
-    ProductVariant:
+    LocalizedString:
       type: object
-      description: A product variant with SKU, attributes, prices, and images.
+      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
+      additionalProperties:
+        type: string
+    CartPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of carts.
       required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cart'
+    Reference:
+      type: object
+      description: A reference to another resource by its typeId and id.
+      required:
+      - typeId
       - id
       properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource (e.g., 'product', 'category').
         id:
-          type: integer
-          description: Variant ID unique within the product (starting at 1 for master).
-        sku:
           type: string
-          description: Stock keeping unit identifier for this variant.
-        key:
-          type: string
-          description: User-defined unique key for the variant.
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Price'
-          description: List of prices for different currencies, channels, and customer groups.
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-          description: Product attributes as defined by the product type.
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-          description: List of images for this variant.
-    CartUpdate:
+          description: The system-generated unique identifier of the referenced resource.
+    Image:
       type: object
-      description: Request body for updating a cart.
+      description: A product image with URL, dimensions, and optional label.
       required:
-      - version
-      - actions
+      - url
+      - dimensions
       properties:
-        version:
-          type: integer
-          description: Current version for optimistic concurrency control.
-        actions:
-          type: array
-          items:
-            type: object
-          description: List of update actions to apply to the cart.
+        url:
+          type: string
+          format: uri
+          description: URL of the image.
+        dimensions:
+          type: object
+          description: Pixel dimensions of the image.
+          required:
+          - w
+          - h
+          properties:
+            w:
+              type: integer
+              description: Image width in pixels.
+            h:
+              type: integer
+              description: Image height in pixels.
+        label:
+          type: string
+          description: Optional label for the image.
+    Attribute:
+      type: object
+      description: A name-value pair representing a product attribute as defined by the product type.
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Attribute name as defined in the product type.
+        value:
+          description: Attribute value. Type depends on the attribute type definition.
   parameters:
     limit:
       name: limit
@@ -536,13 +536,6 @@ components:
       schema:
         type: string
       description: The unique key identifying the commercetools project.
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The system-generated unique identifier of the resource.
     version:
       name: version
       in: query
@@ -568,18 +561,14 @@ components:
       schema:
         type: string
       description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
   responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
     BadRequest:
       description: The request was malformed or contained invalid parameters.
       content:
@@ -595,6 +584,17 @@ components:
                 type: array
                 items:
                   type: object
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
     Unauthorized:
       description: The request lacked valid authentication credentials.
       content:

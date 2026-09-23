@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: commercetools Import Import Containers API
-  description: The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project. It supports importing categories, product types, products, product variants, prices, inventory entries, orders, customers, business units, discount codes, product selections, standalone prices, and type definitions. Imports are processed asynchronously through import containers, and the API provides endpoints for monitoring import operation status and handling validation errors. The Import API is hosted on separate regional endpoints from the main HTTP API and uses the same OAuth 2.0 authorization model.
+  description: The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project.
   version: '1.0'
   contact:
     name: commercetools Support
@@ -276,29 +276,6 @@ components:
           type: integer
           description: Total number of import operations in the container.
   parameters:
-    importContainerKey:
-      name: importContainerKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The user-defined key of the import container.
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
-    offset:
-      name: offset
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      description: Number of results to skip for pagination.
     limit:
       name: limit
       in: query
@@ -309,6 +286,29 @@ components:
         maximum: 500
         default: 20
       description: Maximum number of results to return.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of results to skip for pagination.
   securitySchemes:
     bearerAuth:
       type: http

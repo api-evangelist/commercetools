@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: commercetools HTTP Payments API
-  description: The commercetools HTTP API is the core REST interface for programmatic access to all data and functionality within a Composable Commerce project. It covers a broad range of commerce resources including products, product types, categories, carts, orders, customers, payments, discounts, inventory, shipping methods, stores, and business units. All resources follow RESTful conventions using standard HTTP verbs and return JSON responses. Authentication is handled via OAuth 2.0 client credentials, and requests are scoped per project and resource type.
+  description: The commercetools HTTP API is the core REST interface for programmatic access to all data and functionality within a Composable Commerce project.
   version: '1.0'
   contact:
     name: commercetools Support
@@ -115,89 +115,6 @@ paths:
                 $ref: '#/components/schemas/Payment'
 components:
   schemas:
-    PaymentStatus:
-      type: object
-      description: The current status of a payment including PSP-specific state information.
-      properties:
-        interfaceCode:
-          type: string
-          description: PSP-specific status code.
-        interfaceText:
-          type: string
-          description: PSP-specific status message.
-        state:
-          $ref: '#/components/schemas/Reference'
-    Reference:
-      type: object
-      description: A reference to another resource by its typeId and id.
-      required:
-      - typeId
-      - id
-      properties:
-        typeId:
-          type: string
-          description: The type identifier of the referenced resource (e.g., 'product', 'category').
-        id:
-          type: string
-          description: The system-generated unique identifier of the referenced resource.
-    Transaction:
-      type: object
-      description: A single financial transaction within a payment (authorization, charge, refund, etc.).
-      required:
-      - id
-      - type
-      - amount
-      - state
-      properties:
-        id:
-          type: string
-          description: System-generated unique identifier for the transaction.
-        timestamp:
-          type: string
-          format: date-time
-          description: When the transaction was processed.
-        type:
-          type: string
-          enum:
-          - Authorization
-          - CancelAuthorization
-          - Charge
-          - Refund
-          - Chargeback
-          description: The type of financial transaction.
-        amount:
-          $ref: '#/components/schemas/Money'
-        interactionId:
-          type: string
-          description: PSP-provided identifier for this transaction.
-        state:
-          type: string
-          enum:
-          - Initial
-          - Pending
-          - Success
-          - Failure
-          description: Current processing state of the transaction.
-    PaymentUpdate:
-      type: object
-      description: Request body for updating a payment.
-      required:
-      - version
-      - actions
-      properties:
-        version:
-          type: integer
-          description: Current version for optimistic concurrency control.
-        actions:
-          type: array
-          items:
-            type: object
-          description: List of update actions to apply to the payment.
-    LocalizedString:
-      type: object
-      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
-      additionalProperties:
-        type: string
     Money:
       type: object
       description: A monetary value with currency code and amount in the smallest currency unit.
@@ -215,6 +132,41 @@ components:
         fractionDigits:
           type: integer
           description: Number of fraction digits for the currency. Defaults to 2.
+    PaymentMethodInfo:
+      type: object
+      description: Information about the payment method and PSP used for a payment.
+      properties:
+        paymentInterface:
+          type: string
+          description: Identifier of the PSP or payment interface.
+        method:
+          type: string
+          description: Payment method identifier (e.g., 'creditcard', 'paypal').
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+    PaymentDraft:
+      type: object
+      description: Request body for creating a new payment.
+      required:
+      - amountPlanned
+      properties:
+        key:
+          type: string
+          description: User-defined unique key for the payment.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        interfaceId:
+          type: string
+          description: PSP payment identifier.
+        amountPlanned:
+          $ref: '#/components/schemas/Money'
+        paymentMethodInfo:
+          $ref: '#/components/schemas/PaymentMethodInfo'
+        transactions:
+          type: array
+          items:
+            type: object
+          description: Initial transactions to create with the payment.
     Payment:
       type: object
       description: A payment resource tracking financial transactions and PSP interactions for an order.
@@ -258,6 +210,33 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the payment was last modified.
+    PaymentUpdate:
+      type: object
+      description: Request body for updating a payment.
+      required:
+      - version
+      - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the payment.
+    PaymentStatus:
+      type: object
+      description: The current status of a payment including PSP-specific state information.
+      properties:
+        interfaceCode:
+          type: string
+          description: PSP-specific status code.
+        interfaceText:
+          type: string
+          description: PSP-specific status message.
+        state:
+          $ref: '#/components/schemas/Reference'
     PaymentPagedQueryResponse:
       type: object
       description: Paginated response containing a list of payments.
@@ -280,41 +259,62 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Payment'
-    PaymentDraft:
+    Transaction:
       type: object
-      description: Request body for creating a new payment.
+      description: A single financial transaction within a payment (authorization, charge, refund, etc.).
       required:
-      - amountPlanned
+      - id
+      - type
+      - amount
+      - state
       properties:
-        key:
+        id:
           type: string
-          description: User-defined unique key for the payment.
-        customer:
-          $ref: '#/components/schemas/Reference'
-        interfaceId:
+          description: System-generated unique identifier for the transaction.
+        timestamp:
           type: string
-          description: PSP payment identifier.
-        amountPlanned:
+          format: date-time
+          description: When the transaction was processed.
+        type:
+          type: string
+          enum:
+          - Authorization
+          - CancelAuthorization
+          - Charge
+          - Refund
+          - Chargeback
+          description: The type of financial transaction.
+        amount:
           $ref: '#/components/schemas/Money'
-        paymentMethodInfo:
-          $ref: '#/components/schemas/PaymentMethodInfo'
-        transactions:
-          type: array
-          items:
-            type: object
-          description: Initial transactions to create with the payment.
-    PaymentMethodInfo:
+        interactionId:
+          type: string
+          description: PSP-provided identifier for this transaction.
+        state:
+          type: string
+          enum:
+          - Initial
+          - Pending
+          - Success
+          - Failure
+          description: Current processing state of the transaction.
+    LocalizedString:
       type: object
-      description: Information about the payment method and PSP used for a payment.
+      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
+      additionalProperties:
+        type: string
+    Reference:
+      type: object
+      description: A reference to another resource by its typeId and id.
+      required:
+      - typeId
+      - id
       properties:
-        paymentInterface:
+        typeId:
           type: string
-          description: Identifier of the PSP or payment interface.
-        method:
+          description: The type identifier of the referenced resource (e.g., 'product', 'category').
+        id:
           type: string
-          description: Payment method identifier (e.g., 'creditcard', 'paypal').
-        name:
-          $ref: '#/components/schemas/LocalizedString'
+          description: The system-generated unique identifier of the referenced resource.
   parameters:
     limit:
       name: limit
@@ -340,13 +340,6 @@ components:
       schema:
         type: string
       description: The unique key identifying the commercetools project.
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The system-generated unique identifier of the resource.
     offset:
       name: offset
       in: query
@@ -364,18 +357,14 @@ components:
       schema:
         type: string
       description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
   responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
     BadRequest:
       description: The request was malformed or contained invalid parameters.
       content:
@@ -391,6 +380,17 @@ components:
                 type: array
                 items:
                   type: object
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
     Unauthorized:
       description: The request lacked valid authentication credentials.
       content:

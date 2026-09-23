@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: commercetools Import Product Variants API
-  description: The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project. It supports importing categories, product types, products, product variants, prices, inventory entries, orders, customers, business units, discount codes, product selections, standalone prices, and type definitions. Imports are processed asynchronously through import containers, and the API provides endpoints for monitoring import operation status and handling validation errors. The Import API is hosted on separate regional endpoints from the main HTTP API and uses the same OAuth 2.0 authorization model.
+  description: The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project.
   version: '1.0'
   contact:
     name: commercetools Support
@@ -23,7 +23,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: ProductVariants
+- name: Product Variants
   description: Import product variant resources into the project.
 paths:
   /{projectKey}/product-variants/import-containers/{importContainerKey}:
@@ -32,7 +32,7 @@ paths:
       summary: Import product variants
       description: Submits a batch of product variant import requests for asynchronous processing. Variants are matched to products by the product key reference. Each request accepts up to 20 variant resources.
       tags:
-      - ProductVariants
+      - Product Variants
       parameters:
       - $ref: '#/components/parameters/projectKey'
       - $ref: '#/components/parameters/importContainerKey'
@@ -65,30 +65,27 @@ components:
               message:
                 type: string
   schemas:
-    ImportResponse:
+    ImportOperationStatus:
       type: object
-      description: The response returned after submitting an import request batch.
+      description: The initial status of a single resource submission in an import batch.
       required:
-      - operationStatus
+      - resourceKey
+      - state
       properties:
-        operationStatus:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
-    ErrorObject:
-      type: object
-      description: An error object describing a validation or processing failure.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
     ProductVariantImport:
       type: object
       description: A single product variant resource for import.
@@ -123,6 +120,30 @@ components:
           items:
             type: object
           description: Prices for the variant.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
     ProductVariantImportRequest:
       type: object
       description: A batch of product variant resources to import.
@@ -141,35 +162,7 @@ components:
           items:
             $ref: '#/components/schemas/ProductVariantImport'
           description: Up to 20 product variant resources.
-    ImportOperationStatus:
-      type: object
-      description: The initial status of a single resource submission in an import batch.
-      required:
-      - resourceKey
-      - state
-      properties:
-        resourceKey:
-          type: string
-          description: User-defined key of the resource submitted.
-        state:
-          type: string
-          enum:
-          - Accepted
-          - ValidationFailed
-          description: Initial state of the operation after submission.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
-          description: Immediate validation errors if the resource failed submission.
   parameters:
-    importContainerKey:
-      name: importContainerKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The user-defined key of the import container.
     projectKey:
       name: projectKey
       in: path
@@ -177,6 +170,13 @@ components:
       schema:
         type: string
       description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
   securitySchemes:
     bearerAuth:
       type: http

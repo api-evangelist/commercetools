@@ -209,6 +209,112 @@ paths:
           description: The deployment region.
 components:
   schemas:
+    Money:
+      type: object
+      description: A monetary value with currency code and amount in the smallest currency unit.
+      required:
+      - currencyCode
+      - centAmount
+      properties:
+        currencyCode:
+          type: string
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
+    CustomerPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of customers.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+    Customer:
+      type: object
+      description: A customer account with authentication credentials, addresses, and commerce profile data.
+      required:
+      - id
+      - version
+      - email
+      - isEmailVerified
+      - addresses
+      properties:
+        id:
+          type: string
+          description: System-generated unique identifier.
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        key:
+          type: string
+          description: User-defined unique identifier.
+        email:
+          type: string
+          format: email
+          description: Customer email address, unique within the project or store.
+        firstName:
+          type: string
+          description: Customer first name.
+        lastName:
+          type: string
+          description: Customer last name.
+        isEmailVerified:
+          type: boolean
+          description: Whether the customer email has been verified.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+          description: Saved addresses for the customer.
+        stores:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+          description: Stores the customer is assigned to.
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the customer was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the customer was last modified.
+    CustomerUpdate:
+      type: object
+      description: Request body for updating a customer.
+      required:
+      - version
+      - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the customer.
     Address:
       type: object
       description: A postal address with country and optional structured fields.
@@ -252,19 +358,141 @@ components:
         phone:
           type: string
           description: Phone number associated with this postal address.
-    Reference:
+    CustomerDraft:
       type: object
-      description: A reference to another resource by its typeId and id.
+      description: Request body for creating a new customer.
       required:
-      - typeId
-      - id
+      - email
+      - password
       properties:
-        typeId:
+        key:
           type: string
-          description: The type identifier of the referenced resource (e.g., 'product', 'category').
+          description: User-defined unique identifier.
+        email:
+          type: string
+          format: email
+          description: Email address for the new customer.
+        password:
+          type: string
+          description: Password for the new customer account.
+        firstName:
+          type: string
+          description: Customer first name.
+        lastName:
+          type: string
+          description: Customer last name.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+          description: Initial addresses for the customer.
+        isEmailVerified:
+          type: boolean
+          description: Whether to pre-verify the email address.
+    Price:
+      type: object
+      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
+      required:
+      - id
+      - value
+      properties:
         id:
           type: string
-          description: The system-generated unique identifier of the referenced resource.
+          description: System-generated unique identifier for the price.
+        value:
+          $ref: '#/components/schemas/Money'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        channel:
+          $ref: '#/components/schemas/Reference'
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+    ProductVariant:
+      type: object
+      description: A product variant with SKU, attributes, prices, and images.
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: Variant ID unique within the product (starting at 1 for master).
+        sku:
+          type: string
+          description: Stock keeping unit identifier for this variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+          description: List of prices for different currencies, channels, and customer groups.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes as defined by the product type.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: List of images for this variant.
+    LineItem:
+      type: object
+      description: A product line item in a cart or order with quantity, pricing, and discount information.
+      required:
+      - id
+      - productId
+      - name
+      - variant
+      - price
+      - totalPrice
+      - quantity
+      - lineItemMode
+      - priceMode
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the line item within the cart.
+        productId:
+          type: string
+          description: ID of the product this line item references.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        variant:
+          $ref: '#/components/schemas/ProductVariant'
+        price:
+          $ref: '#/components/schemas/Price'
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        quantity:
+          type: integer
+          minimum: 1
+          description: Quantity of this product variant in the cart.
+        lineItemMode:
+          type: string
+          enum:
+          - Standard
+          - GiftLineItem
+          description: Whether this is a standard or gift line item.
+        priceMode:
+          type: string
+          enum:
+          - Platform
+          - ExternalTotal
+          - ExternalPrice
+          description: How the price for this line item is determined.
     Cart:
       type: object
       description: A shopping cart resource containing line items, discounts, shipping configuration, and pricing.
@@ -342,234 +570,24 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the cart was last modified.
-    CustomerDraft:
-      type: object
-      description: Request body for creating a new customer.
-      required:
-      - email
-      - password
-      properties:
-        key:
-          type: string
-          description: User-defined unique identifier.
-        email:
-          type: string
-          format: email
-          description: Email address for the new customer.
-        password:
-          type: string
-          description: Password for the new customer account.
-        firstName:
-          type: string
-          description: Customer first name.
-        lastName:
-          type: string
-          description: Customer last name.
-        customerGroup:
-          $ref: '#/components/schemas/Reference'
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
-          description: Initial addresses for the customer.
-        isEmailVerified:
-          type: boolean
-          description: Whether to pre-verify the email address.
-    Attribute:
-      type: object
-      description: A name-value pair representing a product attribute as defined by the product type.
-      required:
-      - name
-      - value
-      properties:
-        name:
-          type: string
-          description: Attribute name as defined in the product type.
-        value:
-          description: Attribute value. Type depends on the attribute type definition.
-    Price:
-      type: object
-      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
-      required:
-      - id
-      - value
-      properties:
-        id:
-          type: string
-          description: System-generated unique identifier for the price.
-        value:
-          $ref: '#/components/schemas/Money'
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
-        customerGroup:
-          $ref: '#/components/schemas/Reference'
-        channel:
-          $ref: '#/components/schemas/Reference'
-        validFrom:
-          type: string
-          format: date-time
-          description: Start of the price validity period.
-        validUntil:
-          type: string
-          format: date-time
-          description: End of the price validity period.
     LocalizedString:
       type: object
       description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
       additionalProperties:
         type: string
-    LineItem:
+    Reference:
       type: object
-      description: A product line item in a cart or order with quantity, pricing, and discount information.
+      description: A reference to another resource by its typeId and id.
       required:
+      - typeId
       - id
-      - productId
-      - name
-      - variant
-      - price
-      - totalPrice
-      - quantity
-      - lineItemMode
-      - priceMode
       properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource (e.g., 'product', 'category').
         id:
           type: string
-          description: Unique identifier for the line item within the cart.
-        productId:
-          type: string
-          description: ID of the product this line item references.
-        name:
-          $ref: '#/components/schemas/LocalizedString'
-        variant:
-          $ref: '#/components/schemas/ProductVariant'
-        price:
-          $ref: '#/components/schemas/Price'
-        totalPrice:
-          $ref: '#/components/schemas/Money'
-        quantity:
-          type: integer
-          minimum: 1
-          description: Quantity of this product variant in the cart.
-        lineItemMode:
-          type: string
-          enum:
-          - Standard
-          - GiftLineItem
-          description: Whether this is a standard or gift line item.
-        priceMode:
-          type: string
-          enum:
-          - Platform
-          - ExternalTotal
-          - ExternalPrice
-          description: How the price for this line item is determined.
-    CustomerPagedQueryResponse:
-      type: object
-      description: Paginated response containing a list of customers.
-      required:
-      - limit
-      - offset
-      - count
-      - total
-      - results
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Customer'
-    Money:
-      type: object
-      description: A monetary value with currency code and amount in the smallest currency unit.
-      required:
-      - currencyCode
-      - centAmount
-      properties:
-        currencyCode:
-          type: string
-          pattern: ^[A-Z]{3}$
-          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
-        centAmount:
-          type: integer
-          description: The amount in the smallest indivisible unit of the currency.
-        fractionDigits:
-          type: integer
-          description: Number of fraction digits for the currency. Defaults to 2.
-    Customer:
-      type: object
-      description: A customer account with authentication credentials, addresses, and commerce profile data.
-      required:
-      - id
-      - version
-      - email
-      - isEmailVerified
-      - addresses
-      properties:
-        id:
-          type: string
-          description: System-generated unique identifier.
-        version:
-          type: integer
-          description: Current version for optimistic concurrency control.
-        key:
-          type: string
-          description: User-defined unique identifier.
-        email:
-          type: string
-          format: email
-          description: Customer email address, unique within the project or store.
-        firstName:
-          type: string
-          description: Customer first name.
-        lastName:
-          type: string
-          description: Customer last name.
-        isEmailVerified:
-          type: boolean
-          description: Whether the customer email has been verified.
-        customerGroup:
-          $ref: '#/components/schemas/Reference'
-        addresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
-          description: Saved addresses for the customer.
-        stores:
-          type: array
-          items:
-            $ref: '#/components/schemas/Reference'
-          description: Stores the customer is assigned to.
-        createdAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the customer was created.
-        lastModifiedAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the customer was last modified.
-    CustomerUpdate:
-      type: object
-      description: Request body for updating a customer.
-      required:
-      - version
-      - actions
-      properties:
-        version:
-          type: integer
-          description: Current version for optimistic concurrency control.
-        actions:
-          type: array
-          items:
-            type: object
-          description: List of update actions to apply to the customer.
+          description: The system-generated unique identifier of the referenced resource.
     Image:
       type: object
       description: A product image with URL, dimensions, and optional label.
@@ -597,6 +615,18 @@ components:
         label:
           type: string
           description: Optional label for the image.
+    Attribute:
+      type: object
+      description: A name-value pair representing a product attribute as defined by the product type.
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Attribute name as defined in the product type.
+        value:
+          description: Attribute value. Type depends on the attribute type definition.
     CustomerSignInResult:
       type: object
       description: The result of a customer creation or sign-in operation, including the customer and any merged cart.
@@ -607,78 +637,6 @@ components:
           $ref: '#/components/schemas/Customer'
         cart:
           $ref: '#/components/schemas/Cart'
-    ProductVariant:
-      type: object
-      description: A product variant with SKU, attributes, prices, and images.
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-          description: Variant ID unique within the product (starting at 1 for master).
-        sku:
-          type: string
-          description: Stock keeping unit identifier for this variant.
-        key:
-          type: string
-          description: User-defined unique key for the variant.
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Price'
-          description: List of prices for different currencies, channels, and customer groups.
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-          description: Product attributes as defined by the product type.
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-          description: List of images for this variant.
-    ImportResponse:
-      type: object
-      description: The response returned after submitting an import request batch.
-      required:
-      - operationStatus
-      properties:
-        operationStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
-    CustomerImportRequest:
-      type: object
-      description: A batch of customer resources to import.
-      required:
-      - type
-      - resources
-      properties:
-        type:
-          type: string
-          enum:
-          - customer
-          description: The resource type identifier.
-        resources:
-          type: array
-          maxItems: 20
-          items:
-            $ref: '#/components/schemas/CustomerImport'
-          description: Up to 20 customer resources.
-    ErrorObject:
-      type: object
-      description: An error object describing a validation or processing failure.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
     CustomerImport:
       type: object
       description: A single customer resource for import.
@@ -710,6 +668,24 @@ components:
         isEmailVerified:
           type: boolean
           description: Whether the email address is verified.
+    CustomerImportRequest:
+      type: object
+      description: A batch of customer resources to import.
+      required:
+      - type
+      - resources
+      properties:
+        type:
+          type: string
+          enum:
+          - customer
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/CustomerImport'
+          description: Up to 20 customer resources.
     ImportOperationStatus:
       type: object
       description: The initial status of a single resource submission in an import batch.
@@ -731,14 +707,31 @@ components:
           items:
             $ref: '#/components/schemas/ErrorObject'
           description: Immediate validation errors if the resource failed submission.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
   parameters:
-    sortQuery:
-      name: sort
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
     limit:
       name: limit
       in: query
@@ -763,13 +756,6 @@ components:
       schema:
         type: string
       description: The unique key identifying the commercetools project.
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The system-generated unique identifier of the resource.
     version:
       name: version
       in: query
@@ -795,13 +781,20 @@ components:
       schema:
         type: string
       description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
-    importContainerKey:
-      name: importContainerKey
+    id:
+      name: id
       in: path
       required: true
       schema:
         type: string
-      description: The user-defined key of the import container.
+      description: The system-generated unique identifier of the resource.
+    sortQuery:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
     projectKey_2:
       name: projectKey
       in: path
@@ -809,18 +802,14 @@ components:
       schema:
         type: string
       description: The unique key of the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
   responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
     BadRequest:
       description: The request was malformed or contained invalid parameters.
       content:
@@ -836,6 +825,17 @@ components:
                 type: array
                 items:
                   type: object
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
     Unauthorized:
       description: The request lacked valid authentication credentials.
       content:
