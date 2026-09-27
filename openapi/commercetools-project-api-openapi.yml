@@ -45,14 +45,18 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key identifying the commercetools project.
+  responses:
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
   schemas:
     Project:
       type: object
@@ -90,18 +94,14 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the project was created.
-  responses:
-    Unauthorized:
-      description: The request lacked valid authentication credentials.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
   securitySchemes:
     bearerAuth:
       type: http

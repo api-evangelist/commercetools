@@ -208,24 +208,301 @@ paths:
           - australia-southeast1.gcp
           description: The deployment region.
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    BadRequest_2:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
+    version:
+      name: version
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Current version of the resource for optimistic concurrency control.
+    where:
+      name: where
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    sortQuery:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
+    expand:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 10000
+        default: 0
+      description: Number of results to skip for pagination. Maximum 10000.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return. Defaults to 20, maximum 500.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    projectKey_2:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
   schemas:
-    Money:
+    Image:
       type: object
-      description: A monetary value with currency code and amount in the smallest currency unit.
+      description: A product image with URL, dimensions, and optional label.
       required:
-      - currencyCode
-      - centAmount
+      - url
+      - dimensions
       properties:
-        currencyCode:
+        url:
           type: string
-          pattern: ^[A-Z]{3}$
-          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
-        centAmount:
+          format: uri
+          description: URL of the image.
+        dimensions:
+          type: object
+          description: Pixel dimensions of the image.
+          required:
+          - w
+          - h
+          properties:
+            w:
+              type: integer
+              description: Image width in pixels.
+            h:
+              type: integer
+              description: Image height in pixels.
+        label:
+          type: string
+          description: Optional label for the image.
+    Address:
+      type: object
+      description: A postal address with country and optional structured fields.
+      required:
+      - country
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the address within the resource.
+        key:
+          type: string
+          description: User-defined identifier for the address.
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        firstName:
+          type: string
+          description: First name of the address recipient.
+        lastName:
+          type: string
+          description: Last name of the address recipient.
+        streetName:
+          type: string
+          description: Street name component of the address.
+        streetNumber:
+          type: string
+          description: Street number component of the address.
+        city:
+          type: string
+          description: City of the address.
+        postalCode:
+          type: string
+          description: Postal or ZIP code of the address.
+        region:
+          type: string
+          description: Region, state, or province of the address.
+        email:
+          type: string
+          format: email
+          description: Email address associated with this postal address.
+        phone:
+          type: string
+          description: Phone number associated with this postal address.
+    OrderPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of orders.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
           type: integer
-          description: The amount in the smallest indivisible unit of the currency.
-        fractionDigits:
+        offset:
           type: integer
-          description: Number of fraction digits for the currency. Defaults to 2.
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    Reference:
+      type: object
+      description: A reference to another resource by its typeId and id.
+      required:
+      - typeId
+      - id
+      properties:
+        typeId:
+          type: string
+          description: The type identifier of the referenced resource (e.g., 'product', 'category').
+        id:
+          type: string
+          description: The system-generated unique identifier of the referenced resource.
+    ProductVariant:
+      type: object
+      description: A product variant with SKU, attributes, prices, and images.
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: Variant ID unique within the product (starting at 1 for master).
+        sku:
+          type: string
+          description: Stock keeping unit identifier for this variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+          description: List of prices for different currencies, channels, and customer groups.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes as defined by the product type.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: List of images for this variant.
+    OrderFromCartDraft:
+      type: object
+      description: Request body for creating an order from an existing cart.
+      required:
+      - cart
+      - version
+      properties:
+        cart:
+          $ref: '#/components/schemas/Reference'
+        version:
+          type: integer
+          description: Current version of the cart being converted to an order.
+        orderNumber:
+          type: string
+          description: User-defined order number for the created order.
+        paymentState:
+          type: string
+          enum:
+          - Paid
+          - Pending
+          - Failed
+          - CreditOwed
+          - BalanceDue
+          description: Initial payment state of the order.
+        orderState:
+          type: string
+          enum:
+          - Open
+          - Confirmed
+          - Complete
+          - Cancelled
+          description: Initial order state of the created order.
     Order:
       type: object
       description: An order created from a cart after checkout, containing immutable line items, pricing, and fulfillment data.
@@ -304,106 +581,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the order was last modified.
-    Address:
-      type: object
-      description: A postal address with country and optional structured fields.
-      required:
-      - country
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the address within the resource.
-        key:
-          type: string
-          description: User-defined identifier for the address.
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-        firstName:
-          type: string
-          description: First name of the address recipient.
-        lastName:
-          type: string
-          description: Last name of the address recipient.
-        streetName:
-          type: string
-          description: Street name component of the address.
-        streetNumber:
-          type: string
-          description: Street number component of the address.
-        city:
-          type: string
-          description: City of the address.
-        postalCode:
-          type: string
-          description: Postal or ZIP code of the address.
-        region:
-          type: string
-          description: Region, state, or province of the address.
-        email:
-          type: string
-          format: email
-          description: Email address associated with this postal address.
-        phone:
-          type: string
-          description: Phone number associated with this postal address.
-    Price:
-      type: object
-      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
-      required:
-      - id
-      - value
-      properties:
-        id:
-          type: string
-          description: System-generated unique identifier for the price.
-        value:
-          $ref: '#/components/schemas/Money'
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
-        customerGroup:
-          $ref: '#/components/schemas/Reference'
-        channel:
-          $ref: '#/components/schemas/Reference'
-        validFrom:
-          type: string
-          format: date-time
-          description: Start of the price validity period.
-        validUntil:
-          type: string
-          format: date-time
-          description: End of the price validity period.
-    ProductVariant:
-      type: object
-      description: A product variant with SKU, attributes, prices, and images.
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-          description: Variant ID unique within the product (starting at 1 for master).
-        sku:
-          type: string
-          description: Stock keeping unit identifier for this variant.
-        key:
-          type: string
-          description: User-defined unique key for the variant.
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Price'
-          description: List of prices for different currencies, channels, and customer groups.
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-          description: Product attributes as defined by the product type.
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-          description: List of images for this variant.
     LineItem:
       type: object
       description: A product line item in a cart or order with quantity, pricing, and discount information.
@@ -449,117 +626,6 @@ components:
           - ExternalTotal
           - ExternalPrice
           description: How the price for this line item is determined.
-    OrderFromCartDraft:
-      type: object
-      description: Request body for creating an order from an existing cart.
-      required:
-      - cart
-      - version
-      properties:
-        cart:
-          $ref: '#/components/schemas/Reference'
-        version:
-          type: integer
-          description: Current version of the cart being converted to an order.
-        orderNumber:
-          type: string
-          description: User-defined order number for the created order.
-        paymentState:
-          type: string
-          enum:
-          - Paid
-          - Pending
-          - Failed
-          - CreditOwed
-          - BalanceDue
-          description: Initial payment state of the order.
-        orderState:
-          type: string
-          enum:
-          - Open
-          - Confirmed
-          - Complete
-          - Cancelled
-          description: Initial order state of the created order.
-    OrderPagedQueryResponse:
-      type: object
-      description: Paginated response containing a list of orders.
-      required:
-      - limit
-      - offset
-      - count
-      - total
-      - results
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-    LocalizedString:
-      type: object
-      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
-      additionalProperties:
-        type: string
-    Reference:
-      type: object
-      description: A reference to another resource by its typeId and id.
-      required:
-      - typeId
-      - id
-      properties:
-        typeId:
-          type: string
-          description: The type identifier of the referenced resource (e.g., 'product', 'category').
-        id:
-          type: string
-          description: The system-generated unique identifier of the referenced resource.
-    Image:
-      type: object
-      description: A product image with URL, dimensions, and optional label.
-      required:
-      - url
-      - dimensions
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the image.
-        dimensions:
-          type: object
-          description: Pixel dimensions of the image.
-          required:
-          - w
-          - h
-          properties:
-            w:
-              type: integer
-              description: Image width in pixels.
-            h:
-              type: integer
-              description: Image height in pixels.
-        label:
-          type: string
-          description: Optional label for the image.
-    Attribute:
-      type: object
-      description: A name-value pair representing a product attribute as defined by the product type.
-      required:
-      - name
-      - value
-      properties:
-        name:
-          type: string
-          description: Attribute name as defined in the product type.
-        value:
-          description: Attribute value. Type depends on the attribute type definition.
     OrderUpdate:
       type: object
       description: Request body for updating an order.
@@ -575,69 +641,67 @@ components:
           items:
             type: object
           description: List of update actions to apply to the order.
-    ImportOperationStatus:
+    Money:
       type: object
-      description: The initial status of a single resource submission in an import batch.
+      description: A monetary value with currency code and amount in the smallest currency unit.
       required:
-      - resourceKey
-      - state
+      - currencyCode
+      - centAmount
       properties:
-        resourceKey:
+        currencyCode:
           type: string
-          description: User-defined key of the resource submitted.
-        state:
-          type: string
-          enum:
-          - Accepted
-          - ValidationFailed
-          description: Initial state of the operation after submission.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
-          description: Immediate validation errors if the resource failed submission.
-    OrderImportRequest:
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
+    Attribute:
       type: object
-      description: A batch of order resources to import.
+      description: A name-value pair representing a product attribute as defined by the product type.
       required:
-      - type
-      - resources
+      - name
+      - value
       properties:
-        type:
+        name:
           type: string
-          enum:
-          - order
-          description: The resource type identifier.
-        resources:
-          type: array
-          maxItems: 20
-          items:
-            $ref: '#/components/schemas/OrderImport'
-          description: Up to 20 order resources.
-    ErrorObject:
+          description: Attribute name as defined in the product type.
+        value:
+          description: Attribute value. Type depends on the attribute type definition.
+    Price:
       type: object
-      description: An error object describing a validation or processing failure.
+      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
       required:
-      - code
-      - message
+      - id
+      - value
       properties:
-        code:
+        id:
           type: string
-          description: Machine-readable error code.
-        message:
+          description: System-generated unique identifier for the price.
+        value:
+          $ref: '#/components/schemas/Money'
+        country:
           type: string
-          description: Human-readable description of the error.
-    ImportResponse:
+          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        channel:
+          $ref: '#/components/schemas/Reference'
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+    LocalizedString:
       type: object
-      description: The response returned after submitting an import request batch.
-      required:
-      - operationStatus
-      properties:
-        operationStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
+      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
+      additionalProperties:
+        type: string
     OrderImport:
       type: object
       description: A single order resource for import, bypassing normal checkout flow.
@@ -678,133 +742,69 @@ components:
         paymentState:
           type: string
           description: Initial payment state of the order.
-  parameters:
-    limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 500
-        default: 20
-      description: Maximum number of results to return. Defaults to 20, maximum 500.
-    expand:
-      name: expand
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key identifying the commercetools project.
-    version:
-      name: version
-      in: query
-      required: true
-      schema:
-        type: integer
-        minimum: 1
-      description: Current version of the resource for optimistic concurrency control.
-    offset:
-      name: offset
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 10000
-        default: 0
-      description: Number of results to skip for pagination. Maximum 10000.
-    where:
-      name: where
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The system-generated unique identifier of the resource.
-    sortQuery:
-      name: sort
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
-    projectKey_2:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
-    importContainerKey:
-      name: importContainerKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The user-defined key of the import container.
-  responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
-              errors:
-                type: array
-                items:
-                  type: object
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
-    Unauthorized:
-      description: The request lacked valid authentication credentials.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
-    BadRequest_2:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    ImportOperationStatus:
+      type: object
+      description: The initial status of a single resource submission in an import batch.
+      required:
+      - resourceKey
+      - state
+      properties:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
+    OrderImportRequest:
+      type: object
+      description: A batch of order resources to import.
+      required:
+      - type
+      - resources
+      properties:
+        type:
+          type: string
+          enum:
+          - order
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/OrderImport'
+          description: Up to 20 order resources.
   securitySchemes:
     bearerAuth:
       type: http

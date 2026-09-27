@@ -1,6 +1,10 @@
 aid: commercetools
 url: https://raw.githubusercontent.com/api-evangelist/commercetools/refs/heads/main/apis.yml
 name: commercetools
+x-docs-platform: redoc
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-24
+x-docs-hosting: vercel
 tags:
 - Commerce
 - Composable Commerce
@@ -8,6 +12,7 @@ tags:
 - GraphQL
 - REST
 - SDK
+- Agentic Commerce
 type: Index
 deliveryModel:
   model: saas

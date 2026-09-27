@@ -272,23 +272,6 @@ components:
           items:
             $ref: '#/components/schemas/Record'
           description: The change history records on this page.
-    Change:
-      type: object
-      description: A single field-level change within a change history record.
-      required:
-      - change
-      - type
-      properties:
-        change:
-          type: string
-          description: The name of the update action that caused this change (e.g., 'setCustomField', 'changeOrderState').
-        type:
-          type: string
-          description: The type identifier of this change entry.
-        previousValue:
-          description: The field value before the change was applied.
-        nextValue:
-          description: The field value after the change was applied.
     Reference:
       type: object
       description: A reference to another resource by typeId and id.
@@ -302,32 +285,6 @@ components:
         id:
           type: string
           description: The system-generated unique identifier of the referenced resource.
-    ModifiedBy:
-      type: object
-      description: Information about the actor who made the change.
-      properties:
-        id:
-          type: string
-          description: System-generated ID of the user or client.
-        type:
-          type: string
-          enum:
-          - user
-          - external-user
-          - customer
-          - key
-          description: The type of actor that made the change.
-        clientId:
-          type: string
-          description: ID of the API client used to make the change.
-        anonymousId:
-          type: string
-          description: Anonymous session ID if the change was made without a customer login.
-        customer:
-          $ref: '#/components/schemas/Reference'
-        isPlatformClient:
-          type: boolean
-          description: Whether the change was made via the Merchant Center.
     Record:
       type: object
       description: A change history record capturing a set of changes applied to a resource in a single operation, along with actor and timestamp metadata.
@@ -369,6 +326,49 @@ components:
         type:
           type: string
           description: The type of modification (e.g., 'update', 'create', 'delete').
+    ModifiedBy:
+      type: object
+      description: Information about the actor who made the change.
+      properties:
+        id:
+          type: string
+          description: System-generated ID of the user or client.
+        type:
+          type: string
+          enum:
+          - user
+          - external-user
+          - customer
+          - key
+          description: The type of actor that made the change.
+        clientId:
+          type: string
+          description: ID of the API client used to make the change.
+        anonymousId:
+          type: string
+          description: Anonymous session ID if the change was made without a customer login.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        isPlatformClient:
+          type: boolean
+          description: Whether the change was made via the Merchant Center.
+    Change:
+      type: object
+      description: A single field-level change within a change history record.
+      required:
+      - change
+      - type
+      properties:
+        change:
+          type: string
+          description: The name of the update action that caused this change (e.g., 'setCustomField', 'changeOrderState').
+        type:
+          type: string
+          description: The type identifier of this change entry.
+        previousValue:
+          description: The field value before the change was applied.
+        nextValue:
+          description: The field value after the change was applied.
   parameters:
     projectKey:
       name: projectKey

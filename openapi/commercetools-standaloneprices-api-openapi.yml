@@ -65,27 +65,30 @@ components:
               message:
                 type: string
   schemas:
-    ImportOperationStatus:
+    ImportResponse:
       type: object
-      description: The initial status of a single resource submission in an import batch.
+      description: The response returned after submitting an import request batch.
       required:
-      - resourceKey
-      - state
+      - operationStatus
       properties:
-        resourceKey:
-          type: string
-          description: User-defined key of the resource submitted.
-        state:
-          type: string
-          enum:
-          - Accepted
-          - ValidationFailed
-          description: Initial state of the operation after submission.
-        errors:
+        operationStatus:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorObject'
-          description: Immediate validation errors if the resource failed submission.
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
     StandalonePriceImport:
       type: object
       description: A single standalone price resource for import.
@@ -120,19 +123,6 @@ components:
           type: string
           format: date-time
           description: End of the price validity period.
-    ErrorObject:
-      type: object
-      description: An error object describing a validation or processing failure.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
     StandalonePriceImportRequest:
       type: object
       description: A batch of standalone price resources to import.
@@ -151,25 +141,28 @@ components:
           items:
             $ref: '#/components/schemas/StandalonePriceImport'
           description: Up to 20 standalone price resources.
-    ImportResponse:
+    ImportOperationStatus:
       type: object
-      description: The response returned after submitting an import request batch.
+      description: The initial status of a single resource submission in an import batch.
       required:
-      - operationStatus
+      - resourceKey
+      - state
       properties:
-        operationStatus:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
   parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
     importContainerKey:
       name: importContainerKey
       in: path
@@ -177,6 +170,13 @@ components:
       schema:
         type: string
       description: The user-defined key of the import container.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
   securitySchemes:
     bearerAuth:
       type: http

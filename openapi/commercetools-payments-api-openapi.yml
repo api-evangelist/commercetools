@@ -115,58 +115,28 @@ paths:
                 $ref: '#/components/schemas/Payment'
 components:
   schemas:
-    Money:
+    PaymentPagedQueryResponse:
       type: object
-      description: A monetary value with currency code and amount in the smallest currency unit.
+      description: Paginated response containing a list of payments.
       required:
-      - currencyCode
-      - centAmount
+      - limit
+      - offset
+      - count
+      - total
+      - results
       properties:
-        currencyCode:
-          type: string
-          pattern: ^[A-Z]{3}$
-          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
-        centAmount:
+        limit:
           type: integer
-          description: The amount in the smallest indivisible unit of the currency.
-        fractionDigits:
+        offset:
           type: integer
-          description: Number of fraction digits for the currency. Defaults to 2.
-    PaymentMethodInfo:
-      type: object
-      description: Information about the payment method and PSP used for a payment.
-      properties:
-        paymentInterface:
-          type: string
-          description: Identifier of the PSP or payment interface.
-        method:
-          type: string
-          description: Payment method identifier (e.g., 'creditcard', 'paypal').
-        name:
-          $ref: '#/components/schemas/LocalizedString'
-    PaymentDraft:
-      type: object
-      description: Request body for creating a new payment.
-      required:
-      - amountPlanned
-      properties:
-        key:
-          type: string
-          description: User-defined unique key for the payment.
-        customer:
-          $ref: '#/components/schemas/Reference'
-        interfaceId:
-          type: string
-          description: PSP payment identifier.
-        amountPlanned:
-          $ref: '#/components/schemas/Money'
-        paymentMethodInfo:
-          $ref: '#/components/schemas/PaymentMethodInfo'
-        transactions:
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
           type: array
           items:
-            type: object
-          description: Initial transactions to create with the payment.
+            $ref: '#/components/schemas/Payment'
     Payment:
       type: object
       description: A payment resource tracking financial transactions and PSP interactions for an order.
@@ -210,55 +180,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the payment was last modified.
-    PaymentUpdate:
-      type: object
-      description: Request body for updating a payment.
-      required:
-      - version
-      - actions
-      properties:
-        version:
-          type: integer
-          description: Current version for optimistic concurrency control.
-        actions:
-          type: array
-          items:
-            type: object
-          description: List of update actions to apply to the payment.
-    PaymentStatus:
-      type: object
-      description: The current status of a payment including PSP-specific state information.
-      properties:
-        interfaceCode:
-          type: string
-          description: PSP-specific status code.
-        interfaceText:
-          type: string
-          description: PSP-specific status message.
-        state:
-          $ref: '#/components/schemas/Reference'
-    PaymentPagedQueryResponse:
-      type: object
-      description: Paginated response containing a list of payments.
-      required:
-      - limit
-      - offset
-      - count
-      - total
-      - results
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payment'
     Transaction:
       type: object
       description: A single financial transaction within a payment (authorization, charge, refund, etc.).
@@ -297,11 +218,18 @@ components:
           - Success
           - Failure
           description: Current processing state of the transaction.
-    LocalizedString:
+    PaymentStatus:
       type: object
-      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
-      additionalProperties:
-        type: string
+      description: The current status of a payment including PSP-specific state information.
+      properties:
+        interfaceCode:
+          type: string
+          description: PSP-specific status code.
+        interfaceText:
+          type: string
+          description: PSP-specific status message.
+        state:
+          $ref: '#/components/schemas/Reference'
     Reference:
       type: object
       description: A reference to another resource by its typeId and id.
@@ -315,56 +243,90 @@ components:
         id:
           type: string
           description: The system-generated unique identifier of the referenced resource.
-  parameters:
-    limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 500
-        default: 20
-      description: Maximum number of results to return. Defaults to 20, maximum 500.
-    expand:
-      name: expand
-      in: query
-      required: false
-      schema:
+    PaymentUpdate:
+      type: object
+      description: Request body for updating a payment.
+      required:
+      - version
+      - actions
+      properties:
+        version:
+          type: integer
+          description: Current version for optimistic concurrency control.
+        actions:
+          type: array
+          items:
+            type: object
+          description: List of update actions to apply to the payment.
+    PaymentMethodInfo:
+      type: object
+      description: Information about the payment method and PSP used for a payment.
+      properties:
+        paymentInterface:
+          type: string
+          description: Identifier of the PSP or payment interface.
+        method:
+          type: string
+          description: Payment method identifier (e.g., 'creditcard', 'paypal').
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+    Money:
+      type: object
+      description: A monetary value with currency code and amount in the smallest currency unit.
+      required:
+      - currencyCode
+      - centAmount
+      properties:
+        currencyCode:
+          type: string
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
+    PaymentDraft:
+      type: object
+      description: Request body for creating a new payment.
+      required:
+      - amountPlanned
+      properties:
+        key:
+          type: string
+          description: User-defined unique key for the payment.
+        customer:
+          $ref: '#/components/schemas/Reference'
+        interfaceId:
+          type: string
+          description: PSP payment identifier.
+        amountPlanned:
+          $ref: '#/components/schemas/Money'
+        paymentMethodInfo:
+          $ref: '#/components/schemas/PaymentMethodInfo'
+        transactions:
+          type: array
+          items:
+            type: object
+          description: Initial transactions to create with the payment.
+    LocalizedString:
+      type: object
+      description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
+      additionalProperties:
         type: string
-      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key identifying the commercetools project.
-    offset:
-      name: offset
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 10000
-        default: 0
-      description: Number of results to skip for pagination. Maximum 10000.
-    where:
-      name: where
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The system-generated unique identifier of the resource.
   responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
     BadRequest:
       description: The request was malformed or contained invalid parameters.
       content:
@@ -380,17 +342,6 @@ components:
                 type: array
                 items:
                   type: object
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
     Unauthorized:
       description: The request lacked valid authentication credentials.
       content:
@@ -402,6 +353,55 @@ components:
                 type: integer
               message:
                 type: string
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
+    where:
+      name: where
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    expand:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 10000
+        default: 0
+      description: Number of results to skip for pagination. Maximum 10000.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return. Defaults to 20, maximum 500.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
   securitySchemes:
     bearerAuth:
       type: http

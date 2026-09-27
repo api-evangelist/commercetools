@@ -208,55 +208,6 @@ paths:
           - australia-southeast1.gcp
           description: The deployment region.
 components:
-  responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
-              errors:
-                type: array
-                items:
-                  type: object
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
-    Unauthorized:
-      description: The request lacked valid authentication credentials.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
-    BadRequest_2:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
   schemas:
     CategoryUpdate:
       type: object
@@ -308,6 +259,31 @@ components:
         id:
           type: string
           description: The system-generated unique identifier of the referenced resource.
+    CategoryDraft:
+      type: object
+      description: Request body for creating a new category.
+      required:
+      - name
+      - slug
+      properties:
+        key:
+          type: string
+          description: User-defined unique identifier.
+        name:
+          $ref: '#/components/schemas/LocalizedString'
+        slug:
+          $ref: '#/components/schemas/LocalizedString'
+        description:
+          $ref: '#/components/schemas/LocalizedString'
+        parent:
+          $ref: '#/components/schemas/Reference'
+        orderHint:
+          type: string
+          description: Decimal string between 0 and 1 for ordering within siblings.
+        metaTitle:
+          $ref: '#/components/schemas/LocalizedString'
+        metaDescription:
+          $ref: '#/components/schemas/LocalizedString'
     Category:
       type: object
       description: A category resource for organizing products in a hierarchical structure.
@@ -356,36 +332,53 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the category was last modified.
-    CategoryDraft:
-      type: object
-      description: Request body for creating a new category.
-      required:
-      - name
-      - slug
-      properties:
-        key:
-          type: string
-          description: User-defined unique identifier.
-        name:
-          $ref: '#/components/schemas/LocalizedString'
-        slug:
-          $ref: '#/components/schemas/LocalizedString'
-        description:
-          $ref: '#/components/schemas/LocalizedString'
-        parent:
-          $ref: '#/components/schemas/Reference'
-        orderHint:
-          type: string
-          description: Decimal string between 0 and 1 for ordering within siblings.
-        metaTitle:
-          $ref: '#/components/schemas/LocalizedString'
-        metaDescription:
-          $ref: '#/components/schemas/LocalizedString'
     LocalizedString:
       type: object
       description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
       additionalProperties:
         type: string
+    CategoryImportRequest:
+      type: object
+      description: A batch of category resources to import.
+      required:
+      - type
+      - resources
+      properties:
+        type:
+          type: string
+          enum:
+          - category
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/CategoryImport'
+          description: Up to 20 category resources.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
     ImportOperationStatus:
       type: object
       description: The initial status of a single resource submission in an import batch.
@@ -433,66 +426,56 @@ components:
         orderHint:
           type: string
           description: Decimal ordering hint between 0 and 1.
-    ErrorObject:
-      type: object
-      description: An error object describing a validation or processing failure.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
-    ImportResponse:
-      type: object
-      description: The response returned after submitting an import request batch.
-      required:
-      - operationStatus
-      properties:
-        operationStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
-    CategoryImportRequest:
-      type: object
-      description: A batch of category resources to import.
-      required:
-      - type
-      - resources
-      properties:
-        type:
-          type: string
-          enum:
-          - category
-          description: The resource type identifier.
-        resources:
-          type: array
-          maxItems: 20
-          items:
-            $ref: '#/components/schemas/CategoryImport'
-          description: Up to 20 category resources.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    BadRequest_2:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
   parameters:
-    limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 500
-        default: 20
-      description: Maximum number of results to return. Defaults to 20, maximum 500.
-    where:
-      name: where
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
     expand:
       name: expand
       in: query
@@ -500,35 +483,6 @@ components:
       schema:
         type: string
       description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key identifying the commercetools project.
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The system-generated unique identifier of the resource.
-    version:
-      name: version
-      in: query
-      required: true
-      schema:
-        type: integer
-        minimum: 1
-      description: Current version of the resource for optimistic concurrency control.
-    sortQuery:
-      name: sort
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
     offset:
       name: offset
       in: query
@@ -539,13 +493,52 @@ components:
         maximum: 10000
         default: 0
       description: Number of results to skip for pagination. Maximum 10000.
-    projectKey_2:
+    version:
+      name: version
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Current version of the resource for optimistic concurrency control.
+    where:
+      name: where
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    sortQuery:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return. Defaults to 20, maximum 500.
+    projectKey:
       name: projectKey
       in: path
       required: true
       schema:
         type: string
-      description: The unique key of the commercetools project.
+      description: The unique key identifying the commercetools project.
     importContainerKey:
       name: importContainerKey
       in: path
@@ -553,6 +546,13 @@ components:
       schema:
         type: string
       description: The user-defined key of the import container.
+    projectKey_2:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
   securitySchemes:
     bearerAuth:
       type: http

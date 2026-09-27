@@ -65,6 +65,48 @@ components:
               message:
                 type: string
   schemas:
+    ProductVariantImportRequest:
+      type: object
+      description: A batch of product variant resources to import.
+      required:
+      - type
+      - resources
+      properties:
+        type:
+          type: string
+          enum:
+          - product-variant
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/ProductVariantImport'
+          description: Up to 20 product variant resources.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ErrorObject:
+      type: object
+      description: An error object describing a validation or processing failure.
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
     ImportOperationStatus:
       type: object
       description: The initial status of a single resource submission in an import batch.
@@ -120,56 +162,7 @@ components:
           items:
             type: object
           description: Prices for the variant.
-    ErrorObject:
-      type: object
-      description: An error object describing a validation or processing failure.
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
-    ImportResponse:
-      type: object
-      description: The response returned after submitting an import request batch.
-      required:
-      - operationStatus
-      properties:
-        operationStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
-    ProductVariantImportRequest:
-      type: object
-      description: A batch of product variant resources to import.
-      required:
-      - type
-      - resources
-      properties:
-        type:
-          type: string
-          enum:
-          - product-variant
-          description: The resource type identifier.
-        resources:
-          type: array
-          maxItems: 20
-          items:
-            $ref: '#/components/schemas/ProductVariantImport'
-          description: Up to 20 product variant resources.
   parameters:
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
     importContainerKey:
       name: importContainerKey
       in: path
@@ -177,6 +170,13 @@ components:
       schema:
         type: string
       description: The user-defined key of the import container.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
   securitySchemes:
     bearerAuth:
       type: http
