@@ -52,43 +52,46 @@ paths:
         '400':
           $ref: '#/components/responses/BadRequest'
 components:
-  responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
   schemas:
-    ImportResponse:
+    ImportOperationStatus:
       type: object
-      description: The response returned after submitting an import request batch.
+      description: The initial status of a single resource submission in an import batch.
       required:
-      - operationStatus
+      - resourceKey
+      - state
       properties:
-        operationStatus:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
-    ErrorObject:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
+    StandalonePriceImportRequest:
       type: object
-      description: An error object describing a validation or processing failure.
+      description: A batch of standalone price resources to import.
       required:
-      - code
-      - message
+      - type
+      - resources
       properties:
-        code:
+        type:
           type: string
-          description: Machine-readable error code.
-        message:
-          type: string
-          description: Human-readable description of the error.
+          enum:
+          - standalone-price
+          description: The resource type identifier.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/StandalonePriceImport'
+          description: Up to 20 standalone price resources.
     StandalonePriceImport:
       type: object
       description: A single standalone price resource for import.
@@ -123,45 +126,30 @@ components:
           type: string
           format: date-time
           description: End of the price validity period.
-    StandalonePriceImportRequest:
+    ErrorObject:
       type: object
-      description: A batch of standalone price resources to import.
+      description: An error object describing a validation or processing failure.
       required:
-      - type
-      - resources
+      - code
+      - message
       properties:
-        type:
+        code:
           type: string
-          enum:
-          - standalone-price
-          description: The resource type identifier.
-        resources:
-          type: array
-          maxItems: 20
-          items:
-            $ref: '#/components/schemas/StandalonePriceImport'
-          description: Up to 20 standalone price resources.
-    ImportOperationStatus:
+          description: Machine-readable error code.
+        message:
+          type: string
+          description: Human-readable description of the error.
+    ImportResponse:
       type: object
-      description: The initial status of a single resource submission in an import batch.
+      description: The response returned after submitting an import request batch.
       required:
-      - resourceKey
-      - state
+      - operationStatus
       properties:
-        resourceKey:
-          type: string
-          description: User-defined key of the resource submitted.
-        state:
-          type: string
-          enum:
-          - Accepted
-          - ValidationFailed
-          description: Initial state of the operation after submission.
-        errors:
+        operationStatus:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorObject'
-          description: Immediate validation errors if the resource failed submission.
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
   parameters:
     importContainerKey:
       name: importContainerKey
@@ -177,6 +165,18 @@ components:
       schema:
         type: string
       description: The unique key of the commercetools project.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
   securitySchemes:
     bearerAuth:
       type: http

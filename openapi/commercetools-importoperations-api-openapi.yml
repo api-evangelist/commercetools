@@ -167,6 +167,20 @@ components:
           type: string
           description: Human-readable description of the error.
   parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique identifier of the resource.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
     offset:
       name: offset
       in: query
@@ -176,20 +190,13 @@ components:
         minimum: 0
         default: 0
       description: Number of results to skip for pagination.
-    importContainerKey:
-      name: importContainerKey
+    projectKey:
+      name: projectKey
       in: path
       required: true
       schema:
         type: string
-      description: The user-defined key of the import container.
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique identifier of the resource.
+      description: The unique key of the commercetools project.
     limit:
       name: limit
       in: query
@@ -200,13 +207,6 @@ components:
         maximum: 500
         default: 20
       description: Maximum number of results to return.
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
   responses:
     NotFound:
       description: The requested resource was not found.

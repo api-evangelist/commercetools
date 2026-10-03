@@ -220,18 +220,85 @@ paths:
           - australia-southeast1.gcp
           description: The deployment region.
 components:
+  parameters:
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key identifying the commercetools project.
+    sortQuery:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The system-generated unique identifier of the resource.
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return. Defaults to 20, maximum 500.
+    expand:
+      name: expand
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 10000
+        default: 0
+      description: Number of results to skip for pagination. Maximum 10000.
+    where:
+      name: where
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
+    version:
+      name: version
+      in: query
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+      description: Current version of the resource for optimistic concurrency control.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    projectKey_2:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
   responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
     BadRequest:
       description: The request was malformed or contained invalid parameters.
       content:
@@ -249,6 +316,17 @@ components:
                   type: object
     Unauthorized:
       description: The request lacked valid authentication credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -280,153 +358,7 @@ components:
                 type: integer
               message:
                 type: string
-  parameters:
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The system-generated unique identifier of the resource.
-    version:
-      name: version
-      in: query
-      required: true
-      schema:
-        type: integer
-        minimum: 1
-      description: Current version of the resource for optimistic concurrency control.
-    where:
-      name: where
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = "user@example.com"').
-    sortQuery:
-      name: sort
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.
-    expand:
-      name: expand
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').
-    offset:
-      name: offset
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 10000
-        default: 0
-      description: Number of results to skip for pagination. Maximum 10000.
-    limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 500
-        default: 20
-      description: Maximum number of results to return. Defaults to 20, maximum 500.
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key identifying the commercetools project.
-    importContainerKey:
-      name: importContainerKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The user-defined key of the import container.
-    projectKey_2:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
   schemas:
-    Image:
-      type: object
-      description: A product image with URL, dimensions, and optional label.
-      required:
-      - url
-      - dimensions
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL of the image.
-        dimensions:
-          type: object
-          description: Pixel dimensions of the image.
-          required:
-          - w
-          - h
-          properties:
-            w:
-              type: integer
-              description: Image width in pixels.
-            h:
-              type: integer
-              description: Image height in pixels.
-        label:
-          type: string
-          description: Optional label for the image.
-    ProductUpdate:
-      type: object
-      description: Request body for updating a product using versioned update actions.
-      required:
-      - version
-      - actions
-      properties:
-        version:
-          type: integer
-          description: Current version of the product for optimistic concurrency control.
-        actions:
-          type: array
-          items:
-            type: object
-            description: An update action object with an 'action' discriminator field.
-          description: List of update actions to apply to the product.
-    ProductVariantDraft:
-      type: object
-      description: Draft for creating a product variant.
-      properties:
-        sku:
-          type: string
-          description: SKU identifier for the variant.
-        key:
-          type: string
-          description: User-defined unique key for the variant.
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/PriceDraft'
-          description: Prices to assign to the variant on creation.
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-          description: Product attributes for this variant.
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-          description: Images for the variant.
     Reference:
       type: object
       description: A reference to another resource by its typeId and id.
@@ -440,36 +372,6 @@ components:
         id:
           type: string
           description: The system-generated unique identifier of the referenced resource.
-    ProductVariant:
-      type: object
-      description: A product variant with SKU, attributes, prices, and images.
-      required:
-      - id
-      properties:
-        id:
-          type: integer
-          description: Variant ID unique within the product (starting at 1 for master).
-        sku:
-          type: string
-          description: Stock keeping unit identifier for this variant.
-        key:
-          type: string
-          description: User-defined unique key for the variant.
-        prices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Price'
-          description: List of prices for different currencies, channels, and customer groups.
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-          description: Product attributes as defined by the product type.
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-          description: List of images for this variant.
     PriceDraft:
       type: object
       description: Draft for creating a price on a product variant.
@@ -525,6 +427,67 @@ components:
           $ref: '#/components/schemas/LocalizedString'
         metaDescription:
           $ref: '#/components/schemas/LocalizedString'
+    ProductPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of products.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+          description: Maximum number of results returned.
+        offset:
+          type: integer
+          description: Number of results skipped.
+        count:
+          type: integer
+          description: Number of results in this page.
+        total:
+          type: integer
+          description: Total number of matching results.
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+          description: The products on this page.
+    Money:
+      type: object
+      description: A monetary value with currency code and amount in the smallest currency unit.
+      required:
+      - currencyCode
+      - centAmount
+      properties:
+        currencyCode:
+          type: string
+          pattern: ^[A-Z]{3}$
+          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
+        centAmount:
+          type: integer
+          description: The amount in the smallest indivisible unit of the currency.
+        fractionDigits:
+          type: integer
+          description: Number of fraction digits for the currency. Defaults to 2.
+    ProductCatalogData:
+      type: object
+      description: Container for current (published) and staged product data.
+      required:
+      - published
+      - hasStagedChanges
+      properties:
+        published:
+          type: boolean
+          description: Whether the product has a published (current) version.
+        current:
+          $ref: '#/components/schemas/ProductData'
+        staged:
+          $ref: '#/components/schemas/ProductData'
+        hasStagedChanges:
+          type: boolean
+          description: Whether there are unpublished staged changes.
     Product:
       type: object
       description: A commercetools product resource containing both the current (published) and staged versions of product data including variants, attributes, and metadata.
@@ -559,62 +522,6 @@ components:
           type: string
           format: date-time
           description: ISO 8601 timestamp when the product was last modified.
-    Money:
-      type: object
-      description: A monetary value with currency code and amount in the smallest currency unit.
-      required:
-      - currencyCode
-      - centAmount
-      properties:
-        currencyCode:
-          type: string
-          pattern: ^[A-Z]{3}$
-          description: ISO 4217 three-letter currency code (e.g., USD, EUR).
-        centAmount:
-          type: integer
-          description: The amount in the smallest indivisible unit of the currency.
-        fractionDigits:
-          type: integer
-          description: Number of fraction digits for the currency. Defaults to 2.
-    Attribute:
-      type: object
-      description: A name-value pair representing a product attribute as defined by the product type.
-      required:
-      - name
-      - value
-      properties:
-        name:
-          type: string
-          description: Attribute name as defined in the product type.
-        value:
-          description: Attribute value. Type depends on the attribute type definition.
-    Price:
-      type: object
-      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
-      required:
-      - id
-      - value
-      properties:
-        id:
-          type: string
-          description: System-generated unique identifier for the price.
-        value:
-          $ref: '#/components/schemas/Money'
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
-        customerGroup:
-          $ref: '#/components/schemas/Reference'
-        channel:
-          $ref: '#/components/schemas/Reference'
-        validFrom:
-          type: string
-          format: date-time
-          description: Start of the price validity period.
-        validUntil:
-          type: string
-          format: date-time
-          description: End of the price validity period.
     ProductDraft:
       type: object
       description: Request body for creating a new product.
@@ -651,55 +558,187 @@ components:
         publish:
           type: boolean
           description: If true, immediately publishes the product after creation.
-    ProductCatalogData:
+    Price:
       type: object
-      description: Container for current (published) and staged product data.
+      description: A price entry for a product variant with optional scoping by channel, customer group, country, or validity period.
       required:
-      - published
-      - hasStagedChanges
+      - id
+      - value
       properties:
-        published:
-          type: boolean
-          description: Whether the product has a published (current) version.
-        current:
-          $ref: '#/components/schemas/ProductData'
-        staged:
-          $ref: '#/components/schemas/ProductData'
-        hasStagedChanges:
-          type: boolean
-          description: Whether there are unpublished staged changes.
-    ProductPagedQueryResponse:
+        id:
+          type: string
+          description: System-generated unique identifier for the price.
+        value:
+          $ref: '#/components/schemas/Money'
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code to scope the price geographically.
+        customerGroup:
+          $ref: '#/components/schemas/Reference'
+        channel:
+          $ref: '#/components/schemas/Reference'
+        validFrom:
+          type: string
+          format: date-time
+          description: Start of the price validity period.
+        validUntil:
+          type: string
+          format: date-time
+          description: End of the price validity period.
+    ProductUpdate:
       type: object
-      description: Paginated response containing a list of products.
+      description: Request body for updating a product using versioned update actions.
       required:
-      - limit
-      - offset
-      - count
-      - total
-      - results
+      - version
+      - actions
       properties:
-        limit:
+        version:
           type: integer
-          description: Maximum number of results returned.
-        offset:
-          type: integer
-          description: Number of results skipped.
-        count:
-          type: integer
-          description: Number of results in this page.
-        total:
-          type: integer
-          description: Total number of matching results.
-        results:
+          description: Current version of the product for optimistic concurrency control.
+        actions:
           type: array
           items:
-            $ref: '#/components/schemas/Product'
-          description: The products on this page.
+            type: object
+            description: An update action object with an 'action' discriminator field.
+          description: List of update actions to apply to the product.
+    Image:
+      type: object
+      description: A product image with URL, dimensions, and optional label.
+      required:
+      - url
+      - dimensions
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL of the image.
+        dimensions:
+          type: object
+          description: Pixel dimensions of the image.
+          required:
+          - w
+          - h
+          properties:
+            w:
+              type: integer
+              description: Image width in pixels.
+            h:
+              type: integer
+              description: Image height in pixels.
+        label:
+          type: string
+          description: Optional label for the image.
+    ProductVariantDraft:
+      type: object
+      description: Draft for creating a product variant.
+      properties:
+        sku:
+          type: string
+          description: SKU identifier for the variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceDraft'
+          description: Prices to assign to the variant on creation.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes for this variant.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: Images for the variant.
+    ProductVariant:
+      type: object
+      description: A product variant with SKU, attributes, prices, and images.
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+          description: Variant ID unique within the product (starting at 1 for master).
+        sku:
+          type: string
+          description: Stock keeping unit identifier for this variant.
+        key:
+          type: string
+          description: User-defined unique key for the variant.
+        prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Price'
+          description: List of prices for different currencies, channels, and customer groups.
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+          description: Product attributes as defined by the product type.
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          description: List of images for this variant.
+    Attribute:
+      type: object
+      description: A name-value pair representing a product attribute as defined by the product type.
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Attribute name as defined in the product type.
+        value:
+          description: Attribute value. Type depends on the attribute type definition.
     LocalizedString:
       type: object
       description: A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').
       additionalProperties:
         type: string
+    ImportOperationStatus:
+      type: object
+      description: The initial status of a single resource submission in an import batch.
+      required:
+      - resourceKey
+      - state
+      properties:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
+    ProductImportRequest:
+      type: object
+      description: A batch of product resources to import into the project.
+      required:
+      - type
+      - resources
+      properties:
+        type:
+          type: string
+          enum:
+          - product
+          description: The resource type identifier for this import request.
+        resources:
+          type: array
+          maxItems: 20
+          items:
+            $ref: '#/components/schemas/ProductImport'
+          description: Up to 20 product resources to import.
     ProductImport:
       type: object
       description: A single product resource for import, matched by key for upsert behavior.
@@ -732,17 +771,6 @@ components:
         publish:
           type: boolean
           description: Whether to publish the product after import.
-    ImportResponse:
-      type: object
-      description: The response returned after submitting an import request batch.
-      required:
-      - operationStatus
-      properties:
-        operationStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
     ErrorObject:
       type: object
       description: An error object describing a validation or processing failure.
@@ -756,45 +784,17 @@ components:
         message:
           type: string
           description: Human-readable description of the error.
-    ProductImportRequest:
+    ImportResponse:
       type: object
-      description: A batch of product resources to import into the project.
+      description: The response returned after submitting an import request batch.
       required:
-      - type
-      - resources
+      - operationStatus
       properties:
-        type:
-          type: string
-          enum:
-          - product
-          description: The resource type identifier for this import request.
-        resources:
-          type: array
-          maxItems: 20
-          items:
-            $ref: '#/components/schemas/ProductImport'
-          description: Up to 20 product resources to import.
-    ImportOperationStatus:
-      type: object
-      description: The initial status of a single resource submission in an import batch.
-      required:
-      - resourceKey
-      - state
-      properties:
-        resourceKey:
-          type: string
-          description: User-defined key of the resource submitted.
-        state:
-          type: string
-          enum:
-          - Accepted
-          - ValidationFailed
-          description: Initial state of the operation after submission.
-        errors:
+        operationStatus:
           type: array
           items:
-            $ref: '#/components/schemas/ErrorObject'
-          description: Immediate validation errors if the resource failed submission.
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
   securitySchemes:
     bearerAuth:
       type: http
