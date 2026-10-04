@@ -147,65 +147,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ImportContainerPagedQueryResponse:
-      type: object
-      description: Paginated response containing a list of import containers.
-      required:
-      - limit
-      - offset
-      - count
-      - total
-      - results
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportContainer'
-    ImportContainer:
-      type: object
-      description: A container that groups related import requests for a specific resource type.
-      required:
-      - key
-      - version
-      - resourceType
-      properties:
-        key:
-          type: string
-          description: User-defined unique key for the container (2-256 characters).
-        version:
-          type: integer
-          description: Current version of the import container.
-        resourceType:
-          type: string
-          description: The resource type this container is scoped to (e.g., 'product', 'category').
-        createdAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the container was created.
-        lastModifiedAt:
-          type: string
-          format: date-time
-          description: ISO 8601 timestamp when the container was last modified.
-    ImportContainerDraft:
-      type: object
-      description: Request body for creating or replacing an import container.
-      required:
-      - key
-      properties:
-        key:
-          type: string
-          description: User-defined unique key (2-256 characters, alphanumeric with hyphens/underscores).
-        resourceType:
-          type: string
-          description: Optional resource type scope for the container.
     ImportSummary:
       type: object
       description: Aggregated counts of import operations grouped by processing state.
@@ -241,14 +182,66 @@ components:
         total:
           type: integer
           description: Total number of import operations in the container.
+    ImportContainerDraft:
+      type: object
+      description: Request body for creating or replacing an import container.
+      required:
+      - key
+      properties:
+        key:
+          type: string
+          description: User-defined unique key (2-256 characters, alphanumeric with hyphens/underscores).
+        resourceType:
+          type: string
+          description: Optional resource type scope for the container.
+    ImportContainer:
+      type: object
+      description: A container that groups related import requests for a specific resource type.
+      required:
+      - key
+      - version
+      - resourceType
+      properties:
+        key:
+          type: string
+          description: User-defined unique key for the container (2-256 characters).
+        version:
+          type: integer
+          description: Current version of the import container.
+        resourceType:
+          type: string
+          description: The resource type this container is scoped to (e.g., 'product', 'category').
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the container was created.
+        lastModifiedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the container was last modified.
+    ImportContainerPagedQueryResponse:
+      type: object
+      description: Paginated response containing a list of import containers.
+      required:
+      - limit
+      - offset
+      - count
+      - total
+      - results
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportContainer'
   parameters:
-    importContainerKey:
-      name: importContainerKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The user-defined key of the import container.
     offset:
       name: offset
       in: query
@@ -258,13 +251,6 @@ components:
         minimum: 0
         default: 0
       description: Number of results to skip for pagination.
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
     limit:
       name: limit
       in: query
@@ -275,9 +261,23 @@ components:
         maximum: 500
         default: 20
       description: Maximum number of results to return.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
       content:
         application/json:
           schema:
@@ -287,8 +287,8 @@ components:
                 type: integer
               message:
                 type: string
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

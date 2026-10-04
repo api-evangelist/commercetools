@@ -53,27 +53,6 @@ paths:
           $ref: '#/components/responses/BadRequest'
 components:
   schemas:
-    ImportOperationStatus:
-      type: object
-      description: The initial status of a single resource submission in an import batch.
-      required:
-      - resourceKey
-      - state
-      properties:
-        resourceKey:
-          type: string
-          description: User-defined key of the resource submitted.
-        state:
-          type: string
-          enum:
-          - Accepted
-          - ValidationFailed
-          description: Initial state of the operation after submission.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
-          description: Immediate validation errors if the resource failed submission.
     StandalonePriceImportRequest:
       type: object
       description: A batch of standalone price resources to import.
@@ -126,6 +105,38 @@ components:
           type: string
           format: date-time
           description: End of the price validity period.
+    ImportResponse:
+      type: object
+      description: The response returned after submitting an import request batch.
+      required:
+      - operationStatus
+      properties:
+        operationStatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImportOperationStatus'
+          description: Status records for each resource in the submitted batch.
+    ImportOperationStatus:
+      type: object
+      description: The initial status of a single resource submission in an import batch.
+      required:
+      - resourceKey
+      - state
+      properties:
+        resourceKey:
+          type: string
+          description: User-defined key of the resource submitted.
+        state:
+          type: string
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
     ErrorObject:
       type: object
       description: An error object describing a validation or processing failure.
@@ -139,17 +150,6 @@ components:
         message:
           type: string
           description: Human-readable description of the error.
-    ImportResponse:
-      type: object
-      description: The response returned after submitting an import request batch.
-      required:
-      - operationStatus
-      properties:
-        operationStatus:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImportOperationStatus'
-          description: Status records for each resource in the submitted batch.
   parameters:
     importContainerKey:
       name: importContainerKey

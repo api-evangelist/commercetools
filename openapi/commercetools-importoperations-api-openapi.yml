@@ -82,6 +82,47 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        default: 20
+      description: Maximum number of results to return.
+    offset:
+      name: offset
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      description: Number of results to skip for pagination.
+    importContainerKey:
+      name: importContainerKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The user-defined key of the import container.
+    projectKey:
+      name: projectKey
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique key of the commercetools project.
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique identifier of the resource.
   schemas:
     ImportOperation:
       type: object
@@ -166,50 +207,9 @@ components:
         message:
           type: string
           description: Human-readable description of the error.
-  parameters:
-    id:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique identifier of the resource.
-    importContainerKey:
-      name: importContainerKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The user-defined key of the import container.
-    offset:
-      name: offset
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      description: Number of results to skip for pagination.
-    projectKey:
-      name: projectKey
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The unique key of the commercetools project.
-    limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 500
-        default: 20
-      description: Maximum number of results to return.
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: The request lacked valid authentication credentials.
       content:
         application/json:
           schema:
@@ -219,8 +219,8 @@ components:
                 type: integer
               message:
                 type: string
-    Unauthorized:
-      description: The request lacked valid authentication credentials.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
