@@ -405,6 +405,9 @@ apis:
   - type: Documentation
     url: https://docs.commercetools.com/api/history/overview
 common:
+- type: CapabilityMap
+  url: capabilities/commercetools-capability-edges.yml
+  name: commercetools Business Capability Map
 - type: AgenticAccess
   url: agentic-access/commercetools-agentic-access.yml
 - type: TrustCenter
