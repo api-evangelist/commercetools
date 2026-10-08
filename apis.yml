@@ -405,6 +405,12 @@ apis:
   - type: Documentation
     url: https://docs.commercetools.com/api/history/overview
 common:
+- type: Plans
+  url: plans/commercetools-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/commercetools-rate-limits.yml
+- type: FinOps
+  url: finops/commercetools-finops.yml
 - type: CapabilityMap
   url: capabilities/commercetools-capability-edges.yml
   name: commercetools Business Capability Map
