@@ -78,3 +78,35 @@ plans:
       - name: Audit Log Premium
       - name: Premium Support
       - name: Third-party connectors
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - period
+  plans:
+  - name: Core Commerce Edition
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - year
+  - name: Foundry Edition
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - year
+  - name: Premium Edition
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - year
