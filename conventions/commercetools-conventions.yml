@@ -1,0 +1,60 @@
+name: commercetools conventions
+generated: '2026-10-12'
+method: searched
+source: https://docs.commercetools.com/api/general-concepts
+auth:
+  style: OAuth 2.0 bearer tokens (client credentials, password, anonymous, refresh flows)
+  docs: https://docs.commercetools.com/api/authorization
+idempotency:
+  coverage: none
+  note: 'No Idempotency-Key header is documented. Replay/conflict protection is optimistic concurrency: updates and deletes must carry the current resource version and fail with 409 ConcurrentModification otherwise; user-defined unique keys reject duplicate creates (DuplicateField).'
+concurrency:
+  mechanism: version field (optimistic concurrency control)
+  conflict_status: 409
+  error: ConcurrentModification
+pagination:
+  style: offset
+  params:
+  - limit
+  - offset
+  - withTotal
+  - sort
+  response_fields:
+  - limit
+  - offset
+  - count
+  - total
+  - results
+  docs: https://docs.commercetools.com/api/general-concepts#pagination
+expansion:
+  param: expand
+  docs: https://docs.commercetools.com/api/general-concepts#reference-expansion
+updates:
+  style: update actions array with version
+  docs: https://docs.commercetools.com/api/general-concepts#partial-updates
+versioning:
+  style: versionless API
+  docs: https://docs.commercetools.com/offering/compatibility
+errors:
+  envelope: statusCode, message, errors[]
+  catalog: errors/commercetools-error-codes.yml
+rate_limit_signaling:
+  headers:
+  - Retry-After
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Request-Cost
+  status: 429
+  see: rate-limits/commercetools-rate-limits.yml
+reversibility:
+  status: documented
+  note: Reversal paths exist as API operations; no reversal time window is stated in the pages read, so none is recorded.
+  surfaces:
+  - surface: payments
+    reversal: Payment transactions of type Refund and CancelAuthorization (addTransaction update action)
+    window: null
+    docs: https://docs.commercetools.com/api/projects/payments
+  - surface: orders
+    reversal: Order state can be changed to Cancelled (changeOrderState update action)
+    window: null
+    docs: https://docs.commercetools.com/api/projects/orders

@@ -1,0 +1,24 @@
+name: commercetools lifecycle
+generated: '2026-10-12'
+method: searched
+source: https://docs.commercetools.com/offering/compatibility
+versioning:
+  scheme: versionless
+  text: The APIs are versionless, removing the need for version upgrades. However, individual fields or actions might be changed as part of the APIs' evolution.
+  resource_versioning: Each resource carries a version incremented on every update; updates and deletes must send the current version (optimistic concurrency).
+deprecation:
+  policy: Deprecations and removals of features are announced in release notes. Existing implementations continue to work.
+  url: https://docs.commercetools.com/api/deprecations-and-removals
+  beta_notice:
+  - Breaking changes are announced three months in advance.
+  - Removals are announced six months in advance.
+  deprecated_hosts:
+  - api.sphere.io
+  - api.commercetools.com
+  - api.commercetools.co
+release_lifecycle:
+- Early access
+- Public beta
+- General availability
+changelog: https://docs.commercetools.com/docs/release-notes
+status_page: https://status.commercetools.com/

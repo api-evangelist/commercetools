@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-product-variant-import-request-schema.json",
+  "title": "ProductVariantImportRequest",
+  "description": "A batch of product variant resources to import.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-product-variants-api-openapi.yml#/components/schemas/ProductVariantImportRequest",
+  "type": "object",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "product-variant"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/$defs/ProductVariantImport"
+      },
+      "description": "Up to 20 product variant resources."
+    }
+  },
+  "$defs": {
+    "ProductVariantImport": {
+      "type": "object",
+      "description": "A single product variant resource for import.",
+      "required": [
+        "key",
+        "product"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "User-defined key for matching against existing variants."
+        },
+        "sku": {
+          "type": "string",
+          "description": "SKU identifier for the variant."
+        },
+        "product": {
+          "type": "object",
+          "description": "Reference to the parent product by key."
+        },
+        "isMasterVariant": {
+          "type": "boolean",
+          "description": "Whether this variant is the master (first) variant."
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Attribute values for the variant."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Images for the variant."
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Prices for the variant."
+        }
+      }
+    }
+  }
+}

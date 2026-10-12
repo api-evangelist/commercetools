@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-category-paged-query-response-schema.json",
+  "title": "CategoryPagedQueryResponse",
+  "description": "Paginated response containing a list of categories.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-categories-api-openapi.yml#/components/schemas/CategoryPagedQueryResponse",
+  "type": "object",
+  "required": [
+    "limit",
+    "offset",
+    "count",
+    "total",
+    "results"
+  ],
+  "properties": {
+    "limit": {
+      "type": "integer"
+    },
+    "offset": {
+      "type": "integer"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Category"
+      }
+    }
+  },
+  "$defs": {
+    "Category": {
+      "type": "object",
+      "description": "A category resource for organizing products in a hierarchical structure.",
+      "required": [
+        "id",
+        "version",
+        "name",
+        "slug",
+        "ancestors",
+        "orderHint"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "System-generated unique identifier."
+        },
+        "version": {
+          "type": "integer",
+          "description": "Current version for optimistic concurrency control."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined unique identifier."
+        },
+        "name": {
+          "$ref": "#/$defs/LocalizedString"
+        },
+        "slug": {
+          "$ref": "#/$defs/LocalizedString"
+        },
+        "description": {
+          "$ref": "#/$defs/LocalizedString"
+        },
+        "parent": {
+          "$ref": "#/$defs/Reference"
+        },
+        "ancestors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "description": "Ordered list of ancestor category references from root to immediate parent."
+        },
+        "orderHint": {
+          "type": "string",
+          "description": "Decimal string between 0 and 1 for ordering within siblings."
+        },
+        "metaTitle": {
+          "$ref": "#/$defs/LocalizedString"
+        },
+        "metaDescription": {
+          "$ref": "#/$defs/LocalizedString"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the category was created."
+        },
+        "lastModifiedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the category was last modified."
+        }
+      }
+    },
+    "LocalizedString": {
+      "type": "object",
+      "description": "A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another resource by its typeId and id.",
+      "required": [
+        "typeId",
+        "id"
+      ],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'category')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    }
+  }
+}

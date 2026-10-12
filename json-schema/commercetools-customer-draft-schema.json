@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-customer-draft-schema.json",
+  "title": "CustomerDraft",
+  "description": "Request body for creating a new customer.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-customers-api-openapi.yml#/components/schemas/CustomerDraft",
+  "type": "object",
+  "required": [
+    "email",
+    "password"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined unique identifier."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for the new customer."
+    },
+    "password": {
+      "type": "string",
+      "description": "Password for the new customer account."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Customer first name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Customer last name."
+    },
+    "customerGroup": {
+      "$ref": "#/$defs/Reference"
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Address"
+      },
+      "description": "Initial addresses for the customer."
+    },
+    "isEmailVerified": {
+      "type": "boolean",
+      "description": "Whether to pre-verify the email address."
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "A postal address with country and optional structured fields.",
+      "required": [
+        "country"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the address within the resource."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined identifier for the address."
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the address recipient."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the address recipient."
+        },
+        "streetName": {
+          "type": "string",
+          "description": "Street name component of the address."
+        },
+        "streetNumber": {
+          "type": "string",
+          "description": "Street number component of the address."
+        },
+        "city": {
+          "type": "string",
+          "description": "City of the address."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal or ZIP code of the address."
+        },
+        "region": {
+          "type": "string",
+          "description": "Region, state, or province of the address."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address associated with this postal address."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number associated with this postal address."
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another resource by its typeId and id.",
+      "required": [
+        "typeId",
+        "id"
+      ],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'category')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    }
+  }
+}

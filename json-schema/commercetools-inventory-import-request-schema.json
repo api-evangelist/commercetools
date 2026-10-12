@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-inventory-import-request-schema.json",
+  "title": "InventoryImportRequest",
+  "description": "A batch of inventory entry resources to import.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-inventory-api-openapi.yml#/components/schemas/InventoryImportRequest",
+  "type": "object",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "inventory"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/$defs/InventoryImport"
+      },
+      "description": "Up to 20 inventory entry resources."
+    }
+  },
+  "$defs": {
+    "InventoryImport": {
+      "type": "object",
+      "description": "A single inventory entry resource for import.",
+      "required": [
+        "key",
+        "sku",
+        "quantityOnStock"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "User-defined key for matching against existing inventory entries."
+        },
+        "sku": {
+          "type": "string",
+          "description": "SKU of the product variant."
+        },
+        "quantityOnStock": {
+          "type": "integer",
+          "description": "Quantity on stock to set."
+        },
+        "supplyChannel": {
+          "type": "object",
+          "description": "Reference to the supply channel by key."
+        },
+        "restockableInDays": {
+          "type": "integer",
+          "description": "Expected restocking time in days."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+name: commercetools packages
+generated: '2026-10-12'
+method: searched
+source:
+- https://docs.commercetools.com/dev-tooling/sdk-overview
+- https://registry.npmjs.org
+- https://api.nuget.org
+- https://repo.packagist.org
+- https://search.maven.org
+- https://proxy.golang.org
+packages:
+- name: '@commercetools/platform-sdk'
+  registry: npm
+  url: https://www.npmjs.com/package/@commercetools/platform-sdk
+  language: typescript
+  official: true
+  version: 9.7.0
+  published: '2026-10-09'
+  ownership_audit: metadata names commercetools.com
+- name: '@commercetools/ts-client'
+  registry: npm
+  url: https://www.npmjs.com/package/@commercetools/ts-client
+  language: typescript
+  official: true
+  version: 5.1.1
+  published: '2026-10-09'
+  ownership_audit: metadata names commercetools.com
+- name: '@commercetools/importapi-sdk'
+  registry: npm
+  url: https://www.npmjs.com/package/@commercetools/importapi-sdk
+  language: typescript
+  official: true
+  version: 7.1.2
+  published: '2026-10-09'
+  ownership_audit: metadata names commercetools.com
+- name: '@commercetools/history-sdk'
+  registry: npm
+  url: https://www.npmjs.com/package/@commercetools/history-sdk
+  language: typescript
+  official: true
+  version: 6.3.0
+  published: '2026-10-09'
+  ownership_audit: metadata names commercetools.com
+- name: '@commercetools/commerce-mcp'
+  registry: npm
+  url: https://www.npmjs.com/package/@commercetools/commerce-mcp
+  language: typescript
+  official: true
+  version: 4.2.2
+  published: '2026-09-30'
+  ownership_audit: metadata names commercetools.com
+- name: '@commercetools/mcp-essentials'
+  registry: npm
+  url: https://www.npmjs.com/package/@commercetools/mcp-essentials
+  language: typescript
+  official: true
+  version: 2.4.2
+  published: '2025-11-24'
+  ownership_audit: metadata names commercetools.com
+- name: '@commercetools-frontend/mc-scripts'
+  registry: npm
+  url: https://www.npmjs.com/package/@commercetools-frontend/mc-scripts
+  language: javascript
+  official: false
+  version: 27.13.0
+  published: '2026-10-07'
+  ownership_audit: 'registry has no such package: official downgraded (harvest-packages.py --audit)'
+- name: '@commercetools/cli'
+  registry: npm
+  url: https://www.npmjs.com/package/@commercetools/cli
+  language: javascript
+  official: true
+  version: 0.0.23
+  published: '2026-08-27'
+  ownership_audit: metadata names commercetools.com
+- name: com.commercetools.sdk:commercetools-sdk-java-api
+  registry: maven
+  url: https://central.sonatype.com/artifact/com.commercetools.sdk/commercetools-sdk-java-api
+  language: java
+  official: true
+  version: 18.2.0
+  published: '2025-06-05'
+  note: latestVersion/timestamp from search.maven.org solr index, which may lag
+- name: commercetools.Sdk.Api
+  registry: nuget
+  url: https://www.nuget.org/packages/commercetools.Sdk.Api
+  language: csharp
+  official: false
+  version: 16.0.0
+  published: '2026-10-07'
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+- name: commercetools/commercetools-sdk
+  registry: packagist
+  url: https://packagist.org/packages/commercetools/commercetools-sdk
+  language: php
+  official: false
+  version: 11.2.0
+  published: '2026-10-09'
+  ownership_audit: 'registry metadata names neither the provider''s domain nor its GitHub org: official downgraded (harvest-packages.py --audit)'
+- name: github.com/labd/commercetools-go-sdk
+  registry: go
+  url: https://pkg.go.dev/github.com/labd/commercetools-go-sdk
+  language: go
+  official: false
+  version: v1.10.0
+  published: '2026-08-24'
+  note: Maintained by Lab Digital, a partner, not commercetools

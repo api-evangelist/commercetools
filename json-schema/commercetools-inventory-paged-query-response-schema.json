@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-inventory-paged-query-response-schema.json",
+  "title": "InventoryPagedQueryResponse",
+  "description": "Paginated response containing a list of inventory entries.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-inventory-api-openapi.yml#/components/schemas/InventoryPagedQueryResponse",
+  "type": "object",
+  "required": [
+    "limit",
+    "offset",
+    "count",
+    "total",
+    "results"
+  ],
+  "properties": {
+    "limit": {
+      "type": "integer"
+    },
+    "offset": {
+      "type": "integer"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/InventoryEntry"
+      }
+    }
+  },
+  "$defs": {
+    "InventoryEntry": {
+      "type": "object",
+      "description": "An inventory entry tracking available quantity for a specific SKU, optionally scoped to a supply channel.",
+      "required": [
+        "id",
+        "version",
+        "sku",
+        "quantityOnStock",
+        "availableQuantity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "System-generated unique identifier."
+        },
+        "version": {
+          "type": "integer",
+          "description": "Current version for optimistic concurrency control."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined unique identifier."
+        },
+        "sku": {
+          "type": "string",
+          "description": "SKU of the product variant this inventory entry tracks."
+        },
+        "supplyChannel": {
+          "$ref": "#/$defs/Reference"
+        },
+        "quantityOnStock": {
+          "type": "integer",
+          "description": "Total quantity physically in stock."
+        },
+        "availableQuantity": {
+          "type": "integer",
+          "description": "Quantity available for ordering (stock minus reservations)."
+        },
+        "restockableInDays": {
+          "type": "integer",
+          "description": "Expected days until out-of-stock items are restocked."
+        },
+        "expectedDelivery": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Expected delivery date for restocking."
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another resource by its typeId and id.",
+      "required": [
+        "typeId",
+        "id"
+      ],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'category')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    }
+  }
+}

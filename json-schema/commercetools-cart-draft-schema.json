@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-cart-draft-schema.json",
+  "title": "CartDraft",
+  "description": "Request body for creating a new cart.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-carts-api-openapi.yml#/components/schemas/CartDraft",
+  "type": "object",
+  "required": [
+    "currency"
+  ],
+  "properties": {
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 currency code for the cart."
+    },
+    "customerId": {
+      "type": "string",
+      "description": "ID of the customer to associate with the cart."
+    },
+    "customerEmail": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for anonymous or identified carts."
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the cart."
+    },
+    "lineItems": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Initial line items to add to the cart."
+    },
+    "billingAddress": {
+      "$ref": "#/$defs/Address"
+    },
+    "shippingAddress": {
+      "$ref": "#/$defs/Address"
+    },
+    "taxMode": {
+      "type": "string",
+      "enum": [
+        "Platform",
+        "External",
+        "ExternalAmount",
+        "Disabled"
+      ],
+      "description": "Tax calculation mode."
+    },
+    "inventoryMode": {
+      "type": "string",
+      "enum": [
+        "None",
+        "TrackOnly",
+        "ReserveOnOrder"
+      ],
+      "description": "Inventory tracking mode."
+    },
+    "store": {
+      "$ref": "#/$defs/Reference"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "A postal address with country and optional structured fields.",
+      "required": [
+        "country"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the address within the resource."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined identifier for the address."
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the address recipient."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the address recipient."
+        },
+        "streetName": {
+          "type": "string",
+          "description": "Street name component of the address."
+        },
+        "streetNumber": {
+          "type": "string",
+          "description": "Street number component of the address."
+        },
+        "city": {
+          "type": "string",
+          "description": "City of the address."
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal or ZIP code of the address."
+        },
+        "region": {
+          "type": "string",
+          "description": "Region, state, or province of the address."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address associated with this postal address."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number associated with this postal address."
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another resource by its typeId and id.",
+      "required": [
+        "typeId",
+        "id"
+      ],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'category')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    }
+  }
+}

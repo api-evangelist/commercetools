@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-standalone-price-import-request-schema.json",
+  "title": "StandalonePriceImportRequest",
+  "description": "A batch of standalone price resources to import.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-standaloneprices-api-openapi.yml#/components/schemas/StandalonePriceImportRequest",
+  "type": "object",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "standalone-price"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/$defs/StandalonePriceImport"
+      },
+      "description": "Up to 20 standalone price resources."
+    }
+  },
+  "$defs": {
+    "StandalonePriceImport": {
+      "type": "object",
+      "description": "A single standalone price resource for import.",
+      "required": [
+        "key",
+        "sku",
+        "value"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "User-defined key for matching against existing prices."
+        },
+        "sku": {
+          "type": "string",
+          "description": "SKU of the product variant this price applies to."
+        },
+        "value": {
+          "type": "object",
+          "description": "The monetary value of the price."
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code scope."
+        },
+        "customerGroup": {
+          "type": "object",
+          "description": "Reference to the customer group scope."
+        },
+        "channel": {
+          "type": "object",
+          "description": "Reference to the channel scope."
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start of the price validity period."
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End of the price validity period."
+        }
+      }
+    }
+  }
+}

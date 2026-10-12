@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-category-draft-schema.json",
+  "title": "CategoryDraft",
+  "description": "Request body for creating a new category.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-categories-api-openapi.yml#/components/schemas/CategoryDraft",
+  "type": "object",
+  "required": [
+    "name",
+    "slug"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined unique identifier."
+    },
+    "name": {
+      "$ref": "#/$defs/LocalizedString"
+    },
+    "slug": {
+      "$ref": "#/$defs/LocalizedString"
+    },
+    "description": {
+      "$ref": "#/$defs/LocalizedString"
+    },
+    "parent": {
+      "$ref": "#/$defs/Reference"
+    },
+    "orderHint": {
+      "type": "string",
+      "description": "Decimal string between 0 and 1 for ordering within siblings."
+    },
+    "metaTitle": {
+      "$ref": "#/$defs/LocalizedString"
+    },
+    "metaDescription": {
+      "$ref": "#/$defs/LocalizedString"
+    }
+  },
+  "$defs": {
+    "LocalizedString": {
+      "type": "object",
+      "description": "A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another resource by its typeId and id.",
+      "required": [
+        "typeId",
+        "id"
+      ],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'category')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    }
+  }
+}

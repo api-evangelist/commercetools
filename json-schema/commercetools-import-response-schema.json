@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-import-response-schema.json",
+  "title": "ImportResponse",
+  "description": "The response returned after submitting an import request batch.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-categories-api-openapi.yml#/components/schemas/ImportResponse",
+  "type": "object",
+  "required": [
+    "operationStatus"
+  ],
+  "properties": {
+    "operationStatus": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ImportOperationStatus"
+      },
+      "description": "Status records for each resource in the submitted batch."
+    }
+  },
+  "$defs": {
+    "ErrorObject": {
+      "type": "object",
+      "description": "An error object describing a validation or processing failure.",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Machine-readable error code."
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable description of the error."
+        }
+      }
+    },
+    "ImportOperationStatus": {
+      "type": "object",
+      "description": "The initial status of a single resource submission in an import batch.",
+      "required": [
+        "resourceKey",
+        "state"
+      ],
+      "properties": {
+        "resourceKey": {
+          "type": "string",
+          "description": "User-defined key of the resource submitted."
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "Accepted",
+            "ValidationFailed"
+          ],
+          "description": "Initial state of the operation after submission."
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ErrorObject"
+          },
+          "description": "Immediate validation errors if the resource failed submission."
+        }
+      }
+    }
+  }
+}

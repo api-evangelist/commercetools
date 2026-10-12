@@ -1,43 +1,35 @@
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: commercetools
-providerId: commercetools
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-reconciled: true
-tags:
-  - Rate Limiting
-  - Commerce
-description: commercetools API rate limits per project.
+name: commercetools rate limits
+generated: '2026-10-12'
+method: searched
+source: https://docs.commercetools.com/api/history/overview
 sources:
-  - https://commercetools.com/pricing
-  - https://docs.commercetools.com/api/limits
+- https://docs.commercetools.com/api/history/overview
+- https://docs.commercetools.com/dev-tooling/mcp/knowledge-mcp
+- https://docs.commercetools.com/api/general-concepts
+- https://docs.commercetools.com/api/limits
+note: commercetools does not publish a general request-rate limit for the Composable Commerce HTTP API; it publishes resource/object limits (api/limits) and asks clients to ramp up traffic and retry 502/503 with backoff. The prior generated row of "200 requests per second" was not found on any provider
+  page and was removed. Limits stated on other pages (Knowledge MCP per-IP limit, burst 502/503 guidance) are under related_limits with their own source and verbatim quote.
 headers:
-  retryAfter: Retry-After
-responseCodes:
-  throttled: 429
-  concurrentModification: 409
+- X-RateLimit-Limit
+- X-RateLimit-Remaining
+- X-RateLimit-Request-Cost
+- Retry-After
+status_on_exhaustion: 429
 limits:
-  - name: REST API requests
-    scope: project
-    metric: requests_per_second
-    limit: 200
-    timeFrame: second
-  - name: Search requests (Product Projection)
-    scope: project
-    metric: requests_per_second
-    limit: 100
-    timeFrame: second
-  - name: Concurrent connections
-    scope: project
-    metric: concurrent
-    limit: 200
-  - name: Maximum response size
-    scope: request
-    metric: MB
-    limit: 16
-    timeFrame: request
+- name: Change History query tokens
+  scope: project
+  endpoint: Query Records
+  limit_text: Change History queries are rate-limited. Each Query Records request consumes tokens based on the amount of data queried. The tokens are limited to each Project, and automatically replenish over time.
+  source: https://docs.commercetools.com/api/history/overview
+related_limits:
+- name: Knowledge MCP and docs REST API
+  scope: ip
+  window: 15 minutes
+  max: 100
+  source: https://docs.commercetools.com/dev-tooling/mcp/knowledge-mcp
+  quote: Each IP address is limited to **100 requests per 15 minutes**.
+- name: Bursty load
+  scope: project
+  kind: burst
+  source: https://docs.commercetools.com/api/general-concepts
+  quote: During exceptionally high or bursty load, requests can transiently fail with `502 Bad Gateway` or `503 Service Unavailable` responses.

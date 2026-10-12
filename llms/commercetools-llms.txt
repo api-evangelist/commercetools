@@ -1,0 +1,123 @@
+# commercetools Documentation
+
+All the resources to manage and scale your modern commerce experience.
+
+## Featured
+
+### Build with AI
+
+- [Browse catalog](/docs/build-with-ai.md)
+- [Build a storefront from scratch](/dev-tooling/build-with-ai-storefront-from-scratch.md)
+
+### Learn commercetools
+
+Build confidently with our best practice learning content and training.
+
+- [Learn commercetools](https://docs.commercetools.com/docs/learning)
+
+## Explore the Docs
+
+### Getting Started
+
+- [Getting Started with the API](/api/getting-started/initial-setup.md)
+- [Merchant Center](/merchant-center/getting-started/explore-merchant-center.md)
+- [Frontend Development](/frontend-development/overview.md)
+- [Frontend Studio](/frontend-studio/overview.md)
+- [Checkout](/checkout/overview.md#getting-started-workflow)
+- [Connect](/connect/getting-started.md)
+- [InStore](/instore/general/getting-started.md)
+
+### Dev tooling
+
+- [MCP Servers](/dev-tooling/mcp/overview.md)
+- [Managed MCP Servers](/api/managed-mcp-servers-overview.md)
+- [SDKs](/dev-tooling/sdk-overview.md)
+- [Postman collections](/dev-tooling/postman.md)
+
+### Agentic Commerce
+
+- [AI Hub](/agentic-commerce/ai-hub/overview.md)
+- [AgenticLift](/agentic-commerce/agenticlift/overview.md)
+
+### APIs
+
+- [API Reference](/api.md)
+- [Concepts](/api/general-concepts.md)
+
+### Merchant Center
+
+- [Account Setup](/merchant-center/accounts.md)
+- [Connector Management](/merchant-center/connect.md)
+- [Checkout Configuration](/checkout/configuring-checkout.md)
+- [Customizations](/merchant-center-customizations.md)
+
+### Checkout
+
+- [Overview](/checkout/overview.md)
+- [Connectors and Applications](/checkout/connectors-and-applications.md)
+- [Integration](/checkout/installing-checkout.md)
+
+### Connect
+
+- [Overview](/connect/overview.md)
+- [Development](/connect/supported-runtimes.md)
+
+### InStore
+
+- [Overview](/instore/general/overview.md)
+- [InStore Center](/instore/use-the-instore-center/overview.md)
+
+### Frontend
+
+- [Store Launchpads](/frontend-development/launchpad-overview.md)
+- [SDKs](/frontend-development/frontend-sdk.md)
+- [Studio](/frontend-studio/accessing-the-studio.md)
+
+## Popular pages
+
+- [Carts API](/api/projects/carts.md)
+- [Orders API](/api/projects/orders.md)
+- [Payments API](/api/projects/payments.md)
+- [Customers API](/api/projects/customers.md)
+- [Products API](/api/projects/products.md)
+- [Subscriptions](/api/projects/subscriptions.md)
+- [Query Predicates](/api/predicates/query.md)
+- [Limits](/api/limits.md)
+- [Authorization](/api/authorization.md)
+- [Merchant Center - Product Types and Attributes](/merchant-center/product-types.md)
+- [Identity account](/docs/identity/overview.md)
+- [Availability, Support, and Services](/offering.md)
+
+## Release Notes
+
+- [View all release notes](https://docs.commercetools.com/docs/release-notes)
+
+## Available Areas
+
+- [API](/api.md)
+- [Certifications](/certifications.md)
+- [Checkout](/checkout.md)
+- [Connect](/connect.md)
+- [Frontend Development](/frontend-development.md)
+- [Frontend Studio](/frontend-studio.md)
+- [Developer Essentials Learning Path](/learning-developer-essentials.md)
+- [Model B2B commerce](/learning-model-b2b-commerce.md)
+- [Model your business structure](/learning-model-your-business-structure.md)
+- [Model your product catalog](/learning-model-your-product-catalog.md)
+- [Prepare your project for agentic commerce](/learning-prepare-for-agentic-commerce.md)
+- [Price and discount your products](/learning-price-and-discount-your-products.md)
+- [Merchant Center](/merchant-center.md)
+- [Merchant Center Customizations](/merchant-center-customizations.md)
+- [Offering](/offering.md)
+- [Dev Tooling](/dev-tooling.md)
+- [Guides](/guides.md)
+- [InStore](/instore.md)
+- [Implement product discovery and presentation](/learning-implement-product-discovery-and-presentation.md)
+- [Implement Carts and Shopping Lists](/learning-implement-carts-and-shopping-lists.md)
+- [Integrate with commercetools](/learning-integrate-with-commercetools.md)
+- [Implement checkout solutions](/learning-implement-checkout.md)
+- [Agentic Commerce](/agentic-commerce.md)
+
+## Related pages
+
+- [Search documentation and API specs](/search.md)

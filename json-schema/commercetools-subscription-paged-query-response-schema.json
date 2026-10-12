@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-subscription-paged-query-response-schema.json",
+  "title": "SubscriptionPagedQueryResponse",
+  "description": "Paginated response containing a list of subscriptions.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-subscriptions-api-openapi.yml#/components/schemas/SubscriptionPagedQueryResponse",
+  "type": "object",
+  "required": [
+    "limit",
+    "offset",
+    "count",
+    "total",
+    "results"
+  ],
+  "properties": {
+    "limit": {
+      "type": "integer"
+    },
+    "offset": {
+      "type": "integer"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Subscription"
+      }
+    }
+  },
+  "$defs": {
+    "Subscription": {
+      "type": "object",
+      "description": "A subscription routing change notifications and messages to an external message queue destination.",
+      "required": [
+        "id",
+        "version",
+        "destination"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "System-generated unique identifier."
+        },
+        "version": {
+          "type": "integer",
+          "description": "Current version for optimistic concurrency control."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined unique identifier (2-256 characters)."
+        },
+        "destination": {
+          "type": "object",
+          "description": "The external message queue destination configuration."
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Message type subscriptions filtering which message types to deliver."
+        },
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Change subscriptions filtering which resource change events to deliver."
+        },
+        "format": {
+          "type": "object",
+          "description": "Delivery format configuration (Platform or CloudEvents)."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "Healthy",
+            "ConfigurationError",
+            "ConfigurationErrorDeliveryStopped",
+            "TemporaryError"
+          ],
+          "description": "Current health status of the subscription."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the subscription was created."
+        },
+        "lastModifiedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the subscription was last modified."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,999 @@
+generated: '2026-10-12'
+method: searched
+status: official
+source:
+- https://docs.commercetools.com/dev-tooling/mcp/overview
+- https://docs.commercetools.com/dev-tooling/mcp/knowledge-mcp
+- https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- https://docs.commercetools.com/api/managed-mcp-servers-overview
+server:
+  name: commercetools MCP (Knowledge MCP + Commerce MCP)
+  servers:
+  - name: Knowledge MCP
+    endpoint: https://docs.commercetools.com/apis/mcp
+    transport: streamable-http
+    auth: none
+    note: 'Live: initialize + tools/list answered 200 anonymously on 2026-10-12 (serverInfo "commercetools knowledge" 1.0.0); docs state it is rate limited.'
+  - name: Commerce MCP (self-hosted)
+    install: npx -y @commercetools/commerce-mcp
+    package: https://www.npmjs.com/package/@commercetools/commerce-mcp
+    transport: stdio
+    auth: api-key
+    note: Requires an API Client for a Project.
+  - name: Managed MCP Servers
+    note: Hosted Commerce MCP configured per Project via the API or Merchant Center; per-server endpoint is project-specific and not published. Auth modes ClientCredentials or CommercetoolsIdentity.
+auth: none (Knowledge MCP); OAuth2 client credentials / commercetools Identity (Commerce MCP)
+deployment:
+  mode: both
+  endpoint: https://docs.commercetools.com/apis/mcp
+  install: npx -y @commercetools/commerce-mcp
+  package: https://www.npmjs.com/package/@commercetools/commerce-mcp
+  auth: none
+  verified: probed
+tools:
+- name: commercetools-documentation-search
+  description: 'Retrieves documentation content chunks that are semantically similar to the input. Use this tool to find domain concepts, business behavior explanations, and reference material from the
+    commercetools documentation.
+
+    Inline links in the content use markdown format [text](url). The URL usually points to the commercetools documentation portal but can also point to API reference docs or external resour'
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      query:
+        type: string
+        description: The text to find semantically similar content to. Full sentences describing the context of the situation or problem yield better results than just keywords.
+      limit:
+        default: 10
+        description: The maximum number of results to return across all content types.
+        type: number
+      crowding:
+        default: 5
+        description: The maximum number of results to return per document type. Avoids over-representation of certain content types.
+        type: number
+      contentTypes:
+        default:
+        - referenceDocs
+        - guidedDocs
+        - userDocs
+        description: return only the given content types to focus or expand the defaults. "apiType" and "apiEndpoint" return natural language descriptions of the REST API surface. "guidedDocs" includes
+          best practice guides, tutorials, and learning content. "referenceDocs" covers reference material. "userDocs" is end-user-facing documentation. "otherDocsPage" covers content that does not fit
+          the other categories. "Skill" includes reference content linked from agent skills.
+        type: array
+        items:
+          type: string
+          enum:
+          - apiType
+          - apiEndpoint
+          - referenceDocs
+          - guidedDocs
+          - userDocs
+          - otherDocsPage
+          - Skill
+      excludeContentTypes:
+        default: []
+        description: exclude the given content types from the results.
+        type: array
+        items:
+          type: string
+          enum:
+          - apiType
+          - apiEndpoint
+          - referenceDocs
+          - guidedDocs
+          - userDocs
+          - otherDocsPage
+          - Skill
+      products:
+        default:
+        - Composable Commerce
+        - Checkout
+        - Connect
+        description: return only content about the given products. For example, if your application uses commercetools Frontend, add "Frontend" to the defaults, or, if you are not using the OOTB Checkout
+          UI, remove "Checkout"
+        type: array
+        items:
+          type: string
+          enum:
+          - Composable Commerce
+          - Frontend
+          - Checkout
+          - Connect
+          - InStore
+          - AI Hub
+      excludeProducts:
+        default: []
+        description: exclude the given products from the results.
+        type: array
+        items:
+          type: string
+          enum:
+          - Composable Commerce
+          - Frontend
+          - Checkout
+          - Connect
+          - InStore
+          - AI Hub
+    required:
+    - query
+  server: knowledge-mcp
+  evidence: live tools/list
+- name: commercetools-graphql-schemata
+  description: 'Fetches a partial commercetools GraphQL schema for a given resource. Use this tool to retrieve the GraphQL type definitions needed to construct queries or mutations against commercetools.
+
+    Each resource name is prefixed with the GraphQL SDL it belongs to (e.g. `gql-sphere-Product` for sphere API, `gql-il-Cart` for integration layer API), reflected in the "resourceName" enum.
+
+    For each stubbed type i'
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      resourceName:
+        type: string
+        enum:
+        - gql-sphere-APIClientWithoutSecret
+        - gql-sphere-ApprovalFlow
+        - gql-sphere-ApprovalRule
+        - gql-sphere-AssociateRole
+        - gql-sphere-AttributeGroup
+        - gql-sphere-BulkUpdateVariantsResponse
+        - gql-sphere-BusinessUnit
+        - gql-sphere-BusinessUnitAssociateProjection
+        - gql-sphere-Cart
+        - gql-sphere-CartDiscount
+        - gql-sphere-Category
+        - gql-sphere-Channel
+        - gql-sphere-CommercetoolsSubscription
+        - gql-sphere-CustomObject
+        - gql-sphere-Customer
+        - gql-sphere-CustomerEmailToken
+        - gql-sphere-CustomerGroup
+        - gql-sphere-CustomerPasswordToken
+        - gql-sphere-CustomerSignInResult
+        - gql-sphere-DiscountCode
+        - gql-sphere-DiscountGroup
+        - gql-sphere-Extension
+        - gql-sphere-InventoryEntry
+        - gql-sphere-McpServer
+        - gql-sphere-McpServerLimits
+        - gql-sphere-McpServerTypeCatalogEntry
+        - gql-sphere-Message
+        - gql-sphere-Order
+        - gql-sphere-OrderEdit
+        - gql-sphere-Payment
+        - gql-sphere-PaymentMethod
+        - gql-sphere-Product
+        - gql-sphere-ProductAssignment
+        - gql-sphere-ProductDiscount
+        - gql-sphere-ProductPagedSearchResponse
+        - gql-sphere-ProductProjection
+        - gql-sphere-ProductProjectionVariantAttributes
+        - gql-sphere-ProductSelection
+        - gql-sphere-ProductTailoring
+        - gql-sphere-ProductTypeDefinition
+        - gql-sphere-ProjectCustomLimitsProjection
+        - gql-sphere-ProjectProjection
+        - gql-sphere-Quote
+        - gql-sphere-QuoteRequest
+        - gql-sphere-RecurrencePolicy
+        - gql-sphere-RecurringOrder
+        - gql-sphere-Review
+        - gql-sphere-ShippingMethod
+        - gql-sphere-ShoppingList
+        - gql-sphere-StagedQuote
+        - gql-sphere-StandalonePrice
+        - gql-sphere-State
+        - gql-sphere-Store
+        - gql-sphere-SuggestResult
+        - gql-sphere-TaxCategory
+        - gql-sphere-TypeDefinition
+        - gql-sphere-Variant
+        - gql-sphere-VariantDeletionResult
+        - gql-sphere-VariantProjection
+        - gql-sphere-Zone
+        - gql-sphere-LineItem
+        - gql-sphere-CustomLineItem
+        - gql-sphere-Address
+        - gql-sphere-ShippingInfo
+        - gql-il-ApprovalFlow
+        - gql-il-ApprovalFlowConnection
+        - gql-il-ApprovalFlowResult
+        - gql-il-ApprovalRule
+        - gql-il-ApprovalRuleConnection
+        - gql-il-ApprovalRuleResult
+        - gql-il-AssociateResult
+        - gql-il-BusinessUnit
+        - gql-il-BusinessUnitResult
+        - gql-il-Cart
+        - gql-il-CartMutationResult
+        - gql-il-Category
+        - gql-il-CheckoutResult
+        - gql-il-Customer
+        - gql-il-CustomerResult
+        - gql-il-DeleteShoppingListResult
+        - gql-il-GuestCheckoutResult
+        - gql-il-Node
+        - gql-il-Order
+        - gql-il-OrderConnection
+        - gql-il-OrderResult
+        - gql-il-PaymentMethodOption
+        - gql-il-PlaceOrderResult
+        - gql-il-Product
+        - gql-il-ProductConnection
+        - gql-il-ProductSearchConnection
+        - gql-il-Quote
+        - gql-il-QuoteConnection
+        - gql-il-QuoteRequest
+        - gql-il-QuoteRequestConnection
+        - gql-il-QuoteRequestResult
+        - gql-il-QuoteResult
+        - gql-il-ReorderResult
+        - gql-il-ReturnResult
+        - gql-il-SavedAddressResult
+        - gql-il-ShippingMethod
+        - gql-il-ShoppingList
+        - gql-il-ShoppingListResult
+        - gql-il-Viewer
+        description: Name of a commercetools API resource, prefixed with its GraphQL SDL (e.g. gql-sphere-Product, gql-il-Cart). The full set of available resources is provided by the parameter enum.
+    required:
+    - resourceName
+  server: knowledge-mcp
+  evidence: live tools/list
+- name: commercetools-graphql-validate
+  description: 'Validates a GraphQL query or mutation against the official commercetools
+
+    public schema, returning syntax and schema errors with line/column locations.
+
+    Doesn''t validate project-specific schema.'
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      query:
+        type: string
+        minLength: 1
+        description: The GraphQL query or mutation document to validate.
+    required:
+    - query
+  server: knowledge-mcp
+  evidence: live tools/list
+- name: commercetools-oas-schemata
+  description: 'Fetches a partial commercetools OpenAPI spec for a given commercetools resource. Use this tool when you need the detailed REST schema of a resource to construct requests or generate a REST
+    client.
+
+    The returned spec is self-contained and valid for everything regarding that resource. It contains descriptions but they are not comprehensive.
+
+    Each resource may be available as a read variant, write vari'
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      resourceName:
+        type: string
+        enum:
+        - api-AgentResponsesSuccess
+        - api-ApiClient
+        - api-ApprovalFlow
+        - api-ApprovalRule
+        - api-AssignedProductSelection
+        - api-AssociateRole
+        - api-AttributeGroup
+        - api-BusinessUnit
+        - api-BusinessUnitAssociate
+        - api-Cart-read
+        - api-Cart-write
+        - api-CartDiscount
+        - api-Category
+        - api-Channel
+        - api-CustomObject
+        - api-Customer-read
+        - api-Customer-write
+        - api-CustomerGroup
+        - api-CustomerToken
+        - api-DiscountCode
+        - api-DiscountGroup
+        - api-Extension
+        - api-Inventory
+        - api-InventoryEntry
+        - api-McpServer
+        - api-McpServerType
+        - api-Message-read
+        - api-Message-write
+        - api-MyPayment
+        - api-Order-read
+        - api-Order-write
+        - api-OrderEdit-read
+        - api-OrderEdit-write
+        - api-Payment
+        - api-PaymentMethod
+        - api-Product
+        - api-ProductDiscount
+        - api-ProductProjection
+        - api-ProductSelection
+        - api-ProductSelectionProduct
+        - api-ProductTailoring
+        - api-ProductType
+        - api-ProductsInStore
+        - api-Project
+        - api-Quote
+        - api-QuoteRequest
+        - api-RecurrencePolicy
+        - api-RecurringOrder
+        - api-Review
+        - api-ShippingMethod
+        - api-ShoppingList
+        - api-StagedQuote
+        - api-StandalonePrice
+        - api-State
+        - api-Store
+        - api-Subscription
+        - api-SuggestionResult
+        - api-TaxCategory
+        - api-Type
+        - api-Variant
+        - api-VariantAttributes
+        - api-VariantBulkUpdate
+        - api-VariantProjection
+        - api-Zone
+        - api-array
+        - checkout-Application
+        - checkout-PaginatedApplication
+        - checkout-PaginatedPaymentIntegration
+        - checkout-PaginatedRecurringPayment
+        - checkout-PaginatedRecurringPaymentJob
+        - checkout-PaymentIntegration
+        - checkout-PaymentIntent
+        - checkout-RecurringPayment
+        - checkout-RecurringPaymentJob
+        - checkout-Transaction
+        - connect-Connector
+        - connect-ConnectorStaged
+        - connect-Deployment
+        - connect-DeploymentLog
+        - history-Record-read
+        - history-Record-write
+        - import-Import-read
+        - import-Import-write
+        - import-ImportContainer
+        - import-ImportOperation
+        - import-ImportSummary
+        - insights-ProjectConfiguration
+        description: Name of the commercetools resource you would like to get a OAS schema for.
+    required:
+    - resourceName
+  server: knowledge-mcp
+  evidence: live tools/list
+- name: commercetools-documentation-by-id
+  description: Fetches a single documentation content entry from the commercetools documentation content API by its ID. Use this tool when you already have a content ID (for example, one returned by `commercetools-documentation-search`)
+    and want to retrieve the raw content as a string.
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      id:
+        type: string
+        minLength: 1
+        description: The ID of the documentation entry to fetch. Typically the identifier returned by the documentation search tool.
+    required:
+    - id
+  server: knowledge-mcp
+  evidence: live tools/list
+- name: commercetools-rest-validate
+  description: 'Validates REST API requests (method + path + body) against commercetools OpenAPI specifications offline. Returns detailed errors with suggestions for invalid requests.
+
+
+    This tool checks:
+
+    - Path exists in the API
+
+    - HTTP method is allowed for that path
+
+    - Request body matches the expected schema (types, required fields, enums, etc.)
+
+    - Discriminator fields (like ''action'' in update requests) are valid
+
+    '
+  inputSchema:
+    $schema: http://json-schema.org/draft-07/schema#
+    type: object
+    properties:
+      method:
+        type: string
+        enum:
+        - GET
+        - POST
+        - DELETE
+        - PATCH
+        - PUT
+        - HEAD
+        description: HTTP method for the request.
+      path:
+        type: string
+        minLength: 1
+        description: Request path (e.g., /my-project/products). Include the project key as the first segment.
+      body:
+        description: Request body as a JSON string (optional, required for POST/PATCH/PUT requests that expect a body).
+        type: string
+      apiKey:
+        type: string
+        enum:
+        - api-AgentResponsesSuccess
+        - api-ApiClient
+        - api-ApprovalFlow
+        - api-ApprovalRule
+        - api-AssignedProductSelection
+        - api-AssociateRole
+        - api-AttributeGroup
+        - api-BusinessUnit
+        - api-BusinessUnitAssociate
+        - api-Cart-read
+        - api-Cart-write
+        - api-CartDiscount
+        - api-Category
+        - api-Channel
+        - api-CustomObject
+        - api-Customer-read
+        - api-Customer-write
+        - api-CustomerGroup
+        - api-CustomerToken
+        - api-DiscountCode
+        - api-DiscountGroup
+        - api-Extension
+        - api-Inventory
+        - api-InventoryEntry
+        - api-McpServer
+        - api-McpServerType
+        - api-Message-read
+        - api-Message-write
+        - api-MyPayment
+        - api-Order-read
+        - api-Order-write
+        - api-OrderEdit-read
+        - api-OrderEdit-write
+        - api-Payment
+        - api-PaymentMethod
+        - api-Product
+        - api-ProductDiscount
+        - api-ProductProjection
+        - api-ProductSelection
+        - api-ProductSelectionProduct
+        - api-ProductTailoring
+        - api-ProductType
+        - api-ProductsInStore
+        - api-Project
+        - api-Quote
+        - api-QuoteRequest
+        - api-RecurrencePolicy
+        - api-RecurringOrder
+        - api-Review
+        - api-ShippingMethod
+        - api-ShoppingList
+        - api-StagedQuote
+        - api-StandalonePrice
+        - api-State
+        - api-Store
+        - api-Subscription
+        - api-SuggestionResult
+        - api-TaxCategory
+        - api-Type
+        - api-Variant
+        - api-VariantAttributes
+        - api-VariantBulkUpdate
+        - api-VariantProjection
+        - api-Zone
+        - api-array
+        - checkout-Application
+        - checkout-PaginatedApplication
+        - checkout-PaginatedPaymentIntegration
+        - checkout-PaginatedRecurringPayment
+        - checkout-PaginatedRecurringPaymentJob
+        - checkout-PaymentIntegration
+        - checkout-PaymentIntent
+        - checkout-RecurringPayment
+        - checkout-RecurringPaymentJob
+        - checkout-Transaction
+        - connect-Connector
+        - connect-ConnectorStaged
+        - connect-Deployment
+        - connect-DeploymentLog
+        - history-Record-read
+        - history-Record-write
+        - import-Import-read
+        - import-Import-write
+        - import-ImportContainer
+        - import-ImportOperation
+        - import-ImportSummary
+        - insights-ProjectConfiguration
+        description: API identifier. Use API names (api, import, checkout, etc.) or resource keys (api-Product-read). The base API key will be extracted automatically.
+    required:
+    - method
+    - path
+    - apiKey
+  server: knowledge-mcp
+  evidence: live tools/list
+- name: create_applications
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_attribute_groups
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_bulk
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_business_units
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_cart_discounts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_carts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_categories
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_channels
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_custom_objects
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_customer_groups
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_customers
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_discount_codes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_extensions
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_inventory
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_orders
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_payment_integrations
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_payment_methods
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_payments
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_product_discounts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_product_selections
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_product_tailoring
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_product_types
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_products
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_quote_requests
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_quotes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_recurring_orders
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_reviews
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_shipping_methods
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_shopping_lists
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_staged_quotes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_standalone_prices
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_states
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_stores
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_subscriptions
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_tax_categories
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_transactions
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_types
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: create_zones
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_all
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_applications
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_attribute_groups
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_business_units
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_cart_discounts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_carts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_categories
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_channels
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_custom_objects
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_customer_groups
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_customer_search
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_customers
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_discount_codes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_extensions
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_inventory
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_messages
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_orders
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_payment_integrations
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_payment_methods
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_payments
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_product_discounts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_product_projections
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_product_search
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_product_selections
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_product_tailoring
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_product_types
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_products
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_project
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_quote_requests
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_quotes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_recurring_orders
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_reviews
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_shipping_methods
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_shopping_lists
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_staged_quotes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_standalone_prices
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_states
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_stores
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_subscriptions
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_tax_categories
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_transactions
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_types
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: read_zones
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: replicate_carts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_applications
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_attribute_groups
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_bulk
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_business_units
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_cart_discounts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_carts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_categories
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_channels
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_custom_objects
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_customer_groups
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_customers
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_discount_codes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_extensions
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_inventory
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_orders
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_payment_integrations
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_payment_intents
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_payment_methods
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_payments
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_product_discounts
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_product_selections
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_product_tailoring
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_product_types
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_products
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_project
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_quote_requests
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_quotes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_recurring_orders
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_reviews
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_shipping_methods
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_shopping_lists
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_staged_quotes
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_standalone_prices
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_states
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_stores
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_subscriptions
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_tax_categories
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_types
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+- name: update_zones
+  server: commerce-mcp
+  evidence: documented
+  source: https://docs.commercetools.com/dev-tooling/mcp/commerce-mcp
+note: Commerce MCP tool names are the provider-documented list (not observed from a live server); Knowledge MCP tools were returned by a live tools/list. Earlier package @commercetools/mcp-essentials (2.4.2,
+  2025-11-24) predates commerce-mcp.

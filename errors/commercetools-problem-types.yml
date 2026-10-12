@@ -1,0 +1,52 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/commercetools-carts-api-openapi.yml
+- openapi/commercetools-categories-api-openapi.yml
+- openapi/commercetools-change-history-api-openapi.yml
+- openapi/commercetools-customers-api-openapi.yml
+- openapi/commercetools-importcontainers-api-openapi.yml
+- openapi/commercetools-importoperations-api-openapi.yml
+- openapi/commercetools-inventory-api-openapi.yml
+- openapi/commercetools-orders-api-openapi.yml
+- openapi/commercetools-payments-api-openapi.yml
+- openapi/commercetools-product-variants-api-openapi.yml
+- openapi/commercetools-products-api-openapi.yml
+- openapi/commercetools-project-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: null
+coverage:
+  operations: 54
+  statuses_declared: 4
+problems:
+- status: 400
+  title: Bad Request
+  description: The request was malformed or contained invalid parameters.
+  operations: 19
+  media_types:
+  - application/json
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: The request lacked valid authentication credentials.
+  operations: 15
+  media_types:
+  - application/json
+  schema: null
+- status: 404
+  title: Not Found
+  description: The requested resource was not found.
+  operations: 11
+  media_types:
+  - application/json
+  schema: null
+- status: 409
+  title: Conflict
+  description: A version conflict occurred. The provided version does not match the current version of the resource.
+  operations: 2
+  media_types:
+  - application/json
+  schema: null

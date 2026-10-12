@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-payment-paged-query-response-schema.json",
+  "title": "PaymentPagedQueryResponse",
+  "description": "Paginated response containing a list of payments.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-payments-api-openapi.yml#/components/schemas/PaymentPagedQueryResponse",
+  "type": "object",
+  "required": [
+    "limit",
+    "offset",
+    "count",
+    "total",
+    "results"
+  ],
+  "properties": {
+    "limit": {
+      "type": "integer"
+    },
+    "offset": {
+      "type": "integer"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "total": {
+      "type": "integer"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Payment"
+      }
+    }
+  },
+  "$defs": {
+    "LocalizedString": {
+      "type": "object",
+      "description": "A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Money": {
+      "type": "object",
+      "description": "A monetary value with currency code and amount in the smallest currency unit.",
+      "required": [
+        "currencyCode",
+        "centAmount"
+      ],
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 three-letter currency code (e.g., USD, EUR)."
+        },
+        "centAmount": {
+          "type": "integer",
+          "description": "The amount in the smallest indivisible unit of the currency."
+        },
+        "fractionDigits": {
+          "type": "integer",
+          "description": "Number of fraction digits for the currency. Defaults to 2."
+        }
+      }
+    },
+    "Payment": {
+      "type": "object",
+      "description": "A payment resource tracking financial transactions and PSP interactions for an order.",
+      "required": [
+        "id",
+        "version",
+        "amountPlanned",
+        "paymentMethodInfo",
+        "transactions"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "System-generated unique identifier."
+        },
+        "version": {
+          "type": "integer",
+          "description": "Current version for optimistic concurrency control."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined unique identifier."
+        },
+        "customer": {
+          "$ref": "#/$defs/Reference"
+        },
+        "interfaceId": {
+          "type": "string",
+          "description": "Payment identifier as reported by the PSP."
+        },
+        "amountPlanned": {
+          "$ref": "#/$defs/Money"
+        },
+        "paymentMethodInfo": {
+          "$ref": "#/$defs/PaymentMethodInfo"
+        },
+        "paymentStatus": {
+          "$ref": "#/$defs/PaymentStatus"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Transaction"
+          },
+          "description": "List of financial transactions associated with this payment."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the payment was created."
+        },
+        "lastModifiedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the payment was last modified."
+        }
+      }
+    },
+    "PaymentMethodInfo": {
+      "type": "object",
+      "description": "Information about the payment method and PSP used for a payment.",
+      "properties": {
+        "paymentInterface": {
+          "type": "string",
+          "description": "Identifier of the PSP or payment interface."
+        },
+        "method": {
+          "type": "string",
+          "description": "Payment method identifier (e.g., 'creditcard', 'paypal')."
+        },
+        "name": {
+          "$ref": "#/$defs/LocalizedString"
+        }
+      }
+    },
+    "PaymentStatus": {
+      "type": "object",
+      "description": "The current status of a payment including PSP-specific state information.",
+      "properties": {
+        "interfaceCode": {
+          "type": "string",
+          "description": "PSP-specific status code."
+        },
+        "interfaceText": {
+          "type": "string",
+          "description": "PSP-specific status message."
+        },
+        "state": {
+          "$ref": "#/$defs/Reference"
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another resource by its typeId and id.",
+      "required": [
+        "typeId",
+        "id"
+      ],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'category')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    },
+    "Transaction": {
+      "type": "object",
+      "description": "A single financial transaction within a payment (authorization, charge, refund, etc.).",
+      "required": [
+        "id",
+        "type",
+        "amount",
+        "state"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "System-generated unique identifier for the transaction."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the transaction was processed."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Authorization",
+            "CancelAuthorization",
+            "Charge",
+            "Refund",
+            "Chargeback"
+          ],
+          "description": "The type of financial transaction."
+        },
+        "amount": {
+          "$ref": "#/$defs/Money"
+        },
+        "interactionId": {
+          "type": "string",
+          "description": "PSP-provided identifier for this transaction."
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "Initial",
+            "Pending",
+            "Success",
+            "Failure"
+          ],
+          "description": "Current processing state of the transaction."
+        }
+      }
+    }
+  }
+}

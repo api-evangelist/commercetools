@@ -1,0 +1,122 @@
+name: commercetools error codes
+generated: '2026-10-12'
+method: searched
+source: https://docs.commercetools.com/api/errors
+format: commercetools error envelope
+envelope:
+  statusCode: integer
+  message: string
+  errors: array of {code, message, ...}
+problems:
+- status: 400
+  title: Bad Request
+  type: AnonymousIdAlreadyInUse
+  description: '[type definition](/search.md?urn=ctp:api:type:AnonymousIdAlreadyInUseError).'
+- status: 400
+  title: Bad Request
+  type: BulkOperationMaxItemsExceeded
+  description: '[type definition](/search.md?urn=ctp:api:type:BulkOperationMaxItemsExceededError).'
+- status: 400
+  title: Bad Request
+  type: DuplicateField
+  description: '[type definition](/search.md?urn=ctp:api:type:DuplicateFieldError).'
+- status: 400
+  title: Bad Request
+  type: DuplicateFieldWithConflictingResource
+  description: '[type definition](/search.md?urn=ctp:api:type:DuplicateFieldWithConflictingResourceError).'
+- status: 400
+  title: Bad Request
+  type: FeatureRemoved
+  description: '[type definition](/search.md?urn=ctp:api:type:FeatureRemovedError).'
+- status: 400
+  title: Bad Request
+  type: InvalidInput
+  description: '[type definition](/search.md?urn=ctp:api:type:InvalidInputError).'
+- status: 400
+  title: Bad Request
+  type: InvalidJsonInput
+  description: '[type definition](/search.md?urn=ctp:api:type:InvalidJsonInputError).'
+- status: 400
+  title: Bad Request
+  type: InvalidOperation
+  description: '[type definition](/search.md?urn=ctp:api:type:InvalidOperationError).'
+- status: 400
+  title: Bad Request
+  type: InvalidField
+  description: '[type definition](/search.md?urn=ctp:api:type:InvalidFieldError).'
+- status: 400
+  title: Bad Request
+  type: InternalConstraintViolated
+  description: '[type definition](/search.md?urn=ctp:api:type:InternalConstraintViolatedError).'
+- status: 400
+  title: Bad Request
+  type: MaxResourceLimitExceeded
+  description: '[type definition](/search.md?urn=ctp:api:type:MaxResourceLimitExceededError).'
+- status: 400
+  title: Bad Request
+  type: MoneyOverflow
+  description: '[type definition](/search.md?urn=ctp:api:type:MoneyOverflowError).'
+- status: 400
+  title: Bad Request
+  type: ObjectNotFound
+  description: '[type definition](/search.md?urn=ctp:api:type:ObjectNotFoundError).'
+- status: 400
+  title: Bad Request
+  type: ReferenceExists
+  description: '[type definition](/search.md?urn=ctp:api:type:ReferenceExistsError).'
+- status: 400
+  title: Bad Request
+  type: ReferencedResourceNotFound
+  description: '[type definition](/search.md?urn=ctp:api:type:ReferencedResourceNotFoundError).'
+- status: 400
+  title: Bad Request
+  type: RequiredField
+  description: '[type definition](/search.md?urn=ctp:api:type:RequiredFieldError).'
+- status: 400
+  title: Bad Request
+  type: ResourceSizeLimitExceeded
+  description: '[type definition](/search.md?urn=ctp:api:type:ResourceSizeLimitExceededError).'
+- status: 400
+  title: Bad Request
+  type: SemanticError
+  description: '[type definition](/search.md?urn=ctp:api:type:SemanticErrorError).'
+- status: 400
+  title: Bad Request
+  type: SyntaxError
+  description: '[type definition](/search.md?urn=ctp:api:type:SyntaxErrorError).'
+- status: 400
+  title: Bad Request
+  type: QueryTimedOut
+  description: '[type definition](/search.md?urn=ctp:api:type:QueryTimedOutError).'
+- status: 404
+  title: Not Found
+  type: ResourceNotFound
+  description: '[type definition](/search.md?urn=ctp:api:type:ResourceNotFoundError).'
+- status: 409
+  title: Conflict
+  type: ConcurrentModification
+  description: '[type definition](/search.md?urn=ctp:api:type:ConcurrentModificationError).'
+- status: 409
+  title: Conflict
+  type: SearchNotReady
+  description: '[type definition](/search.md?urn=ctp:api:type:SearchNotReadyError).'
+- status: 413
+  title: Content Too Large
+  type: ContentTooLarge
+  description: '[type definition](/search.md?urn=ctp:api:type:ContentTooLargeError).'
+- status: 500
+  title: Internal Server Error
+  type: General
+  description: '[type definition](/search.md?urn=ctp:api:type:GeneralError).'
+- status: 502
+  title: Bad Gateway
+  type: BadGateway
+  description: '[type definition](/search.md?urn=ctp:api:type:BadGatewayError).'
+- status: 503
+  title: Service Unavailable
+  type: OverCapacity
+  description: '[type definition](/search.md?urn=ctp:api:type:OverCapacityError).'
+- status: 503
+  title: Service Unavailable
+  type: PendingOperation
+  description: '[type definition](/search.md?urn=ctp:api:type:PendingOperationError).'

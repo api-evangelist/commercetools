@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-customer-import-request-schema.json",
+  "title": "CustomerImportRequest",
+  "description": "A batch of customer resources to import.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-customers-api-openapi.yml#/components/schemas/CustomerImportRequest",
+  "type": "object",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "customer"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/$defs/CustomerImport"
+      },
+      "description": "Up to 20 customer resources."
+    }
+  },
+  "$defs": {
+    "CustomerImport": {
+      "type": "object",
+      "description": "A single customer resource for import.",
+      "required": [
+        "key",
+        "email"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "User-defined key for matching against existing customers."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the customer."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the customer."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the customer."
+        },
+        "customerGroup": {
+          "type": "object",
+          "description": "Reference to customer group by key."
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "description": "Addresses for the customer."
+        },
+        "isEmailVerified": {
+          "type": "boolean",
+          "description": "Whether the email address is verified."
+        }
+      }
+    }
+  }
+}

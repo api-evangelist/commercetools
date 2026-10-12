@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-payment-draft-schema.json",
+  "title": "PaymentDraft",
+  "description": "Request body for creating a new payment.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-payments-api-openapi.yml#/components/schemas/PaymentDraft",
+  "type": "object",
+  "required": [
+    "amountPlanned"
+  ],
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the payment."
+    },
+    "customer": {
+      "$ref": "#/$defs/Reference"
+    },
+    "interfaceId": {
+      "type": "string",
+      "description": "PSP payment identifier."
+    },
+    "amountPlanned": {
+      "$ref": "#/$defs/Money"
+    },
+    "paymentMethodInfo": {
+      "$ref": "#/$defs/PaymentMethodInfo"
+    },
+    "transactions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Initial transactions to create with the payment."
+    }
+  },
+  "$defs": {
+    "LocalizedString": {
+      "type": "object",
+      "description": "A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Money": {
+      "type": "object",
+      "description": "A monetary value with currency code and amount in the smallest currency unit.",
+      "required": [
+        "currencyCode",
+        "centAmount"
+      ],
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 three-letter currency code (e.g., USD, EUR)."
+        },
+        "centAmount": {
+          "type": "integer",
+          "description": "The amount in the smallest indivisible unit of the currency."
+        },
+        "fractionDigits": {
+          "type": "integer",
+          "description": "Number of fraction digits for the currency. Defaults to 2."
+        }
+      }
+    },
+    "PaymentMethodInfo": {
+      "type": "object",
+      "description": "Information about the payment method and PSP used for a payment.",
+      "properties": {
+        "paymentInterface": {
+          "type": "string",
+          "description": "Identifier of the PSP or payment interface."
+        },
+        "method": {
+          "type": "string",
+          "description": "Payment method identifier (e.g., 'creditcard', 'paypal')."
+        },
+        "name": {
+          "$ref": "#/$defs/LocalizedString"
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another resource by its typeId and id.",
+      "required": [
+        "typeId",
+        "id"
+      ],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'category')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    }
+  }
+}

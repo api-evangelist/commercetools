@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-product-draft-schema.json",
+  "title": "ProductDraft",
+  "description": "Request body for creating a new product.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-products-api-openapi.yml#/components/schemas/ProductDraft",
+  "type": "object",
+  "required": [
+    "productType",
+    "name",
+    "slug"
+  ],
+  "properties": {
+    "productType": {
+      "$ref": "#/$defs/Reference"
+    },
+    "key": {
+      "type": "string",
+      "description": "User-defined unique key for the product."
+    },
+    "name": {
+      "$ref": "#/$defs/LocalizedString"
+    },
+    "slug": {
+      "$ref": "#/$defs/LocalizedString"
+    },
+    "description": {
+      "$ref": "#/$defs/LocalizedString"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Reference"
+      },
+      "description": "Categories to assign the product to on creation."
+    },
+    "masterVariant": {
+      "$ref": "#/$defs/ProductVariantDraft"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ProductVariantDraft"
+      },
+      "description": "Additional variants to create with the product."
+    },
+    "taxCategory": {
+      "$ref": "#/$defs/Reference"
+    },
+    "publish": {
+      "type": "boolean",
+      "description": "If true, immediately publishes the product after creation."
+    }
+  },
+  "$defs": {
+    "Attribute": {
+      "type": "object",
+      "description": "A name-value pair representing a product attribute as defined by the product type.",
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Attribute name as defined in the product type."
+        },
+        "value": {
+          "description": "Attribute value. Type depends on the attribute type definition."
+        }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "description": "A product image with URL, dimensions, and optional label.",
+      "required": [
+        "url",
+        "dimensions"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the image."
+        },
+        "dimensions": {
+          "type": "object",
+          "description": "Pixel dimensions of the image.",
+          "required": [
+            "w",
+            "h"
+          ],
+          "properties": {
+            "w": {
+              "type": "integer",
+              "description": "Image width in pixels."
+            },
+            "h": {
+              "type": "integer",
+              "description": "Image height in pixels."
+            }
+          }
+        },
+        "label": {
+          "type": "string",
+          "description": "Optional label for the image."
+        }
+      }
+    },
+    "LocalizedString": {
+      "type": "object",
+      "description": "A map of locale keys to string values used for multilingual content. Keys follow IETF language tag format (e.g., 'en', 'de', 'en-US').",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Money": {
+      "type": "object",
+      "description": "A monetary value with currency code and amount in the smallest currency unit.",
+      "required": [
+        "currencyCode",
+        "centAmount"
+      ],
+      "properties": {
+        "currencyCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 three-letter currency code (e.g., USD, EUR)."
+        },
+        "centAmount": {
+          "type": "integer",
+          "description": "The amount in the smallest indivisible unit of the currency."
+        },
+        "fractionDigits": {
+          "type": "integer",
+          "description": "Number of fraction digits for the currency. Defaults to 2."
+        }
+      }
+    },
+    "PriceDraft": {
+      "type": "object",
+      "description": "Draft for creating a price on a product variant.",
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/Money"
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code."
+        },
+        "customerGroup": {
+          "$ref": "#/$defs/Reference"
+        },
+        "channel": {
+          "$ref": "#/$defs/Reference"
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start of the validity period for this price."
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End of the validity period for this price."
+        }
+      }
+    },
+    "ProductVariantDraft": {
+      "type": "object",
+      "description": "Draft for creating a product variant.",
+      "properties": {
+        "sku": {
+          "type": "string",
+          "description": "SKU identifier for the variant."
+        },
+        "key": {
+          "type": "string",
+          "description": "User-defined unique key for the variant."
+        },
+        "prices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PriceDraft"
+          },
+          "description": "Prices to assign to the variant on creation."
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Attribute"
+          },
+          "description": "Product attributes for this variant."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Image"
+          },
+          "description": "Images for the variant."
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "description": "A reference to another resource by its typeId and id.",
+      "required": [
+        "typeId",
+        "id"
+      ],
+      "properties": {
+        "typeId": {
+          "type": "string",
+          "description": "The type identifier of the referenced resource (e.g., 'product', 'category')."
+        },
+        "id": {
+          "type": "string",
+          "description": "The system-generated unique identifier of the referenced resource."
+        }
+      }
+    }
+  }
+}

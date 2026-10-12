@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-category-import-request-schema.json",
+  "title": "CategoryImportRequest",
+  "description": "A batch of category resources to import.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-categories-api-openapi.yml#/components/schemas/CategoryImportRequest",
+  "type": "object",
+  "required": [
+    "type",
+    "resources"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "category"
+      ],
+      "description": "The resource type identifier."
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "$ref": "#/$defs/CategoryImport"
+      },
+      "description": "Up to 20 category resources."
+    }
+  },
+  "$defs": {
+    "CategoryImport": {
+      "type": "object",
+      "description": "A single category resource for import.",
+      "required": [
+        "key",
+        "name",
+        "slug"
+      ],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "User-defined key for matching against existing categories."
+        },
+        "name": {
+          "type": "object",
+          "description": "Localized name of the category."
+        },
+        "slug": {
+          "type": "object",
+          "description": "Localized URL-friendly slug."
+        },
+        "description": {
+          "type": "object",
+          "description": "Localized description of the category."
+        },
+        "parent": {
+          "type": "object",
+          "description": "Reference to parent category by key."
+        },
+        "orderHint": {
+          "type": "string",
+          "description": "Decimal ordering hint between 0 and 1."
+        }
+      }
+    }
+  }
+}

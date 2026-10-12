@@ -1,7 +1,12 @@
-generated: '2026-07-11'
+generated: '2026-10-12'
 method: derived
-source: openapi/commercetools-change-history-api-openapi.yml, openapi/commercetools-http-api-openapi.yml,
-  openapi/commercetools-import-api-openapi.yml
+source: openapi/commercetools-carts-api-openapi.yml, openapi/commercetools-categories-api-openapi.yml,
+  openapi/commercetools-change-history-api-openapi.yml, openapi/commercetools-customers-api-openapi.yml,
+  openapi/commercetools-importcontainers-api-openapi.yml, openapi/commercetools-importoperations-api-openapi.yml,
+  openapi/commercetools-inventory-api-openapi.yml, openapi/commercetools-orders-api-openapi.yml,
+  openapi/commercetools-payments-api-openapi.yml, openapi/commercetools-product-variants-api-openapi.yml,
+  openapi/commercetools-products-api-openapi.yml, openapi/commercetools-project-api-openapi.yml
+  ...
 summary:
   types:
   - http
@@ -10,8 +15,19 @@ schemes:
   type: http
   scheme: bearer
   description: OAuth 2.0 Bearer token obtained from the commercetools authentication service
-    using client credentials flow. Requires the view_audit_log scope.
+    at https://auth.{region}.commercetools.com/oauth/token using client credentials flow.
   sources:
+  - openapi/commercetools-carts-api-openapi.yml
+  - openapi/commercetools-categories-api-openapi.yml
   - openapi/commercetools-change-history-api-openapi.yml
-  - openapi/commercetools-http-api-openapi.yml
-  - openapi/commercetools-import-api-openapi.yml
+  - openapi/commercetools-customers-api-openapi.yml
+  - openapi/commercetools-importcontainers-api-openapi.yml
+  - openapi/commercetools-importoperations-api-openapi.yml
+  - openapi/commercetools-inventory-api-openapi.yml
+  - openapi/commercetools-orders-api-openapi.yml
+  - openapi/commercetools-payments-api-openapi.yml
+  - openapi/commercetools-product-variants-api-openapi.yml
+  - openapi/commercetools-products-api-openapi.yml
+  - openapi/commercetools-project-api-openapi.yml
+  - openapi/commercetools-standaloneprices-api-openapi.yml
+  - openapi/commercetools-subscriptions-api-openapi.yml

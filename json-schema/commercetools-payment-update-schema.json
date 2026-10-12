@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/commercetools/main/json-schema/commercetools-payment-update-schema.json",
+  "title": "PaymentUpdate",
+  "description": "Request body for updating a payment.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/commercetools-payments-api-openapi.yml#/components/schemas/PaymentUpdate",
+  "type": "object",
+  "required": [
+    "version",
+    "actions"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Current version for optimistic concurrency control."
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "List of update actions to apply to the payment."
+    }
+  }
+}
