@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/commercetools/integrations
 - https://n8n.io/integrations/commercetools/
@@ -10,7 +10,532 @@ checked:
 - https://monid.ai/tools/commercetools
 - https://n8n.io/integrations/commercetools/
 - https://zapier.com/apps/commercetools/integrations
+- https://marketplace.commercetools.com/
 summary: null
-marketplace_apps: []
-edges: []
+marketplace_apps:
+- marketplace: own
+  channel: partner-built
+  app: commercetools
+  url: https://marketplace.commercetools.com/
+  app_count: null
+  categories:
+  - CMS/DXP
+  - Digital Asset Management
+  - Digital Image Management
+  - Financial Services
+  - Frontend
+  - Localization
+  - Machine Learning & AI
+  - Marketplaces
+  - Order Management
+  - Other Solutions
+  - Payment Service Providers
+  - Personalisation & Recommendations
+  - Product Information Management
+  - Promotions & Loyalty
+  - Search & Personalization
+  - Tools & Utilities
+edges:
+- partner_name: Adyen
+  partner: adyen
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/adyen
+  category: Payment Service Providers
+  use_case: Adyen is the world's first unified payments platform, providing a payment gateway, risk management system, and acquirer all rolled into one.
+- partner_name: Aurus Inc
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/aurus-inc
+  category: Payment Service Providers
+  use_case: Enable secure, omnichannel payments with Aurus—supporting all major payment methods, fraud prevention, and a customizable checkout
+- partner_name: Avalara
+  partner: avalara
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/avalara-avatax
+  category: Financial Services
+  use_case: Avalara is a leading provider of cloud-based tax compliance automation and simplifies tax compliance for your online business.
+- partner_name: Bloomreach
+  partner: bloomreach
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/commerce-experience-cloud
+  category: CMS/DXP
+  use_case: Bloomreach Commerce Experience Cloud for commercetools
+- partner_name: Briqpay
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/briqpay
+  category: Payment Service Providers
+  use_case: The integration between commercetools and Briqpay empowers merchants to streamline their checkout experience.
+- partner_name: DHL
+  partner: dhl
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/dhl-commercetools-connector
+  category: Order Management
+  use_case: Automatic shipping label creation for deliveries using the DHL products.
+- partner_name: Dovetech Campaigns Connector
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/dovetech-campaigns-connector
+  category: Promotions & Loyalty
+  use_case: DoveTech is a high-performance promotion engine designed to scale with your business needs
+- partner_name: Dynamic Yield by Mastercard
+  partner: dynamic-yield
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/dynamic-yield-by-mastercard
+  category: Search & Personalization
+  use_case: Elevate your e-commerce experience by seamlessly implementing Dynamic Yield’s pre-built integration to provide greater flexibility and deliver more effective personalization at scale.
+- partner_name: Eagle Eye Solutions
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/eagle-eye-solutions
+  category: Promotions & Loyalty
+  use_case: Allows retailers to effortlessly craft innovative, personalized loyalty and promotion programs across all channels at scale, with discounts and rewards issued in real-time for a seamless customer experience.
+- partner_name: Fluent Commerce
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/fluent-commerce
+  category: Order Management
+  use_case: Cloud-native enterprise distributed order and inventory management
+- partner_name: Holmes
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/holmes
+  category: Search & Personalization
+  use_case: The HOLMES Connector enables the integration of the powerful HOLMES Search Accelerator, which was developed for customized e-commerce searches – designed to meet requirements that go far beyond the standard.
+- partner_name: Klaviyo
+  partner: klaviyo
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/klaviyo
+  category: Other Solutions
+  use_case: Intelligent marketing automation and customer data platform
+- partner_name: NULogic
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/mailchimp-by-nulogic
+  category: Other Solutions
+  use_case: NULogic MailChimp Connect Email Integration
+- partner_name: Marketplacer
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/marketplacer
+  category: Marketplaces
+  use_case: The Marketplace Connector
+- partner_name: Mollie B.V.
+  partner: mollie
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/mollie
+  category: Payment Service Providers
+  use_case: The Mollie commercetools integration streamlines payment processing for online stores, offering a customizable checkout with over 35 local and international payment methods.
+- partner_name: Monext
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/monext
+  category: Payment Service Providers
+  use_case: Monext offers a secure plugin with a choice of several payment methods for your online store.
+- partner_name: NewStore
+  partner: newstore
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/newstore
+  category: Order Management
+  use_case: Omnichannel made easy for retail brands worldwide
+- partner_name: NULogic
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/nulogic
+  category: Promotions & Loyalty
+  use_case: 'Extending the existing commercetools cart discounts to enable fixed-price and fixed-amount
+
+    discount offers to drive incremental sales by incentivizing larger cart and average order value.'
+- partner_name: OC fulfillment GmbH
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/oc-fulfillment-gmbh
+  category: Order Management
+  use_case: A SaaS cloud platform for real and efficient omnichannel fulfillment for all industries.
+- partner_name: Ordergroove
+  partner: ordergroove
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/ordergroove
+  category: Other Solutions
+  use_case: Turn transactions into lasting and profitable relationships with enterprise-level subscriptions.
+- partner_name: PayPal
+  partner: paypal
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/paypal
+  category: Payment Service Providers
+  use_case: PayPal’s brand recognition helps give customers the confidence to buy.
+- partner_name: PayPal
+  partner: paypal
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/paypal-braintree
+  category: Payment Service Providers
+  use_case: The end-to-end payment platform built for growth
+- partner_name: Relewise
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/relewise
+  category: Other Solutions
+  use_case: A personalization platform like no other
+- partner_name: Stripe
+  partner: stripe
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/stripe
+  category: Payment Service Providers
+  use_case: Power global commerce with composable, enterprise-ready payments and billing solutions that adapt to market changes and meet customers where they are around the world
+- partner_name: Talon.One
+  partner: talon-one
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/talon-one
+  category: Promotions & Loyalty
+  use_case: The world's most flexible Promotion Engine
+- partner_name: TeamBank AG
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/teambank-ag
+  category: Connectors
+  use_case: easyCredit-Ratenkauf - the easiest installment purchase in Germany
+- partner_name: TrustElevate
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/trustelevate
+  category: Other Solutions
+  use_case: TrustElevate Verifies All Identities, All Ages, All Parents, on Any Service - One solution.
+- partner_name: Virtualstock
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/virtualstock-l
+  category: Order Management
+  use_case: The integration between Commercetools and Virtualstock enables smooth and automated sharing of order and delivery status updates, as well as stock updates, between the retailer and their dropship suppliers.
+- partner_name: Voucherify
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/voucherify
+  category: Promotions & Loyalty
+  use_case: API-first Promotion & Loyalty Engine for Digital Teams
+- partner_name: Voucherify
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/voucherify-gift-card-co
+  category: Promotions & Loyalty
+  use_case: The Gift Card connector enables seamless gift-card payments in your commercetools checkout flow via Voucherify’s APIs
+- partner_name: ZYRES
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/zyres
+  category: Other Solutions
+  use_case: ReZy is a connector which offers an opportunity for customers to rate, and review purchased products or services whilst also providing an intuitive moderation panel for shop-admins to manage these reviews.
+- partner_name: 7 Learnings Price Optimization
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/7-learnings-price-optimization
+  category: Machine Learning & AI
+  use_case: Machine Learning based price optimization service to increase profit by up to 10%
+- partner_name: ACQUIA Commerce Framework
+  partner: acquia
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/acquia-commerce-framework
+  category: CMS/DXP
+  use_case: Composable commerce experiences powered by the Open Digital Experience Platform.
+- partner_name: actionfi
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/actionfi
+  category: Other Solutions
+  use_case: RUNMYBOT® provides a production-ready SAP S/4HANA integration for commercetools, enabling bi-directional master data sync, real-time order processing, pricing, inventory, invoicing, and more without custom middleware development.
+- partner_name: AIOPSGROUP
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/aiopsgroup
+  category: Product Information Management
+  use_case: AIOPSGROUP measures “metrics that matter” for your business.
+- partner_name: Akeneo
+  partner: akeneo
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/akeneo
+  category: Product Information Management
+  use_case: With the push of a button, the connector converts your Akeneo PIM data model into a commercetools project where product data will be available within minutes
+- partner_name: Algolia
+  partner: algolia
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/algolia
+  category: Search & Personalization
+  use_case: The flexible AI-powered Search & Discovery platform.
+- partner_name: Amplience
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/amplience-headless-cms
+  category: CMS/DXP
+  use_case: 'Amplience: a unified platform for commerce content that does everything you need it to.'
+- partner_name: Amplience
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/amplience-ecomm-toolkit
+  category: CMS/DXP
+  use_case: Map core commerce information from commercetools into Amplience automatically
+- partner_name: Annex Cloud
+  partner: annex-cloud
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/annex-cloud
+  category: Promotions & Loyalty
+  use_case: Annex Cloud’s Loyalty Experience Platform helps enterprises engage and reward customers to build lasting relationships and profits at scale.
+- partner_name: ATAMYA | eggheads GmbH
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/eggheads-gmbh
+  category: Product Information Management
+  use_case: The ATAMYA PIM connects to the commercetools platform via the Smart Commerce CONNECTOR, accelerating your product data integration for more efficient eCommerce and faster time-to-market.
+- partner_name: Billforward
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/billforward
+  category: Financial Services
+  use_case: A subscription billing platform that drives growth.
+- partner_name: Bluestone PIM
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/bluestone-pim
+  category: Product Information Management
+  use_case: The integration makes it possible to transfer product information data and images from Bluestone PIM to commercetools.
+- partner_name: Bold Checkout
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/bold-checkout
+  category: Payment Service Providers
+  use_case: Create a checkout experience that fits your business with Bold Checkout.
+- partner_name: Builder.io Inc.
+  partner: builder-io
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/builder-visual-editor
+  category: CMS/DXP
+  use_case: Using Builder’s commercetools e-commerce plugin, merchants can bring their commercetools product catalogs and categories into Builder and make all their digital experiences shoppable.
+- partner_name: Cappasity
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/cappasity
+  category: Digital Asset Management
+  use_case: SaaS solution built to create & display interactive 3D images on websites, mobile, & VR/AR apps.
+- partner_name: ChatLabs
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/chatlabs
+  category: Other Solutions
+  use_case: Connects commercetools with China's digital channels such as WeChat via its unified integration layer
+- partner_name: Checkout.com
+  partner: checkout-com
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/checkout-com-payments-for-commercetools
+  category: Payment Service Providers
+  use_case: Payments for global businesses, simplified through one unified platform.
+- partner_name: Cloudinary
+  partner: cloudinary
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/cloudinary
+  category: Digital Asset Management
+  use_case: The leading image and video platform for your composable commerce tech stack.
+- partner_name: Commerce Architects
+  partner: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/commerce-architects
+  category: Machine Learning & AI
+  use_case: Conversational Cart
 templates: []
