@@ -637,3 +637,21 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: commercetools-algolia
+  label: algolia
+  partner: algolia
+  partner_name: algolia
+  type: contract
+  channel: partner-built
+  evidence: https://github.com/api-evangelist/algolia/blob/main/openapi/algolia-ingestion-api-openapi.yml
+  source: edge
+  relationship: processor-connection
+  contract_reference:
+    repo: algolia
+    spec_file: algolia-ingestion-api-openapi.yml
+    value: commercetools
+    property: schemas.Platform
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null

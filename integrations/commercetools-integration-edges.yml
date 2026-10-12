@@ -45,7 +45,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/adyen
   category: Payment Service Providers
-  use_case: Adyen is the world's first unified payments platform, providing a payment gateway, risk management system, and acquirer all rolled into one.
+  use_case: Adyen is the world's first unified payments platform, providing a payment gateway, risk management system,
+    and acquirer all rolled into one.
 - partner_name: Aurus Inc
   partner: null
   type: marketplace
@@ -55,7 +56,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/aurus-inc
   category: Payment Service Providers
-  use_case: Enable secure, omnichannel payments with Aurus—supporting all major payment methods, fraud prevention, and a customizable checkout
+  use_case: Enable secure, omnichannel payments with Aurus—supporting all major payment methods, fraud prevention,
+    and a customizable checkout
 - partner_name: Avalara
   partner: avalara
   type: marketplace
@@ -65,7 +67,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/avalara-avatax
   category: Financial Services
-  use_case: Avalara is a leading provider of cloud-based tax compliance automation and simplifies tax compliance for your online business.
+  use_case: Avalara is a leading provider of cloud-based tax compliance automation and simplifies tax compliance
+    for your online business.
 - partner_name: Bloomreach
   partner: bloomreach
   type: marketplace
@@ -115,7 +118,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/dynamic-yield-by-mastercard
   category: Search & Personalization
-  use_case: Elevate your e-commerce experience by seamlessly implementing Dynamic Yield’s pre-built integration to provide greater flexibility and deliver more effective personalization at scale.
+  use_case: Elevate your e-commerce experience by seamlessly implementing Dynamic Yield’s pre-built integration
+    to provide greater flexibility and deliver more effective personalization at scale.
 - partner_name: Eagle Eye Solutions
   partner: null
   type: marketplace
@@ -125,7 +129,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/eagle-eye-solutions
   category: Promotions & Loyalty
-  use_case: Allows retailers to effortlessly craft innovative, personalized loyalty and promotion programs across all channels at scale, with discounts and rewards issued in real-time for a seamless customer experience.
+  use_case: Allows retailers to effortlessly craft innovative, personalized loyalty and promotion programs across
+    all channels at scale, with discounts and rewards issued in real-time for a seamless customer experience.
 - partner_name: Fluent Commerce
   partner: null
   type: marketplace
@@ -145,7 +150,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/holmes
   category: Search & Personalization
-  use_case: The HOLMES Connector enables the integration of the powerful HOLMES Search Accelerator, which was developed for customized e-commerce searches – designed to meet requirements that go far beyond the standard.
+  use_case: The HOLMES Connector enables the integration of the powerful HOLMES Search Accelerator, which was developed
+    for customized e-commerce searches – designed to meet requirements that go far beyond the standard.
 - partner_name: Klaviyo
   partner: klaviyo
   type: marketplace
@@ -185,7 +191,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/mollie
   category: Payment Service Providers
-  use_case: The Mollie commercetools integration streamlines payment processing for online stores, offering a customizable checkout with over 35 local and international payment methods.
+  use_case: The Mollie commercetools integration streamlines payment processing for online stores, offering a customizable
+    checkout with over 35 local and international payment methods.
 - partner_name: Monext
   partner: null
   type: marketplace
@@ -277,7 +284,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/stripe
   category: Payment Service Providers
-  use_case: Power global commerce with composable, enterprise-ready payments and billing solutions that adapt to market changes and meet customers where they are around the world
+  use_case: Power global commerce with composable, enterprise-ready payments and billing solutions that adapt to
+    market changes and meet customers where they are around the world
 - partner_name: Talon.One
   partner: talon-one
   type: marketplace
@@ -317,7 +325,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/virtualstock-l
   category: Order Management
-  use_case: The integration between Commercetools and Virtualstock enables smooth and automated sharing of order and delivery status updates, as well as stock updates, between the retailer and their dropship suppliers.
+  use_case: The integration between Commercetools and Virtualstock enables smooth and automated sharing of order
+    and delivery status updates, as well as stock updates, between the retailer and their dropship suppliers.
 - partner_name: Voucherify
   partner: null
   type: marketplace
@@ -337,7 +346,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/voucherify-gift-card-co
   category: Promotions & Loyalty
-  use_case: The Gift Card connector enables seamless gift-card payments in your commercetools checkout flow via Voucherify’s APIs
+  use_case: The Gift Card connector enables seamless gift-card payments in your commercetools checkout flow via
+    Voucherify’s APIs
 - partner_name: ZYRES
   partner: null
   type: marketplace
@@ -347,7 +357,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/zyres
   category: Other Solutions
-  use_case: ReZy is a connector which offers an opportunity for customers to rate, and review purchased products or services whilst also providing an intuitive moderation panel for shop-admins to manage these reviews.
+  use_case: ReZy is a connector which offers an opportunity for customers to rate, and review purchased products
+    or services whilst also providing an intuitive moderation panel for shop-admins to manage these reviews.
 - partner_name: 7 Learnings Price Optimization
   partner: null
   type: marketplace
@@ -377,7 +388,9 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/actionfi
   category: Other Solutions
-  use_case: RUNMYBOT® provides a production-ready SAP S/4HANA integration for commercetools, enabling bi-directional master data sync, real-time order processing, pricing, inventory, invoicing, and more without custom middleware development.
+  use_case: RUNMYBOT® provides a production-ready SAP S/4HANA integration for commercetools, enabling bi-directional
+    master data sync, real-time order processing, pricing, inventory, invoicing, and more without custom middleware
+    development.
 - partner_name: AIOPSGROUP
   partner: null
   type: marketplace
@@ -397,7 +410,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/akeneo
   category: Product Information Management
-  use_case: With the push of a button, the connector converts your Akeneo PIM data model into a commercetools project where product data will be available within minutes
+  use_case: With the push of a button, the connector converts your Akeneo PIM data model into a commercetools project
+    where product data will be available within minutes
 - partner_name: Algolia
   partner: algolia
   type: marketplace
@@ -437,7 +451,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/annex-cloud
   category: Promotions & Loyalty
-  use_case: Annex Cloud’s Loyalty Experience Platform helps enterprises engage and reward customers to build lasting relationships and profits at scale.
+  use_case: Annex Cloud’s Loyalty Experience Platform helps enterprises engage and reward customers to build lasting
+    relationships and profits at scale.
 - partner_name: ATAMYA | eggheads GmbH
   partner: null
   type: marketplace
@@ -447,7 +462,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/eggheads-gmbh
   category: Product Information Management
-  use_case: The ATAMYA PIM connects to the commercetools platform via the Smart Commerce CONNECTOR, accelerating your product data integration for more efficient eCommerce and faster time-to-market.
+  use_case: The ATAMYA PIM connects to the commercetools platform via the Smart Commerce CONNECTOR, accelerating
+    your product data integration for more efficient eCommerce and faster time-to-market.
 - partner_name: Billforward
   partner: null
   type: marketplace
@@ -467,7 +483,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/bluestone-pim
   category: Product Information Management
-  use_case: The integration makes it possible to transfer product information data and images from Bluestone PIM to commercetools.
+  use_case: The integration makes it possible to transfer product information data and images from Bluestone PIM
+    to commercetools.
 - partner_name: Bold Checkout
   partner: null
   type: marketplace
@@ -487,7 +504,8 @@ edges:
   direction: partner-built
   evidence: https://commercetools.com/technology-partners/builder-visual-editor
   category: CMS/DXP
-  use_case: Using Builder’s commercetools e-commerce plugin, merchants can bring their commercetools product catalogs and categories into Builder and make all their digital experiences shoppable.
+  use_case: Using Builder’s commercetools e-commerce plugin, merchants can bring their commercetools product catalogs
+    and categories into Builder and make all their digital experiences shoppable.
 - partner_name: Cappasity
   partner: null
   type: marketplace
@@ -538,4 +556,19 @@ edges:
   evidence: https://commercetools.com/technology-partners/commerce-architects
   category: Machine Learning & AI
   use_case: Conversational Cart
+- partner_name: algolia
+  partner: algolia
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/algolia/blob/main/openapi/algolia-ingestion-api-openapi.yml
+  contract_reference:
+    repo: algolia
+    spec_file: algolia-ingestion-api-openapi.yml
+    value: commercetools
+    property: schemas.Platform
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
 templates: []
