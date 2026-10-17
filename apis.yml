@@ -205,9 +205,11 @@ apis:
     type: Documentation
   - url: graphql/commercetools-graphql.md
     type: GraphQL
-  description: The commercetools GraphQL API provides a flexible, network-efficient alternative to the HTTP API for querying and mutating Composable
-    Commerce resources. It exposes a single endpoint and allows clients to request exactly the data they need, reducing over-fetching and minimizing
-    round trips. The GraphQL API uses the same API clients, authentication tokens, and project scopes as the HTTP API.
+  description: >-
+    The commercetools GraphQL API provides a flexible, network-efficient alternative to the HTTP API for
+    querying and mutating Composable Commerce resources. It exposes a single endpoint and allows clients
+    to request exactly the data they need, reducing over-fetching and minimizing round trips. The GraphQL
+    API uses the same API clients, authentication tokens, and project scopes as the HTTP API.
 - aid: commercetools:typescript-sdk
   name: Commercetools TypeScript SDK
   tags:
@@ -221,9 +223,11 @@ apis:
   properties:
   - url: https://docs.commercetools.com/sdk/typescript-sdk
     type: Documentation
-  description: The commercetools TypeScript SDK is the official client library for interacting with the Composable Commerce HTTP API, Import API,
-    and GraphQL API from JavaScript and TypeScript applications. It provides full type safety, IDE autocompletion, and a fluent domain-specific
-    language for constructing valid API requests. The SDK handles OAuth 2.0 token management, request building, and response deserialization.
+  description: >-
+    The commercetools TypeScript SDK is the official client library for interacting with the Composable
+    Commerce HTTP API, Import API, and GraphQL API from JavaScript and TypeScript applications. It provides
+    full type safety, IDE autocompletion, and a fluent domain-specific language for constructing valid
+    API requests. The SDK handles OAuth 2.0 token management, request building, and response deserialization.
 - aid: commercetools:java-sdk
   name: Commercetools Java SDK
   tags:
@@ -237,10 +241,12 @@ apis:
   properties:
   - url: https://docs.commercetools.com/sdk/java-sdk
     type: Documentation
-  description: The commercetools Java SDK is the official client library for accessing the Composable Commerce APIs from Java applications. It
-    provides strongly typed request builders, automatic OAuth 2.0 token management, and support for all HTTP API and Import API endpoints. The
-    SDK is compatible with standard Java development toolchains and is distributed via Maven Central. It is commonly used in enterprise backend
-    systems and microservices that require JVM-based integration with the commercetools platform.
+  description: >-
+    The commercetools Java SDK is the official client library for accessing the Composable Commerce APIs
+    from Java applications. It provides strongly typed request builders, automatic OAuth 2.0 token management,
+    and support for all HTTP API and Import API endpoints. The SDK is compatible with standard Java development
+    toolchains and is distributed via Maven Central. It is commonly used in enterprise backend systems
+    and microservices that require JVM-based integration with the commercetools platform.
 - aid: commercetools:checkout-api
   name: Commercetools Checkout API
   tags:
@@ -254,10 +260,12 @@ apis:
   properties:
   - url: https://docs.commercetools.com/checkout
     type: Documentation
-  description: The commercetools Checkout API provides programmatic control over Checkout application configurations within Composable Commerce.
-    The Checkout Applications API allows developers to create, update, and manage Checkout applications without manual setup in the Merchant Center,
-    enabling automated deployment and configuration across multiple stores, regions, and business units. Checkout integrates with payment connectors
-    available through the Connect marketplace.
+  description: >-
+    The commercetools Checkout API provides programmatic control over Checkout application configurations
+    within Composable Commerce. The Checkout Applications API allows developers to create, update, and
+    manage Checkout applications without manual setup in the Merchant Center, enabling automated deployment
+    and configuration across multiple stores, regions, and business units. Checkout integrates with payment
+    connectors available through the Connect marketplace.
 - aid: commercetools:merchant-center-customizations-api
   name: Commercetools Merchant Center Customizations API
   tags:
@@ -267,13 +275,17 @@ apis:
   - Merchant Center
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   baseURL: https://api.example.com
-  humanURL: https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
+  humanURL: >-
+    https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
   properties:
-  - url: https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
+  - url: >-
+      https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api
     type: Documentation
-  description: The commercetools Merchant Center Customizations API provides the programmatic interface for building custom applications and UI
-    extensions within the Merchant Center. It exposes proxy endpoints to underlying REST and GraphQL APIs, allowing custom UIs to interact with
-    Composable Commerce resources in a secure, scoped manner. Developers use this API when creating Custom Applications that extend the Merchant
+  description: >-
+    The commercetools Merchant Center Customizations API provides the programmatic interface for building
+    custom applications and UI extensions within the Merchant Center. It exposes proxy endpoints to underlying
+    REST and GraphQL APIs, allowing custom UIs to interact with Composable Commerce resources in a secure,
+    scoped manner. Developers use this API when creating Custom Applications that extend the Merchant
     Center with business-specific tooling.
 - aid: commercetools:commercetools-carts-api
   name: commercetools Carts API
@@ -619,6 +631,10 @@ apis:
     url: https://docs.commercetools.com/api/history/overview
   - type: JSONSchema
     url: json-schema/commercetools-record-paged-query-response-schema.json
+  - type: JSONSchema
+    url: json-schema/commercetools-product-variant-import-request-schema.json
+  - type: JSONSchema
+    url: json-schema/commercetools-import-response-schema.json
 - aid: commercetools:commercetools-product-variants-api
   name: commercetools Product Variants API
   description: Import product variant resources into the project.
@@ -638,10 +654,11 @@ apis:
   - type: Documentation
     url: https://docs.commercetools.com/api/history/overview
   - type: JSONSchema
+    url: json-schema/commercetools-record-paged-query-response-schema.json
+  - type: JSONSchema
     url: json-schema/commercetools-product-variant-import-request-schema.json
   - type: JSONSchema
     url: json-schema/commercetools-import-response-schema.json
-
 integrations:
 - name: Solution Integrators & Agencies
 x-enrichment:

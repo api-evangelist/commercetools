@@ -87,27 +87,19 @@ components:
           items:
             type: object
           description: Prices for the variant.
-    ImportOperationStatus:
+    ErrorObject:
       type: object
-      description: The initial status of a single resource submission in an import batch.
+      description: An error object describing a validation or processing failure.
       required:
-      - resourceKey
-      - state
+      - code
+      - message
       properties:
-        resourceKey:
+        code:
           type: string
-          description: User-defined key of the resource submitted.
-        state:
+          description: Machine-readable error code.
+        message:
           type: string
-          enum:
-          - Accepted
-          - ValidationFailed
-          description: Initial state of the operation after submission.
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorObject'
-          description: Immediate validation errors if the resource failed submission.
+          description: Human-readable description of the error.
     ImportResponse:
       type: object
       description: The response returned after submitting an import request batch.
@@ -137,19 +129,39 @@ components:
           items:
             $ref: '#/components/schemas/ProductVariantImport'
           description: Up to 20 product variant resources.
-    ErrorObject:
+    ImportOperationStatus:
       type: object
-      description: An error object describing a validation or processing failure.
+      description: The initial status of a single resource submission in an import batch.
       required:
-      - code
-      - message
+      - resourceKey
+      - state
       properties:
-        code:
+        resourceKey:
           type: string
-          description: Machine-readable error code.
-        message:
+          description: User-defined key of the resource submitted.
+        state:
           type: string
-          description: Human-readable description of the error.
+          enum:
+          - Accepted
+          - ValidationFailed
+          description: Initial state of the operation after submission.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorObject'
+          description: Immediate validation errors if the resource failed submission.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              message:
+                type: string
   parameters:
     importContainerKey:
       name: importContainerKey
@@ -165,18 +177,6 @@ components:
       schema:
         type: string
       description: The unique key of the commercetools project.
-  responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: integer
-              message:
-                type: string
   securitySchemes:
     bearerAuth:
       type: http
