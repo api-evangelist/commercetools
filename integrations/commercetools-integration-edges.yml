@@ -1,10 +1,11 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/commercetools/integrations
 - https://n8n.io/integrations/commercetools/
 - https://composio.dev/toolkits/commercetools
 - https://monid.ai/tools/commercetools
+- https://marketplace.commercetools.com/
 checked:
 - https://api.nuget.org/v3
 - https://cloudsecurityalliance.org/star/registry
