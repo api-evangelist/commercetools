@@ -827,3 +827,1809 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: commercetools-amazon-web-services
+  label: Amazon Web Services
+  partner_name: Amazon Web Services
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/infrastructure-partners/aws
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-google-cloud
+  label: Google Cloud
+  partner_name: Google Cloud
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/infrastructure-partners/google-cloud
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-mongodb
+  label: MongoDB
+  partner_name: MongoDB
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/infrastructure-partners/mongodb
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-aca
+  label: ACA
+  partner_name: ACA
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/aca
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-ada-dash
+  label: ADA/DASH
+  partner_name: ADA/DASH
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/ada-dash
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-antidote
+  label: Antidote
+  partner_name: Antidote
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/antidote
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-crownpeak-product-discovery
+  label: Crownpeak Product Discovery
+  partner_name: Crownpeak Product Discovery
+  category: Machine Learning & AI, Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/attraqt-fredhopper-discovery-platform
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-avensia-excite
+  label: Avensia Excite
+  partner_name: Avensia Excite
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/avensia-excite
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-b2b-commerce-orchestrator
+  label: B2B Commerce Orchestrator
+  partner_name: B2B Commerce Orchestrator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/b2b-commerce-orchestrator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-b2b-composer
+  label: B2B Composer
+  partner_name: B2B Composer
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/b2b-composer
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-b2b-machcellerator-with-cofe-catalyst
+  label: B2B MACHcellerator with coFE Catalyst
+  partner_name: B2B MACHcellerator with coFE Catalyst
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/b2b-machcellerator-with-cofe-catalyst
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-b2b-supercharge-composable-commerce-accelerator
+  label: B2B Supercharge Composable Commerce Accelerator
+  partner_name: B2B Supercharge Composable Commerce Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/b2b-supercharge-composable-commerce-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-b2xaccelerator
+  label: B2Xaccelerator
+  partner_name: B2Xaccelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/b2xaccelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-blackbird
+  label: Blackbird
+  partner_name: Blackbird
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/blackbird
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-bundle-accelerator
+  label: Bundle Accelerator
+  partner_name: Bundle Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/bundle-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-ashiba
+  label: Ashiba
+  partner_name: Ashiba
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/cabiri-ashiba
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-cafe-accelerator
+  label: CAFE Accelerator
+  partner_name: CAFE Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/cafe-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-catalyst
+  label: Catalyst
+  partner_name: Catalyst
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/catalyst
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-ecube-gmbh
+  label: eCube GmbH
+  partner_name: eCube GmbH
+  category: Product Information Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/chioro
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-commerce-architects-ai
+  label: Commerce Architects AI
+  partner_name: Commerce Architects AI
+  category: Machine Learning & AI, Tools & Utilities
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/commerce-architects-ai
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-alpha-commerce
+  label: Alpha Commerce
+  partner_name: Alpha Commerce
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-commerce-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-composable-commerce-help-desk-starter-kit
+  label: Composable Commerce Help Desk Starter Kit
+  partner_name: Composable Commerce Help Desk Starter Kit
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-commerce-help-desk-starter-kit
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-composable-commerce-starter-kit
+  label: Composable Commerce Starter Kit
+  partner_name: Composable Commerce Starter Kit
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-commerce-starter-kit
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-composable-content-commerce-accelerator
+  label: Composable Content & Commerce Accelerator
+  partner_name: Composable Content & Commerce Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-content-commerce-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-composable-for-mena
+  label: Composable for MENA
+  partner_name: Composable for MENA
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-for-mena
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-conduit
+  label: Conduit
+  partner_name: Conduit
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/conduit
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-connectpos
+  label: ConnectPOS
+  partner_name: ConnectPOS
+  category: Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/connectpos
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-conscia-ai
+  label: Conscia.ai
+  partner_name: Conscia.ai
+  category: Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/conscia-ai
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-constructor
+  label: Constructor
+  partner_name: Constructor
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/constructor
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-contentful
+  label: Contentful
+  partner: contentful
+  partner_name: Contentful
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/contentful
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-contentserv
+  label: Contentserv
+  partner_name: Contentserv
+  category: Digital Asset Management, Product Information Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/contentserv-gmbh
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-contentstack
+  label: Contentstack
+  partner: contentstack
+  partner_name: Contentstack
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/contentstack
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-convictional
+  label: Convictional
+  partner_name: Convictional
+  category: Marketplaces
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/convictional
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-coreconnect
+  label: CoreConnect
+  partner_name: CoreConnect
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/coreconnect
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-coremedia
+  label: CoreMedia
+  partner_name: CoreMedia
+  category: CMS/DXP, Digital Image Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/coremedia
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-coveo
+  label: Coveo
+  partner: coveo
+  partner_name: Coveo
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/coveo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-cozy
+  label: CoZy
+  partner_name: CoZy
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/cozy-commerce
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-crafter-software
+  label: Crafter Software
+  partner_name: Crafter Software
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/crafter-software
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-crescodata
+  label: CrescoData
+  partner_name: CrescoData
+  category: Machine Learning & AI, Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/crescodata-commerce-connect
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-crowdin
+  label: Crowdin
+  partner_name: Crowdin
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/crowdin
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-crownpeak-dxm
+  label: Crownpeak DXM
+  partner_name: Crownpeak DXM
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/crownpeak
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-currency-alliance
+  label: Currency Alliance
+  partner_name: Currency Alliance
+  category: Promotions & Loyalty
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/currency-alliance
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-cybersource
+  label: Cybersource
+  partner: cybersource
+  partner_name: Cybersource
+  category: Financial Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/cybersource
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-cybersource-by-logixal-inc
+  label: Cybersource by Logixal Inc
+  partner_name: Cybersource by Logixal Inc
+  category: Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/cybersource-by-logixal-inc
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-deity
+  label: Deity
+  partner_name: Deity
+  category: Frontend, Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/deity
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-digital-river
+  label: Digital River
+  partner_name: Digital River
+  category: Financial Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/digital-river
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-dotdigital
+  label: Dotdigital
+  partner: dotdigital
+  partner_name: Dotdigital
+  category: Machine Learning & AI
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/dotdigital
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-ecommpay
+  label: Ecommpay
+  partner: ecommpay
+  partner_name: Ecommpay
+  category: Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/ecommpay
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-enginiety
+  label: Enginiety
+  partner_name: Enginiety
+  category: Frontend
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/enginiety
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-enterspeed
+  label: Enterspeed
+  partner_name: Enterspeed
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/enterspeed
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-esw
+  label: ESW
+  partner_name: ESW
+  category: Financial Services, Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/esw
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-evolve
+  label: Evolve
+  partner_name: Evolve
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/evolve
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-forter
+  label: Forter
+  partner: forter
+  partner_name: Forter
+  category: Financial Services, Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/forter
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-frosmo
+  label: Frosmo
+  partner_name: Frosmo
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/frosmo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-gear
+  label: GEAR
+  partner_name: GEAR
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/gear
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-gr4vy
+  label: Gr4vy
+  partner: gr4vy
+  partner_name: Gr4vy
+  category: Financial Services, Other Solutions, Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/gr4vy
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-grafbase
+  label: Grafbase
+  partner_name: Grafbase
+  category: CMS/DXP, Other Solutions, Tools & Utilities
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/grafbase
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-grid-dynamics
+  label: Grid Dynamics
+  partner_name: Grid Dynamics
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/grid-dynamics
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-grocery-ecommerce-accelerator
+  label: Grocery Ecommerce Accelerator
+  partner_name: Grocery Ecommerce Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/grocery-ecommerce-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-groupby-inc
+  label: GroupBy, Inc.
+  partner_name: GroupBy, Inc.
+  category: Machine Learning & AI, Other Solutions, Personalisation & Recommendations, Product Information Management,
+    Promotions & Loyalty, Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/groupby-inc
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-gruppo-euris
+  label: Gruppo Euris
+  partner_name: Gruppo Euris
+  category: Frontend
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/gruppo-euris-spa
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-hairball-inc
+  label: Hairball, Inc.
+  partner_name: Hairball, Inc.
+  category: Marketplaces, Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/hairball-io
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-hygraph
+  label: Hygraph
+  partner: hygraph
+  partner_name: Hygraph
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/hygraph
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-icreon-retail-accelerator
+  label: Icreon Retail Accelerator
+  partner_name: Icreon Retail Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/icreon-retail-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-impact-composable-commerce-accelerator
+  label: IMPACT Composable Commerce Accelerator
+  partner_name: IMPACT Composable Commerce Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/impact-composable-commerce-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-inriver
+  label: inriver
+  partner_name: inriver
+  category: Product Information Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/inriver
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-ipaas-com
+  label: iPaas.com
+  partner_name: iPaas.com
+  category: Order Management, Other Solutions, Product Information Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/ipaas-com
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-kbrw
+  label: kbrw
+  partner_name: kbrw
+  category: Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/kbrw
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-kentico-software-s-r-o
+  label: Kentico Software s.r.o.
+  partner_name: Kentico Software s.r.o.
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/kentico-so
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-keystone
+  label: Keystone
+  partner_name: Keystone
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/keystone
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-keystone-instore
+  label: Keystone InStore
+  partner_name: Keystone InStore
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/keystone-instore
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-klevu
+  label: Klevu
+  partner_name: Klevu
+  category: Machine Learning & AI, Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/klevu
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-kps-composable-booster
+  label: KPS Composable Booster
+  partner_name: KPS Composable Booster
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/kps-composable-booster
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-mach-composer
+  label: MACH Composer
+  partner_name: MACH Composer
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/lab-digital
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-laioutr
+  label: Laioutr
+  partner_name: Laioutr
+  category: CMS/DXP, Frontend
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/laioutr
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-launchpad
+  label: Launchpad
+  partner_name: Launchpad
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/launchpad
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-leap
+  label: Leap
+  partner_name: Leap
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/leap
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-lexascms
+  label: LexasCMS
+  partner_name: LexasCMS
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/lexascms
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-lisa-social-commerce
+  label: LiSA Social Commerce
+  partner_name: LiSA Social Commerce
+  category: CMS/DXP, Digital Asset Management, Frontend, Promotions & Loyalty, Tools & Utilities
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/lisa-social-commerce
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-loqate-gbg
+  label: Loqate (GBG)
+  partner_name: Loqate (GBG)
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/loqate-gbg
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-lucidworks
+  label: Lucidworks
+  partner: lucidworks
+  partner_name: Lucidworks
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/lucidworks
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-luigi-s-box
+  label: Luigi's Box
+  partner_name: Luigi's Box
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/luigi-s-box
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-mach-booster
+  label: MACH Booster
+  partner_name: MACH Booster
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/mach-booster
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-mach-booster-inventory-service
+  label: MACH Booster Inventory Service
+  partner_name: MACH Booster Inventory Service
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/mach-booster-inventory-service
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-magnolia
+  label: Magnolia
+  partner_name: Magnolia
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/magnolia
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-mars
+  label: MARS
+  partner_name: MARS
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/mars
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-material
+  label: Material
+  partner_name: Material
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/material
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-mercaux-inc
+  label: Mercaux Inc.
+  partner_name: Mercaux Inc.
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/mercaux-inc
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-mirakl
+  label: Mirakl
+  partner: mirakl
+  partner_name: Mirakl
+  category: Marketplaces
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/mirakl
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-multi-vendor-marketplace-solution
+  label: Multi Vendor Marketplace Solution
+  partner_name: Multi Vendor Marketplace Solution
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/multi-vendor-marketplace-solution
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-nekom
+  label: NEKOM
+  partner_name: NEKOM
+  category: Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/nekom
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-netlify
+  label: Netlify
+  partner_name: Netlify
+  category: Frontend
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/netlify
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-nexus
+  label: Nexus
+  partner_name: Nexus
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/nexus
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-nulogic-ai-shopping-agent
+  label: NULogic AI Shopping Agent
+  partner_name: NULogic AI Shopping Agent
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/nulogic-ai-shopping-agent
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-nuvei
+  label: Nuvei
+  partner: nuvei
+  partner_name: Nuvei
+  category: Financial Services, Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/nuvei
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-nvision-solutions-ltd
+  label: Nvision Solutions Ltd
+  partner_name: Nvision Solutions Ltd
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/nvision-solutions-ltd
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-o2s-b2b-commercetools-accelerator
+  label: O2s B2B commercetools accelerator
+  partner_name: O2s B2B commercetools accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/o2s-b2b-commercetools-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-object-edge-launchpad-b2b-store
+  label: Object Edge Launchpad B2B Store
+  partner_name: Object Edge Launchpad B2B Store
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/object-edge-launchpad-b2b-store
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-occtoo
+  label: Occtoo
+  partner_name: Occtoo
+  category: CMS/DXP, Other Solutions, Search & Personalization, Tools & Utilities
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/occtoo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-omnistore-retail-clienteling-app
+  label: Omnistore retail clienteling app
+  partner_name: Omnistore retail clienteling app
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/omnistore-retail-clienteling-app
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-onestock
+  label: OneStock
+  partner_name: OneStock
+  category: Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/onestock
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-optimizely
+  label: Optimizely
+  partner: optimizely
+  partner_name: Optimizely
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/optimizely
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-orium-s-mobile-commerce-accelerator
+  label: Orium's Mobile Commerce Accelerator
+  partner_name: Orium's Mobile Commerce Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/orium-mobile-commerce-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-orium-s-commercetools-accelerator
+  label: Orium's commercetools Accelerator
+  partner_name: Orium's commercetools Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/orium-s-commercetools-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-orium-s-b2b-accelerator
+  label: Orium’s B2B Accelerator
+  partner_name: Orium’s B2B Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/oriums-b2b-commercetools-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-orium-s-industry-solution-for-health-pharma-commerce
+  label: Orium's Industry Solution for Health & Pharma Commerce
+  partner_name: Orium's Industry Solution for Health & Pharma Commerce
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/oriums-industry-solution-for-health-pharma-commerce
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-patchworks
+  label: Patchworks
+  partner_name: Patchworks
+  category: Marketplaces
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/patchworks
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-payever
+  label: payever
+  partner_name: payever
+  category: Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/payever
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-perfection-dev
+  label: Perfection.DEV
+  partner_name: Perfection.DEV
+  category: Frontend, Tools & Utilities
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/perfection-dev
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-perpendicular
+  label: Perpendicular
+  partner_name: Perpendicular
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/perpendicular
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-personalizecx
+  label: PersonalizeCX
+  partner_name: PersonalizeCX
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/personalizecx
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-pimcore-connector-by-hamari-agency
+  label: Pimcore Connector by Hamari Agency
+  partner_name: Pimcore Connector by Hamari Agency
+  category: CMS/DXP, Localization, Product Information Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/pimcore-connector-by-hamari-agency
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-pipe17-inc
+  label: Pipe17, Inc.
+  partner_name: Pipe17, Inc.
+  category: Order Management, Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/pipe17-inc
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-planet
+  label: Planet
+  partner_name: Planet
+  category: Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/planet
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-precomposer
+  label: Precomposer
+  partner_name: Precomposer
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/precomposer
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-pylot
+  label: Pylot
+  partner_name: Pylot
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/pylot
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-quick-launch-b2c-accelerator
+  label: Quick Launch B2C Accelerator
+  partner_name: Quick Launch B2C Accelerator
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/quick-launch-b2c-accelerator
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-rappid
+  label: Rappid
+  partner_name: Rappid
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/rappid
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-retailmediatools
+  label: retailmediatools
+  partner_name: retailmediatools
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/retailmediatools
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-riskified
+  label: Riskified
+  partner: riskified
+  partner_name: Riskified
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/riskified
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-rocket
+  label: Rocket
+  partner_name: Rocket
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/rocket
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-royal-cyber-inc-mirakl-connectors
+  label: Royal Cyber Inc. Mirakl Connectors
+  partner_name: Royal Cyber Inc. Mirakl Connectors
+  category: Marketplaces, Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/royal-cyber-inc-mirakl-connectors
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-scaleflex
+  label: Scaleflex
+  partner_name: Scaleflex
+  category: Digital Asset Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/scaleflex
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-session-ai
+  label: Session AI
+  partner: sessionai
+  partner_name: Session AI
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/session-ai
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-sheerid
+  label: SheerID
+  partner_name: SheerID
+  category: Promotions & Loyalty
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/sheerid
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-shopapp
+  label: ShopApp
+  partner_name: ShopApp
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/shopapp
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-shopspray
+  label: Shopspray
+  partner_name: Shopspray
+  category: Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/shopspray
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-sift
+  label: Sift
+  partner_name: Sift
+  category: Financial Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/sift
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-signifyd
+  label: Signifyd
+  partner: signifyd
+  partner_name: Signifyd
+  category: Financial Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/signifyd
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-spark
+  label: Spark
+  partner_name: Spark
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/spark
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-storyblok
+  label: Storyblok
+  partner: storyblok
+  partner_name: Storyblok
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/storyblok
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-syndigo
+  label: Syndigo
+  partner_name: Syndigo
+  category: Digital Asset Management, Product Information Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/syndigo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-tapestry
+  label: Tapestry
+  partner_name: Tapestry
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/tapestry
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-tecsys-inc
+  label: Tecsys Inc.
+  partner_name: Tecsys Inc.
+  category: Order Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/tecsys
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-threekit-3d-ar
+  label: Threekit 3D/AR
+  partner_name: Threekit 3D/AR
+  category: Digital Asset Management, Product Information Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/threekit-3d-ar
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-tradecentric
+  label: TradeCentric
+  partner_name: TradeCentric
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/tradecentric
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-globallink-for-commercetools
+  label: GlobalLink for Commercetools
+  partner_name: GlobalLink for Commercetools
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/transperfect
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-umbraco-cms
+  label: Umbraco CMS
+  partner_name: Umbraco CMS
+  category: CMS/DXP
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/umbraco-cms
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-universal-commerce-inc
+  label: UNIVERSAL COMMERCE INC
+  partner_name: UNIVERSAL COMMERCE INC
+  category: CMS/DXP, Order Management, Product Information Management, Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/universal-commerce-inc
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-vaimo
+  label: Vaimo
+  partner_name: Vaimo
+  category: Product Information Management
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/vaimo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-value-booster
+  label: Value Booster
+  partner_name: Value Booster
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/value-booster
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-vamp-io
+  label: VAMP.IO
+  partner_name: VAMP.IO
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/vampio
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-vertex
+  label: Vertex
+  partner_name: Vertex
+  category: Financial Services, Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/vertex-indirect-tax
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-voyado
+  label: Voyado
+  partner_name: Voyado
+  category: Search & Personalization
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/voyado
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-vue-storefront
+  label: Vue Storefront
+  partner_name: Vue Storefront
+  category: Frontend
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/vue-storefront
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-worldline
+  label: Worldline
+  partner_name: Worldline
+  category: Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/worldline
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-worldpay
+  label: Worldpay
+  partner_name: Worldpay
+  category: Payment Service Providers
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/worldpay
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-zendesk
+  label: Zendesk
+  partner_name: Zendesk
+  category: Other Solutions
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/zendesk
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: commercetools-zocalo
+  label: Zocalo
+  partner_name: Zocalo
+  category: commercetools technology partner
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/zocalo
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

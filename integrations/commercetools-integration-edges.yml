@@ -28,6 +28,13 @@ checked:
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
 - https://zapier.com/apps/commercetools/integrations
+- https://appexchange.salesforce.com/explore/business-needs?category=commerce
+- https://commercetools.com/partners
+- https://machalliance.org/members
+- https://marketplace.commercetools.com
+- https://printify.com/integrations/
+- https://www.bigcommerce.com/apps/
+- https://www.printful.com/integrations
 summary: null
 marketplace_apps:
 - marketplace: own
@@ -759,4 +766,2013 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: Amazon Web Services
+  app: Amazon Web Services
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/infrastructure-partners/aws
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_held:
+    candidate: amazon-web-services
+    why: 'market-fit gate: partner''s own tags carry no commerce / checkout / order / fulfilment term'
+- partner_name: Google Cloud
+  app: Google Cloud
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/infrastructure-partners/google-cloud
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: MongoDB
+  app: MongoDB
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/infrastructure-partners/mongodb
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_held:
+    candidate: mongodb
+    why: 'market-fit gate: partner''s own tags carry no commerce / checkout / order / fulfilment term'
+- partner_name: ACA
+  app: ACA
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/aca
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: ADA/DASH
+  app: ADA/DASH
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/ada-dash
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Antidote
+  app: Antidote
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/antidote
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Crownpeak Product Discovery
+  app: Crownpeak Product Discovery
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/attraqt-fredhopper-discovery-platform
+  category: Machine Learning & AI, Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Avensia Excite
+  app: Avensia Excite
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/avensia-excite
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: B2B Commerce Orchestrator
+  app: B2B Commerce Orchestrator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/b2b-commerce-orchestrator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: B2B Composer
+  app: B2B Composer
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/b2b-composer
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: B2B MACHcellerator with coFE Catalyst
+  app: B2B MACHcellerator with coFE Catalyst
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/b2b-machcellerator-with-cofe-catalyst
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: B2B Supercharge Composable Commerce Accelerator
+  app: B2B Supercharge Composable Commerce Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/b2b-supercharge-composable-commerce-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: B2Xaccelerator
+  app: B2Xaccelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/b2xaccelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Blackbird
+  app: Blackbird
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/blackbird
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Bundle Accelerator
+  app: Bundle Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/bundle-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Ashiba
+  app: Ashiba
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/cabiri-ashiba
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: CAFE Accelerator
+  app: CAFE Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/cafe-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Catalyst
+  app: Catalyst
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/catalyst
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: eCube GmbH
+  app: eCube GmbH
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/chioro
+  category: Product Information Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Commerce Architects AI
+  app: Commerce Architects AI
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/commerce-architects-ai
+  category: Machine Learning & AI, Tools & Utilities
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Alpha Commerce
+  app: Alpha Commerce
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-commerce-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Composable Commerce Help Desk Starter Kit
+  app: Composable Commerce Help Desk Starter Kit
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-commerce-help-desk-starter-kit
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Composable Commerce Starter Kit
+  app: Composable Commerce Starter Kit
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-commerce-starter-kit
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Composable Content & Commerce Accelerator
+  app: Composable Content & Commerce Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-content-commerce-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Composable for MENA
+  app: Composable for MENA
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/composable-for-mena
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Conduit
+  app: Conduit
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/conduit
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: ConnectPOS
+  app: ConnectPOS
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/connectpos
+  category: Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Conscia.ai
+  app: Conscia.ai
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/conscia-ai
+  category: Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_url: https://conscia.ai
+- partner_name: Constructor
+  app: Constructor
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/constructor
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Contentful
+  app: Contentful
+  partner: contentful
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/contentful
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q18348837 'Contentful' P856 https://www.contentful.com
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Contentserv
+  app: Contentserv
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/contentserv-gmbh
+  category: Digital Asset Management, Product Information Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Contentstack
+  app: Contentstack
+  partner: contentstack
+  partner_match: register-name
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/contentstack
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity_source: register-name
+  identity_note: register gave only the name 'Contentstack'; exact normalised match to contentstack's apis.yml name
+    (Kin 2026-10-20 decision 2)
+  register_name_note: register-name 'contentstack' = contentstack; no wikidata P856
+- partner_name: Convictional
+  app: Convictional
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/convictional
+  category: Marketplaces
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: CoreConnect
+  app: CoreConnect
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/coreconnect
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: CoreMedia
+  app: CoreMedia
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/coremedia
+  category: CMS/DXP, Digital Image Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Coveo
+  app: Coveo
+  partner: coveo
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/coveo
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q5179138 'Coveo' P856 https://www.coveo.com/fr
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: CoZy
+  app: CoZy
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/cozy-commerce
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Crafter Software
+  app: Crafter Software
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/crafter-software
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: CrescoData
+  app: CrescoData
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/crescodata-commerce-connect
+  category: Machine Learning & AI, Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Crowdin
+  app: Crowdin
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/crowdin
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_held:
+    candidate: crowdin
+    why: 'market-fit gate: partner''s own tags carry no commerce / checkout / order / fulfilment term'
+- partner_name: Crownpeak DXM
+  app: Crownpeak DXM
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/crownpeak
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Currency Alliance
+  app: Currency Alliance
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/currency-alliance
+  category: Promotions & Loyalty
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Cybersource
+  app: Cybersource
+  partner: cybersource
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/cybersource
+  category: Financial Services
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q5197697 'CyberSource Corporation' P856 http://www.cybersource.com
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Cybersource by Logixal Inc
+  app: Cybersource by Logixal Inc
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/cybersource-by-logixal-inc
+  category: Payment Service Providers
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Deity
+  app: Deity
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/deity
+  category: Frontend, Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Digital River
+  app: Digital River
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/digital-river
+  category: Financial Services
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Dotdigital
+  app: Dotdigital
+  partner: dotdigital
+  partner_match: register-name
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/dotdigital
+  category: Machine Learning & AI
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity_source: register-name
+  identity_note: register gave only the name 'Dotdigital'; exact normalised match to dotdigital's apis.yml name
+    (Kin 2026-10-20 decision 2)
+  register_name_note: register-name 'dotdigital' = dotdigital; no wikidata P856
+- partner_name: Ecommpay
+  app: Ecommpay
+  partner: ecommpay
+  partner_match: register-name
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/ecommpay
+  category: Payment Service Providers
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity_source: register-name
+  identity_note: register gave only the name 'Ecommpay'; exact normalised match to ecommpay's apis.yml name (Kin
+    2026-10-20 decision 2)
+  register_name_note: register-name 'ecommpay' = ecommpay; no wikidata P856
+- partner_name: Enginiety
+  app: Enginiety
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/enginiety
+  category: Frontend
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Enterspeed
+  app: Enterspeed
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/enterspeed
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_url: https://www.enterspeed.com/
+- partner_name: ESW
+  app: ESW
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/esw
+  category: Financial Services, Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_url: https://esw.com/contact
+- partner_name: Evolve
+  app: Evolve
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/evolve
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Forter
+  app: Forter
+  partner: forter
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/forter
+  category: Financial Services, Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q20988642 'Forter' P856 https://www.forter.com/
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Frosmo
+  app: Frosmo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/frosmo
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: GEAR
+  app: GEAR
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/gear
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Gr4vy
+  app: Gr4vy
+  partner: gr4vy
+  partner_match: register-name
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/gr4vy
+  category: Financial Services, Other Solutions, Payment Service Providers
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity_source: register-name
+  identity_note: register gave only the name 'Gr4vy'; exact normalised match to gr4vy's apis.yml name (Kin 2026-10-20
+    decision 2)
+  register_name_note: register-name 'gr4vy' = gr4vy; no wikidata P856
+- partner_name: Grafbase
+  app: Grafbase
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/grafbase
+  category: CMS/DXP, Other Solutions, Tools & Utilities
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_held:
+    candidate: grafbase
+    why: 'market-fit gate: partner''s own tags carry no commerce / checkout / order / fulfilment term'
+- partner_name: Grid Dynamics
+  app: Grid Dynamics
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/grid-dynamics
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Grocery Ecommerce Accelerator
+  app: Grocery Ecommerce Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/grocery-ecommerce-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: GroupBy, Inc.
+  app: GroupBy, Inc.
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/groupby-inc
+  category: Machine Learning & AI, Other Solutions, Personalisation & Recommendations, Product Information Management,
+    Promotions & Loyalty, Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Gruppo Euris
+  app: Gruppo Euris
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/gruppo-euris-spa
+  category: Frontend
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Hairball, Inc.
+  app: Hairball, Inc.
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/hairball-io
+  category: Marketplaces, Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Hygraph
+  app: Hygraph
+  partner: hygraph
+  partner_match: register-name
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/hygraph
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity_source: register-name
+  identity_note: register gave only the name 'Hygraph'; exact normalised match to hygraph's apis.yml name (Kin 2026-10-20
+    decision 2)
+  register_name_note: register-name 'hygraph' = hygraph; no wikidata P856
+- partner_name: Icreon Retail Accelerator
+  app: Icreon Retail Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/icreon-retail-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: IMPACT Composable Commerce Accelerator
+  app: IMPACT Composable Commerce Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/impact-composable-commerce-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: inriver
+  app: inriver
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/inriver
+  category: Product Information Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: iPaas.com
+  app: iPaas.com
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/ipaas-com
+  category: Order Management, Other Solutions, Product Information Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: kbrw
+  app: kbrw
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/kbrw
+  category: Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Kentico Software s.r.o.
+  app: Kentico Software s.r.o.
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/kentico-so
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Keystone
+  app: Keystone
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/keystone
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Keystone InStore
+  app: Keystone InStore
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/keystone-instore
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Klevu
+  app: Klevu
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/klevu
+  category: Machine Learning & AI, Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: KPS Composable Booster
+  app: KPS Composable Booster
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/kps-composable-booster
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: MACH Composer
+  app: MACH Composer
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/lab-digital
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Laioutr
+  app: Laioutr
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/laioutr
+  category: CMS/DXP, Frontend
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Launchpad
+  app: Launchpad
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/launchpad
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_held:
+    candidate: launchpad
+    why: 'market-fit gate: partner''s own tags carry no commerce / checkout / order / fulfilment term'
+- partner_name: Leap
+  app: Leap
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/leap
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: LexasCMS
+  app: LexasCMS
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/lexascms
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: LiSA Social Commerce
+  app: LiSA Social Commerce
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/lisa-social-commerce
+  category: CMS/DXP, Digital Asset Management, Frontend, Promotions & Loyalty, Tools & Utilities
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Loqate (GBG)
+  app: Loqate (GBG)
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/loqate-gbg
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Lucidworks
+  app: Lucidworks
+  partner: lucidworks
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/lucidworks
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q6696906 'LucidWorks' P856 http://www.lucidworks.com
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Luigi's Box
+  app: Luigi's Box
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/luigi-s-box
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: MACH Booster
+  app: MACH Booster
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/mach-booster
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: MACH Booster Inventory Service
+  app: MACH Booster Inventory Service
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/mach-booster-inventory-service
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Magnolia
+  app: Magnolia
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/magnolia
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: MARS
+  app: MARS
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/mars
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Material
+  app: Material
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/material
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Mercaux Inc.
+  app: Mercaux Inc.
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/mercaux-inc
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Mirakl
+  app: Mirakl
+  partner: mirakl
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/mirakl
+  category: Marketplaces
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q17530951 'Mirakl' P856 https://www.mirakl.com
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Multi Vendor Marketplace Solution
+  app: Multi Vendor Marketplace Solution
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/multi-vendor-marketplace-solution
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: NEKOM
+  app: NEKOM
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/nekom
+  category: Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Netlify
+  app: Netlify
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/netlify
+  category: Frontend
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_held:
+    candidate: netlify
+    why: 'market-fit gate: partner''s own tags carry no commerce / checkout / order / fulfilment term'
+- partner_name: Nexus
+  app: Nexus
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/nexus
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: NULogic AI Shopping Agent
+  app: NULogic AI Shopping Agent
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/nulogic-ai-shopping-agent
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Nuvei
+  app: Nuvei
+  partner: nuvei
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/nuvei
+  category: Financial Services, Payment Service Providers
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q47508523 'Nuvei' P856 https://www.nuvei.com
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Nvision Solutions Ltd
+  app: Nvision Solutions Ltd
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/nvision-solutions-ltd
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: O2s B2B commercetools accelerator
+  app: O2s B2B commercetools accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/o2s-b2b-commercetools-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Object Edge Launchpad B2B Store
+  app: Object Edge Launchpad B2B Store
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/object-edge-launchpad-b2b-store
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Occtoo
+  app: Occtoo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/occtoo
+  category: CMS/DXP, Other Solutions, Search & Personalization, Tools & Utilities
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Omnistore retail clienteling app
+  app: Omnistore retail clienteling app
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/omnistore-retail-clienteling-app
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_url: https://omnistore.app/
+- partner_name: OneStock
+  app: OneStock
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/onestock
+  category: Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Optimizely
+  app: Optimizely
+  partner: optimizely
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/optimizely
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q17073302 'Optimizely' P856 https://www.optimizely.com/
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Orium's Mobile Commerce Accelerator
+  app: Orium's Mobile Commerce Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/orium-mobile-commerce-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Orium's commercetools Accelerator
+  app: Orium's commercetools Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/orium-s-commercetools-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Orium’s B2B Accelerator
+  app: Orium’s B2B Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/oriums-b2b-commercetools-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Orium's Industry Solution for Health & Pharma Commerce
+  app: Orium's Industry Solution for Health & Pharma Commerce
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/oriums-industry-solution-for-health-pharma-commerce
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Patchworks
+  app: Patchworks
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/patchworks
+  category: Marketplaces
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: payever
+  app: payever
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/payever
+  category: Payment Service Providers
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Perfection.DEV
+  app: Perfection.DEV
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/perfection-dev
+  category: Frontend, Tools & Utilities
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Perpendicular
+  app: Perpendicular
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/perpendicular
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: PersonalizeCX
+  app: PersonalizeCX
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/personalizecx
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Pimcore Connector by Hamari Agency
+  app: Pimcore Connector by Hamari Agency
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/pimcore-connector-by-hamari-agency
+  category: CMS/DXP, Localization, Product Information Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Pipe17, Inc.
+  app: Pipe17, Inc.
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/pipe17-inc
+  category: Order Management, Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Planet
+  app: Planet
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/planet
+  category: Payment Service Providers
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_url: https://www.weareplanet.com/
+- partner_name: Precomposer
+  app: Precomposer
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/precomposer
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Pylot
+  app: Pylot
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/pylot
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Quick Launch B2C Accelerator
+  app: Quick Launch B2C Accelerator
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/quick-launch-b2c-accelerator
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Rappid
+  app: Rappid
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/rappid
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: retailmediatools
+  app: retailmediatools
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/retailmediatools
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Riskified
+  app: Riskified
+  partner: riskified
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/riskified
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q22908338 'Riskified' P856 http://www.riskified.com/
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Rocket
+  app: Rocket
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/rocket
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Royal Cyber Inc. Mirakl Connectors
+  app: Royal Cyber Inc. Mirakl Connectors
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/royal-cyber-inc-mirakl-connectors
+  category: Marketplaces, Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Scaleflex
+  app: Scaleflex
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/scaleflex
+  category: Digital Asset Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Session AI
+  app: Session AI
+  partner: sessionai
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/session-ai
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_url: https://www.sessionai.com/
+- partner_name: SheerID
+  app: SheerID
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/sheerid
+  category: Promotions & Loyalty
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: ShopApp
+  app: ShopApp
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/shopapp
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Shopspray
+  app: Shopspray
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/shopspray
+  category: Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Sift
+  app: Sift
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/sift
+  category: Financial Services
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Signifyd
+  app: Signifyd
+  partner: signifyd
+  partner_match: register-name
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/signifyd
+  category: Financial Services
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity_source: register-name
+  identity_note: register gave only the name 'Signifyd'; exact normalised match to signifyd's apis.yml name (Kin
+    2026-10-20 decision 2)
+  register_name_note: register-name 'signifyd' = signifyd; no wikidata P856
+- partner_name: Spark
+  app: Spark
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/spark
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  partner_held:
+    candidate: pyspark
+    why: 'market-fit gate: partner''s own tags carry no commerce / checkout / order / fulfilment term'
+- partner_name: Storyblok
+  app: Storyblok
+  partner: storyblok
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/storyblok
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+  identity: wikidata Q132654610 'Storyblok' P856 https://www.storyblok.com/
+  identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+- partner_name: Syndigo
+  app: Syndigo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/syndigo
+  category: Digital Asset Management, Product Information Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Tapestry
+  app: Tapestry
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/tapestry
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Tecsys Inc.
+  app: Tecsys Inc.
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/tecsys
+  category: Order Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Threekit 3D/AR
+  app: Threekit 3D/AR
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/threekit-3d-ar
+  category: Digital Asset Management, Product Information Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: TradeCentric
+  app: TradeCentric
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/tradecentric
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: GlobalLink for Commercetools
+  app: GlobalLink for Commercetools
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/transperfect
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Umbraco CMS
+  app: Umbraco CMS
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/umbraco-cms
+  category: CMS/DXP
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: UNIVERSAL COMMERCE INC
+  app: UNIVERSAL COMMERCE INC
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/universal-commerce-inc
+  category: CMS/DXP, Order Management, Product Information Management, Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Vaimo
+  app: Vaimo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/vaimo
+  category: Product Information Management
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Value Booster
+  app: Value Booster
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/value-booster
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: VAMP.IO
+  app: VAMP.IO
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/vampio
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Vertex
+  app: Vertex
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/vertex-indirect-tax
+  category: Financial Services, Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Voyado
+  app: Voyado
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/voyado
+  category: Search & Personalization
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Vue Storefront
+  app: Vue Storefront
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/vue-storefront
+  category: Frontend
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Worldline
+  app: Worldline
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/worldline
+  category: Payment Service Providers
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Worldpay
+  app: Worldpay
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/worldpay
+  category: Payment Service Providers
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Zendesk
+  app: Zendesk
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/zendesk
+  category: Other Solutions
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
+- partner_name: Zocalo
+  app: Zocalo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://commercetools.com/technology-partners/zocalo
+  category: commercetools technology partner
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
 templates: []
