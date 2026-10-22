@@ -2693,3 +2693,16 @@
     detected: '2026-10-21'
   status: not-a-workflow
   arazzo: null
+- slug: commercetools-netlify-own
+  label: Netlify (own)
+  partner: netlify
+  partner_name: Netlify (own)
+  category: E-commerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.netlify.com/integrations/commercetools/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
