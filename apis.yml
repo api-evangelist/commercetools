@@ -76,6 +76,8 @@ description: commercetools is the leading composable, headless, API-first Commer
   AsyncAPI-based subscriptions for event-driven integrations.
 
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/commercetools/overview
 - type: WellKnown
   url: well-known/commercetools-well-known.yml
 - type: Spectral
