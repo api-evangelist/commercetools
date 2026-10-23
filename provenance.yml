@@ -12,6 +12,9 @@ artifacts:
   authentication/commercetools-authentication.yml:
     method: derived
     evidence: declared in the artifact
+  capabilities/commercetools-capability-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
   collections/commercetools-carts-api.opencollection.json:
     method: derived
     evidence: openapi/commercetools-carts-api
@@ -84,6 +87,9 @@ artifacts:
   collections/commercetools-payments-api.postman_collection.json:
     method: derived
     evidence: openapi/commercetools-payments-api
+  collections/commercetools-product-variants-api.postman_collection.json:
+    method: derived
+    evidence: openapi/commercetools-product-variants-api
   collections/commercetools-products-api.opencollection.json:
     method: derived
     evidence: openapi/commercetools-products-api
@@ -114,6 +120,21 @@ artifacts:
   collections/commercetools-subscriptions-api.postman_collection.json:
     method: derived
     evidence: openapi/commercetools-subscriptions-api
+  conformance/commercetools-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  conventions/commercetools-conventions.yml:
+    method: searched
+    evidence: declared in the artifact
+  data-model/commercetools-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/commercetools-error-codes.yml:
+    method: searched
+    evidence: declared in the artifact
+  errors/commercetools-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   finops/commercetools-finops.yml:
     method: generated
     evidence: declared in the artifact
@@ -123,6 +144,18 @@ artifacts:
   graphql/commercetools-graphql.md:
     method: unknown
     evidence: no authorship recorded
+  hosts/commercetools-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/commercetools-algolia-integration-overlay.yaml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/commercetools-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
   json-ld/commercetools-context.jsonld:
     method: unknown
     evidence: no authorship recorded
@@ -132,7 +165,16 @@ artifacts:
   json-schema/commercetools-attribute-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-cart-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-cart-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-cart-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-cart-update-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-cartdraft-schema.json:
@@ -144,7 +186,19 @@ artifacts:
   json-schema/commercetools-cartupdate-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-category-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-category-import-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-category-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-category-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-category-update-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-categorydraft-schema.json:
@@ -165,7 +219,19 @@ artifacts:
   json-schema/commercetools-change-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-customer-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-customer-import-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-customer-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-customer-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-customer-update-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-customerdraft-schema.json:
@@ -192,6 +258,27 @@ artifacts:
   json-schema/commercetools-image-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-import-container-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-import-container-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-import-container-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-import-operation-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-import-operation-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-import-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-import-summary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-importcontainer-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -214,6 +301,18 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-importsummary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-inventory-entry-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-inventory-entry-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-inventory-import-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-inventory-paged-query-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-inventoryentry-schema.json:
@@ -243,7 +342,19 @@ artifacts:
   json-schema/commercetools-money-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-order-from-cart-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-order-import-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-order-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-order-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-order-update-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-orderfromcartdraft-schema.json:
@@ -261,7 +372,16 @@ artifacts:
   json-schema/commercetools-orderupdate-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-payment-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-payment-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-payment-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-payment-update-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-paymentdraft-schema.json:
@@ -285,7 +405,22 @@ artifacts:
   json-schema/commercetools-pricedraft-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-product-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-product-import-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-product-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-product-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-product-update-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-product-variant-import-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-productcatalogdata-schema.json:
@@ -324,6 +459,9 @@ artifacts:
   json-schema/commercetools-project-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-record-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-record-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -333,16 +471,28 @@ artifacts:
   json-schema/commercetools-reference-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-standalone-price-import-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-standalonepriceimport-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-standalonepriceimportrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-subscription-draft-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-subscription-message-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/commercetools-subscription-paged-query-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/commercetools-subscription-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/commercetools-subscription-update-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/commercetools-subscriptiondraft-schema.json:
@@ -360,127 +510,7 @@ artifacts:
   json-structure/commercetools-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -564,6 +594,33 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/commercetools-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/commercetools-llms-provenance.yml:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
+  llms/commercetools-llms.txt:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
+  mcp/commercetools-mcp.yml:
+    method: searched
+    evidence: declared in the artifact
   openapi/_original/commercetools-change-history-api-openapi.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
@@ -618,11 +675,14 @@ artifacts:
   openapi/commercetools-subscriptions-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  packages/commercetools-packages.yml:
+    method: searched
+    evidence: declared in the artifact
   plans/commercetools-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
   rate-limits/commercetools-rate-limits.yml:
-    method: generated
+    method: searched
     evidence: declared in the artifact
   rules/commercetools-asyncapi-spectral-rules.yml:
     method: generated
@@ -633,12 +693,24 @@ artifacts:
   rules/commercetools-rules.yml:
     method: unknown
     evidence: no authorship recorded
+  scopes/commercetools-scopes.yml:
+    method: searched
+    evidence: declared in the artifact
   security/commercetools-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
   security/commercetools-trust-center.yml:
     method: searched
     evidence: declared in the artifact
+  vendors/commercetools-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
   vocabulary/commercetools-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/commercetools-trust-oauth-protected-resource.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/commercetools-well-known.yml:
     method: unknown
     evidence: no authorship recorded
