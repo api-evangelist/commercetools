@@ -1,0 +1,266 @@
+{
+  "info": {
+    "_postman_id": "67a219ff-0448-4aa5-968e-49e784c38e20",
+    "name": "commercetools Import Product Variants API",
+    "description": "The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project.\n\nContact Support:\n Name: commercetools Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:16:12.000Z",
+    "updatedAt": "2026-10-21T20:16:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-67a219ff-0448-4aa5-968e-49e784c38e20"
+  },
+  "item": [
+    {
+      "name": "{projectKey}",
+      "item": [
+        {
+          "name": "product-variants",
+          "item": [
+            {
+              "name": "import-containers",
+              "item": [
+                {
+                  "name": "{importContainerKey}",
+                  "item": [
+                    {
+                      "name": "Import product variants",
+                      "id": "c94b55ae-d690-442b-8429-8b29db15caab",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"product-variant\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"product\": {},\n      \"sku\": \"<string>\",\n      \"isMasterVariant\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"product\": {},\n      \"sku\": \"<string>\",\n      \"isMasterVariant\": \"<boolean>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/product-variants/import-containers/:importContainerKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "product-variants",
+                            "import-containers",
+                            ":importContainerKey"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f075c4c4-10ef-4f40-89b5-a2efb40453fc",
+                              "key": "projectKey",
+                              "value": "<string>",
+                              "description": "(Required) The unique key of the commercetools project."
+                            },
+                            {
+                              "id": "4411a8f8-fd98-456b-a041-38a152b39e2e",
+                              "key": "importContainerKey",
+                              "value": "<string>",
+                              "description": "(Required) The user-defined key of the import container."
+                            }
+                          ]
+                        },
+                        "description": "Submits a batch of product variant import requests for asynchronous processing. Variants are matched to products by the product key reference. Each request accepts up to 20 variant resources."
+                      },
+                      "response": [
+                        {
+                          "id": "8191b07b-1004-45a2-a58d-ed5d988a4c0d",
+                          "name": "The import request was accepted for processing.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"product-variant\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"product\": {},\n      \"sku\": \"<string>\",\n      \"isMasterVariant\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"product\": {},\n      \"sku\": \"<string>\",\n      \"isMasterVariant\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/product-variants/import-containers/:importContainerKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "product-variants",
+                                "import-containers",
+                                ":importContainerKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"<string>\",\n      \"state\": \"Accepted\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"<string>\",\n      \"state\": \"Accepted\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:16:13.000Z",
+                          "updatedAt": "2026-10-21T20:16:13.000Z",
+                          "uid": "35240-8191b07b-1004-45a2-a58d-ed5d988a4c0d"
+                        },
+                        {
+                          "id": "f7e8f1a4-6825-4ee3-902d-cf49ba3c72d0",
+                          "name": "The request was malformed or contained invalid parameters.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"product-variant\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"product\": {},\n      \"sku\": \"<string>\",\n      \"isMasterVariant\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"product\": {},\n      \"sku\": \"<string>\",\n      \"isMasterVariant\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/product-variants/import-containers/:importContainerKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "product-variants",
+                                "import-containers",
+                                ":importContainerKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:16:13.000Z",
+                          "updatedAt": "2026-10-21T20:16:13.000Z",
+                          "uid": "35240-f7e8f1a4-6825-4ee3-902d-cf49ba3c72d0"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:16:13.000Z",
+                      "updatedAt": "2026-10-21T20:16:13.000Z",
+                      "uid": "35240-c94b55ae-d690-442b-8429-8b29db15caab"
+                    }
+                  ],
+                  "id": "6bc0ee48-f06b-4f67-a6f3-2b092b6a90c3",
+                  "createdAt": "2026-10-21T20:16:13.000Z",
+                  "updatedAt": "2026-10-21T20:16:13.000Z",
+                  "uid": "35240-6bc0ee48-f06b-4f67-a6f3-2b092b6a90c3"
+                }
+              ],
+              "id": "7ba33996-cb19-440f-94a7-d368b4bb0e3e",
+              "createdAt": "2026-10-21T20:16:13.000Z",
+              "updatedAt": "2026-10-21T20:16:13.000Z",
+              "uid": "35240-7ba33996-cb19-440f-94a7-d368b4bb0e3e"
+            }
+          ],
+          "id": "d9b4a697-55bf-4b82-91ac-8ff1f10fa3b6",
+          "createdAt": "2026-10-21T20:16:13.000Z",
+          "updatedAt": "2026-10-21T20:16:13.000Z",
+          "uid": "35240-d9b4a697-55bf-4b82-91ac-8ff1f10fa3b6"
+        }
+      ],
+      "id": "3974af7f-04db-42fe-9c13-82ae465cd97f",
+      "createdAt": "2026-10-21T20:16:13.000Z",
+      "updatedAt": "2026-10-21T20:16:13.000Z",
+      "uid": "35240-3974af7f-04db-42fe-9c13-82ae465cd97f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-central1.gcp"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://import.{{region}}.commercetools.com"
+    }
+  ]
+}

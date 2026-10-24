@@ -1,1176 +1,1062 @@
 {
+  "info": {
+    "_postman_id": "008754c7-3064-4771-a8ec-d162a0b937c7",
+    "name": "Commercetools Customers API",
+    "description": "Operations tagged Customers across 2 of this provider's published API definitions: commercetools-http-api-openapi.yml, commercetools-import-api-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: commercetools Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:15:10.000Z",
+    "updatedAt": "2026-10-21T20:15:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-008754c7-3064-4771-a8ec-d162a0b937c7"
+  },
   "item": [
     {
-      "id": "96b4bdf6-8b4c-450f-ba70-1985d14c8deb",
-      "name": "Customers",
-      "description": {
-        "content": "Manage customer accounts, addresses, authentication, and group assignments.",
-        "type": "text/plain"
-      },
+      "name": "{projectKey}",
       "item": [
         {
-          "id": "17d4dbe3-d233-45aa-ad86-8ad85b84c0ac",
-          "name": "List customers",
-          "request": {
-            "name": "List customers",
-            "description": {
-              "content": "Returns a paginated list of all customers in the project. Supports filtering by email, customer group, and other predicates. For large customer bases use the Customer Search endpoint for improved performance.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "customers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "20",
-                  "description": "Maximum number of results to return. Defaults to 20, maximum 500."
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Number of results to skip for pagination. Maximum 10000."
-                },
-                {
-                  "disabled": false,
-                  "key": "where",
-                  "value": "<string>",
-                  "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
-                },
-                {
-                  "disabled": false,
-                  "key": "sort",
-                  "value": "<string>",
-                  "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters."
-                },
-                {
-                  "disabled": false,
-                  "key": "expand",
-                  "value": "<string>",
-                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "customers",
+          "item": [
             {
-              "id": "e50f67b4-2da4-42d6-a59a-fa07cbb3a201",
-              "name": "A paged list of customers.",
-              "originalRequest": {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get a customer by ID",
+                  "id": "1b0c827a-cb65-4501-a6ba-69d34d5fbbdd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/customers/:id?expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "customers",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                          "key": "expand",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "30bb50cb-0920-44e8-8c0b-c8044c2ccf02",
+                          "key": "projectKey",
+                          "value": "<string>",
+                          "description": "(Required) The unique key identifying the commercetools project."
+                        },
+                        {
+                          "id": "02c54169-41b8-4b92-8f7d-29571426e063",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The system-generated unique identifier of the resource."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a single customer by their system-generated ID, including addresses, customer group assignments, store assignments, and custom fields."
+                  },
+                  "response": [
+                    {
+                      "id": "6440e81c-f040-4422-8ace-4bfc9a6c6aef",
+                      "name": "The requested customer.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/customers/:id?expand=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "customers",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                              "key": "expand",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectKey"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"isEmailVerified\": \"<boolean>\",\n  \"addresses\": [\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"stores\": [\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T20:15:10.000Z",
+                      "updatedAt": "2026-10-21T20:15:10.000Z",
+                      "uid": "35240-6440e81c-f040-4422-8ace-4bfc9a6c6aef"
+                    },
+                    {
+                      "id": "3388d073-7e6a-4457-9c69-c31685dc646e",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/customers/:id?expand=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "customers",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                              "key": "expand",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectKey"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:15:10.000Z",
+                      "updatedAt": "2026-10-21T20:15:10.000Z",
+                      "uid": "35240-3388d073-7e6a-4457-9c69-c31685dc646e"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:15:10.000Z",
+                  "updatedAt": "2026-10-21T20:15:10.000Z",
+                  "uid": "35240-1b0c827a-cb65-4501-a6ba-69d34d5fbbdd"
+                },
+                {
+                  "name": "Update a customer by ID",
+                  "id": "d3b6ca50-609d-4d2f-a6c8-a3af813b6a65",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": []\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c3c732bf-b366-47e4-b7c2-c39def75b7fc",
+                          "key": "projectKey",
+                          "value": "<string>",
+                          "description": "(Required) The unique key identifying the commercetools project."
+                        },
+                        {
+                          "id": "78a60f20-80ea-48f5-b901-d38916eb98be",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The system-generated unique identifier of the resource."
+                        }
+                      ]
+                    },
+                    "description": "Applies update actions to the customer with the given ID. Supported actions include adding addresses, changing email, setting customer group, adding store assignments, and setting custom fields."
+                  },
+                  "response": [
+                    {
+                      "id": "aad6465f-9427-4651-9a60-645d57cf1106",
+                      "name": "The updated customer.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": []\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/customers/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "customers",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectKey"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"isEmailVerified\": \"<boolean>\",\n  \"addresses\": [\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"stores\": [\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T20:15:10.000Z",
+                      "updatedAt": "2026-10-21T20:15:10.000Z",
+                      "uid": "35240-aad6465f-9427-4651-9a60-645d57cf1106"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:15:10.000Z",
+                  "updatedAt": "2026-10-21T20:15:10.000Z",
+                  "uid": "35240-d3b6ca50-609d-4d2f-a6c8-a3af813b6a65"
+                },
+                {
+                  "name": "Delete a customer by ID",
+                  "id": "78c24b2b-ec29-44ba-b9dc-5f5c386af302",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/customers/:id?version=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "customers",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Current version of the resource for optimistic concurrency control.",
+                          "key": "version",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "605908dc-4edd-4e28-9a88-d19ad97eb38b",
+                          "key": "projectKey",
+                          "value": "<string>",
+                          "description": "(Required) The unique key identifying the commercetools project."
+                        },
+                        {
+                          "id": "a840ed76-6c38-465e-8342-99d9ab228be5",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The system-generated unique identifier of the resource."
+                        }
+                      ]
+                    },
+                    "description": "Permanently deletes the customer with the given ID. The current version must be provided. Associated carts, orders, and payment records are not deleted."
+                  },
+                  "response": [
+                    {
+                      "id": "24269214-18f7-4c5c-935a-d4df9044a254",
+                      "name": "The deleted customer.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/customers/:id?version=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "customers",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Current version of the resource for optimistic concurrency control.",
+                              "key": "version",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectKey"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"isEmailVerified\": \"<boolean>\",\n  \"addresses\": [\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"stores\": [\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T20:15:10.000Z",
+                      "updatedAt": "2026-10-21T20:15:10.000Z",
+                      "uid": "35240-24269214-18f7-4c5c-935a-d4df9044a254"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:15:10.000Z",
+                  "updatedAt": "2026-10-21T20:15:10.000Z",
+                  "uid": "35240-78c24b2b-ec29-44ba-b9dc-5f5c386af302"
+                }
+              ],
+              "id": "81bb3b5c-fadb-49b1-a379-867c06162e7a",
+              "createdAt": "2026-10-21T20:15:10.000Z",
+              "updatedAt": "2026-10-21T20:15:10.000Z",
+              "uid": "35240-81bb3b5c-fadb-49b1-a379-867c06162e7a"
+            },
+            {
+              "name": "import-containers",
+              "item": [
+                {
+                  "name": "{importContainerKey}",
+                  "item": [
+                    {
+                      "name": "Import customers",
+                      "id": "00597951-38c4-4d53-8814-e337748a3a39",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"customer\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": \"<boolean>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/customers/import-containers/:importContainerKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "customers",
+                            "import-containers",
+                            ":importContainerKey"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2924cf00-a114-4c0c-b442-4d38e94a2f16",
+                              "key": "projectKey",
+                              "value": "<string>",
+                              "description": "(Required) The unique key of the commercetools project."
+                            },
+                            {
+                              "id": "cfd46e43-d09f-44c1-9578-5c160ca937ec",
+                              "key": "importContainerKey",
+                              "value": "<string>",
+                              "description": "(Required) The user-defined key of the import container."
+                            }
+                          ]
+                        },
+                        "description": "Submits a batch of customer import requests for asynchronous processing. Customers are matched by key for upsert behavior. Each request accepts up to 20 customer resources."
+                      },
+                      "response": [
+                        {
+                          "id": "0746342c-5791-48de-9140-274dd24708a4",
+                          "name": "The import request was accepted for processing.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"customer\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/customers/import-containers/:importContainerKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "customers",
+                                "import-containers",
+                                ":importContainerKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"<string>\",\n      \"state\": \"Accepted\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"<string>\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:15:10.000Z",
+                          "updatedAt": "2026-10-21T20:15:10.000Z",
+                          "uid": "35240-0746342c-5791-48de-9140-274dd24708a4"
+                        },
+                        {
+                          "id": "de1fe6bc-ae0b-4c28-bd42-952582e6fe41",
+                          "name": "The request was malformed or contained invalid parameters.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"customer\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": \"<boolean>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/customers/import-containers/:importContainerKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "customers",
+                                "import-containers",
+                                ":importContainerKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:15:10.000Z",
+                          "updatedAt": "2026-10-21T20:15:10.000Z",
+                          "uid": "35240-de1fe6bc-ae0b-4c28-bd42-952582e6fe41"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:15:10.000Z",
+                      "updatedAt": "2026-10-21T20:15:10.000Z",
+                      "uid": "35240-00597951-38c4-4d53-8814-e337748a3a39"
+                    }
+                  ],
+                  "id": "d9f8daa6-a4f3-4b45-9cf1-8cc4b3dbafa6",
+                  "createdAt": "2026-10-21T20:15:10.000Z",
+                  "updatedAt": "2026-10-21T20:15:10.000Z",
+                  "uid": "35240-d9f8daa6-a4f3-4b45-9cf1-8cc4b3dbafa6"
+                }
+              ],
+              "id": "1c640975-e7e7-4671-97f9-b30c8208d1b3",
+              "createdAt": "2026-10-21T20:15:10.000Z",
+              "updatedAt": "2026-10-21T20:15:10.000Z",
+              "uid": "35240-1c640975-e7e7-4671-97f9-b30c8208d1b3"
+            },
+            {
+              "name": "List customers",
+              "id": "d1d4d814-9f70-4c52-a514-9bcf7c4115cd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/:projectKey/customers?limit=20&offset=0&where=<string>&sort=<string>&expand=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":projectKey",
                     "customers"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Maximum number of results to return. Defaults to 20, maximum 500.",
                       "key": "limit",
                       "value": "20"
                     },
                     {
+                      "description": "Number of results to skip for pagination. Maximum 10000.",
                       "key": "offset",
                       "value": "0"
                     },
                     {
+                      "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"').",
                       "key": "where",
                       "value": "<string>"
                     },
                     {
+                      "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.",
                       "key": "sort",
                       "value": "<string>"
                     },
                     {
+                      "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
                       "key": "expand",
                       "value": "<string>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "2b1c36b4-f6b8-4b56-b033-5a755dce124f",
                       "key": "projectKey",
+                      "value": "<string>",
                       "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
                     }
                   ]
                 },
+                "description": "Returns a paginated list of all customers in the project. Supports filtering by email, customer group, and other predicates. For large customer bases use the Customer Search endpoint for improved performance."
+              },
+              "response": [
+                {
+                  "id": "e2b291f8-7a78-407d-a8c4-3dbf5f45c80d",
+                  "name": "A paged list of customers.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/customers?limit=20&offset=0&where=<string>&sort=<string>&expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "customers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return. Defaults to 20, maximum 500.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination. Maximum 10000.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"').",
+                          "key": "where",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                          "key": "expand",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"email\": \"<email>\",\n      \"isEmailVerified\": \"<boolean>\",\n      \"addresses\": [\n        {\n          \"country\": \"<string>\",\n          \"id\": \"<string>\",\n          \"key\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"streetName\": \"<string>\",\n          \"streetNumber\": \"<string>\",\n          \"city\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"region\": \"<string>\",\n          \"email\": \"<email>\",\n          \"phone\": \"<string>\"\n        },\n        {\n          \"country\": \"<string>\",\n          \"id\": \"<string>\",\n          \"key\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"streetName\": \"<string>\",\n          \"streetNumber\": \"<string>\",\n          \"city\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"region\": \"<string>\",\n          \"email\": \"<email>\",\n          \"phone\": \"<string>\"\n        }\n      ],\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": {\n        \"typeId\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"stores\": [\n        {\n          \"typeId\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"typeId\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"lastModifiedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"email\": \"<email>\",\n      \"isEmailVerified\": \"<boolean>\",\n      \"addresses\": [\n        {\n          \"country\": \"<string>\",\n          \"id\": \"<string>\",\n          \"key\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"streetName\": \"<string>\",\n          \"streetNumber\": \"<string>\",\n          \"city\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"region\": \"<string>\",\n          \"email\": \"<email>\",\n          \"phone\": \"<string>\"\n        },\n        {\n          \"country\": \"<string>\",\n          \"id\": \"<string>\",\n          \"key\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"streetName\": \"<string>\",\n          \"streetNumber\": \"<string>\",\n          \"city\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"region\": \"<string>\",\n          \"email\": \"<email>\",\n          \"phone\": \"<string>\"\n        }\n      ],\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": {\n        \"typeId\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"stores\": [\n        {\n          \"typeId\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"typeId\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"lastModifiedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:15:10.000Z",
+                  "updatedAt": "2026-10-21T20:15:10.000Z",
+                  "uid": "35240-e2b291f8-7a78-407d-a8c4-3dbf5f45c80d"
+                },
+                {
+                  "id": "58063512-f8af-45cc-b511-1c46ad882d1d",
+                  "name": "The request lacked valid authentication credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/customers?limit=20&offset=0&where=<string>&sort=<string>&expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "customers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return. Defaults to 20, maximum 500.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination. Maximum 10000.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"').",
+                          "key": "where",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                          "key": "expand",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:15:10.000Z",
+                  "updatedAt": "2026-10-21T20:15:10.000Z",
+                  "uid": "35240-58063512-f8af-45cc-b511-1c46ad882d1d"
+                }
+              ],
+              "createdAt": "2026-10-21T20:15:10.000Z",
+              "updatedAt": "2026-10-21T20:15:10.000Z",
+              "uid": "35240-d1d4d814-9f70-4c52-a514-9bcf7c4115cd"
+            },
+            {
+              "name": "Create a customer",
+              "id": "a43c6441-73dc-4dec-b160-2488b37db190",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"limit\": 6170,\n  \"offset\": 3608,\n  \"count\": 478,\n  \"total\": 8572,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"version\": 2512,\n      \"email\": \"qyOsL@PRMqZCX.swgc\",\n      \"isEmailVerified\": true,\n      \"addresses\": [\n        {\n          \"country\": \"string\",\n          \"id\": \"string\",\n          \"key\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"streetName\": \"string\",\n          \"streetNumber\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\",\n          \"region\": \"string\",\n          \"email\": \"ycjGbAIg@BoUwxMqevqBCUiIEJsNboFHJkueFYKSVK.acdh\",\n          \"phone\": \"string\"\n        },\n        {\n          \"country\": \"string\",\n          \"id\": \"string\",\n          \"key\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"streetName\": \"string\",\n          \"streetNumber\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\",\n          \"region\": \"string\",\n          \"email\": \"LVh5tRdzJsj2ZH8@TVwTZZXnSKlYrgXCsMTxkMJaOnqkVA.julm\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"stores\": [\n        {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1960-01-05T00:25:03.657Z\",\n      \"lastModifiedAt\": \"1948-06-16T08:45:11.515Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"version\": 9922,\n      \"email\": \"z2gNn1ztz2ySq@mUgDGdUyVfcLSVTCwAlorwHqa.hw\",\n      \"isEmailVerified\": true,\n      \"addresses\": [\n        {\n          \"country\": \"string\",\n          \"id\": \"string\",\n          \"key\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"streetName\": \"string\",\n          \"streetNumber\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\",\n          \"region\": \"string\",\n          \"email\": \"XGXqxnB6@duV.id\",\n          \"phone\": \"string\"\n        },\n        {\n          \"country\": \"string\",\n          \"id\": \"string\",\n          \"key\": \"string\",\n          \"firstName\": \"string\",\n          \"lastName\": \"string\",\n          \"streetName\": \"string\",\n          \"streetNumber\": \"string\",\n          \"city\": \"string\",\n          \"postalCode\": \"string\",\n          \"region\": \"string\",\n          \"email\": \"B4VvrdM@hbXOfpSc.fo\",\n          \"phone\": \"string\"\n        }\n      ],\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"stores\": [\n        {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1987-09-06T22:42:40.387Z\",\n      \"lastModifiedAt\": \"1983-05-01T21:16:24.634Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "267fd464-d214-4ad1-8364-ea94ba29909b",
-              "name": "The request lacked valid authentication credentials.",
-              "originalRequest": {
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"addresses\": [\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"isEmailVerified\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/:projectKey/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":projectKey",
                     "customers"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "where",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "sort",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "expand",
-                      "value": "<string>"
-                    }
-                  ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "81c0d64f-e577-46e5-8cda-a97baf2d945c",
                       "key": "projectKey",
+                      "value": "<string>",
                       "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Creates a new customer account. The email address must be unique within the project (or store if store-scoped). Optionally assigns the customer to a customer group and pre-verifies the email address."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "3d5a4800-f0af-48b5-b97a-93bf568de6f5",
+                  "name": "The created customer sign-in result.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"addresses\": [\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"isEmailVerified\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/customers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "customers"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"version\": \"<integer>\",\n    \"email\": \"<email>\",\n    \"isEmailVerified\": \"<boolean>\",\n    \"addresses\": [\n      {\n        \"country\": \"<string>\",\n        \"id\": \"<string>\",\n        \"key\": \"<string>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"streetNumber\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"region\": \"<string>\",\n        \"email\": \"<email>\",\n        \"phone\": \"<string>\"\n      },\n      {\n        \"country\": \"<string>\",\n        \"id\": \"<string>\",\n        \"key\": \"<string>\",\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"streetName\": \"<string>\",\n        \"streetNumber\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"region\": \"<string>\",\n        \"email\": \"<email>\",\n        \"phone\": \"<string>\"\n      }\n    ],\n    \"key\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"customerGroup\": {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"stores\": [\n      {\n        \"typeId\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      {\n        \"typeId\": \"<string>\",\n        \"id\": \"<string>\"\n      }\n    ],\n    \"createdAt\": \"<dateTime>\",\n    \"lastModifiedAt\": \"<dateTime>\"\n  },\n  \"cart\": {\n    \"id\": \"<string>\",\n    \"version\": \"<integer>\",\n    \"cartState\": \"Frozen\",\n    \"lineItems\": [\n      {\n        \"id\": \"<string>\",\n        \"productId\": \"<string>\",\n        \"name\": {\n          \"ad1\": \"<string>\"\n        },\n        \"variant\": {\n          \"id\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"key\": \"<string>\",\n          \"prices\": [\n            {\n              \"id\": \"<string>\",\n              \"value\": {\n                \"currencyCode\": \"NYZ\",\n                \"centAmount\": \"<integer>\",\n                \"fractionDigits\": \"<integer>\"\n              },\n              \"country\": \"<string>\",\n              \"customerGroup\": {\n                \"typeId\": \"<string>\",\n                \"id\": \"<string>\"\n              },\n              \"channel\": {\n                \"typeId\": \"<string>\",\n                \"id\": \"<string>\"\n              },\n              \"validFrom\": \"<dateTime>\",\n              \"validUntil\": \"<dateTime>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"value\": {\n                \"currencyCode\": \"BBZ\",\n                \"centAmount\": \"<integer>\",\n                \"fractionDigits\": \"<integer>\"\n              },\n              \"country\": \"<string>\",\n              \"customerGroup\": {\n                \"typeId\": \"<string>\",\n                \"id\": \"<string>\"\n              },\n              \"channel\": {\n                \"typeId\": \"<string>\",\n                \"id\": \"<string>\"\n              },\n              \"validFrom\": \"<dateTime>\",\n              \"validUntil\": \"<dateTime>\"\n            }\n          ],\n          \"attributes\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Attribute value. Type depends on the attribute type definition.\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Attribute value. Type depends on the attribute type definition.\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"url\": \"<uri>\",\n              \"dimensions\": {\n                \"w\": \"<integer>\",\n                \"h\": \"<integer>\"\n              },\n              \"label\": \"<string>\"\n            },\n            {\n              \"url\": \"<uri>\",\n              \"dimensions\": {\n                \"w\": \"<integer>\",\n                \"h\": \"<integer>\"\n              },\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"price\": {\n          \"id\": \"<string>\",\n          \"value\": {\n            \"currencyCode\": \"VTH\",\n            \"centAmount\": \"<integer>\",\n            \"fractionDigits\": \"<integer>\"\n          },\n          \"country\": \"<string>\",\n          \"customerGroup\": {\n            \"typeId\": \"<string>\",\n            \"id\": \"<string>\"\n          },\n          \"channel\": {\n            \"typeId\": \"<string>\",\n            \"id\": \"<string>\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validUntil\": \"<dateTime>\"\n        },\n        \"totalPrice\": {\n          \"currencyCode\": \"OPA\",\n          \"centAmount\": \"<integer>\",\n          \"fractionDigits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"lineItemMode\": \"GiftLineItem\",\n        \"priceMode\": \"ExternalPrice\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"productId\": \"<string>\",\n        \"name\": {\n          \"Duis5cc\": \"<string>\",\n          \"minim_1\": \"<string>\"\n        },\n        \"variant\": {\n          \"id\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"key\": \"<string>\",\n          \"prices\": [\n            {\n              \"id\": \"<string>\",\n              \"value\": {\n                \"currencyCode\": \"URG\",\n                \"centAmount\": \"<integer>\",\n                \"fractionDigits\": \"<integer>\"\n              },\n              \"country\": \"<string>\",\n              \"customerGroup\": {\n                \"typeId\": \"<string>\",\n                \"id\": \"<string>\"\n              },\n              \"channel\": {\n                \"typeId\": \"<string>\",\n                \"id\": \"<string>\"\n              },\n              \"validFrom\": \"<dateTime>\",\n              \"validUntil\": \"<dateTime>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"value\": {\n                \"currencyCode\": \"LHB\",\n                \"centAmount\": \"<integer>\",\n                \"fractionDigits\": \"<integer>\"\n              },\n              \"country\": \"<string>\",\n              \"customerGroup\": {\n                \"typeId\": \"<string>\",\n                \"id\": \"<string>\"\n              },\n              \"channel\": {\n                \"typeId\": \"<string>\",\n                \"id\": \"<string>\"\n              },\n              \"validFrom\": \"<dateTime>\",\n              \"validUntil\": \"<dateTime>\"\n            }\n          ],\n          \"attributes\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Attribute value. Type depends on the attribute type definition.\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Attribute value. Type depends on the attribute type definition.\"\n              }\n            }\n          ],\n          \"images\": [\n            {\n              \"url\": \"<uri>\",\n              \"dimensions\": {\n                \"w\": \"<integer>\",\n                \"h\": \"<integer>\"\n              },\n              \"label\": \"<string>\"\n            },\n            {\n              \"url\": \"<uri>\",\n              \"dimensions\": {\n                \"w\": \"<integer>\",\n                \"h\": \"<integer>\"\n              },\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"price\": {\n          \"id\": \"<string>\",\n          \"value\": {\n            \"currencyCode\": \"XRX\",\n            \"centAmount\": \"<integer>\",\n            \"fractionDigits\": \"<integer>\"\n          },\n          \"country\": \"<string>\",\n          \"customerGroup\": {\n            \"typeId\": \"<string>\",\n            \"id\": \"<string>\"\n          },\n          \"channel\": {\n            \"typeId\": \"<string>\",\n            \"id\": \"<string>\"\n          },\n          \"validFrom\": \"<dateTime>\",\n          \"validUntil\": \"<dateTime>\"\n        },\n        \"totalPrice\": {\n          \"currencyCode\": \"PGJ\",\n          \"centAmount\": \"<integer>\",\n          \"fractionDigits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"lineItemMode\": \"Standard\",\n        \"priceMode\": \"ExternalTotal\"\n      }\n    ],\n    \"customLineItems\": [],\n    \"totalPrice\": {\n      \"currencyCode\": \"WVG\",\n      \"centAmount\": \"<integer>\",\n      \"fractionDigits\": \"<integer>\"\n    },\n    \"key\": \"<string>\",\n    \"customerId\": \"<string>\",\n    \"customerEmail\": \"<email>\",\n    \"taxedPrice\": {},\n    \"billingAddress\": {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    \"shippingAddress\": {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    \"taxMode\": \"ExternalAmount\",\n    \"inventoryMode\": \"None\",\n    \"createdAt\": \"<dateTime>\",\n    \"lastModifiedAt\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:15:10.000Z",
+                  "updatedAt": "2026-10-21T20:15:10.000Z",
+                  "uid": "35240-3d5a4800-f0af-48b5-b97a-93bf568de6f5"
+                },
+                {
+                  "id": "0f7bb9a4-ee38-4d72-ad19-0d583b2df25f",
+                  "name": "The request was malformed or contained invalid parameters.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"addresses\": [\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"isEmailVerified\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/customers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "customers"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:15:10.000Z",
+                  "updatedAt": "2026-10-21T20:15:10.000Z",
+                  "uid": "35240-0f7bb9a4-ee38-4d72-ad19-0d583b2df25f"
                 }
               ],
-              "body": "{\n  \"statusCode\": 7375,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:15:10.000Z",
+              "updatedAt": "2026-10-21T20:15:10.000Z",
+              "uid": "35240-a43c6441-73dc-4dec-b160-2488b37db190"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9715c37c-e301-4c51-a214-444200195683",
-          "name": "Create a customer",
-          "request": {
-            "name": "Create a customer",
-            "description": {
-              "content": "Creates a new customer account. The email address must be unique within the project (or store if store-scoped). Optionally assigns the customer to a customer group and pre-verifies the email address.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "customers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"addresses\": [\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    },\n    {\n      \"country\": \"<string>\",\n      \"id\": \"<string>\",\n      \"key\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"streetName\": \"<string>\",\n      \"streetNumber\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"region\": \"<string>\",\n      \"email\": \"<email>\",\n      \"phone\": \"<string>\"\n    }\n  ],\n  \"isEmailVerified\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "cb098b4b-0569-4929-a4f7-4cd34016d206",
-              "name": "The created customer sign-in result.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "customers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"addresses\": [\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"bqxhL8j6@ziRgmIPIIpVeY.kbx\",\n      \"phone\": \"string\"\n    },\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"SdQV@rzKhZGoqAIMqSFY.zed\",\n      \"phone\": \"string\"\n    }\n  ],\n  \"isEmailVerified\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"customer\": {\n    \"id\": \"string\",\n    \"version\": 43,\n    \"email\": \"slfGwLD@wUsodvc.clg\",\n    \"isEmailVerified\": true,\n    \"addresses\": [\n      {\n        \"country\": \"string\",\n        \"id\": \"string\",\n        \"key\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"streetName\": \"string\",\n        \"streetNumber\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"region\": \"string\",\n        \"email\": \"RikDN@WTkewVRRoHgEONP.tgr\",\n        \"phone\": \"string\"\n      },\n      {\n        \"country\": \"string\",\n        \"id\": \"string\",\n        \"key\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"streetName\": \"string\",\n        \"streetNumber\": \"string\",\n        \"city\": \"string\",\n        \"postalCode\": \"string\",\n        \"region\": \"string\",\n        \"email\": \"N27af-xQQ@jmSHVHcDyo.uhar\",\n        \"phone\": \"string\"\n      }\n    ],\n    \"key\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"customerGroup\": {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    },\n    \"stores\": [\n      {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      }\n    ],\n    \"createdAt\": \"2003-04-26T06:15:31.533Z\",\n    \"lastModifiedAt\": \"2006-03-10T05:52:27.650Z\"\n  },\n  \"cart\": {\n    \"id\": \"string\",\n    \"version\": 5649,\n    \"cartState\": \"Ordered\",\n    \"lineItems\": [\n      {\n        \"id\": \"string\",\n        \"productId\": \"string\",\n        \"name\": {\n          \"key_0\": \"string\"\n        },\n        \"variant\": {\n          \"id\": 210,\n          \"sku\": \"string\",\n          \"key\": \"string\",\n          \"prices\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"attributes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"price\": {\n          \"id\": \"string\",\n          \"value\": {\n            \"currencyCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"centAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fractionDigits\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"country\": \"string\",\n          \"customerGroup\": {\n            \"typeId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"channel\": {\n            \"typeId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"validFrom\": \"1985-03-18T08:28:22.472Z\",\n          \"validUntil\": \"2008-12-28T07:44:59.465Z\"\n        },\n        \"totalPrice\": {\n          \"currencyCode\": \"LXF\",\n          \"centAmount\": 6097,\n          \"fractionDigits\": 3191\n        },\n        \"quantity\": 6570,\n        \"lineItemMode\": \"Standard\",\n        \"priceMode\": \"ExternalPrice\"\n      },\n      {\n        \"id\": \"string\",\n        \"productId\": \"string\",\n        \"name\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"variant\": {\n          \"id\": 4537,\n          \"sku\": \"string\",\n          \"key\": \"string\",\n          \"prices\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"attributes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"price\": {\n          \"id\": \"string\",\n          \"value\": {\n            \"currencyCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"centAmount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fractionDigits\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"country\": \"string\",\n          \"customerGroup\": {\n            \"typeId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"channel\": {\n            \"typeId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"validFrom\": \"2002-08-27T09:31:54.570Z\",\n          \"validUntil\": \"1971-03-08T03:19:35.040Z\"\n        },\n        \"totalPrice\": {\n          \"currencyCode\": \"LWE\",\n          \"centAmount\": 3607,\n          \"fractionDigits\": 1530\n        },\n        \"quantity\": 8394,\n        \"lineItemMode\": \"GiftLineItem\",\n        \"priceMode\": \"ExternalTotal\"\n      }\n    ],\n    \"customLineItems\": [],\n    \"totalPrice\": {\n      \"currencyCode\": \"JCI\",\n      \"centAmount\": 4880,\n      \"fractionDigits\": 3586\n    },\n    \"key\": \"string\",\n    \"customerId\": \"string\",\n    \"customerEmail\": \"RA2@U.fx\",\n    \"taxedPrice\": {},\n    \"billingAddress\": {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"VYPZMDGmD-80A@rSay.usg\",\n      \"phone\": \"string\"\n    },\n    \"shippingAddress\": {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"T6avjrUEw6iD@IsscTEaGMiPFDO.ik\",\n      \"phone\": \"string\"\n    },\n    \"taxMode\": \"ExternalAmount\",\n    \"inventoryMode\": \"ReserveOnOrder\",\n    \"createdAt\": \"2006-07-09T14:13:11.230Z\",\n    \"lastModifiedAt\": \"1986-06-17T05:10:45.175Z\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "60016f10-36f9-40c5-9939-c092d5f878f3",
-              "name": "The request was malformed or contained invalid parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "customers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"key\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"customerGroup\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"addresses\": [\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"bqxhL8j6@ziRgmIPIIpVeY.kbx\",\n      \"phone\": \"string\"\n    },\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"SdQV@rzKhZGoqAIMqSFY.zed\",\n      \"phone\": \"string\"\n    }\n  ],\n  \"isEmailVerified\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 2673,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a266fa2f-54e6-408e-83f7-b82644026c5a",
-          "name": "Get a customer by ID",
-          "request": {
-            "name": "Get a customer by ID",
-            "description": {
-              "content": "Retrieves a single customer by their system-generated ID, including addresses, customer group assignments, store assignments, and custom fields.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "customers",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "expand",
-                  "value": "<string>",
-                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The system-generated unique identifier of the resource."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "aec31461-4c9e-4aac-805b-02a4cb114269",
-              "name": "The requested customer.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "customers",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "expand",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The system-generated unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"version\": 4141,\n  \"email\": \"1UW51lpbqvB0v@CWvVstWVPrTUSjcoC.ra\",\n  \"isEmailVerified\": true,\n  \"addresses\": [\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"c8WHDwe@eaGaiv.rgn\",\n      \"phone\": \"string\"\n    },\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"L6y@mVcuFDFYwzvAmUyNRUbLIQBR.czbq\",\n      \"phone\": \"string\"\n    }\n  ],\n  \"key\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"customerGroup\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"stores\": [\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"createdAt\": \"2005-09-10T07:09:53.339Z\",\n  \"lastModifiedAt\": \"1952-03-31T19:01:04.463Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "60167523-37d4-4d10-99b1-50faff8e1cdc",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "customers",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "expand",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The system-generated unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 7375,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a59c3ca5-b408-4023-8547-30b950a39828",
-          "name": "Update a customer by ID",
-          "request": {
-            "name": "Update a customer by ID",
-            "description": {
-              "content": "Applies update actions to the customer with the given ID. Supported actions include adding addresses, changing email, setting customer group, adding store assignments, and setting custom fields.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "customers",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The system-generated unique identifier of the resource."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "04ffa153-a16e-4381-9c88-cee224c71167",
-              "name": "The updated customer.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "customers",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The system-generated unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"version\": 4141,\n  \"email\": \"1UW51lpbqvB0v@CWvVstWVPrTUSjcoC.ra\",\n  \"isEmailVerified\": true,\n  \"addresses\": [\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"c8WHDwe@eaGaiv.rgn\",\n      \"phone\": \"string\"\n    },\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"L6y@mVcuFDFYwzvAmUyNRUbLIQBR.czbq\",\n      \"phone\": \"string\"\n    }\n  ],\n  \"key\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"customerGroup\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"stores\": [\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"createdAt\": \"2005-09-10T07:09:53.339Z\",\n  \"lastModifiedAt\": \"1952-03-31T19:01:04.463Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "75c5a966-77df-48f5-b92f-d8f2d600eebe",
-          "name": "Delete a customer by ID",
-          "request": {
-            "name": "Delete a customer by ID",
-            "description": {
-              "content": "Permanently deletes the customer with the given ID. The current version must be provided. Associated carts, orders, and payment records are not deleted.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "customers",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "version",
-                  "value": "<integer>",
-                  "description": "(Required) Current version of the resource for optimistic concurrency control."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The system-generated unique identifier of the resource."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "4214a2e1-c978-418a-9e23-c70335081793",
-              "name": "The deleted customer.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "customers",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "version",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The system-generated unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"version\": 4141,\n  \"email\": \"1UW51lpbqvB0v@CWvVstWVPrTUSjcoC.ra\",\n  \"isEmailVerified\": true,\n  \"addresses\": [\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"c8WHDwe@eaGaiv.rgn\",\n      \"phone\": \"string\"\n    },\n    {\n      \"country\": \"string\",\n      \"id\": \"string\",\n      \"key\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"streetName\": \"string\",\n      \"streetNumber\": \"string\",\n      \"city\": \"string\",\n      \"postalCode\": \"string\",\n      \"region\": \"string\",\n      \"email\": \"L6y@mVcuFDFYwzvAmUyNRUbLIQBR.czbq\",\n      \"phone\": \"string\"\n    }\n  ],\n  \"key\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"customerGroup\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"stores\": [\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"createdAt\": \"2005-09-10T07:09:53.339Z\",\n  \"lastModifiedAt\": \"1952-03-31T19:01:04.463Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3341f72e-97dd-43d4-bd7d-5391f9f60e8d",
-          "name": "Import customers",
-          "request": {
-            "name": "Import customers",
-            "description": {
-              "content": "Submits a batch of customer import requests for asynchronous processing. Customers are matched by key for upsert behavior. Each request accepts up to 20 customer resources.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "customers",
-                "import-containers",
-                ":importContainerKey"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key of the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "importContainerKey",
-                  "description": "(Required) The user-defined key of the import container."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": \"<object>\",\n      \"addresses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"isEmailVerified\": \"<boolean>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"email\": \"<email>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"customerGroup\": \"<object>\",\n      \"addresses\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"isEmailVerified\": \"<boolean>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "089043dc-61b2-4634-866e-bb050873add2",
-              "name": "The import request was accepted for processing.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "customers",
-                    "import-containers",
-                    ":importContainerKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"email\": \"FJla9KBVx4-xPT@WnpLMhXCtVP.idwb\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": true\n    },\n    {\n      \"key\": \"string\",\n      \"email\": \"I1bHxNbKoF-69@DfGDltVploenVOTyolQMloI.cx\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": false\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "df03e471-d046-4c3b-ae0f-0839abf9928b",
-              "name": "The request was malformed or contained invalid parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "customers",
-                    "import-containers",
-                    ":importContainerKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"email\": \"FJla9KBVx4-xPT@WnpLMhXCtVP.idwb\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": true\n    },\n    {\n      \"key\": \"string\",\n      \"email\": \"I1bHxNbKoF-69@DfGDltVploenVOTyolQMloI.cx\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"customerGroup\": {},\n      \"isEmailVerified\": false\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 7375,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "54479bd8-0cb7-4277-9730-7dbdaa8480fd",
+          "createdAt": "2026-10-21T20:15:10.000Z",
+          "updatedAt": "2026-10-21T20:15:10.000Z",
+          "uid": "35240-54479bd8-0cb7-4277-9730-7dbdaa8480fd"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "us-central1.gcp",
-      "key": "region"
-    },
-    {
-      "type": "string",
-      "value": "https://history.{{region}}.commercetools.com",
-      "key": "baseUrl"
+      "id": "490c2880-169d-4b81-b50d-ff0f875c9da1",
+      "createdAt": "2026-10-21T20:15:10.000Z",
+      "updatedAt": "2026-10-21T20:15:10.000Z",
+      "uid": "35240-490c2880-169d-4b81-b50d-ff0f875c9da1"
     }
   ],
   "auth": {
@@ -1178,17 +1064,19 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "6c4a96a7-7a50-4c4e-9be3-515f50a43ad0",
-    "name": "commercetools Change History Carts Customers API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.\n\nContact Support:\n Name: commercetools Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-central1.gcp"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{region}}.commercetools.com"
     }
-  }
+  ]
 }

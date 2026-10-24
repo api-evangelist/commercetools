@@ -1,487 +1,433 @@
 {
+  "info": {
+    "_postman_id": "92aed9b9-4810-44b2-a504-b91f0549ca86",
+    "name": "commercetools Import Import Operations API",
+    "description": "The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project.\n\nContact Support:\n Name: commercetools Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:15:21.000Z",
+    "updatedAt": "2026-10-21T20:15:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-92aed9b9-4810-44b2-a504-b91f0549ca86"
+  },
   "item": [
     {
-      "id": "5ae0d216-4b2f-43ad-8944-041e74b7e708",
-      "name": "ImportOperations",
-      "description": {
-        "content": "Monitor the status of individual import operations.",
-        "type": "text/plain"
-      },
+      "name": "{projectKey}",
       "item": [
         {
-          "id": "d07dfb96-bbc6-44dd-ba9c-404e41a803ad",
-          "name": "List import operations in a container",
-          "request": {
-            "name": "List import operations in a container",
-            "description": {
-              "content": "Returns a paginated list of import operations for the given container. Import operations track the processing status of individual resources within an import request. Supports filtering by state.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "import-containers",
-                ":importContainerKey",
-                "import-operations"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "20",
-                  "description": "Maximum number of results to return."
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Number of results to skip for pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "state",
-                  "value": "<string>",
-                  "description": "Filter operations by their current processing state."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key of the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "importContainerKey",
-                  "description": "(Required) The user-defined key of the import container."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "import-containers",
+          "item": [
             {
-              "id": "43a16a0b-9b60-44ea-993b-1ee253e842f2",
-              "name": "A paged list of import operations.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "import-containers",
-                    ":importContainerKey",
-                    "import-operations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "state",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{importContainerKey}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "import-operations",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Get an import operation by ID",
+                          "id": "7e04ec01-42ea-4120-8efe-a13cbe96280f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/import-containers/:importContainerKey/import-operations/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "import-containers",
+                                ":importContainerKey",
+                                "import-operations",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "03f184a2-2351-49f4-91e3-7ae1cf82be05",
+                                  "key": "projectKey",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique key of the commercetools project."
+                                },
+                                {
+                                  "id": "3f21e749-98c6-404e-9bfd-1321b94b40f1",
+                                  "key": "importContainerKey",
+                                  "value": "<string>",
+                                  "description": "(Required) The user-defined key of the import container."
+                                },
+                                {
+                                  "id": "83433596-0326-4706-a226-9c6d0e73902b",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of the resource."
+                                }
+                              ]
+                            },
+                            "description": "Retrieves a single import operation by its ID. The operation record includes the processing state, any validation errors, and a reference to the resource that was imported or failed validation."
+                          },
+                          "response": [
+                            {
+                              "id": "ea839e44-3a37-44b6-b37d-7dd4b04f030a",
+                              "name": "The requested import operation.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/:projectKey/import-containers/:importContainerKey/import-operations/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    ":projectKey",
+                                    "import-containers",
+                                    ":importContainerKey",
+                                    "import-operations",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectKey"
+                                    },
+                                    {
+                                      "key": "importContainerKey"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"version\": \"<integer>\",\n  \"importContainerKey\": \"<string>\",\n  \"resourceKey\": \"<string>\",\n  \"state\": \"WaitForMasterVariant\",\n  \"id\": \"<string>\",\n  \"resourceType\": \"<string>\",\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-10-21T20:15:22.000Z",
+                              "updatedAt": "2026-10-21T20:15:22.000Z",
+                              "uid": "35240-ea839e44-3a37-44b6-b37d-7dd4b04f030a"
+                            },
+                            {
+                              "id": "f1c7472b-73ab-48e3-873f-f32e508b1e56",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/:projectKey/import-containers/:importContainerKey/import-operations/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    ":projectKey",
+                                    "import-containers",
+                                    ":importContainerKey",
+                                    "import-operations",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectKey"
+                                    },
+                                    {
+                                      "key": "importContainerKey"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-10-21T20:15:22.000Z",
+                              "updatedAt": "2026-10-21T20:15:22.000Z",
+                              "uid": "35240-f1c7472b-73ab-48e3-873f-f32e508b1e56"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:15:22.000Z",
+                          "updatedAt": "2026-10-21T20:15:22.000Z",
+                          "uid": "35240-7e04ec01-42ea-4120-8efe-a13cbe96280f"
+                        }
+                      ],
+                      "id": "0c14bf11-cdef-4f32-ac17-ef3d48ae9c64",
+                      "createdAt": "2026-10-21T20:15:22.000Z",
+                      "updatedAt": "2026-10-21T20:15:22.000Z",
+                      "uid": "35240-0c14bf11-cdef-4f32-ac17-ef3d48ae9c64"
+                    },
+                    {
+                      "name": "List import operations in a container",
+                      "id": "9772e857-0c9a-4404-b031-49ae4a8ad642",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/import-containers/:importContainerKey/import-operations?limit=20&offset=0&state=Imported",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "import-containers",
+                            ":importContainerKey",
+                            "import-operations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Number of results to skip for pagination.",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter operations by their current processing state.",
+                              "key": "state",
+                              "value": "Imported"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "ea9485ff-43ff-45df-ba14-7b7dd9924479",
+                              "key": "projectKey",
+                              "value": "<string>",
+                              "description": "(Required) The unique key of the commercetools project."
+                            },
+                            {
+                              "id": "983ae0fe-2270-480d-9d69-54f78ae0297b",
+                              "key": "importContainerKey",
+                              "value": "<string>",
+                              "description": "(Required) The user-defined key of the import container."
+                            }
+                          ]
+                        },
+                        "description": "Returns a paginated list of import operations for the given container. Import operations track the processing status of individual resources within an import request. Supports filtering by state."
+                      },
+                      "response": [
+                        {
+                          "id": "f4b8998b-1a88-493b-81b9-412d4a4eee7e",
+                          "name": "A paged list of import operations.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/import-containers/:importContainerKey/import-operations?limit=20&offset=0&state=Imported",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "import-containers",
+                                ":importContainerKey",
+                                "import-operations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum number of results to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Number of results to skip for pagination.",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Filter operations by their current processing state.",
+                                  "key": "state",
+                                  "value": "Imported"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"results\": [\n    {\n      \"version\": \"<integer>\",\n      \"importContainerKey\": \"<string>\",\n      \"resourceKey\": \"<string>\",\n      \"state\": \"Unresolved\",\n      \"id\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"lastModifiedAt\": \"<dateTime>\"\n    },\n    {\n      \"version\": \"<integer>\",\n      \"importContainerKey\": \"<string>\",\n      \"resourceKey\": \"<string>\",\n      \"state\": \"ValidationFailed\",\n      \"id\": \"<string>\",\n      \"resourceType\": \"<string>\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ],\n      \"createdAt\": \"<dateTime>\",\n      \"lastModifiedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:15:22.000Z",
+                          "updatedAt": "2026-10-21T20:15:22.000Z",
+                          "uid": "35240-f4b8998b-1a88-493b-81b9-412d4a4eee7e"
+                        },
+                        {
+                          "id": "4312a47c-ff03-41d1-8da6-8e7a40e61e00",
+                          "name": "The request lacked valid authentication credentials.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/import-containers/:importContainerKey/import-operations?limit=20&offset=0&state=Imported",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "import-containers",
+                                ":importContainerKey",
+                                "import-operations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum number of results to return.",
+                                  "key": "limit",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Number of results to skip for pagination.",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Filter operations by their current processing state.",
+                                  "key": "state",
+                                  "value": "Imported"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:15:22.000Z",
+                          "updatedAt": "2026-10-21T20:15:22.000Z",
+                          "uid": "35240-4312a47c-ff03-41d1-8da6-8e7a40e61e00"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:15:22.000Z",
+                      "updatedAt": "2026-10-21T20:15:22.000Z",
+                      "uid": "35240-9772e857-0c9a-4404-b031-49ae4a8ad642"
+                    }
+                  ],
+                  "id": "a631c2b3-2373-487d-804e-d5673efc7ebd",
+                  "createdAt": "2026-10-21T20:15:22.000Z",
+                  "updatedAt": "2026-10-21T20:15:22.000Z",
+                  "uid": "35240-a631c2b3-2373-487d-804e-d5673efc7ebd"
                 }
               ],
-              "body": "{\n  \"limit\": 1766,\n  \"offset\": 773,\n  \"count\": 6681,\n  \"total\": 499,\n  \"results\": [\n    {\n      \"version\": 3643,\n      \"importContainerKey\": \"string\",\n      \"resourceKey\": \"string\",\n      \"state\": \"Imported\",\n      \"id\": \"string\",\n      \"resourceType\": \"string\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ],\n      \"createdAt\": \"1966-05-06T22:57:06.717Z\",\n      \"lastModifiedAt\": \"1954-08-12T00:18:22.972Z\"\n    },\n    {\n      \"version\": 1383,\n      \"importContainerKey\": \"string\",\n      \"resourceKey\": \"string\",\n      \"state\": \"WaitForMasterVariant\",\n      \"id\": \"string\",\n      \"resourceType\": \"string\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ],\n      \"createdAt\": \"2014-06-30T22:11:30.462Z\",\n      \"lastModifiedAt\": \"2024-11-16T15:13:21.315Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "57c14e3f-7251-4418-9ead-e74cecdab143",
-              "name": "The request lacked valid authentication credentials.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "import-containers",
-                    ":importContainerKey",
-                    "import-operations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "state",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 9174,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "90213218-bb84-49ca-ba0b-15b099ad2c8c",
+              "createdAt": "2026-10-21T20:15:22.000Z",
+              "updatedAt": "2026-10-21T20:15:22.000Z",
+              "uid": "35240-90213218-bb84-49ca-ba0b-15b099ad2c8c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "50c50f44-415a-4bf1-9b75-d98a639edf8c",
-          "name": "Get an import operation by ID",
-          "request": {
-            "name": "Get an import operation by ID",
-            "description": {
-              "content": "Retrieves a single import operation by its ID. The operation record includes the processing state, any validation errors, and a reference to the resource that was imported or failed validation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "import-containers",
-                ":importContainerKey",
-                "import-operations",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key of the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "importContainerKey",
-                  "description": "(Required) The user-defined key of the import container."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The unique identifier of the resource."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "471f1ee4-b0cc-46c9-99c0-25923943b804",
-              "name": "The requested import operation.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "import-containers",
-                    ":importContainerKey",
-                    "import-operations",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"version\": 3413,\n  \"importContainerKey\": \"string\",\n  \"resourceKey\": \"string\",\n  \"state\": \"Rejected\",\n  \"id\": \"string\",\n  \"resourceType\": \"string\",\n  \"errors\": [\n    {\n      \"code\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"message\": \"string\"\n    }\n  ],\n  \"createdAt\": \"2004-01-19T23:33:08.176Z\",\n  \"lastModifiedAt\": \"1964-11-17T18:19:26.909Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "79cacf75-9a5c-41a4-af9e-4ff9f4813b84",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "import-containers",
-                    ":importContainerKey",
-                    "import-operations",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 9174,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "31c6978e-aee6-43d2-8f7e-28bffbfd9af0",
+          "createdAt": "2026-10-21T20:15:22.000Z",
+          "updatedAt": "2026-10-21T20:15:22.000Z",
+          "uid": "35240-31c6978e-aee6-43d2-8f7e-28bffbfd9af0"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "us-central1.gcp",
-      "key": "region"
-    },
-    {
-      "type": "string",
-      "value": "https://history.{{region}}.commercetools.com",
-      "key": "baseUrl"
+      "id": "e74e7cab-b7c2-48d8-b2f1-e147f15857c2",
+      "createdAt": "2026-10-21T20:15:22.000Z",
+      "updatedAt": "2026-10-21T20:15:22.000Z",
+      "uid": "35240-e74e7cab-b7c2-48d8-b2f1-e147f15857c2"
     }
   ],
   "auth": {
@@ -489,17 +435,19 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "31859226-8633-483d-ab8f-fc6722b421f4",
-    "name": "commercetools Change History Carts ImportOperations API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.\n\nContact Support:\n Name: commercetools Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-central1.gcp"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://import.{{region}}.commercetools.com"
     }
-  }
+  ]
 }

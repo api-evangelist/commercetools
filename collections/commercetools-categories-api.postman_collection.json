@@ -1,1176 +1,1062 @@
 {
+  "info": {
+    "_postman_id": "27f86079-7dbd-4025-8030-e4eb528a6d4a",
+    "name": "Commercetools Categories API",
+    "description": "Operations tagged Categories across 2 of this provider's published API definitions: commercetools-http-api-openapi.yml, commercetools-import-api-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: commercetools Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:15:03.000Z",
+    "updatedAt": "2026-10-21T20:15:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-27f86079-7dbd-4025-8030-e4eb528a6d4a"
+  },
   "item": [
     {
-      "id": "d5fb2566-df1c-4070-9f1f-6eff64dba1cf",
-      "name": "Categories",
-      "description": {
-        "content": "Organize products into hierarchical category structures.",
-        "type": "text/plain"
-      },
+      "name": "{projectKey}",
       "item": [
         {
-          "id": "f883662f-f42e-4933-9f82-94cf41dab6a1",
-          "name": "List categories",
-          "request": {
-            "name": "List categories",
-            "description": {
-              "content": "Returns a paginated list of all categories in the project. Categories can be filtered and sorted using standard query predicates. Use parent references to reconstruct the category hierarchy.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "categories"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "20",
-                  "description": "Maximum number of results to return. Defaults to 20, maximum 500."
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Number of results to skip for pagination. Maximum 10000."
-                },
-                {
-                  "disabled": false,
-                  "key": "where",
-                  "value": "<string>",
-                  "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"')."
-                },
-                {
-                  "disabled": false,
-                  "key": "sort",
-                  "value": "<string>",
-                  "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters."
-                },
-                {
-                  "disabled": false,
-                  "key": "expand",
-                  "value": "<string>",
-                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "categories",
+          "item": [
             {
-              "id": "2a0afa86-4830-4b0d-8930-042d4cf70c31",
-              "name": "A paged list of categories.",
-              "originalRequest": {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get a category by ID",
+                  "id": "8e881d40-8ead-43b6-badc-a4d5587a0eda",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/categories/:id?expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "categories",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                          "key": "expand",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "da7232b3-d0cc-4d42-9262-a44f9d5e8540",
+                          "key": "projectKey",
+                          "value": "<string>",
+                          "description": "(Required) The unique key identifying the commercetools project."
+                        },
+                        {
+                          "id": "d002524c-3d28-4c62-813c-c6e958171e98",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The system-generated unique identifier of the resource."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a single category by its system-generated unique identifier, including its ancestors array representing the full path to the root category."
+                  },
+                  "response": [
+                    {
+                      "id": "4ccc274e-045a-434d-bec6-b166ee3868c5",
+                      "name": "The requested category.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/categories/:id?expand=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "categories",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                              "key": "expand",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectKey"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"name\": {\n    \"eu_c\": \"<string>\"\n  },\n  \"slug\": {\n    \"nonc71\": \"<string>\"\n  },\n  \"ancestors\": [\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"orderHint\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": {\n    \"esse_066\": \"<string>\"\n  },\n  \"parent\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"metaTitle\": {\n    \"proident_2\": \"<string>\"\n  },\n  \"metaDescription\": {\n    \"consectetur_86\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T20:15:04.000Z",
+                      "updatedAt": "2026-10-21T20:15:04.000Z",
+                      "uid": "35240-4ccc274e-045a-434d-bec6-b166ee3868c5"
+                    },
+                    {
+                      "id": "1b682078-4e1b-4836-8fb9-30b84cedde51",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/categories/:id?expand=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "categories",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                              "key": "expand",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectKey"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:15:04.000Z",
+                      "updatedAt": "2026-10-21T20:15:04.000Z",
+                      "uid": "35240-1b682078-4e1b-4836-8fb9-30b84cedde51"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:15:04.000Z",
+                  "updatedAt": "2026-10-21T20:15:04.000Z",
+                  "uid": "35240-8e881d40-8ead-43b6-badc-a4d5587a0eda"
+                },
+                {
+                  "name": "Update a category by ID",
+                  "id": "4fadde43-6d79-4a4c-8882-a5539bddf231",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": []\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/categories/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "categories",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1ad5607d-da24-4892-9bf0-71fe96fc78a8",
+                          "key": "projectKey",
+                          "value": "<string>",
+                          "description": "(Required) The unique key identifying the commercetools project."
+                        },
+                        {
+                          "id": "274f714e-923e-469f-ae7e-a2e05b733f37",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The system-generated unique identifier of the resource."
+                        }
+                      ]
+                    },
+                    "description": "Applies update actions to the category with the given ID. Supported actions include changing the name, slug, parent, order hint, and custom fields."
+                  },
+                  "response": [
+                    {
+                      "id": "1626d6dd-4434-4ecf-a55c-30bd29984ffd",
+                      "name": "The updated category.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": []\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/categories/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "categories",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectKey"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"name\": {\n    \"eu_c\": \"<string>\"\n  },\n  \"slug\": {\n    \"nonc71\": \"<string>\"\n  },\n  \"ancestors\": [\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"orderHint\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": {\n    \"esse_066\": \"<string>\"\n  },\n  \"parent\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"metaTitle\": {\n    \"proident_2\": \"<string>\"\n  },\n  \"metaDescription\": {\n    \"consectetur_86\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T20:15:04.000Z",
+                      "updatedAt": "2026-10-21T20:15:04.000Z",
+                      "uid": "35240-1626d6dd-4434-4ecf-a55c-30bd29984ffd"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:15:04.000Z",
+                  "updatedAt": "2026-10-21T20:15:04.000Z",
+                  "uid": "35240-4fadde43-6d79-4a4c-8882-a5539bddf231"
+                },
+                {
+                  "name": "Delete a category by ID",
+                  "id": "64d65557-1fc5-4bf0-a0d4-5b045b18c754",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/categories/:id?version=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "categories",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Current version of the resource for optimistic concurrency control.",
+                          "key": "version",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "7d698dd3-6431-4223-bd7a-59b5ae13642b",
+                          "key": "projectKey",
+                          "value": "<string>",
+                          "description": "(Required) The unique key identifying the commercetools project."
+                        },
+                        {
+                          "id": "bdec65ad-206f-47f8-aa9b-61b121b8ce6a",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The system-generated unique identifier of the resource."
+                        }
+                      ]
+                    },
+                    "description": "Permanently deletes the category with the given ID. The current version must be provided. Categories with children or product assignments cannot be deleted until those references are removed."
+                  },
+                  "response": [
+                    {
+                      "id": "678ef89b-17b1-4eee-a021-2208cebf695d",
+                      "name": "The deleted category.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/categories/:id?version=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "categories",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Current version of the resource for optimistic concurrency control.",
+                              "key": "version",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectKey"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"name\": {\n    \"eu_c\": \"<string>\"\n  },\n  \"slug\": {\n    \"nonc71\": \"<string>\"\n  },\n  \"ancestors\": [\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"orderHint\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": {\n    \"esse_066\": \"<string>\"\n  },\n  \"parent\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"metaTitle\": {\n    \"proident_2\": \"<string>\"\n  },\n  \"metaDescription\": {\n    \"consectetur_86\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T20:15:04.000Z",
+                      "updatedAt": "2026-10-21T20:15:04.000Z",
+                      "uid": "35240-678ef89b-17b1-4eee-a021-2208cebf695d"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:15:04.000Z",
+                  "updatedAt": "2026-10-21T20:15:04.000Z",
+                  "uid": "35240-64d65557-1fc5-4bf0-a0d4-5b045b18c754"
+                }
+              ],
+              "id": "f0d1d7a0-3c10-47db-90eb-65671989d34a",
+              "createdAt": "2026-10-21T20:15:04.000Z",
+              "updatedAt": "2026-10-21T20:15:04.000Z",
+              "uid": "35240-f0d1d7a0-3c10-47db-90eb-65671989d34a"
+            },
+            {
+              "name": "import-containers",
+              "item": [
+                {
+                  "name": "{importContainerKey}",
+                  "item": [
+                    {
+                      "name": "Import categories",
+                      "id": "7a733cb0-8e8c-4d5d-9074-05609676c49c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"category\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/categories/import-containers/:importContainerKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "categories",
+                            "import-containers",
+                            ":importContainerKey"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1ae3d804-e8eb-4495-9e62-1eb4f62d497b",
+                              "key": "projectKey",
+                              "value": "<string>",
+                              "description": "(Required) The unique key of the commercetools project."
+                            },
+                            {
+                              "id": "6e562fa2-50ed-47fe-86c1-ff30c2681fbe",
+                              "key": "importContainerKey",
+                              "value": "<string>",
+                              "description": "(Required) The user-defined key of the import container."
+                            }
+                          ]
+                        },
+                        "description": "Submits a batch of category import requests for asynchronous processing. Categories are matched by key for upsert behavior. Parent category references are resolved after all categories in the batch are processed."
+                      },
+                      "response": [
+                        {
+                          "id": "2ee52b08-28e6-4a9b-9e54-829f3f0a3613",
+                          "name": "The import request was accepted for processing.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"category\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/categories/import-containers/:importContainerKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "categories",
+                                "import-containers",
+                                ":importContainerKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"<string>\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"<string>\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:15:04.000Z",
+                          "updatedAt": "2026-10-21T20:15:04.000Z",
+                          "uid": "35240-2ee52b08-28e6-4a9b-9e54-829f3f0a3613"
+                        },
+                        {
+                          "id": "6d442e72-e2cb-4aec-91a4-7fb25d00a603",
+                          "name": "The request was malformed or contained invalid parameters.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"category\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/categories/import-containers/:importContainerKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "categories",
+                                "import-containers",
+                                ":importContainerKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:15:04.000Z",
+                          "updatedAt": "2026-10-21T20:15:04.000Z",
+                          "uid": "35240-6d442e72-e2cb-4aec-91a4-7fb25d00a603"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:15:04.000Z",
+                      "updatedAt": "2026-10-21T20:15:04.000Z",
+                      "uid": "35240-7a733cb0-8e8c-4d5d-9074-05609676c49c"
+                    }
+                  ],
+                  "id": "f32344df-97ba-4609-8576-af22f798d67f",
+                  "createdAt": "2026-10-21T20:15:04.000Z",
+                  "updatedAt": "2026-10-21T20:15:04.000Z",
+                  "uid": "35240-f32344df-97ba-4609-8576-af22f798d67f"
+                }
+              ],
+              "id": "e40b85cc-5c30-499e-a1f6-155511fe12b8",
+              "createdAt": "2026-10-21T20:15:04.000Z",
+              "updatedAt": "2026-10-21T20:15:04.000Z",
+              "uid": "35240-e40b85cc-5c30-499e-a1f6-155511fe12b8"
+            },
+            {
+              "name": "List categories",
+              "id": "f86a6913-3f82-4910-8a03-05ff1fb60d8a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/:projectKey/categories?limit=20&offset=0&where=<string>&sort=<string>&expand=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":projectKey",
                     "categories"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Maximum number of results to return. Defaults to 20, maximum 500.",
                       "key": "limit",
                       "value": "20"
                     },
                     {
+                      "description": "Number of results to skip for pagination. Maximum 10000.",
                       "key": "offset",
                       "value": "0"
                     },
                     {
+                      "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"').",
                       "key": "where",
                       "value": "<string>"
                     },
                     {
+                      "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.",
                       "key": "sort",
                       "value": "<string>"
                     },
                     {
+                      "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
                       "key": "expand",
                       "value": "<string>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "8049f41f-6e81-49ba-b1e0-d04998f97817",
                       "key": "projectKey",
+                      "value": "<string>",
                       "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
                     }
                   ]
                 },
+                "description": "Returns a paginated list of all categories in the project. Categories can be filtered and sorted using standard query predicates. Use parent references to reconstruct the category hierarchy."
+              },
+              "response": [
+                {
+                  "id": "2faeebd7-7e2e-45c8-a30d-1de0a368dbec",
+                  "name": "A paged list of categories.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/categories?limit=20&offset=0&where=<string>&sort=<string>&expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "categories"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return. Defaults to 20, maximum 500.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination. Maximum 10000.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"').",
+                          "key": "where",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                          "key": "expand",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"total\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"name\": {\n        \"consectetur_9\": \"<string>\"\n      },\n      \"slug\": {\n        \"culpa12f\": \"<string>\"\n      },\n      \"ancestors\": [\n        {\n          \"typeId\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"typeId\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ],\n      \"orderHint\": \"<string>\",\n      \"key\": \"<string>\",\n      \"description\": {\n        \"aliquipdd\": \"<string>\",\n        \"minim__\": \"<string>\",\n        \"dolorabe\": \"<string>\"\n      },\n      \"parent\": {\n        \"typeId\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"metaTitle\": {\n        \"qui_81_\": \"<string>\",\n        \"tempor_c\": \"<string>\",\n        \"nulla_7\": \"<string>\"\n      },\n      \"metaDescription\": {\n        \"adipisicing_1\": \"<string>\",\n        \"aute_e_9\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"lastModifiedAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"name\": {\n        \"in_69a\": \"<string>\",\n        \"dolore_128\": \"<string>\"\n      },\n      \"slug\": {\n        \"adipisicing49\": \"<string>\",\n        \"in0f\": \"<string>\"\n      },\n      \"ancestors\": [\n        {\n          \"typeId\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"typeId\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ],\n      \"orderHint\": \"<string>\",\n      \"key\": \"<string>\",\n      \"description\": {\n        \"nisi_b2\": \"<string>\",\n        \"eiusmod8\": \"<string>\"\n      },\n      \"parent\": {\n        \"typeId\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      \"metaTitle\": {\n        \"enimf\": \"<string>\",\n        \"magna_1c8\": \"<string>\"\n      },\n      \"metaDescription\": {\n        \"proident__\": \"<string>\",\n        \"sit_7\": \"<string>\",\n        \"sit_6\": \"<string>\",\n        \"Lorem__0f\": \"<string>\",\n        \"nulla822\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"lastModifiedAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:15:04.000Z",
+                  "updatedAt": "2026-10-21T20:15:04.000Z",
+                  "uid": "35240-2faeebd7-7e2e-45c8-a30d-1de0a368dbec"
+                },
+                {
+                  "id": "eea18419-a960-4607-b8a5-356a77f22c7e",
+                  "name": "The request lacked valid authentication credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/categories?limit=20&offset=0&where=<string>&sort=<string>&expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "categories"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return. Defaults to 20, maximum 500.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination. Maximum 10000.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Query predicate string for filtering results. Uses commercetools predicate syntax (e.g., 'customerEmail = \"user@example.com\"').",
+                          "key": "where",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort expression string (e.g., 'createdAt desc'). Multiple sort expressions can be provided as separate parameters.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]').",
+                          "key": "expand",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:15:04.000Z",
+                  "updatedAt": "2026-10-21T20:15:04.000Z",
+                  "uid": "35240-eea18419-a960-4607-b8a5-356a77f22c7e"
+                }
+              ],
+              "createdAt": "2026-10-21T20:15:04.000Z",
+              "updatedAt": "2026-10-21T20:15:04.000Z",
+              "uid": "35240-f86a6913-3f82-4910-8a03-05ff1fb60d8a"
+            },
+            {
+              "name": "Create a category",
+              "id": "46144a8c-75e8-45a8-abc2-c84dbe597b88",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"limit\": 2247,\n  \"offset\": 6844,\n  \"count\": 6765,\n  \"total\": 1944,\n  \"results\": [\n    {\n      \"id\": \"string\",\n      \"version\": 2170,\n      \"name\": {\n        \"key_0\": \"string\"\n      },\n      \"slug\": {\n        \"key_0\": \"string\"\n      },\n      \"ancestors\": [\n        {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        }\n      ],\n      \"orderHint\": \"string\",\n      \"key\": \"string\",\n      \"description\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"parent\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"metaTitle\": {\n        \"key_0\": \"string\"\n      },\n      \"metaDescription\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"createdAt\": \"1947-12-12T00:04:25.462Z\",\n      \"lastModifiedAt\": \"1988-03-17T15:27:23.265Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"version\": 1884,\n      \"name\": {\n        \"key_0\": \"string\"\n      },\n      \"slug\": {\n        \"key_0\": \"string\"\n      },\n      \"ancestors\": [\n        {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"typeId\": \"string\",\n          \"id\": \"string\"\n        }\n      ],\n      \"orderHint\": \"string\",\n      \"key\": \"string\",\n      \"description\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"parent\": {\n        \"typeId\": \"string\",\n        \"id\": \"string\"\n      },\n      \"metaTitle\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"metaDescription\": {\n        \"key_0\": \"string\"\n      },\n      \"createdAt\": \"1979-09-09T18:21:13.704Z\",\n      \"lastModifiedAt\": \"1984-11-30T22:38:46.464Z\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2a1a5e07-5fc4-4c97-b5c5-1c4930890c82",
-              "name": "The request lacked valid authentication credentials.",
-              "originalRequest": {
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": {\n    \"id_16\": \"<string>\",\n    \"sint_adc\": \"<string>\",\n    \"quis2\": \"<string>\"\n  },\n  \"slug\": {\n    \"nostrudec0\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"description\": {\n    \"Excepteur_dd\": \"<string>\"\n  },\n  \"parent\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"orderHint\": \"<string>\",\n  \"metaTitle\": {\n    \"adipisicing_12\": \"<string>\"\n  },\n  \"metaDescription\": {\n    \"cillum__3\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/:projectKey/categories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     ":projectKey",
                     "categories"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "where",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "sort",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "expand",
-                      "value": "<string>"
-                    }
-                  ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "914de1a5-37ed-4890-8f0f-b7848d167b88",
                       "key": "projectKey",
+                      "value": "<string>",
                       "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Creates a new category. Categories support localized names, slugs, and metadata, and can optionally reference a parent category to build a hierarchy."
               },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "34624187-85f4-47c4-918e-aff2fda2df18",
+                  "name": "The created category.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": {\n    \"id_16\": \"<string>\",\n    \"sint_adc\": \"<string>\",\n    \"quis2\": \"<string>\"\n  },\n  \"slug\": {\n    \"nostrudec0\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"description\": {\n    \"Excepteur_dd\": \"<string>\"\n  },\n  \"parent\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"orderHint\": \"<string>\",\n  \"metaTitle\": {\n    \"adipisicing_12\": \"<string>\"\n  },\n  \"metaDescription\": {\n    \"cillum__3\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "categories"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"name\": {\n    \"eu_c\": \"<string>\"\n  },\n  \"slug\": {\n    \"nonc71\": \"<string>\"\n  },\n  \"ancestors\": [\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"typeId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"orderHint\": \"<string>\",\n  \"key\": \"<string>\",\n  \"description\": {\n    \"esse_066\": \"<string>\"\n  },\n  \"parent\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"metaTitle\": {\n    \"proident_2\": \"<string>\"\n  },\n  \"metaDescription\": {\n    \"consectetur_86\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"lastModifiedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-21T20:15:04.000Z",
+                  "updatedAt": "2026-10-21T20:15:04.000Z",
+                  "uid": "35240-34624187-85f4-47c4-918e-aff2fda2df18"
+                },
+                {
+                  "id": "59a87c02-5e1c-4f26-9225-8940cc1d3f52",
+                  "name": "The request was malformed or contained invalid parameters.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": {\n    \"id_16\": \"<string>\",\n    \"sint_adc\": \"<string>\",\n    \"quis2\": \"<string>\"\n  },\n  \"slug\": {\n    \"nostrudec0\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"description\": {\n    \"Excepteur_dd\": \"<string>\"\n  },\n  \"parent\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"orderHint\": \"<string>\",\n  \"metaTitle\": {\n    \"adipisicing_12\": \"<string>\"\n  },\n  \"metaDescription\": {\n    \"cillum__3\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:projectKey/categories",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":projectKey",
+                        "categories"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectKey"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:15:04.000Z",
+                  "updatedAt": "2026-10-21T20:15:04.000Z",
+                  "uid": "35240-59a87c02-5e1c-4f26-9225-8940cc1d3f52"
                 }
               ],
-              "body": "{\n  \"statusCode\": 9884,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:15:04.000Z",
+              "updatedAt": "2026-10-21T20:15:04.000Z",
+              "uid": "35240-46144a8c-75e8-45a8-abc2-c84dbe597b88"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "817838c1-3156-4d4a-8e46-5748a67d3e99",
-          "name": "Create a category",
-          "request": {
-            "name": "Create a category",
-            "description": {
-              "content": "Creates a new category. Categories support localized names, slugs, and metadata, and can optionally reference a parent category to build a hierarchy.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "categories"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"slug\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"key\": \"<string>\",\n  \"description\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"parent\": {\n    \"typeId\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"orderHint\": \"<string>\",\n  \"metaTitle\": {\n    \"key_0\": \"<string>\"\n  },\n  \"metaDescription\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d0b3a59a-32b2-4df2-adba-933d655dc675",
-              "name": "The created category.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "categories"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"slug\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"key\": \"<string>\",\n  \"description\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"parent\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"orderHint\": \"<string>\",\n  \"metaTitle\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"metaDescription\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"version\": 2750,\n  \"name\": {\n    \"key_0\": \"string\"\n  },\n  \"slug\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"ancestors\": [\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"orderHint\": \"string\",\n  \"key\": \"string\",\n  \"description\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"parent\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"metaTitle\": {\n    \"key_0\": \"string\"\n  },\n  \"metaDescription\": {\n    \"key_0\": \"string\"\n  },\n  \"createdAt\": \"1990-03-12T00:13:31.682Z\",\n  \"lastModifiedAt\": \"1946-09-06T14:39:57.600Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "713bb1d6-5230-4906-8cf4-d436bf139942",
-              "name": "The request was malformed or contained invalid parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "categories"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"slug\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"key\": \"<string>\",\n  \"description\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"parent\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"orderHint\": \"<string>\",\n  \"metaTitle\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"metaDescription\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 5698,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3973e41f-ebc5-4460-9cce-dffd9bab0874",
-          "name": "Get a category by ID",
-          "request": {
-            "name": "Get a category by ID",
-            "description": {
-              "content": "Retrieves a single category by its system-generated unique identifier, including its ancestors array representing the full path to the root category.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "categories",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "expand",
-                  "value": "<string>",
-                  "description": "Reference expansion path to inline referenced resources in the response (e.g., 'productType', 'categories[*]')."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The system-generated unique identifier of the resource."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "efc90bfc-8113-408b-9c14-3bf0ab8c2ab6",
-              "name": "The requested category.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "categories",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "expand",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The system-generated unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"version\": 2750,\n  \"name\": {\n    \"key_0\": \"string\"\n  },\n  \"slug\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"ancestors\": [\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"orderHint\": \"string\",\n  \"key\": \"string\",\n  \"description\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"parent\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"metaTitle\": {\n    \"key_0\": \"string\"\n  },\n  \"metaDescription\": {\n    \"key_0\": \"string\"\n  },\n  \"createdAt\": \"1990-03-12T00:13:31.682Z\",\n  \"lastModifiedAt\": \"1946-09-06T14:39:57.600Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4f38e170-79ac-49d1-87ef-90dc45ebf57f",
-              "name": "The requested resource was not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "categories",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "expand",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The system-generated unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 9884,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d99caf62-382c-4ae1-92a6-e19522a793e8",
-          "name": "Update a category by ID",
-          "request": {
-            "name": "Update a category by ID",
-            "description": {
-              "content": "Applies update actions to the category with the given ID. Supported actions include changing the name, slug, parent, order hint, and custom fields.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "categories",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The system-generated unique identifier of the resource."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "607e29ef-645c-4319-ae3f-695ef8c108aa",
-              "name": "The updated category.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "categories",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The system-generated unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"version\": \"<integer>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"version\": 2750,\n  \"name\": {\n    \"key_0\": \"string\"\n  },\n  \"slug\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"ancestors\": [\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"orderHint\": \"string\",\n  \"key\": \"string\",\n  \"description\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"parent\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"metaTitle\": {\n    \"key_0\": \"string\"\n  },\n  \"metaDescription\": {\n    \"key_0\": \"string\"\n  },\n  \"createdAt\": \"1990-03-12T00:13:31.682Z\",\n  \"lastModifiedAt\": \"1946-09-06T14:39:57.600Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "01efc12c-6eb8-466a-aeda-bbe92d620b59",
-          "name": "Delete a category by ID",
-          "request": {
-            "name": "Delete a category by ID",
-            "description": {
-              "content": "Permanently deletes the category with the given ID. The current version must be provided. Categories with children or product assignments cannot be deleted until those references are removed.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "categories",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "version",
-                  "value": "<integer>",
-                  "description": "(Required) Current version of the resource for optimistic concurrency control."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key identifying the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The system-generated unique identifier of the resource."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e82c5a46-b066-40e0-8bb9-0a9cceecc3ec",
-              "name": "The deleted category.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "categories",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "version",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key identifying the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The system-generated unique identifier of the resource."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"version\": 2750,\n  \"name\": {\n    \"key_0\": \"string\"\n  },\n  \"slug\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"ancestors\": [\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"typeId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"orderHint\": \"string\",\n  \"key\": \"string\",\n  \"description\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"parent\": {\n    \"typeId\": \"string\",\n    \"id\": \"string\"\n  },\n  \"metaTitle\": {\n    \"key_0\": \"string\"\n  },\n  \"metaDescription\": {\n    \"key_0\": \"string\"\n  },\n  \"createdAt\": \"1990-03-12T00:13:31.682Z\",\n  \"lastModifiedAt\": \"1946-09-06T14:39:57.600Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0ba5ff16-2e9e-4ea7-85e1-685766ce9aef",
-          "name": "Import categories",
-          "request": {
-            "name": "Import categories",
-            "description": {
-              "content": "Submits a batch of category import requests for asynchronous processing. Categories are matched by key for upsert behavior. Parent category references are resolved after all categories in the batch are processed.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "categories",
-                "import-containers",
-                ":importContainerKey"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key of the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "importContainerKey",
-                  "description": "(Required) The user-defined key of the import container."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<object>\",\n      \"slug\": \"<object>\",\n      \"description\": \"<object>\",\n      \"parent\": \"<object>\",\n      \"orderHint\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<object>\",\n      \"slug\": \"<object>\",\n      \"description\": \"<object>\",\n      \"parent\": \"<object>\",\n      \"orderHint\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "037fbb76-bb52-472c-b48a-4000285842ba",
-              "name": "The import request was accepted for processing.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "categories",
-                    "import-containers",
-                    ":importContainerKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"Accepted\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3b894e76-aaf0-460f-ab70-c202b4650a29",
-              "name": "The request was malformed or contained invalid parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "categories",
-                    "import-containers",
-                    ":importContainerKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"name\": {},\n      \"slug\": {},\n      \"description\": {},\n      \"parent\": {},\n      \"orderHint\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 9884,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "6bdbfa77-8853-4630-aabd-d73cc5941acf",
+          "createdAt": "2026-10-21T20:15:04.000Z",
+          "updatedAt": "2026-10-21T20:15:04.000Z",
+          "uid": "35240-6bdbfa77-8853-4630-aabd-d73cc5941acf"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "us-central1.gcp",
-      "key": "region"
-    },
-    {
-      "type": "string",
-      "value": "https://history.{{region}}.commercetools.com",
-      "key": "baseUrl"
+      "id": "5b326c62-76d9-49b9-a8f6-e8cbda7af1cd",
+      "createdAt": "2026-10-21T20:15:04.000Z",
+      "updatedAt": "2026-10-21T20:15:04.000Z",
+      "uid": "35240-5b326c62-76d9-49b9-a8f6-e8cbda7af1cd"
     }
   ],
   "auth": {
@@ -1178,17 +1064,19 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "551774bd-463d-4a95-a34c-cfa3d5d4f7ff",
-    "name": "commercetools Change History Carts Categories API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.\n\nContact Support:\n Name: commercetools Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-central1.gcp"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://api.{{region}}.commercetools.com"
     }
-  }
+  ]
 }

@@ -1,254 +1,246 @@
 {
+  "info": {
+    "_postman_id": "00576e21-a937-4fc8-92c0-e42f4c65a701",
+    "name": "commercetools Import Standalone Prices API",
+    "description": "The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project.\n\nContact Support:\n Name: commercetools Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:15:52.000Z",
+    "updatedAt": "2026-10-21T20:15:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-00576e21-a937-4fc8-92c0-e42f4c65a701"
+  },
   "item": [
     {
-      "id": "5c90fbe5-ee69-4173-bdc0-6d6fdbf46a4c",
-      "name": "StandalonePrices",
-      "description": {
-        "content": "Import standalone price resources into the project.",
-        "type": "text/plain"
-      },
+      "name": "{projectKey}",
       "item": [
         {
-          "id": "d2adb24f-7f8f-4002-8ca3-4715598f2a54",
-          "name": "Import standalone prices",
-          "request": {
-            "name": "Import standalone prices",
-            "description": {
-              "content": "Submits a batch of standalone price import requests for asynchronous processing. Standalone prices are matched by key for upsert behavior and are associated with SKUs independently from embedded product variant prices.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ":projectKey",
-                "standalone-prices",
-                "import-containers",
-                ":importContainerKey"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "projectKey",
-                  "description": "(Required) The unique key of the commercetools project."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "importContainerKey",
-                  "description": "(Required) The user-defined key of the import container."
-                },
-                {
-                  "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                  "type": "any",
-                  "value": "{{region}}",
-                  "key": "region"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": \"<object>\",\n      \"country\": \"<string>\",\n      \"customerGroup\": \"<object>\",\n      \"channel\": \"<object>\",\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": \"<object>\",\n      \"country\": \"<string>\",\n      \"customerGroup\": \"<object>\",\n      \"channel\": \"<object>\",\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "standalone-prices",
+          "item": [
             {
-              "id": "5381195c-937e-421d-a95a-252aaa9268a1",
-              "name": "The import request was accepted for processing.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "standalone-prices",
-                    "import-containers",
-                    ":importContainerKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"value\": {},\n      \"country\": \"string\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"1950-04-22T11:51:23.075Z\",\n      \"validUntil\": \"2010-12-28T19:45:13.684Z\"\n    },\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"value\": {},\n      \"country\": \"string\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"1969-06-23T09:01:04.052Z\",\n      \"validUntil\": \"2015-07-12T03:41:26.944Z\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "name": "import-containers",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "{importContainerKey}",
+                  "item": [
+                    {
+                      "name": "Import standalone prices",
+                      "id": "9a719a85-de99-4b7d-b7fe-89d48fde89e8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"standalone-price\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": {},\n      \"country\": \"<string>\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": {},\n      \"country\": \"<string>\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:projectKey/standalone-prices/import-containers/:importContainerKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":projectKey",
+                            "standalone-prices",
+                            "import-containers",
+                            ":importContainerKey"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3455aba6-e006-40d0-86de-69fbecf4d0e1",
+                              "key": "projectKey",
+                              "value": "<string>",
+                              "description": "(Required) The unique key of the commercetools project."
+                            },
+                            {
+                              "id": "c6e9d7a8-8e69-4d5e-a605-bc450347c941",
+                              "key": "importContainerKey",
+                              "value": "<string>",
+                              "description": "(Required) The user-defined key of the import container."
+                            }
+                          ]
+                        },
+                        "description": "Submits a batch of standalone price import requests for asynchronous processing. Standalone prices are matched by key for upsert behavior and are associated with SKUs independently from embedded product variant prices."
+                      },
+                      "response": [
+                        {
+                          "id": "4d0cc126-c957-4915-83a7-21518fcccfe0",
+                          "name": "The import request was accepted for processing.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"standalone-price\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": {},\n      \"country\": \"<string>\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": {},\n      \"country\": \"<string>\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/standalone-prices/import-containers/:importContainerKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "standalone-prices",
+                                "import-containers",
+                                ":importContainerKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"<string>\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"<string>\",\n      \"state\": \"Accepted\",\n      \"errors\": [\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"message\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-10-21T20:15:53.000Z",
+                          "updatedAt": "2026-10-21T20:15:53.000Z",
+                          "uid": "35240-4d0cc126-c957-4915-83a7-21518fcccfe0"
+                        },
+                        {
+                          "id": "eb75202f-0b72-4427-90f2-9f9788e1610a",
+                          "name": "The request was malformed or contained invalid parameters.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"standalone-price\",\n  \"resources\": [\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": {},\n      \"country\": \"<string>\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"value\": {},\n      \"country\": \"<string>\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"<dateTime>\",\n      \"validUntil\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/:projectKey/standalone-prices/import-containers/:importContainerKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":projectKey",
+                                "standalone-prices",
+                                "import-containers",
+                                ":importContainerKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectKey"
+                                },
+                                {
+                                  "key": "importContainerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statusCode\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:15:53.000Z",
+                          "updatedAt": "2026-10-21T20:15:53.000Z",
+                          "uid": "35240-eb75202f-0b72-4427-90f2-9f9788e1610a"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:15:53.000Z",
+                      "updatedAt": "2026-10-21T20:15:53.000Z",
+                      "uid": "35240-9a719a85-de99-4b7d-b7fe-89d48fde89e8"
+                    }
+                  ],
+                  "id": "93d5f237-5754-4e3c-9d49-bea8dbf06c0a",
+                  "createdAt": "2026-10-21T20:15:53.000Z",
+                  "updatedAt": "2026-10-21T20:15:53.000Z",
+                  "uid": "35240-93d5f237-5754-4e3c-9d49-bea8dbf06c0a"
                 }
               ],
-              "body": "{\n  \"operationStatus\": [\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"resourceKey\": \"string\",\n      \"state\": \"ValidationFailed\",\n      \"errors\": [\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        },\n        {\n          \"code\": \"string\",\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4ab00c8f-cdf6-4139-af7d-7eb245002321",
-              "name": "The request was malformed or contained invalid parameters.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    ":projectKey",
-                    "standalone-prices",
-                    "import-containers",
-                    ":importContainerKey"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "projectKey",
-                      "description": "(Required) The unique key of the commercetools project."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "importContainerKey",
-                      "description": "(Required) The user-defined key of the import container."
-                    },
-                    {
-                      "description": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-                      "type": "any",
-                      "value": "{{region}}",
-                      "key": "region"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"type\": \"<string>\",\n  \"resources\": [\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"value\": {},\n      \"country\": \"string\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"1950-04-22T11:51:23.075Z\",\n      \"validUntil\": \"2010-12-28T19:45:13.684Z\"\n    },\n    {\n      \"key\": \"string\",\n      \"sku\": \"string\",\n      \"value\": {},\n      \"country\": \"string\",\n      \"customerGroup\": {},\n      \"channel\": {},\n      \"validFrom\": \"1969-06-23T09:01:04.052Z\",\n      \"validUntil\": \"2015-07-12T03:41:26.944Z\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"statusCode\": 7158,\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "83270e3d-15bf-4150-8b15-0a5a6aec762f",
+              "createdAt": "2026-10-21T20:15:53.000Z",
+              "updatedAt": "2026-10-21T20:15:53.000Z",
+              "uid": "35240-83270e3d-15bf-4150-8b15-0a5a6aec762f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8f74849b-544e-4a8b-8687-c72e02c65ac8",
+          "createdAt": "2026-10-21T20:15:53.000Z",
+          "updatedAt": "2026-10-21T20:15:53.000Z",
+          "uid": "35240-8f74849b-544e-4a8b-8687-c72e02c65ac8"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "The deployment region. (This can only be one of us-central1.gcp,us-east-2.aws,europe-west1.gcp,eu-central-1.aws,australia-southeast1.gcp)",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "us-central1.gcp",
-      "key": "region"
-    },
-    {
-      "type": "string",
-      "value": "https://history.{{region}}.commercetools.com",
-      "key": "baseUrl"
+      "id": "1715d52b-7b67-4bba-8e74-8d5c0817151e",
+      "createdAt": "2026-10-21T20:15:53.000Z",
+      "updatedAt": "2026-10-21T20:15:53.000Z",
+      "uid": "35240-1715d52b-7b67-4bba-8e74-8d5c0817151e"
     }
   ],
   "auth": {
@@ -256,17 +248,19 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "675a46da-15f4-487d-99ea-909be816d5aa",
-    "name": "commercetools Change History Carts StandalonePrices API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints from the main HTTP API and supports filtering by resource type, date range, user, and API client. It is useful for compliance workflows, debugging unexpected state changes, and building audit trails for regulated industries.\n\nContact Support:\n Name: commercetools Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-central1.gcp"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://import.{{region}}.commercetools.com"
     }
-  }
+  ]
 }
