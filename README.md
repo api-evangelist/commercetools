@@ -1,4 +1,4 @@
-# commercetools (commercetools)
+# commercetools
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,231 +66,257 @@
 
 commercetools is the leading composable, headless, API-first Commerce platform powering large-scale B2C, B2B, and marketplace digital commerce for enterprise brands. The platform exposes a broad API surface organized into the HTTP API (core REST interface), GraphQL API (flexible query and mutation alternative), Import API (bulk data ingestion), Change History API (audit log), Checkout API (managed checkout configuration), and Merchant Center Customizations API (custom UI extensions). It is complemented by official SDKs (TypeScript, Java, PHP, .NET, Python) and AsyncAPI-based subscriptions for event-driven integrations.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/commercetools/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/commercetools/refs/heads/main/apis.yml)
+**Areas:** Commerce · Composable Commerce · E-Commerce · GraphQL · REST · SDK · Agentic Commerce
+
+## commercetools on APIs.io
+
+Everything profiled for commercetools is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/commercetools/](https://apis.io/providers/commercetools/)** — or go straight to one of the APIs or properties below.
+
+### APIs (19)
+
+- [Commercetools GraphQL API](https://apis.io/apis/commercetools/graphql-api/) — The commercetools GraphQL API provides a flexible, network-efficient alternative to the HTTP API for querying and mutating Composable Commerce resources. It…
+- [Commercetools TypeScript SDK](https://apis.io/apis/commercetools/typescript-sdk/) — The commercetools TypeScript SDK is the official client library for interacting with the Composable Commerce HTTP API, Import API, and GraphQL API from…
+- [Commercetools Java SDK](https://apis.io/apis/commercetools/java-sdk/) — The commercetools Java SDK is the official client library for accessing the Composable Commerce APIs from Java applications. It provides strongly typed…
+- [Commercetools Checkout API](https://apis.io/apis/commercetools/checkout-api/) — The commercetools Checkout API provides programmatic control over Checkout application configurations within Composable Commerce. The Checkout Applications…
+- [Commercetools Merchant Center Customizations API](https://apis.io/apis/commercetools/merchant-center-customizations-api/) — The commercetools Merchant Center Customizations API provides the programmatic interface for building custom applications and UI extensions within the…
+- [commercetools Carts API](https://apis.io/apis/commercetools/commercetools-carts-api/) — Manage shopping carts with line items, discounts, shipping, and tax calculations.
+- [commercetools Categories API](https://apis.io/apis/commercetools/commercetools-categories-api/) — Organize products into hierarchical category structures.
+- [commercetools Customers API](https://apis.io/apis/commercetools/commercetools-customers-api/) — Manage customer accounts, addresses, authentication, and group assignments.
+- [commercetools ImportContainers API](https://apis.io/apis/commercetools/commercetools-importcontainers-api/) — Manage import containers that hold import requests before processing.
+- [commercetools ImportOperations API](https://apis.io/apis/commercetools/commercetools-importoperations-api/) — Monitor the status of individual import operations.
+- [commercetools Inventory API](https://apis.io/apis/commercetools/commercetools-inventory-api/) — Manage inventory entries tracking stock levels per channel and SKU.
+- [commercetools Orders API](https://apis.io/apis/commercetools/commercetools-orders-api/) — Create and manage orders resulting from cart checkouts or quotes.
+- [commercetools Payments API](https://apis.io/apis/commercetools/commercetools-payments-api/) — Track payment transactions and PSP interactions associated with orders.
+- [commercetools Products API](https://apis.io/apis/commercetools/commercetools-products-api/) — Manage product catalog entries including variants, images, prices, and attributes.
+- [commercetools Project API](https://apis.io/apis/commercetools/commercetools-project-api/) — Read and configure project-level settings including currencies, languages, and messages.
+- [commercetools StandalonePrices API](https://apis.io/apis/commercetools/commercetools-standaloneprices-api/) — Import standalone price resources into the project.
+- [commercetools Subscriptions API](https://apis.io/apis/commercetools/commercetools-subscriptions-api/) — The Subscriptions API from commercetools — 2 operation(s) for subscriptions.
+- [commercetools Change History API](https://apis.io/apis/commercetools/commercetools-change-history-api/) — Query the audit log of resource changes across the project.
+- [commercetools Product Variants API](https://apis.io/apis/commercetools/commercetools-product-variants-api/) — Import product variant resources into the project.
 
-## Scope
+### Published properties
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Tags
+#### AsyncAPI (1)
 
-- Commerce
-- Composable Commerce
-- E-Commerce
-- GraphQL
-- REST
-- SDK
+Event-driven and webhook contracts.
 
-## Timestamps
+- [commercetools Subscriptions Events](https://apis.io/asyncapis/commercetools/commercetools-subscriptions-asyncapi/)
 
-- **Created:** 2025-09-15
-- **Modified:** 2026-05-19
+#### Event channels (12)
 
-## APIs
+Individual events and webhooks the provider emits.
 
-### Commercetools HTTP API
+- [customerCreated](https://apis.io/channels/commercetools/customercreated/)
+- [customerPasswordChanged](https://apis.io/channels/commercetools/customerpasswordchanged/)
+- [inventoryEntryQuantitySet](https://apis.io/channels/commercetools/inventoryentryquantityset/)
+- [orderCreated](https://apis.io/channels/commercetools/ordercreated/)
+- [orderDeliveryAdded](https://apis.io/channels/commercetools/orderdeliveryadded/)
+- [orderPaymentStateChanged](https://apis.io/channels/commercetools/orderpaymentstatechanged/)
+- [orderShipmentStateChanged](https://apis.io/channels/commercetools/ordershipmentstatechanged/)
+- [orderStateChanged](https://apis.io/channels/commercetools/orderstatechanged/)
+- [paymentTransactionAdded](https://apis.io/channels/commercetools/paymenttransactionadded/)
+- [productPublished](https://apis.io/channels/commercetools/productpublished/)
+- [productUnpublished](https://apis.io/channels/commercetools/productunpublished/)
+- [resourceChange](https://apis.io/channels/commercetools/resourcechange/)
 
-The commercetools HTTP API is the core REST interface for programmatic access to all data and functionality within a Composable Commerce project. It covers a broad range of commerce resources including products, product types, categories, carts, orders, customers, payments, discounts, inventory, shipping methods, stores, and business units. All resources follow RESTful conventions using standard HTTP verbs and return JSON responses.
+#### GraphQL (1)
 
-- **Human URL:** [https://docs.commercetools.com/api](https://docs.commercetools.com/api)
-- **Base URL:** `https://api.{region}.commercetools.com`
+GraphQL schemas.
 
-#### Tags
+- [commercetools GraphQL API](https://apis.io/graphqls/commercetools/commercetools-graphql/)
 
-- Commerce
-- Composable Commerce
-- E-Commerce
-- REST
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://docs.commercetools.com/api)
-- [OpenAPI](openapi/commercetools-http-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/commercetools-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/commercetools-subscriptions-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+- [commercetools MCP (Knowledge MCP + Commerce MCP)](https://apis.io/servers/commercetools/commercetools-mcp-knowledge-mcp-commerce-mcp/)
 
-### Commercetools GraphQL API
+#### Agentic access (1)
 
-The commercetools GraphQL API provides a flexible, network-efficient alternative to the HTTP API for querying and mutating Composable Commerce resources. It exposes a single endpoint and allows clients to request exactly the data they need, reducing over-fetching and minimizing round trips. The GraphQL API uses the same API clients, authentication tokens, and project scopes as the HTTP API.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.commercetools.com/api/graphql](https://docs.commercetools.com/api/graphql)
-- **Base URL:** `https://api.{region}.commercetools.com`
+- [Commercetools Agentic Access](https://apis.io/agentic-access/commercetools/commercetools-agentic-access/)
 
-#### Tags
+#### JSON Schema (116)
 
-- Commerce
-- Composable Commerce
-- E-Commerce
-- GraphQL
+The data models the API reads and writes.
 
-#### Properties
+- [Address](https://apis.io/schemas/commercetools/commercetools-address/)
+- [Attribute](https://apis.io/schemas/commercetools/commercetools-attribute/)
+- [Cart](https://apis.io/schemas/commercetools/commercetools-cart/)
+- [CartDraft](https://apis.io/schemas/commercetools/commercetools-cart-draft/)
+- [CartPagedQueryResponse](https://apis.io/schemas/commercetools/commercetools-cart-paged-query-response/)
+- [CartUpdate](https://apis.io/schemas/commercetools/commercetools-cart-update/)
+- [CartDraft](https://apis.io/schemas/commercetools/commercetools-cartdraft/)
+- [CartPagedQueryResponse](https://apis.io/schemas/commercetools/commercetools-cartpagedqueryresponse/)
+- [CartUpdate](https://apis.io/schemas/commercetools/commercetools-cartupdate/)
+- [Category](https://apis.io/schemas/commercetools/commercetools-category/)
+- [CategoryDraft](https://apis.io/schemas/commercetools/commercetools-category-draft/)
+- [CategoryImportRequest](https://apis.io/schemas/commercetools/commercetools-category-import-request/)
+- [CategoryPagedQueryResponse](https://apis.io/schemas/commercetools/commercetools-category-paged-query-response/)
+- [CategoryUpdate](https://apis.io/schemas/commercetools/commercetools-category-update/)
+- [CategoryDraft](https://apis.io/schemas/commercetools/commercetools-categorydraft/)
+- [CategoryImport](https://apis.io/schemas/commercetools/commercetools-categoryimport/)
+- [CategoryImportRequest](https://apis.io/schemas/commercetools/commercetools-categoryimportrequest/)
+- [CategoryPagedQueryResponse](https://apis.io/schemas/commercetools/commercetools-categorypagedqueryresponse/)
+- [CategoryUpdate](https://apis.io/schemas/commercetools/commercetools-categoryupdate/)
+- [Change](https://apis.io/schemas/commercetools/commercetools-change/)
+- [Customer](https://apis.io/schemas/commercetools/commercetools-customer/)
+- [CustomerDraft](https://apis.io/schemas/commercetools/commercetools-customer-draft/)
+- [CustomerImportRequest](https://apis.io/schemas/commercetools/commercetools-customer-import-request/)
+- [CustomerPagedQueryResponse](https://apis.io/schemas/commercetools/commercetools-customer-paged-query-response/)
+- [CustomerUpdate](https://apis.io/schemas/commercetools/commercetools-customer-update/)
+- …and 91 more published on APIs.io
 
-- [Documentation](https://docs.commercetools.com/api/graphql)
-- [Postman Collection](collections/commercetools-change-history-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-change-history-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-import-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-import-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Structure (1)
 
-### Commercetools Import API
+Data models expressed in JSON Structure.
 
-The commercetools Import API enables bulk importing of commerce data into a Composable Commerce project. It supports importing categories, product types, products, product variants, prices, inventory entries, orders, and customers. Imports are processed asynchronously through import containers, and the API provides endpoints for monitoring import operation status and handling validation errors.
+- [Commercetools Structure](https://apis.io/json-structure/commercetools/commercetools-structure/)
 
-- **Human URL:** [https://docs.commercetools.com/api/import-export/overview](https://docs.commercetools.com/api/import-export/overview)
-- **Base URL:** `https://import.{region}.commercetools.com`
+#### JSON-LD (1)
 
-#### Tags
+Linked-data contexts for the provider's vocabulary.
 
-- Bulk Operations
-- Commerce
-- Data Migration
-- Import
+- [Commercetools Context](https://apis.io/jsonld/commercetools/commercetools-context/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](https://docs.commercetools.com/api/import-export/overview)
-- [OpenAPI](openapi/commercetools-import-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/commercetools-import-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-import-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The provider's domain terms, defined.
 
-### Commercetools Change History API
+- [commercetools Domain Vocabulary](https://apis.io/vocabularies/commercetools/commercetools-vocabulary/)
 
-The commercetools Change History API provides a queryable audit log of all changes made to resources within a Composable Commerce project. It records mutations applied to resources such as products, orders, customers, discounts, and carts, along with metadata about who made the change and when. The API is hosted on separate regional endpoints and supports filtering by resource type, date range, user, and client.
+#### Collections (17)
 
-- **Human URL:** [https://docs.commercetools.com/api/history/overview](https://docs.commercetools.com/api/history/overview)
-- **Base URL:** `https://history.{region}.commercetools.com`
+Postman and Open Collection request collections.
 
-#### Tags
+- [commercetools Change History Carts API](https://apis.io/collections/commercetools/open-commercetools-carts-api/)
+- [commercetools Change History Carts Categories API](https://apis.io/collections/commercetools/open-commercetools-categories-api/)
+- [commercetools Change History API](https://apis.io/collections/commercetools/open-commercetools-change-history-api/)
+- [commercetools Change History Carts ChangeHistory API](https://apis.io/collections/commercetools/open-commercetools-changehistory-api/)
+- [commercetools Change History Carts Customers API](https://apis.io/collections/commercetools/open-commercetools-customers-api/)
+- [commercetools HTTP API](https://apis.io/collections/commercetools/open-commercetools-http-api/)
+- [commercetools Import API](https://apis.io/collections/commercetools/open-commercetools-import-api/)
+- [commercetools Change History Carts ImportContainers API](https://apis.io/collections/commercetools/open-commercetools-importcontainers-api/)
+- [commercetools Change History Carts ImportOperations API](https://apis.io/collections/commercetools/open-commercetools-importoperations-api/)
+- [commercetools Change History Carts Inventory API](https://apis.io/collections/commercetools/open-commercetools-inventory-api/)
+- [commercetools Change History Carts Orders API](https://apis.io/collections/commercetools/open-commercetools-orders-api/)
+- [commercetools Change History Carts Payments API](https://apis.io/collections/commercetools/open-commercetools-payments-api/)
+- [commercetools Change History Carts Products API](https://apis.io/collections/commercetools/open-commercetools-products-api/)
+- [commercetools Change History Carts ProductVariants API](https://apis.io/collections/commercetools/open-commercetools-productvariants-api/)
+- [commercetools Change History Carts Project API](https://apis.io/collections/commercetools/open-commercetools-project-api/)
+- [commercetools Change History Carts StandalonePrices API](https://apis.io/collections/commercetools/open-commercetools-standaloneprices-api/)
+- [commercetools Change History Carts Subscriptions API](https://apis.io/collections/commercetools/open-commercetools-subscriptions-api/)
 
-- Audit Log
-- Change History
-- Commerce
-- Compliance
+#### Governance rules (3)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://docs.commercetools.com/api/history/overview)
-- [OpenAPI](openapi/commercetools-change-history-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/commercetools-change-history-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-change-history-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [commercetools — asyncapi rules](https://apis.io/rules/commercetools/commercetools-asyncapi-spectral-rules/)
+- [commercetools — jsonschema rules](https://apis.io/rules/commercetools/commercetools-jsonschema-spectral-rules/)
+- [commercetools API Rules](https://apis.io/rules/commercetools/commercetools-rules/)
 
-### Commercetools TypeScript SDK
+#### Security (3)
 
-The commercetools TypeScript SDK is the official client library for interacting with the Composable Commerce HTTP API, Import API, and GraphQL API from JavaScript and TypeScript applications. It provides full type safety, IDE autocompletion, and a fluent domain-specific language for constructing valid API requests. The SDK handles OAuth 2.0 token management, request building, and response deserialization.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.commercetools.com/sdk/typescript-sdk](https://docs.commercetools.com/sdk/typescript-sdk)
-- **Base URL:** `https://api.example.com`
+- [Commercetools Authentication](https://apis.io/security/commercetools/commercetools-authentication/)
+- [Commercetools Domain Security](https://apis.io/security/commercetools/commercetools-domain-security/)
+- [Commercetools Trust Center](https://apis.io/security/commercetools/commercetools-trust-center/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Commerce
-- JavaScript
-- SDK
-- TypeScript
+The permissions the API asks for.
 
-#### Properties
+- [Commercetools Scopes](https://apis.io/scopes/commercetools/commercetools-scopes/)
 
-- [Documentation](https://docs.commercetools.com/sdk/typescript-sdk)
-- [Postman Collection](collections/commercetools-change-history-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-change-history-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-import-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-import-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### Commercetools Java SDK
+Published plans, tiers and prices.
 
-The commercetools Java SDK is the official client library for accessing the Composable Commerce APIs from Java applications. It provides strongly typed request builders, automatic OAuth 2.0 token management, and support for all HTTP API and Import API endpoints. The SDK is compatible with standard Java development toolchains and is distributed via Maven Central. It is commonly used in enterprise backend systems and microservices that require JVM-based integration with the commercetools platform.
+- [Commercetools Plans Pricing](https://apis.io/plans/commercetools/commercetools-plans-pricing/)
 
-- **Human URL:** [https://docs.commercetools.com/sdk/java-sdk](https://docs.commercetools.com/sdk/java-sdk)
-- **Base URL:** `https://api.example.com`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Commerce
-- Java
-- JVM
-- SDK
+- [Commercetools Rate Limits](https://apis.io/rate-limits/commercetools/commercetools-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.commercetools.com/sdk/java-sdk)
-- [Postman Collection](collections/commercetools-change-history-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-change-history-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-import-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-import-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### Commercetools Checkout API
+- [Commercetools Finops](https://apis.io/finops/commercetools/commercetools-finops/)
 
-The commercetools Checkout API provides programmatic control over Checkout application configurations within Composable Commerce. The Checkout Applications API allows developers to create, update, and manage Checkout applications without manual setup in the Merchant Center, enabling automated deployment and configuration across multiple stores, regions, and business units. Checkout integrates with payment connectors available through the Connect marketplace.
+## Where to find this API
 
-- **Human URL:** [https://docs.commercetools.com/checkout](https://docs.commercetools.com/checkout)
-- **Base URL:** `https://api.example.com`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Checkout
-- Commerce
-- Embedded Components
-- Payments
-
-#### Properties
-
-- [Documentation](https://docs.commercetools.com/checkout)
-- [Postman Collection](collections/commercetools-change-history-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-change-history-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-import-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-import-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Commercetools Merchant Center Customizations API
-
-The commercetools Merchant Center Customizations API provides the programmatic interface for building custom applications and UI extensions within the Merchant Center. It exposes proxy endpoints to underlying REST and GraphQL APIs, allowing custom UIs to interact with Composable Commerce resources in a secure, scoped manner. Developers use this API when creating Custom Applications that extend the Merchant Center with business-specific tooling.
-
-- **Human URL:** [https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api](https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api)
-- **Base URL:** `https://api.example.com`
-
-#### Tags
-
-- Commerce
-- Customizations
-- Extensions
-- Merchant Center
-
-#### Properties
-
-- [Documentation](https://docs.commercetools.com/merchant-center-customizations/concepts/merchant-center-api)
-- [Postman Collection](collections/commercetools-change-history-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-change-history-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/commercetools-import-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/commercetools-import-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/commercetools)
 - [Website](https://commercetools.com/)
 - [Documentation](https://docs.commercetools.com/)
+- [Getting started](https://commercetools.com/get-started)
 - [Pricing](https://commercetools.com/pricing)
-- [Status Page](https://status.commercetools.com/)
-- [Git Hub](https://github.com/commercetools)
-- [JSON-LD](json-ld/commercetools-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/commercetools-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/commercetools-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/commercetools-subscription-message-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Spectral Rules](rules/commercetools-rules.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
-- [Features](undefined)
-- [Integrations](https://commercetools.com/partners)
+- [Sign up](https://commercetools.com/register-opportunity)
+- [Support](https://support.commercetools.com/)
+- [Changelog](https://docs.commercetools.com/api/releases/2026-10-02-reduced-category-tree-lock-contention)
+- [Blog](https://commercetools.com/blog)
+- [Compliance](https://trust.commercetools.com/)
+- [Privacy policy](https://commercetools.com/privacy)
+- [Status](https://status.commercetools.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 61.8** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 71.5 |
+| Contract governance | 22.0 |
+| Operational transparency | 65.8 |
+| Developer ergonomics | 48.8 |
+| Access clarity | 57.9 |
+
+**Agent readiness 36.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | verified |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/commercetools/](https://apis.io/providers/commercetools/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for commercetools: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/commercetools/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
