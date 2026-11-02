@@ -143,6 +143,9 @@ artifacts:
   graphql/commercetools-graphql.md:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-02.yml:
+    method: unknown
+    evidence: no authorship recorded
   hosts/commercetools-hosts.yml:
     method: derived
     evidence: declared in the artifact
@@ -512,7 +515,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-10-31T095417.yml:
+  kin/checks-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -567,6 +570,15 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-10-31T095417.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-01T171331.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-01T200237.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/commercetools-lifecycle.yml:
@@ -660,6 +672,9 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   security/commercetools-trust-center.yml:
+    method: searched
+    evidence: declared in the artifact
+  sla/commercetools-sla.yml:
     method: searched
     evidence: declared in the artifact
   vendors/commercetools-vendors.yml:
